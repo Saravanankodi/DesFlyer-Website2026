@@ -1,0 +1,32 @@
+export const internshipOpeningFields = [
+  { name: 'title', label: 'Internship Title', type: 'text', required: true },
+  { name: 'department', label: 'Department / Domain', type: 'text', required: true },
+  { name: 'duration', label: 'Duration', type: 'text', required: true, placeholder: 'e.g. 3 months' },
+  { name: 'location', label: 'Location', type: 'text', required: true },
+  { name: 'type', label: 'Internship Type', type: 'select', required: true, options: ['Remote', 'On-site', 'Hybrid'] },
+  { name: 'openings', label: 'Number of Openings', type: 'number', required: true },
+  { name: 'status', label: 'Status', type: 'select', required: true, options: ['Open', 'Closed'] },
+  { name: 'lastDateToApply', label: 'Last Date to Apply', type: 'date', required: true },
+  { name: 'description', label: 'Description', type: 'textarea', required: true, fullWidth: true },
+  { name: 'skillsRequired', label: 'Skills Required', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'responsibilities', label: 'Responsibilities', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'requirements', label: 'Requirements', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'benefits', label: 'Benefits', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+]
+
+export const jobOpeningFields = [
+  { name: 'title', label: 'Job Title', type: 'text', required: true },
+  { name: 'department', label: 'Department', type: 'text', required: true },
+  { name: 'experience', label: 'Experience', type: 'text', required: true, placeholder: 'e.g. 1-2 years' },
+  { name: 'employmentType', label: 'Employment Type', type: 'select', required: true, options: ['Full-time', 'Part-time', 'Contract'] },
+  { name: 'salary', label: 'Salary', type: 'text', required: false },
+  { name: 'location', label: 'Location', type: 'text', required: true },
+  { name: 'openings', label: 'Open Positions', type: 'number', required: true },
+  { name: 'status', label: 'Status', type: 'select', required: true, options: ['Open', 'Closed'] },
+  { name: 'lastDateToApply', label: 'Last Date', type: 'date', required: true },
+  { name: 'description', label: 'Description', type: 'textarea', required: true, fullWidth: true },
+  { name: 'skillsRequired', label: 'Skills Required', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'responsibilities', label: 'Responsibilities', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'requirements', label: 'Requirements', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+  { name: 'benefits', label: 'Benefits', type: 'textarea', required: false, fullWidth: true, rows: 2 },
+]
