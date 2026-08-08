@@ -13,13 +13,11 @@ export const siteConfig = {
   phone: '+91 8525913433',
   // Social links: icons were shown on the live site but no handles/URLs were visible in the screenshot.
   // Placeholders — swap hrefs when you send the real profile links.
-  socials: [
-    { name: 'LinkedIn', href: '#', isPlaceholder: true },
-    { name: 'WhatsApp', href: `https://wa.me/918525913433`, isPlaceholder: false },
-    { name: 'Instagram', href: '#', isPlaceholder: true },
-    { name: 'Facebook', href: '#', isPlaceholder: true },
-    { name: 'X', href: '#', isPlaceholder: true },
-  ],
+  socials: [{ name: 'LinkedIn', href: 'https://www.linkedin.com/company/desflyer.tech', isPlaceholder: false, },
+  { name: 'WhatsApp', href: 'https://wa.me/918525913433', isPlaceholder: false, },
+  { name: 'Instagram', href: 'https://www.instagram.com/desflyer.tech/', isPlaceholder: false, },
+  { name: 'Facebook', href: 'https://www.facebook.com/people/Desflyer-Desflyer/pfbid0UAJEWVoBJBrKjEk2d8tJoKo1vUJviUN63AqvZQiaQn1rMkgRJHbSYsZGUquzGFEol/', isPlaceholder: false, },
+  { name: 'X', href: 'https://x.com/desflyer_tech', isPlaceholder: false, },],
 }
 
 export const aboutContent = {

@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Seo title="Home" description={siteConfig.description} path="/" />
       <Hero />
-      <TechStrip />
+      {/* <TechStrip /> */}
       <ServicesTeaser />
       <ProcessTimeline />
       <PortfolioTeaser />

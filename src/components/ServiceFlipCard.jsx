@@ -1,3 +1,152 @@
+// import { motion } from 'framer-motion'
+// import * as FiIcons from 'react-icons/fi'
+// import { FiCheck, FiArrowRight } from 'react-icons/fi'
+// import { Link } from 'react-router-dom'
+
+// export default function ServiceFlipCard({ service, index }) {
+//   const Icon = FiIcons[service.icon] || FiIcons.FiBox
+
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, y: 24 }}
+//       whileInView={{ opacity: 1, y: 0 }}
+//       viewport={{ once: true, margin: '-60px' }}
+//       transition={{
+//         duration: 0.5,
+//         delay: (index % 4) * 0.06,
+//         ease: [0.16, 1, 0.3, 1],
+//       }}
+//       id={service.slug}
+//       whileHover={{ y: -8 }}
+//       className="group h-full"
+//     >
+//     <div
+//   className="
+//   relative
+//   h-full
+//   rounded-3xl
+//   border
+//   border-signal/20
+//   bg-[#0b1120]/95
+//   backdrop-blur-3xl
+//   p-7
+//   flex
+//   flex-col
+//   justify-between
+//   overflow-hidden
+//   transition-all
+//   duration-500
+//   hover:border-signal
+//   hover:shadow-[0_25px_60px_-20px_rgba(46,111,255,.35)]
+//   "
+// >
+//         {/* Glow */}
+//         <div
+//           className="
+//           absolute
+//           -right-16
+//           -top-16
+//           h-40
+//           w-40
+//           rounded-full
+//           bg-signal/15
+//           blur-3xl
+//           opacity-0
+//           group-hover:opacity-100
+//           transition-opacity
+//           duration-500
+//           "
+//         />
+
+//         {/* Header */}
+//         <div className="relative z-10 flex items-start justify-between">
+//           <div>
+//             <span className="font-display text-5xl font-bold text-signal/15">
+//               {String(index + 1).padStart(2, '0')}
+//             </span>
+
+//             <h3 className="mt-3 font-display text-2xl font-bold text-[var(--fg)]">
+//               {service.title}
+//             </h3>
+
+//             <p className="mt-2 text-sm text-signal">
+//               Digital Solution
+//             </p>
+//           </div>
+
+//           <div
+//             className="
+//             flex
+//             h-14
+//             w-14
+//             items-center
+//             justify-center
+//             rounded-2xl
+//             bg-signal/10
+//             text-signal
+//             "
+//           >
+//             <Icon size={26} />
+//           </div>
+//         </div>
+
+//         {/* Description */}
+//         <div className="relative z-10 mt-6">
+//           <p className="text-sm leading-7 text-[var(--fg)]/70">
+//             {service.body}
+//           </p>
+
+//           {service.benefits?.length > 0 && (
+//             <ul className="mt-6 space-y-3">
+//               {service.benefits.slice(0, 4).map((item) => (
+//                 <li
+//                   key={item}
+//                   className="flex items-start gap-3 text-sm text-[var(--fg)]/75"
+//                 >
+//                   <FiCheck
+//                     className="mt-1 shrink-0 text-signal"
+//                     size={15}
+//                   />
+//                   <span>{item}</span>
+//                 </li>
+//               ))}
+//             </ul>
+//           )}
+//         </div>
+
+//         {/* Footer */}
+//         <div className="relative z-10 mt-8 flex items-center justify-between">
+//           <Link
+//             to="/contact"
+//             className="
+//             inline-flex
+//             items-center
+//             gap-2
+//             font-medium
+//             text-signal
+//             transition-all
+//             duration-300
+//             hover:gap-3
+//             "
+//           >
+//             Let's Build
+//             <FiArrowRight size={16} />
+//           </Link>
+
+//           <div className="flex gap-1.5">
+//             <span className="h-2 w-2 rounded-full bg-signal animate-pulse" />
+//             <span className="h-2 w-2 rounded-full bg-signal/60" />
+//             <span className="h-2 w-2 rounded-full bg-signal/30" />
+//           </div>
+//         </div>
+//       </div>
+//     </motion.div>
+//   )
+// }
+
+
+
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import * as FiIcons from 'react-icons/fi'

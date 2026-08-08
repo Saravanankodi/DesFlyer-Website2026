@@ -5,6 +5,7 @@ import Seo from '../lib/Seo'
 import Eyebrow from '../components/ui/Eyebrow'
 import Button from '../components/ui/Button'
 import ApplicationModal from '../components/ApplicationModal'
+import ApplicationStepForm from '../components/ApplicationStepForm'
 import { api } from '../lib/api'
 
 export default function Internship() {
@@ -39,40 +40,57 @@ export default function Internship() {
       </section>
 
       <section className="pb-28 px-6 lg:px-10">
-        <div className="max-w-shell mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {loading &&
-            Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="h-52 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]" />
-            ))}
+        <div className="max-w-shell mx-auto grid lg:grid-cols-[1fr_360px] gap-10 items-start">
+          <div className="grid sm:grid-cols-2 gap-5">
+            {loading &&
+              Array.from({ length: 3 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="h-52 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]"
+                />
+              ))}
 
-          {!loading &&
-            internships.map((role, i) => (
-              <motion.div
-                key={role.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="border border-[var(--border)] rounded-2xl p-7 flex flex-col hover:border-signal/50 transition-colors"
-              >
-                <h2 className="font-display font-semibold text-lg text-[var(--fg)]">{role.title}</h2>
-                <div className="flex flex-col gap-1.5 mt-4 text-xs font-mono text-[var(--fg)]/50">
-                  <span className="flex items-center gap-1.5">
-                    <FiClock size={12} /> {role.duration}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <FiMapPin size={12} /> {role.location}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <FiDollarSign size={12} /> {role.stipend}
-                  </span>
-                </div>
-                <p className="mt-4 text-sm text-[var(--fg)]/65 leading-relaxed flex-1">{role.description}</p>
-                <Button onClick={() => setActiveRole(role)} className="mt-6 w-full">
-                  Apply Now
-                </Button>
-              </motion.div>
-            ))}
+            {!loading &&
+              internships.map((role, i) => (
+                <motion.div
+                  key={role.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="border border-[var(--border)] rounded-2xl p-7 flex flex-col hover:border-signal/50 transition-colors"
+                >
+                  <h2 className="font-display font-semibold text-lg text-[var(--fg)]">
+                    {role.title}
+                  </h2>
+                  <div className="flex flex-col gap-1.5 mt-4 text-xs font-mono text-[var(--fg)]/50">
+                    <span className="flex items-center gap-1.5">
+                      <FiClock size={12} /> {role.duration}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <FiMapPin size={12} /> {role.location}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <FiDollarSign size={12} /> {role.stipend}
+                    </span>
+                  </div>
+                  <p className="mt-4 text-sm text-[var(--fg)]/65 leading-relaxed flex-1">
+                    {role.description}
+                  </p>
+                  <Button onClick={() => setActiveRole(role)} className="mt-6 w-full">
+                    Apply Now
+                  </Button>
+                </motion.div>
+              ))}
+          </div>
+
+          <ApplicationStepForm
+            roles={internships}
+            onSubmit={(data) => {
+              // Reuses the same submission path as the modal flow.
+              api.submitApplication?.({ ...data, type: 'internship' })
+            }}
+          />
         </div>
       </section>
 

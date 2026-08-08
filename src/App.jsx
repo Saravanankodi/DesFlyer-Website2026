@@ -14,6 +14,7 @@ import InternshipPage from './pages/opportunities/InternshipPage'
 import JobsPage from './pages/opportunities/JobsPage'
 import Admin from './pages/Admin'
 import NotFound from './pages/NotFound'
+import DigitalMuseum from "./components/DigitalMuseum";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -70,6 +71,7 @@ export default function App() {
                 <Route path="/careers" element={<Navigate to="/opportunities/jobs" replace />} />
                 <Route path="/internship" element={<Navigate to="/opportunities/internship" replace />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/museum" element={<DigitalMuseum />} />
               </Routes>
             </SiteLayout>
           }

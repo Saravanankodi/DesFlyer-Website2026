@@ -26,9 +26,8 @@ function DesktopDropdown({ link }) {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="true"
-        className={`flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 ${
-          isActive ? 'text-signal' : 'text-[var(--fg)]/80 hover:text-signal'
-        }`}
+        className={`flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-signal' : 'text-[var(--fg)]/80 hover:text-signal'
+          }`}
       >
         {link.label}
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -51,8 +50,7 @@ function DesktopDropdown({ link }) {
                   key={item.to}
                   to={item.to}
                   className={({ isActive: itemActive }) =>
-                    `block rounded-xl px-4 py-3 transition-colors duration-150 ${
-                      itemActive ? 'bg-signal/10 text-signal' : 'hover:bg-[var(--surface-2)] text-[var(--fg)]'
+                    `block rounded-xl px-4 py-3 transition-colors duration-150 ${itemActive ? 'bg-signal/10 text-signal' : 'hover:bg-[var(--surface-2)] text-[var(--fg)]'
                     }`
                   }
                 >
@@ -129,13 +127,13 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass shadow-[0_1px_0_0_var(--border)]' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'glass shadow-[0_1px_0_0_var(--border)]' : 'bg-transparent'
+        }`}
     >
       <nav className="max-w-shell mx-auto px-6 lg:px-10 h-20 flex items-center justify-between" aria-label="Primary">
         <NavLink to="/" className="font-display font-bold text-xl tracking-tight text-[var(--fg)]" aria-label="DesFlyer home">
-          DES<span className="text-signal">Flyer</span>
+          <img className='w-30 h-10' src="/images/portfolio/desflyer nlogo.png"
+          />
         </NavLink>
 
         <div className="hidden lg:flex items-center gap-9">
@@ -147,8 +145,7 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors duration-200 ${
-                    isActive ? 'text-signal' : 'text-[var(--fg)]/80 hover:text-signal'
+                  `text-sm font-medium transition-colors duration-200 ${isActive ? 'text-signal' : 'text-[var(--fg)]/80 hover:text-signal'
                   }`
                 }
               >
