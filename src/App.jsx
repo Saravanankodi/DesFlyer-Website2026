@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <>
-      {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
+      {/* {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />} */}
       <ScrollToTop />
       <Routes>
         <Route path="/admin/*" element={<Admin />} />

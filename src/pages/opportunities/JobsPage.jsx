@@ -1,1847 +1,21 @@
-// // import { motion } from 'framer-motion'
-// // import { FiMail, FiPhone, FiClock, FiMapPin, FiBriefcase } from 'react-icons/fi'
-// // import Seo from '../../lib/Seo'
-// // import Eyebrow from '../../components/ui/Eyebrow'
-// // import DynamicForm from '../../components/form/DynamicForm'
-// // import BenefitsGrid from '../../components/BenefitsGrid'
-// // import FAQ from '../../components/FAQ'
-// // import { jobFormSections } from '../../data/jobForm'
-// // import { jobBenefits, jobFaqs } from '../../data/opportunitiesContent'
-// // import { siteConfig } from '../../data/siteConfig'
-// // import { api } from '../../lib/api'
-// // import { useJobOpenings } from '../../store/openingsStore'
-
-// // export default function JobsPage() {
-// //   // Reads live from the shared store — Admin changes appear here instantly, same session.
-// //   const allOpenings = useJobOpenings()
-// //   const jobs = allOpenings.filter((o) => o.status === 'Open')
-
-// //   async function handleSubmit(values) {
-// //     await api.submitApplication({ type: 'job', ...values, resumeFileName: values.resume?.name })
-// //   }
-
-// //   return (
-// //     <>
-// //       <Seo
-// //         title="Jobs"
-// //         description="Join DesFlyer — open full-time roles in engineering and design, based in Thanjavur with remote flexibility."
-// //         path="/opportunities/jobs"
-// //       />
-
-// //       {/* Hero */}
-// //       <section className="pt-40 pb-20 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Careers</Eyebrow>
-// //           <h1 className="font-display font-bold text-[clamp(2.2rem,5vw,3.75rem)] text-[var(--fg)] max-w-2xl">
-// //             Build with us
-// //           </h1>
-// //           <p className="mt-6 text-lg text-[var(--fg)]/65 max-w-2xl leading-relaxed">
-// //             We&rsquo;re a small, hands-on team. Open roles below — reach out even if nothing fits perfectly.
-// //           </p>
-// //         </div>
-// //       </section>
-
-// //       {/* Job Information */}
-// //       <section className="pb-24 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <h2 className="font-display font-semibold text-2xl text-[var(--fg)] mb-8">Open Roles</h2>
-// //           {jobs.length === 0 && (
-// //             <p className="text-sm text-[var(--fg)]/50">No open roles right now — check back soon.</p>
-// //           )}
-// //           <div className="flex flex-col gap-4">
-// //             {jobs.map((job, i) => (
-// //               <motion.div
-// //                 key={job.id}
-// //                 initial={{ opacity: 0, y: 20 }}
-// //                 whileInView={{ opacity: 1, y: 0 }}
-// //                 viewport={{ once: true, margin: '-60px' }}
-// //                 transition={{ duration: 0.5, delay: i * 0.06 }}
-// //                 className="border border-[var(--border)] rounded-2xl p-7"
-// //               >
-// //                 <h3 className="font-display font-semibold text-lg text-[var(--fg)]">{job.title}</h3>
-// //                 <div className="flex flex-wrap gap-x-5 gap-y-1 mt-3 text-xs font-mono text-[var(--fg)]/50">
-// //                   <span className="flex items-center gap-1.5"><FiBriefcase size={12} /> {job.department}</span>
-// //                   <span className="flex items-center gap-1.5"><FiMapPin size={12} /> {job.location}</span>
-// //                   <span className="flex items-center gap-1.5"><FiClock size={12} /> {job.employmentType}</span>
-// //                 </div>
-// //                 <p className="mt-4 text-sm text-[var(--fg)]/65 leading-relaxed max-w-2xl">{job.description}</p>
-// //               </motion.div>
-// //             ))}
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       {/* Application Form */}
-// //       <section className="pb-28 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Apply Now</Eyebrow>
-// //           <h2 className="font-display font-bold text-2xl sm:text-3xl text-[var(--fg)] mb-12">Job Application</h2>
-// //           <DynamicForm sections={jobFormSections} onSubmit={handleSubmit} submitLabel="Submit Application" />
-// //         </div>
-// //       </section>
-
-// //       <BenefitsGrid benefits={jobBenefits} title="Why work at DesFlyer" />
-
-// //       <FAQ items={jobFaqs} eyebrow="Careers FAQ" title="Questions about working here" />
-
-// //       {/* Contact section */}
-// //       <section className="pb-28 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto border border-[var(--border)] rounded-2xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-// //           <div>
-// //             <h3 className="font-display font-semibold text-xl text-[var(--fg)]">Still have questions?</h3>
-// //             <p className="text-sm text-[var(--fg)]/60 mt-1">Reach out directly and we&rsquo;ll help you figure it out.</p>
-// //           </div>
-// //           <div className="flex gap-4">
-// //             <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-sm text-signal">
-// //               <FiMail size={15} /> {siteConfig.email}
-// //             </a>
-// //             <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-signal">
-// //               <FiPhone size={15} /> {siteConfig.phone}
-// //             </a>
-// //           </div>
-// //         </div>
-// //       </section>
-// //     </>
-// //   )
-// // }
-
-
-
-// // import { useState } from 'react'
-// // import { motion, AnimatePresence } from 'framer-motion'
-// // import {
-// //   FiMail,
-// //   FiPhone,
-// //   FiClock,
-// //   FiMapPin,
-// //   FiBriefcase,
-// //   FiArrowRight,
-// //   FiCheckCircle,
-// // } from 'react-icons/fi'
-
-// // import Seo from '../../lib/Seo'
-// // import Eyebrow from '../../components/ui/Eyebrow'
-// // import DynamicForm from '../../components/form/DynamicForm'
-// // import BenefitsGrid from '../../components/BenefitsGrid'
-// // import FAQ from '../../components/FAQ'
-
-// // import { jobFormSections } from '../../data/jobForm'
-// // import { jobBenefits, jobFaqs } from '../../data/opportunitiesContent'
-// // import { siteConfig } from '../../data/siteConfig'
-// // import { api } from '../../lib/api'
-// // import { useJobOpenings } from '../../store/openingsStore'
-
-// // export default function JobsPage() {
-// //   const allOpenings = useJobOpenings()
-
-// //   const jobs = allOpenings.filter((o) => o.status === 'Open')
-
-// //   const [step, setStep] = useState(1)
-
-// //   async function handleSubmit(values) {
-// //     await api.submitApplication({
-// //       type: 'job',
-// //       ...values,
-// //       resumeFileName: values.resume?.name,
-// //     })
-// //   }
-
-// //   // -------------------------------
-// //   // Split your existing form into 3 steps
-// //   // -------------------------------
-
-// //   const step1Sections = jobFormSections.slice(0, 1)
-
-// //   const step2Sections = jobFormSections.slice(1, 2)
-
-// //   const step3Sections = jobFormSections.slice(2)
-
-// //   const cardAnim = {
-// //     hidden: {
-// //       opacity: 0,
-// //       y: 40,
-// //     },
-// //     show: {
-// //       opacity: 1,
-// //       y: 0,
-// //       transition: {
-// //         duration: 0.6,
-// //       },
-// //     },
-// //     exit: {
-// //       opacity: 0,
-// //       y: -20,
-// //       transition: {
-// //         duration: 0.35,
-// //       },
-// //     },
-// //   }
-
-// //   return (
-// //     <>
-// //       <Seo
-// //         title="Careers"
-// //         description="Join DesFlyer and build next generation digital products."
-// //       />
-// //             {/* ========================================================= */}
-// //       {/* HERO */}
-// //       {/* ========================================================= */}
-
-// //       <section className="pt-40 pb-20 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-
-// //           <Eyebrow>Careers</Eyebrow>
-
-// //           <motion.h1
-// //             initial={{ opacity: 0, y: 35 }}
-// //             animate={{ opacity: 1, y: 0 }}
-// //             transition={{ duration: .7 }}
-// //             className="font-display font-bold text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-[var(--fg)]"
-// //           >
-// //             Build the
-// //             <span className="block text-signal">
-// //               Future With Us
-// //             </span>
-// //           </motion.h1>
-
-// //           <motion.p
-// //             initial={{ opacity: 0, y: 25 }}
-// //             animate={{ opacity: 1, y: 0 }}
-// //             transition={{ delay: .2 }}
-// //             className="mt-8 max-w-2xl text-lg text-[var(--fg)]/65 leading-8"
-// //           >
-// //             Join a passionate team creating modern software,
-// //             AI products and digital experiences used by
-// //             businesses around the world.
-// //           </motion.p>
-
-// //         </div>
-// //       </section>
-
-// //       {/* ========================================================= */}
-// //       {/* OPEN POSITIONS */}
-// //       {/* ========================================================= */}
-
-// //       <section className="pb-24 px-6 lg:px-10">
-
-// //         <div className="max-w-shell mx-auto">
-
-// //           <h2 className="font-display font-bold text-3xl mb-10">
-// //             Current Openings
-// //           </h2>
-
-// //           {jobs.length === 0 && (
-
-// //             <div className="rounded-3xl border border-dashed border-[var(--border)] p-12 text-center">
-
-// //               <FiClock
-// //                 className="mx-auto mb-4 text-signal"
-// //                 size={36}
-// //               />
-
-// //               <h3 className="text-xl font-semibold">
-// //                 No Open Roles
-// //               </h3>
-
-// //               <p className="mt-3 text-[var(--fg)]/60">
-// //                 We aren't hiring at the moment,
-// //                 but we'd still love to hear from you.
-// //               </p>
-
-// //             </div>
-
-// //           )}
-
-// //           <div className="space-y-6">
-
-// //             {jobs.map((job, index) => (
-
-// //               <motion.div
-// //                 key={job.id}
-// //                 initial={{ opacity: 0, y: 35 }}
-// //                 whileInView={{ opacity: 1, y: 0 }}
-// //                 viewport={{ once: true }}
-// //                 transition={{
-// //                   duration: .6,
-// //                   delay: index * .08,
-// //                 }}
-// //                 whileHover={{
-// //                   y: -5,
-// //                 }}
-// //                 className="
-// //                 rounded-3xl
-// //                 border
-// //                 border-[var(--border)]
-// //                 bg-[var(--card)]
-// //                 p-8
-// //                 transition-all
-// //                 duration-300
-// //                 hover:border-signal/40
-// //                 "
-// //               >
-
-// //                 <div className="flex flex-wrap items-center justify-between gap-6">
-
-// //                   <div>
-
-// //                     <h3 className="font-display text-2xl font-semibold">
-// //                       {job.title}
-// //                     </h3>
-
-// //                     <div className="mt-5 flex flex-wrap gap-5 text-sm text-[var(--fg)]/55">
-
-// //                       <span className="flex items-center gap-2">
-// //                         <FiBriefcase />
-// //                         {job.department}
-// //                       </span>
-
-// //                       <span className="flex items-center gap-2">
-// //                         <FiMapPin />
-// //                         {job.location}
-// //                       </span>
-
-// //                       <span className="flex items-center gap-2">
-// //                         <FiClock />
-// //                         {job.employmentType}
-// //                       </span>
-
-// //                     </div>
-
-// //                     <p className="mt-6 max-w-3xl leading-8 text-[var(--fg)]/65">
-// //                       {job.description}
-// //                     </p>
-
-// //                   </div>
-
-// //                   <div
-// //                     className="
-// //                     px-5
-// //                     py-2
-// //                     rounded-full
-// //                     bg-signal/10
-// //                     text-signal
-// //                     text-sm
-// //                     font-medium
-// //                     "
-// //                   >
-// //                     OPEN
-// //                   </div>
-
-// //                 </div>
-
-// //               </motion.div>
-
-// //             ))}
-
-// //           </div>
-
-// //         </div>
-
-// //       </section>
-
-// //       {/* ========================================================= */}
-// //       {/* APPLICATION FORM */}
-// //       {/* ========================================================= */}
-
-// //       <section className="pb-28 px-6 lg:px-10">
-
-// //         <div className="max-w-shell mx-auto">
-
-// //           <Eyebrow>Application</Eyebrow>
-
-// //           <h2 className="font-display font-bold text-3xl mt-4">
-// //             Complete Your Application
-// //           </h2>
-
-// //           <p className="mt-4 text-[var(--fg)]/60">
-// //             Finish one step to unlock the next.
-// //           </p>
-// //                     {/* ========================= */}
-// // {/* ========================= */}
-// // {/* CHECKBOX PROGRESS */}
-// // {/* ========================= */}
-
-// // <div className="flex items-center justify-center gap-6 mb-16">
-
-// //   {[
-// //     "Personal",
-// //     "Education",
-// //     "Resume"
-// //   ].map((label, index) => {
-
-// //     const current = index + 1
-// //     const active = step >= current
-
-// //     return (
-
-// //       <div
-// //         key={label}
-// //         className="flex items-center"
-// //       >
-
-// //         <motion.div
-
-// //           whileHover={{ scale: 1.08 }}
-
-// //           animate={
-// //             active
-// //               ? {
-// //                   scale: [1, 1.15, 1],
-// //                 }
-// //               : {}
-// //           }
-
-// //           transition={{
-// //             duration: .6,
-// //           }}
-
-// //           className={`
-// //           relative
-// //           w-16
-// //           h-16
-// //           rounded-2xl
-// //           flex
-// //           items-center
-// //           justify-center
-// //           border-2
-// //           overflow-hidden
-// //           transition-all
-// //           duration-500
-
-// //           ${
-// //             active
-// //               ? "bg-gradient-to-br from-cyan-400 to-blue-500 border-cyan-400 shadow-[0_0_35px_rgba(34,211,238,.45)]"
-// //               : "border-white/15 bg-white/5"
-// //           }
-// //           `}
-// //         >
-
-// //           {/* Glow */}
-
-// //           {active && (
-
-// //             <motion.div
-
-// //               animate={{
-// //                 scale: [1, 2, 1],
-// //                 opacity: [.6, 0, .6]
-// //               }}
-
-// //               transition={{
-// //                 duration: 2,
-// //                 repeat: Infinity
-// //               }}
-
-// //               className="
-// //               absolute
-// //               inset-0
-// //               rounded-2xl
-// //               bg-cyan-400
-// //               blur-xl
-// //               "
-// //             />
-
-// //           )}
-
-// //           <motion.span
-
-// //             initial={false}
-
-// //             animate={{
-// //               rotate: active ? 0 : -90,
-// //               scale: active ? 1 : .7,
-// //             }}
-
-// //             className="relative z-10 text-white text-xl font-bold"
-
-// //           >
-// //             {active ? "✓" : current}
-// //           </motion.span>
-
-// //         </motion.div>
-
-// //         <div className="ml-4 mr-6">
-
-// //           <h4
-// //             className={`font-semibold ${
-// //               active
-// //                 ? "text-cyan-400"
-// //                 : "text-white/40"
-// //             }`}
-// //           >
-// //             {label}
-// //           </h4>
-
-// //           <p className="text-xs text-white/40 mt-1">
-// //             Step {current}
-// //           </p>
-
-// //         </div>
-
-// //         {current !== 3 && (
-
-// //           <motion.div
-
-// //             animate={{
-// //               backgroundPosition: active
-// //                 ? ["0%", "100%"]
-// //                 : "0%"
-// //             }}
-
-// //             transition={{
-// //               duration: 2,
-// //               repeat: Infinity
-// //             }}
-
-// //             className="
-// //             w-24
-// //             h-[3px]
-// //             rounded-full
-// //             bg-gradient-to-r
-// //             from-cyan-400
-// //             via-blue-400
-// //             to-cyan-400
-// //             bg-[length:200%_100%]
-// //             opacity-60
-// //             "
-// //           />
-
-// //         )}
-
-// //       </div>
-
-// //     )
-
-// //   })}
-
-// // </div>          {/* ========================= */}
-// //           {/* STEP 1 */}
-// //           {/* ========================= */}
-
-// //           <AnimatePresence mode="wait">
-
-// //             {step === 1 && (
-
-// //               <motion.div
-// //                 key="step1"
-// //                 variants={cardAnim}
-// //                 initial="hidden"
-// //                 animate="show"
-// //                 exit="exit"
-// //               >
-
-// //                 <div className="rounded-3xl border border-[var(--border)] p-8">
-
-// //                   <h3 className="font-display text-2xl font-semibold mb-8">
-// //                     Step 1
-// //                   </h3>
-
-// //                   <DynamicForm
-// //                     sections={step1Sections}
-// //                     submitLabel="Continue"
-// //                     onSubmit={(values) => {
-// //                       setStep(2)
-// //                     }}
-// //                   />
-
-// //                 </div>
-
-// //               </motion.div>
-
-// //             )}
-
-// //           </AnimatePresence>
-
-// //           {/* ========================= */}
-// //           {/* STEP 2 */}
-// //           {/* ========================= */}
-
-// //           <AnimatePresence mode="wait">
-
-// //             {step === 2 && (
-
-// //               <motion.div
-// //                 key="step2"
-// //                 variants={cardAnim}
-// //                 initial="hidden"
-// //                 animate="show"
-// //                 exit="exit"
-// //               >
-
-// //                 <div className="rounded-3xl border border-[var(--border)] p-8">
-
-// //                   <h3 className="font-display text-2xl font-semibold mb-8">
-// //                     Step 2
-// //                   </h3>
-
-// //                   <DynamicForm
-// //                     sections={step2Sections}
-// //                     submitLabel="Continue"
-// //                     onSubmit={(values) => {
-// //                       setStep(3)
-// //                     }}
-// //                   />
-
-// //                 </div>
-
-// //               </motion.div>
-
-// //             )}
-
-// //           </AnimatePresence>
-
-// //           {/* ========================= */}
-// //           {/* STEP 3 */}
-// //           {/* ========================= */}
-
-// //           <AnimatePresence mode="wait">
-
-// //             {step === 3 && (
-
-// //               <motion.div
-// //                 key="step3"
-// //                 variants={cardAnim}
-// //                 initial="hidden"
-// //                 animate="show"
-// //                 exit="exit"
-// //               >
-
-// //                 <div className="rounded-3xl border border-[var(--border)] p-8">
-
-// //                   <h3 className="font-display text-2xl font-semibold mb-8">
-// //                     Final Step
-// //                   </h3>
-
-// //                   <DynamicForm
-// //                     sections={step3Sections}
-// //                     submitLabel="Submit Application"
-// //                     onSubmit={handleSubmit}
-// //                   />
-
-// //                 </div>
-
-// //               </motion.div>
-
-// //             )}
-
-// //           </AnimatePresence>
-// //                   </div>
-// //       </section>
-
-// //       {/* ========================================================= */}
-// //       {/* BENEFITS */}
-// //       {/* ========================================================= */}
-
-// //       <BenefitsGrid
-// //         benefits={jobBenefits}
-// //         title="Why Work at DesFlyer"
-// //       />
-
-// //       {/* ========================================================= */}
-// //       {/* FAQ */}
-// //       {/* ========================================================= */}
-
-// //       <FAQ
-// //         items={jobFaqs}
-// //         eyebrow="Careers FAQ"
-// //         title="Questions About Working Here"
-// //       />
-
-// //       {/* ========================================================= */}
-// //       {/* CONTACT */}
-// //       {/* ========================================================= */}
-
-// //       {/* <section className="pb-28 px-6 lg:px-10">
-
-// //         <div
-// //           className="
-// //           max-w-shell
-// //           mx-auto
-// //           rounded-3xl
-// //           border
-// //           border-[var(--border)]
-// //           p-10
-// //           lg:p-14
-// //           flex
-// //           flex-col
-// //           lg:flex-row
-// //           justify-between
-// //           gap-10
-// //           items-center
-// //           "
-// //         >
-
-// //           <div>
-
-// //             <Eyebrow>Need Help?</Eyebrow>
-
-// //             <h2 className="font-display text-3xl font-bold mt-4">
-// //               Questions Before Applying?
-// //             </h2>
-
-// //             <p className="mt-4 text-[var(--fg)]/60 max-w-lg leading-8">
-// //               Contact our recruitment team if you'd like to know
-// //               more about any role, internship or future opportunity.
-// //             </p>
-
-// //           </div>
-
-// //           <div className="space-y-5">
-
-// //             <a
-// //               href={`mailto:${siteConfig.email}`}
-// //               className="
-// //               flex
-// //               items-center
-// //               gap-4
-// //               text-signal
-// //               hover:translate-x-2
-// //               transition
-// //               "
-// //             >
-// //               <FiMail size={18} />
-// //               {siteConfig.email}
-// //             </a>
-
-// //             <a
-// //               href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
-// //               className="
-// //               flex
-// //               items-center
-// //               gap-4
-// //               text-signal
-// //               hover:translate-x-2
-// //               transition
-// //               "
-// //             >
-// //               <FiPhone size={18} />
-// //               {siteConfig.phone}
-// //             </a>
-
-// //           </div>
-
-// //         </div>
-
-// //       </section> */}
-
-// //     </>
-// //   )
-// // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useState } from 'react'
-// import { motion, AnimatePresence } from 'framer-motion'
-// import {
-//   FiMail,
-//   FiPhone,
-//   FiClock,
-//   FiMapPin,
-//   FiBriefcase,
-//   FiArrowRight,
-//   FiCheckCircle,
-// } from 'react-icons/fi'
-
-// import Seo from '../../lib/Seo'
-// import Eyebrow from '../../components/ui/Eyebrow'
-// import DynamicForm from '../../components/form/DynamicForm'
-// import BenefitsGrid from '../../components/BenefitsGrid'
-// import FAQ from '../../components/FAQ'
-
-// import { jobFormSections } from '../../data/jobForm'
-// import { jobBenefits, jobFaqs } from '../../data/opportunitiesContent'
-// import { siteConfig } from '../../data/siteConfig'
-// import { api } from '../../lib/api'
-// import { useJobOpenings } from '../../store/openingsStore'
-
-// export default function JobsPage() {
-//   const allOpenings = useJobOpenings()
-
-//   const jobs = allOpenings.filter((o) => o.status === 'Open')
-
-//   const [step, setStep] = useState(1)
-
-//   async function handleSubmit(values) {
-//     await api.submitApplication({
-//       type: 'job',
-//       ...values,
-//       resumeFileName: values.resume?.name,
-//     })
-//   }
-
-//   // -------------------------------
-//   // Split your existing form into 3 steps
-//   // -------------------------------
-
-//   const step1Sections = jobFormSections.slice(0, 1)
-//   const step2Sections = jobFormSections.slice(1, 2)
-//   const step3Sections = jobFormSections.slice(2)
-
-//   const cardAnim = {
-//     hidden: {
-//       opacity: 0,
-//       y: 40,
-//     },
-//     show: {
-//       opacity: 1,
-//       y: 0,
-//       transition: {
-//         duration: 0.6,
-//       },
-//     },
-//     exit: {
-//       opacity: 0,
-//       y: -20,
-//       transition: {
-//         duration: 0.35,
-//       },
-//     },
-//   }
-
-//   return (
-//     <>
-//       <Seo />
-
-//       {/* =========================================================
-//           HERO
-//       ========================================================= */}
-
-//       <section className="relative overflow-hidden pt-36 pb-24 px-6 lg:px-10">
-//         {/* Background grid */}
-//         <div
-//           className="
-//             pointer-events-none
-//             absolute
-//             inset-0
-//             opacity-[0.035]
-//           "
-//           style={{
-//             backgroundImage:
-//               'linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)',
-//             backgroundSize: '60px 60px',
-//           }}
-//         />
-
-//         {/* Glow */}
-//         <div
-//           className="
-//             pointer-events-none
-//             absolute
-//             -top-40
-//             right-[-10%]
-//             w-[500px]
-//             h-[500px]
-//             rounded-full
-//             bg-signal/10
-//             blur-[120px]
-//           "
-//         />
-
-//         <div className="relative max-w-shell mx-auto">
-//           <Eyebrow>Careers</Eyebrow>
-
-//           <motion.div
-//             initial={{ opacity: 0, y: 35 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{
-//               duration: 0.7,
-//               ease: [0.16, 1, 0.3, 1],
-//             }}
-//             className="mt-6"
-//           >
-//             <h1
-//               className="
-//                 font-display
-//                 font-bold
-//                 text-[clamp(3rem,7vw,6rem)]
-//                 leading-[0.92]
-//                 tracking-[-0.04em]
-//                 text-[var(--fg)]
-//                 max-w-5xl
-//               "
-//             >
-//               Build the
-//               <span className="block text-signal">
-//                 future with us.
-//               </span>
-//             </h1>
-//           </motion.div>
-
-//           <motion.div
-//             initial={{ opacity: 0, y: 25 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{
-//               duration: 0.6,
-//               delay: 0.2,
-//             }}
-//             className="
-//               mt-10
-//               flex
-//               flex-col
-//               lg:flex-row
-//               lg:items-end
-//               justify-between
-//               gap-10
-//             "
-//           >
-//             <p
-//               className="
-//                 max-w-2xl
-//                 text-lg
-//                 lg:text-xl
-//                 text-[var(--fg)]/60
-//                 leading-8
-//               "
-//             >
-//               Join a passionate team creating modern software,
-//               AI products and digital experiences used by
-//               businesses around the world.
-//             </p>
-
-//             <div
-//               className="
-//                 hidden
-//                 lg:flex
-//                 items-center
-//                 gap-3
-//                 font-mono
-//                 text-xs
-//                 uppercase
-//                 tracking-[0.18em]
-//                 text-[var(--fg)]/40
-//               "
-//             >
-//               <span
-//                 className="
-//                   w-2
-//                   h-2
-//                   rounded-full
-//                   bg-signal
-//                   shadow-[0_0_15px_var(--signal)]
-//                   animate-pulse
-//                 "
-//               />
-
-//               We're growing
-//             </div>
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       {/* =========================================================
-//           OPEN POSITIONS
-//       ========================================================= */}
-
-//       <section className="relative pb-28 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto">
-
-//           {/* Section heading */}
-//           <div
-//             className="
-//               flex
-//               flex-col
-//               lg:flex-row
-//               lg:items-end
-//               justify-between
-//               gap-8
-//               mb-12
-//             "
-//           >
-//             <div>
-//               <div
-//                 className="
-//                   flex
-//                   items-center
-//                   gap-3
-//                   font-mono
-//                   text-xs
-//                   uppercase
-//                   tracking-[0.2em]
-//                   text-signal
-//                   mb-4
-//                 "
-//               >
-//                 <span className="w-8 h-px bg-signal" />
-//                 Opportunities
-//               </div>
-
-//               <h2
-//                 className="
-//                   font-display
-//                   font-bold
-//                   text-[clamp(2rem,4vw,3.5rem)]
-//                   leading-tight
-//                   text-[var(--fg)]
-//                 "
-//               >
-//                 Find your next
-//                 <span className="text-[var(--fg)]/35">
-//                   {' '}challenge.
-//                 </span>
-//               </h2>
-//             </div>
-
-//             <div
-//               className="
-//                 font-mono
-//                 text-xs
-//                 uppercase
-//                 tracking-[0.15em]
-//                 text-[var(--fg)]/40
-//               "
-//             >
-//               {jobs.length > 0
-//                 ? `${jobs.length} open position${jobs.length > 1 ? 's' : ''}`
-//                 : 'No current openings'}
-//             </div>
-//           </div>
-
-//           {/* Empty state */}
-//           {jobs.length === 0 && (
-//             <motion.div
-//               initial={{ opacity: 0, y: 20 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               className="
-//                 relative
-//                 overflow-hidden
-//                 rounded-[28px]
-//                 border
-//                 border-dashed
-//                 border-[var(--border)]
-//                 p-12
-//                 lg:p-20
-//                 text-center
-//               "
-//             >
-//               <div
-//                 className="
-//                   absolute
-//                   inset-0
-//                   bg-gradient-to-br
-//                   from-signal/5
-//                   via-transparent
-//                   to-transparent
-//                 "
-//               />
-
-//               <div className="relative">
-//                 <div
-//                   className="
-//                     mx-auto
-//                     w-16
-//                     h-16
-//                     rounded-2xl
-//                     border
-//                     border-signal/30
-//                     bg-signal/10
-//                     flex
-//                     items-center
-//                     justify-center
-//                     text-signal
-//                     mb-6
-//                   "
-//                 >
-//                   <FiClock size={28} />
-//                 </div>
-
-//                 <h3
-//                   className="
-//                     font-display
-//                     text-2xl
-//                     font-semibold
-//                     text-[var(--fg)]
-//                   "
-//                 >
-//                   No open roles right now
-//                 </h3>
-
-//                 <p
-//                   className="
-//                     mt-3
-//                     max-w-md
-//                     mx-auto
-//                     text-[var(--fg)]/55
-//                     leading-7
-//                   "
-//                 >
-//                   We aren't hiring at the moment,
-//                   but we'd still love to hear from you.
-//                 </p>
-//               </div>
-//             </motion.div>
-//           )}
-
-//           {/* Job cards */}
-//           <div className="space-y-5">
-//             {jobs.map((job, index) => (
-//               <motion.div
-//                 key={job.id}
-//                 initial={{
-//                   opacity: 0,
-//                   y: 30,
-//                 }}
-//                 whileInView={{
-//                   opacity: 1,
-//                   y: 0,
-//                 }}
-//                 viewport={{
-//                   once: true,
-//                   margin: '-80px',
-//                 }}
-//                 transition={{
-//                   duration: 0.6,
-//                   delay: index * 0.08,
-//                   ease: [0.16, 1, 0.3, 1],
-//                 }}
-//                 whileHover={{
-//                   y: -5,
-//                 }}
-//                 className="
-//                   group
-//                   relative
-//                   overflow-hidden
-//                   rounded-[28px]
-//                   border
-//                   border-[var(--border)]
-//                   bg-[var(--card)]
-//                   transition-all
-//                   duration-500
-//                   hover:border-signal/50
-//                 "
-//               >
-//                 {/* Hover light */}
-//                 <div
-//                   className="
-//                     pointer-events-none
-//                     absolute
-//                     inset-0
-//                     opacity-0
-//                     group-hover:opacity-100
-//                     transition-opacity
-//                     duration-500
-//                     bg-gradient-to-r
-//                     from-signal/[0.07]
-//                     via-transparent
-//                     to-transparent
-//                   "
-//                 />
-
-//                 <div className="relative p-7 lg:p-9">
-
-//                   <div
-//                     className="
-//                       flex
-//                       flex-col
-//                       lg:flex-row
-//                       lg:items-center
-//                       gap-8
-//                     "
-//                   >
-
-//                     {/* Number */}
-//                     <div
-//                       className="
-//                         hidden
-//                         lg:flex
-//                         w-16
-//                         h-16
-//                         shrink-0
-//                         rounded-2xl
-//                         border
-//                         border-[var(--border)]
-//                         items-center
-//                         justify-center
-//                         font-mono
-//                         text-sm
-//                         text-[var(--fg)]/35
-//                         group-hover:text-signal
-//                         group-hover:border-signal/40
-//                         transition-all
-//                         duration-300
-//                       "
-//                     >
-//                       {String(index + 1).padStart(2, '0')}
-//                     </div>
-
-//                     {/* Main content */}
-//                     <div className="flex-1">
-
-//                       <div
-//                         className="
-//                           flex
-//                           flex-wrap
-//                           items-center
-//                           gap-3
-//                           mb-4
-//                         "
-//                       >
-//                         <span
-//                           className="
-//                             inline-flex
-//                             items-center
-//                             gap-2
-//                             rounded-full
-//                             border
-//                             border-signal/30
-//                             bg-signal/10
-//                             px-3
-//                             py-1.5
-//                             text-[10px]
-//                             font-mono
-//                             uppercase
-//                             tracking-[0.15em]
-//                             text-signal
-//                           "
-//                         >
-//                           <span
-//                             className="
-//                               w-1.5
-//                               h-1.5
-//                               rounded-full
-//                               bg-signal
-//                               shadow-[0_0_10px_var(--signal)]
-//                             "
-//                           />
-
-//                           Open
-//                         </span>
-
-//                         <span
-//                           className="
-//                             lg:hidden
-//                             font-mono
-//                             text-xs
-//                             text-[var(--fg)]/30
-//                           "
-//                         >
-//                           #{String(index + 1).padStart(2, '0')}
-//                         </span>
-//                       </div>
-
-//                       <h3
-//                         className="
-//                           font-display
-//                           text-2xl
-//                           lg:text-3xl
-//                           font-semibold
-//                           text-[var(--fg)]
-//                           group-hover:text-signal
-//                           transition-colors
-//                           duration-300
-//                         "
-//                       >
-//                         {job.title}
-//                       </h3>
-
-//                       {/* Meta */}
-//                       <div
-//                         className="
-//                           mt-5
-//                           flex
-//                           flex-wrap
-//                           gap-2
-//                         "
-//                       >
-//                         <span
-//                           className="
-//                             inline-flex
-//                             items-center
-//                             gap-2
-//                             rounded-xl
-//                             border
-//                             border-[var(--border)]
-//                             px-3
-//                             py-2
-//                             text-xs
-//                             text-[var(--fg)]/55
-//                           "
-//                         >
-//                           <FiBriefcase size={13} />
-//                           {job.department}
-//                         </span>
-
-//                         <span
-//                           className="
-//                             inline-flex
-//                             items-center
-//                             gap-2
-//                             rounded-xl
-//                             border
-//                             border-[var(--border)]
-//                             px-3
-//                             py-2
-//                             text-xs
-//                             text-[var(--fg)]/55
-//                           "
-//                         >
-//                           <FiMapPin size={13} />
-//                           {job.location}
-//                         </span>
-
-//                         <span
-//                           className="
-//                             inline-flex
-//                             items-center
-//                             gap-2
-//                             rounded-xl
-//                             border
-//                             border-[var(--border)]
-//                             px-3
-//                             py-2
-//                             text-xs
-//                             text-[var(--fg)]/55
-//                           "
-//                         >
-//                           <FiClock size={13} />
-//                           {job.employmentType}
-//                         </span>
-//                       </div>
-
-//                       <p
-//                         className="
-//                           mt-6
-//                           max-w-3xl
-//                           text-sm
-//                           lg:text-base
-//                           leading-7
-//                           text-[var(--fg)]/55
-//                         "
-//                       >
-//                         {job.description}
-//                       </p>
-//                     </div>
-
-//                     {/* Arrow */}
-//                     <div
-//                       className="
-//                         hidden
-//                         lg:flex
-//                         w-14
-//                         h-14
-//                         shrink-0
-//                         rounded-full
-//                         border
-//                         border-[var(--border)]
-//                         items-center
-//                         justify-center
-//                         text-[var(--fg)]/30
-//                         group-hover:text-signal
-//                         group-hover:border-signal
-//                         group-hover:bg-signal/10
-//                         group-hover:translate-x-1
-//                         transition-all
-//                         duration-300
-//                       "
-//                     >
-//                       <FiArrowRight size={20} />
-//                     </div>
-//                   </div>
-//                 </div>
-
-//                 {/* Bottom accent */}
-//                 <div
-//                   className="
-//                     absolute
-//                     bottom-0
-//                     left-0
-//                     h-px
-//                     w-0
-//                     bg-signal
-//                     group-hover:w-full
-//                     transition-all
-//                     duration-700
-//                   "
-//                 />
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* =========================================================
-//           APPLICATION FORM
-//       ========================================================= */}
-
-//       <section className="relative pb-32 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto">
-
-//           <div
-//             className="
-//               relative
-//               overflow-hidden
-//               rounded-[32px]
-//               border
-//               border-[var(--border)]
-//               bg-[var(--card)]
-//             "
-//           >
-
-//             {/* Background decoration */}
-//             <div
-//               className="
-//                 pointer-events-none
-//                 absolute
-//                 -top-40
-//                 right-[-100px]
-//                 w-[450px]
-//                 h-[450px]
-//                 rounded-full
-//                 bg-signal/10
-//                 blur-[120px]
-//               "
-//             />
-
-//             <div className="relative p-7 lg:p-12">
-
-//               {/* Header */}
-//               <div className="max-w-2xl mb-12">
-//                 <Eyebrow>Application</Eyebrow>
-
-//                 <h2
-//                   className="
-//                     font-display
-//                     font-bold
-//                     text-[clamp(2rem,4vw,3.25rem)]
-//                     leading-tight
-//                     text-[var(--fg)]
-//                     mt-4
-//                   "
-//                 >
-//                   Tell us about
-//                   <span className="text-signal">
-//                     {' '}yourself.
-//                   </span>
-//                 </h2>
-
-//                 <p
-//                   className="
-//                     mt-4
-//                     text-[var(--fg)]/55
-//                     leading-7
-//                   "
-//                 >
-//                   Complete each step to submit your
-//                   application. Your information will be
-//                   reviewed by our team.
-//                 </p>
-//               </div>
-
-//               {/* =================================================
-//                   CHECKBOX PROGRESS
-//               ================================================= */}
-
-//               <div
-//                 className="
-//                   mb-12
-//                   overflow-x-auto
-//                   pb-3
-//                 "
-//               >
-//                 <div
-//                   className="
-//                     flex
-//                     items-center
-//                     min-w-max
-//                   "
-//                 >
-//                   {[
-//                     'Personal',
-//                     'Education',
-//                     'Resume',
-//                   ].map((label, index) => {
-//                     const current = index + 1
-//                     const active = step >= current
-
-//                     return (
-//                       <div
-//                         key={label}
-//                         className="flex items-center"
-//                       >
-//                         <motion.div
-//                           whileHover={{
-//                             scale: 1.06,
-//                           }}
-//                           animate={
-//                             active
-//                               ? {
-//                                   boxShadow: [
-//                                     '0 0 0 rgba(34,211,238,0)',
-//                                     '0 0 25px rgba(34,211,238,.25)',
-//                                     '0 0 0 rgba(34,211,238,0)',
-//                                   ],
-//                                 }
-//                               : {}
-//                           }
-//                           transition={{
-//                             duration: 2,
-//                             repeat: active
-//                               ? Infinity
-//                               : 0,
-//                           }}
-//                           className={`
-//                             relative
-//                             w-12
-//                             h-12
-//                             lg:w-14
-//                             lg:h-14
-//                             rounded-2xl
-//                             flex
-//                             items-center
-//                             justify-center
-//                             border
-//                             overflow-hidden
-//                             transition-all
-//                             duration-500
-//                             ${
-//                               active
-//                                 ? 'bg-signal border-signal text-white'
-//                                 : 'border-[var(--border)] bg-[var(--fg)]/[0.03] text-[var(--fg)]/30'
-//                             }
-//                           `}
-//                         >
-//                           {active && (
-//                             <motion.div
-//                               className="
-//                                 absolute
-//                                 inset-0
-//                                 bg-white/10
-//                               "
-//                               animate={{
-//                                 x: ['-100%', '100%'],
-//                               }}
-//                               transition={{
-//                                 duration: 1.5,
-//                                 repeat: Infinity,
-//                                 ease: 'linear',
-//                               }}
-//                             />
-//                           )}
-
-//                           <span className="relative z-10">
-//                             {active ? (
-//                               <FiCheckCircle size={19} />
-//                             ) : (
-//                               current
-//                             )}
-//                           </span>
-//                         </motion.div>
-
-//                         <div className="ml-3 mr-5 lg:mr-7">
-//                           <h4
-//                             className={`
-//                               font-medium
-//                               text-sm
-//                               ${
-//                                 active
-//                                   ? 'text-signal'
-//                                   : 'text-[var(--fg)]/35'
-//                               }
-//                             `}
-//                           >
-//                             {label}
-//                           </h4>
-
-//                           <p
-//                             className="
-//                               text-[10px]
-//                               font-mono
-//                               uppercase
-//                               tracking-wider
-//                               text-[var(--fg)]/30
-//                               mt-1
-//                             "
-//                           >
-//                             Step {current}
-//                           </p>
-//                         </div>
-
-//                         {current !== 3 && (
-//                           <div
-//                             className="
-//                               w-12
-//                               lg:w-20
-//                               h-px
-//                               bg-[var(--border)]
-//                               mr-5
-//                               lg:mr-7
-//                               relative
-//                               overflow-hidden
-//                             "
-//                           >
-//                             {step > current && (
-//                               <motion.div
-//                                 initial={{
-//                                   width: 0,
-//                                 }}
-//                                 animate={{
-//                                   width: '100%',
-//                                 }}
-//                                 transition={{
-//                                   duration: 0.5,
-//                                 }}
-//                                 className="
-//                                   absolute
-//                                   inset-y-0
-//                                   left-0
-//                                   bg-signal
-//                                 "
-//                               />
-//                             )}
-//                           </div>
-//                         )}
-//                       </div>
-//                     )
-//                   })}
-//                 </div>
-//               </div>
-
-//               {/* =================================================
-//                   STEP 1
-//               ================================================= */}
-
-//               <AnimatePresence mode="wait">
-//                 {step === 1 && (
-//                   <motion.div
-//                     key="step1"
-//                     variants={cardAnim}
-//                     initial="hidden"
-//                     animate="show"
-//                     exit="exit"
-//                   >
-//                     <div
-//                       className="
-//                         rounded-[24px]
-//                         border
-//                         border-[var(--border)]
-//                         bg-[var(--fg)]/[0.02]
-//                         p-6
-//                         lg:p-9
-//                       "
-//                     >
-//                       <div className="mb-8">
-//                         <span
-//                           className="
-//                             font-mono
-//                             text-[10px]
-//                             uppercase
-//                             tracking-[0.2em]
-//                             text-signal
-//                           "
-//                         >
-//                           01 / Personal
-//                         </span>
-
-//                         <h3
-//                           className="
-//                             font-display
-//                             text-2xl
-//                             font-semibold
-//                             text-[var(--fg)]
-//                             mt-2
-//                           "
-//                         >
-//                           Start with the basics
-//                         </h3>
-//                       </div>
-
-//                       <DynamicForm
-//                         sections={step1Sections}
-//                         submitLabel="Continue"
-//                         onSubmit={(values) => {
-//                           setStep(2)
-//                         }}
-//                       />
-//                     </div>
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-
-//               {/* =================================================
-//                   STEP 2
-//               ================================================= */}
-
-//               <AnimatePresence mode="wait">
-//                 {step === 2 && (
-//                   <motion.div
-//                     key="step2"
-//                     variants={cardAnim}
-//                     initial="hidden"
-//                     animate="show"
-//                     exit="exit"
-//                   >
-//                     <div
-//                       className="
-//                         rounded-[24px]
-//                         border
-//                         border-[var(--border)]
-//                         bg-[var(--fg)]/[0.02]
-//                         p-6
-//                         lg:p-9
-//                       "
-//                     >
-//                       <div className="mb-8">
-//                         <span
-//                           className="
-//                             font-mono
-//                             text-[10px]
-//                             uppercase
-//                             tracking-[0.2em]
-//                             text-signal
-//                           "
-//                         >
-//                           02 / Education
-//                         </span>
-
-//                         <h3
-//                           className="
-//                             font-display
-//                             text-2xl
-//                             font-semibold
-//                             text-[var(--fg)]
-//                             mt-2
-//                           "
-//                         >
-//                           Tell us about your background
-//                         </h3>
-//                       </div>
-
-//                       <DynamicForm
-//                         sections={step2Sections}
-//                         submitLabel="Continue"
-//                         onSubmit={(values) => {
-//                           setStep(3)
-//                         }}
-//                       />
-//                     </div>
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-
-//               {/* =================================================
-//                   STEP 3
-//               ================================================= */}
-
-//               <AnimatePresence mode="wait">
-//                 {step === 3 && (
-//                   <motion.div
-//                     key="step3"
-//                     variants={cardAnim}
-//                     initial="hidden"
-//                     animate="show"
-//                     exit="exit"
-//                   >
-//                     <div
-//                       className="
-//                         rounded-[24px]
-//                         border
-//                         border-[var(--border)]
-//                         bg-[var(--fg)]/[0.02]
-//                         p-6
-//                         lg:p-9
-//                       "
-//                     >
-//                       <div className="mb-8">
-//                         <span
-//                           className="
-//                             font-mono
-//                             text-[10px]
-//                             uppercase
-//                             tracking-[0.2em]
-//                             text-signal
-//                           "
-//                         >
-//                           03 / Resume
-//                         </span>
-
-//                         <h3
-//                           className="
-//                             font-display
-//                             text-2xl
-//                             font-semibold
-//                             text-[var(--fg)]
-//                             mt-2
-//                           "
-//                         >
-//                           Almost there
-//                         </h3>
-//                       </div>
-
-//                       <DynamicForm
-//                         sections={step3Sections}
-//                         submitLabel="Submit Application"
-//                         onSubmit={handleSubmit}
-//                       />
-//                     </div>
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* =========================================================
-//           BENEFITS
-//       ========================================================= */}
-
-//       <BenefitsGrid
-//         benefits={jobBenefits}
-//         title="Why Work at DesFlyer"
-//       />
-
-//       {/* =========================================================
-//           FAQ
-//       ========================================================= */}
-
-//       <FAQ
-//         items={jobFaqs}
-//         eyebrow="Careers FAQ"
-//         title="Questions About Working Here"
-//       />
-
-//       {/* =========================================================
-//           CONTACT
-//       ========================================================= */}
-
-//       {/* Contact section intentionally preserved from your original */}
-//     </>
-//   )
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FiClock,
-  FiMapPin,
-  FiBriefcase,
+  FiArrowRight,
   FiArrowUpRight,
+  FiBriefcase,
   FiCheckCircle,
+  FiClock,
+  FiFileText,
+  FiLayers,
+  FiMapPin,
+  FiStar,
+  FiUser,
+  FiBookOpen,
+  FiZap,
 } from 'react-icons/fi'
+
+import CTABand from '../../components/sections/CTABand'
 
 import Seo from '../../lib/Seo'
 import Eyebrow from '../../components/ui/Eyebrow'
@@ -1854,228 +28,1461 @@ import { jobBenefits, jobFaqs } from '../../data/opportunitiesContent'
 import { api } from '../../lib/api'
 import { useJobOpenings } from '../../store/openingsStore'
 
+/* ============================================================
+   ANIMATION
+============================================================ */
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+}
+
+/* ============================================================
+   JOB CARD
+============================================================ */
+
+function JobCard({ job, index, active, onApply }) {
+  const cardRef = useRef(null)
+
+  const [rotation, setRotation] = useState({
+    x: 0,
+    y: 0,
+  })
+
+  const [mouse, setMouse] = useState({
+    x: 50,
+    y: 50,
+  })
+
+  const handleMouseMove = (event) => {
+    if (!cardRef.current) return
+
+    const rect = cardRef.current.getBoundingClientRect()
+
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotateY = ((x - centerX) / centerX) * 5
+    const rotateX = ((centerY - y) / centerY) * 5
+
+    setRotation({
+      x: rotateX,
+      y: rotateY,
+    })
+
+    setMouse({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100,
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setRotation({
+      x: 0,
+      y: 0,
+    })
+
+    setMouse({
+      x: 50,
+      y: 50,
+    })
+  }
+
+  return (
+    <motion.article
+      ref={cardRef}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        perspective: 1200,
+      }}
+      className="h-full"
+    >
+      <motion.div
+        animate={{
+          rotateX: rotation.x,
+          rotateY: rotation.y,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 180,
+          damping: 22,
+        }}
+        style={{
+          transformStyle: 'preserve-3d',
+        }}
+        className={`
+          group
+          relative
+          h-full
+          min-h-[360px]
+          overflow-hidden
+          rounded-[30px]
+          border
+          p-7
+          lg:p-8
+          transition-colors
+          duration-500
+          ${active
+            ? 'border-signal/50 bg-[var(--card)]'
+            : 'border-[var(--border)] bg-[var(--card)]/70'
+          }
+        `}
+      >
+        {/* CURSOR GLOW */}
+
+        <motion.div
+          animate={{
+            left: `${mouse.x}%`,
+            top: `${mouse.y}%`,
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 100,
+            damping: 25,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            h-56
+            w-56
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-signal/10
+            blur-[70px]
+          "
+        />
+
+        {/* GRID */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            opacity-[0.045]
+            bg-[linear-gradient(var(--fg)_1px,transparent_1px),linear-gradient(90deg,var(--fg)_1px,transparent_1px)]
+            bg-[size:32px_32px]
+          "
+        />
+
+        {/* TOP RIGHT NUMBER */}
+
+        <div
+          className="
+            absolute
+            right-6
+            top-6
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-signal/20
+            bg-signal/5
+            font-mono
+            text-xs
+            text-signal
+          "
+        >
+          {String(index + 1).padStart(2, '0')}
+        </div>
+
+        {/* ICON */}
+
+        <motion.div
+          animate={{
+            y: [0, -4, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="
+            relative
+            flex
+            h-14
+            w-14
+            items-center
+            justify-center
+            rounded-2xl
+            border
+            border-signal/25
+            bg-signal/10
+            text-signal
+          "
+        >
+          <FiLayers size={22} />
+
+          <span
+            className="
+              absolute
+              -inset-1
+              rounded-2xl
+              border
+              border-signal/10
+            "
+          />
+        </motion.div>
+
+        {/* CONTENT */}
+
+        <div className="relative z-10 mt-8">
+          <div
+            className="
+              flex
+              flex-wrap
+              items-center
+              gap-x-4
+              gap-y-2
+              font-mono
+              text-[10px]
+              uppercase
+              tracking-[0.15em]
+              text-[var(--fg)]/40
+            "
+          >
+            <span className="flex items-center gap-1.5">
+              <FiBriefcase
+                size={12}
+                className="text-signal"
+              />
+              {job.department}
+            </span>
+
+            <span className="flex items-center gap-1.5">
+              <FiMapPin
+                size={12}
+                className="text-signal"
+              />
+              {job.location}
+            </span>
+          </div>
+
+          <h3
+            className="
+              mt-5
+              max-w-lg
+              font-display
+              text-2xl
+              font-bold
+              leading-tight
+              text-[var(--fg)]
+              transition-colors
+              duration-300
+              group-hover:text-signal
+              lg:text-3xl
+            "
+          >
+            {job.title}
+          </h3>
+
+          <p
+            className="
+              mt-4
+              max-w-xl
+              text-sm
+              leading-7
+              text-[var(--fg)]/55
+            "
+          >
+            {job.description}
+          </p>
+        </div>
+
+        {/* BOTTOM */}
+
+        <div
+          className="
+            relative
+            z-10
+            mt-auto
+            pt-8
+          "
+        >
+          <div
+            className="
+              mb-6
+              h-px
+              w-full
+              bg-gradient-to-r
+              from-signal/30
+              via-[var(--border)]
+              to-transparent
+            "
+          />
+
+          <div
+            className="
+              flex
+              flex-col
+              gap-4
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+            "
+          >
+            <div>
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  font-mono
+                  text-[9px]
+                  uppercase
+                  tracking-[0.15em]
+                  text-[var(--fg)]/30
+                "
+              >
+                <FiClock size={12} />
+                Employment
+              </div>
+
+              <div
+                className="
+                  mt-1
+                  text-sm
+                  font-medium
+                  text-[var(--fg)]/70
+                "
+              >
+                {job.employmentType}
+              </div>
+            </div>
+
+            {/* APPLY BUTTON */}
+
+            <button
+              type="button"
+              onClick={() => onApply(job)}
+              className="
+                group/button
+                inline-flex
+                items-center
+                justify-center
+                gap-2.5
+                rounded-full
+                bg-signal
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                shadow-[0_12px_35px_rgba(46,111,255,0.25)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-[0_18px_45px_rgba(46,111,255,0.35)]
+              "
+            >
+              Apply
+
+              <FiArrowUpRight
+                size={16}
+                className="
+                  transition-transform
+                  duration-300
+                  group-hover/button:translate-x-0.5
+                  group-hover/button:-translate-y-0.5
+                "
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* ACTIVE INDICATOR */}
+
+        <motion.div
+          initial={false}
+          animate={{
+            opacity: active ? 1 : 0,
+            scaleX: active ? 1 : 0,
+          }}
+          className="
+            absolute
+            bottom-0
+            left-8
+            right-8
+            h-[2px]
+            origin-left
+            bg-signal
+          "
+        />
+      </motion.div>
+    </motion.article>
+  )
+}
+
+/* ============================================================
+   APPLICATION STEPS
+============================================================ */
+
+const applicationSteps = [
+  {
+    number: '01',
+    title: 'Personal',
+    description: 'Tell us about yourself',
+    icon: FiUser,
+  },
+  {
+    number: '02',
+    title: 'Education',
+    description: 'Share your background',
+    icon: FiBookOpen,
+  },
+  {
+    number: '03',
+    title: 'Resume',
+    description: 'Complete your application',
+    icon: FiFileText,
+  },
+]
+
+/* ============================================================
+   APPLICATION
+============================================================ */
+
+function ApplicationSection({
+  step,
+  setStep,
+  applicationRef,
+  onSubmit,
+  selectedJob,
+  onClose,
+}) {
+  const step1Sections = jobFormSections.slice(0, 1)
+  const step2Sections = jobFormSections.slice(1, 2)
+  const step3Sections = jobFormSections.slice(2)
+
+  const currentSections =
+    step === 1
+      ? step1Sections
+      : step === 2
+        ? step2Sections
+        : step3Sections
+
+  const titles = {
+    1: 'Personal Information',
+    2: 'Education & Background',
+    3: 'Resume & Final Details',
+  }
+
+  const labels = {
+    1: 'Continue to Education',
+    2: 'Continue to Resume',
+    3: 'Submit Application',
+  }
+
+  const handleStepSubmit = async (values) => {
+    if (step < 3) {
+      setStep(step + 1)
+
+      setTimeout(() => {
+        applicationRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 80)
+
+      return
+    }
+
+    await onSubmit(values)
+  }
+
+  return (
+    <motion.section
+      ref={applicationRef}
+      initial={{
+        opacity: 0,
+        y: 40,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      exit={{
+        opacity: 0,
+        y: 40,
+      }}
+      transition={{
+        duration: 0.7,
+      }}
+      className="
+        scroll-mt-24
+        px-6
+        pb-32
+        lg:px-10
+      "
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 text-center">
+          <Eyebrow>Application</Eyebrow>
+
+          <h2
+            className="
+              mt-4
+              font-display
+              text-3xl
+              font-bold
+              text-[var(--fg)]
+              lg:text-5xl
+            "
+          >
+            Apply for {selectedJob?.title || 'a position'}
+          </h2>
+
+          <p
+            className="
+              mx-auto
+              mt-4
+              max-w-xl
+              text-[var(--fg)]/55
+              leading-7
+            "
+          >
+            Complete your application and take the next
+            step toward joining DesFlyer.
+          </p>
+        </div>
+
+        <div
+          className="
+            overflow-hidden
+            rounded-[32px]
+            border
+            border-signal/30
+            bg-[var(--card)]
+            shadow-[0_30px_100px_-40px_rgba(46,111,255,0.3)]
+          "
+        >
+          {selectedJob && (
+            <div
+              className="
+                flex
+                flex-col
+                gap-4
+                border-b
+                border-signal/20
+                bg-signal/[0.04]
+                p-6
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
+              "
+            >
+              <div>
+                <div
+                  className="
+                    font-mono
+                    text-[9px]
+                    uppercase
+                    tracking-[0.2em]
+                    text-signal
+                  "
+                >
+                  Applying For
+                </div>
+
+                <h3
+                  className="
+                    mt-2
+                    font-display
+                    text-xl
+                    font-bold
+                    text-[var(--fg)]
+                  "
+                >
+                  {selectedJob.title}
+                </h3>
+
+                <div
+                  className="
+                    mt-2
+                    flex
+                    flex-wrap
+                    gap-4
+                    font-mono
+                    text-[10px]
+                    uppercase
+                    tracking-wider
+                    text-[var(--fg)]/40
+                  "
+                >
+                  <span className="flex items-center gap-2">
+                    <FiBriefcase
+                      size={12}
+                      className="text-signal"
+                    />
+                    {selectedJob.department}
+                  </span>
+
+                  <span className="flex items-center gap-2">
+                    <FiMapPin
+                      size={12}
+                      className="text-signal"
+                    />
+                    {selectedJob.location}
+                  </span>
+
+                  <span className="flex items-center gap-2">
+                    <FiClock
+                      size={12}
+                      className="text-signal"
+                    />
+                    {selectedJob.employmentType}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="
+                  self-start
+                  rounded-full
+                  border
+                  border-[var(--border)]
+                  px-4
+                  py-2
+                  text-xs
+                  text-[var(--fg)]/50
+                  transition
+                  hover:border-signal/40
+                  hover:text-signal
+                  sm:self-center
+                "
+              >
+                Change role
+              </button>
+            </div>
+          )}
+
+          <div className="grid lg:grid-cols-[280px_1fr]">
+            <div
+              className="
+                relative
+                border-b
+                border-[var(--border)]
+                bg-gradient-to-br
+                from-signal/10
+                to-transparent
+                p-6
+                lg:border-b-0
+                lg:border-r
+                lg:p-8
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  border
+                  border-signal/30
+                  bg-signal
+                  text-white
+                  shadow-[0_10px_35px_rgba(46,111,255,0.3)]
+                "
+              >
+                <FiStar size={21} />
+              </div>
+
+              <div className="mt-7">
+                <div
+                  className="
+                    font-mono
+                    text-[9px]
+                    uppercase
+                    tracking-[0.2em]
+                    text-signal
+                  "
+                >
+                  DESFLYER / CAREERS
+                </div>
+
+                <h3
+                  className="
+                    mt-3
+                    font-display
+                    text-2xl
+                    font-bold
+                    leading-tight
+                    text-[var(--fg)]
+                  "
+                >
+                  Your next
+                  <span className="block text-signal">
+                    chapter starts here.
+                  </span>
+                </h3>
+              </div>
+
+              <div className="mt-8 space-y-2">
+                {applicationSteps.map((item, index) => {
+                  const Icon = item.icon
+                  const active = step === index + 1
+                  const completed = step > index + 1
+
+                  return (
+                    <button
+                      type="button"
+                      key={item.number}
+                      onClick={() => {
+                        if (completed) {
+                          setStep(index + 1)
+                        }
+                      }}
+                      className={`
+                        relative
+                        flex
+                        w-full
+                        items-center
+                        gap-3
+                        rounded-2xl
+                        border
+                        p-3
+                        text-left
+                        transition-all
+                        duration-300
+                        ${active
+                          ? 'border-signal/30 bg-signal/10'
+                          : 'border-transparent'
+                        }
+                      `}
+                    >
+                      <span
+                        className={`
+                          flex
+                          h-10
+                          w-10
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          ${active
+                            ? 'border-signal bg-signal text-white'
+                            : completed
+                              ? 'border-signal/30 bg-signal/10 text-signal'
+                              : 'border-[var(--border)] text-[var(--fg)]/30'
+                          }
+                        `}
+                      >
+                        {completed ? (
+                          <FiCheckCircle size={16} />
+                        ) : (
+                          <Icon size={16} />
+                        )}
+                      </span>
+
+                      <span>
+                        <span
+                          className={`
+                            block
+                            text-xs
+                            font-semibold
+                            ${active
+                              ? 'text-signal'
+                              : 'text-[var(--fg)]'
+                            }
+                          `}
+                        >
+                          {item.number} / {item.title}
+                        </span>
+
+                        <span
+                          className="
+                            mt-0.5
+                            block
+                            text-[10px]
+                            text-[var(--fg)]/35
+                          "
+                        >
+                          {item.description}
+                        </span>
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div
+                className="
+                  mt-8
+                  hidden
+                  rounded-2xl
+                  border
+                  border-signal/10
+                  bg-[var(--bg)]/30
+                  p-4
+                  lg:block
+                "
+              >
+                <FiZap
+                  size={17}
+                  className="text-signal"
+                />
+
+                <p
+                  className="
+                    mt-2
+                    text-xs
+                    leading-6
+                    text-[var(--fg)]/40
+                  "
+                >
+                  Great products are built by people who
+                  care about the details.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div
+                className="
+                  flex
+                  flex-col
+                  gap-5
+                  border-b
+                  border-[var(--border)]
+                  pb-7
+                  sm:flex-row
+                  sm:items-end
+                  sm:justify-between
+                "
+              >
+                <div>
+                  <span
+                    className="
+                      font-mono
+                      text-[9px]
+                      uppercase
+                      tracking-[0.2em]
+                      text-signal
+                    "
+                  >
+                    Step {String(step).padStart(2, '0')}
+                  </span>
+
+                  <h3
+                    className="
+                      mt-2
+                      font-display
+                      text-2xl
+                      font-semibold
+                      text-[var(--fg)]
+                    "
+                  >
+                    {titles[step]}
+                  </h3>
+                </div>
+
+                <div className="w-full sm:w-36">
+                  <div
+                    className="
+                      flex
+                      justify-between
+                      font-mono
+                      text-[9px]
+                      uppercase
+                      text-[var(--fg)]/30
+                    "
+                  >
+                    <span>Progress</span>
+
+                    <span className="text-signal">
+                      {Math.round((step / 3) * 100)}%
+                    </span>
+                  </div>
+
+                  <div
+                    className="
+                      mt-2
+                      h-1
+                      overflow-hidden
+                      rounded-full
+                      bg-[var(--border)]
+                    "
+                  >
+                    <motion.div
+                      animate={{
+                        width: `${(step / 3) * 100}%`,
+                      }}
+                      transition={{
+                        duration: 0.4,
+                      }}
+                      className="
+                        h-full
+                        rounded-full
+                        bg-signal
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={step}
+                    initial={{
+                      opacity: 0,
+                      x: 20,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: -20,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                    }}
+                    className="
+                      [&_input]:border
+                      [&_input]:border-signal/30
+                      [&_input]:bg-[var(--bg)]
+                      [&_input]:outline-none
+                      [&_input]:transition-all
+                      [&_input]:duration-300
+                      [&_input]:focus:border-signal
+                      [&_input]:focus:ring-2
+                      [&_input]:focus:ring-signal/10
+
+                      [&_textarea]:border
+                      [&_textarea]:border-signal/30
+                      [&_textarea]:bg-[var(--bg)]
+                      [&_textarea]:outline-none
+                      [&_textarea]:transition-all
+                      [&_textarea]:duration-300
+                      [&_textarea]:focus:border-signal
+                      [&_textarea]:focus:ring-2
+                      [&_textarea]:focus:ring-signal/10
+
+                      [&_select]:border
+                      [&_select]:border-signal/30
+                      [&_select]:bg-[var(--bg)]
+                      [&_select]:outline-none
+                      [&_select]:transition-all
+                      [&_select]:duration-300
+                      [&_select]:focus:border-signal
+                      [&_select]:focus:ring-2
+                      [&_select]:focus:ring-signal/10
+
+                      [&_input[type=file]]:border
+                      [&_input[type=file]]:border-signal/30
+                      [&_input[type=file]]:border-dashed
+                      [&_input[type=file]]:bg-[var(--bg)]
+                      [&_input[type=file]]:cursor-pointer
+                      [&_input[type=file]]:focus:border-signal
+
+                      [&_label]:text-[var(--fg)]/70
+                    "
+                  >
+                    <DynamicForm
+                      sections={currentSections}
+                      submitLabel={labels[step]}
+                      onSubmit={handleStepSubmit}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div
+                className="
+                  mt-7
+                  flex
+                  items-center
+                  justify-between
+                  border-t
+                  border-[var(--border)]
+                  pt-5
+                "
+              >
+                <span
+                  className="
+                    font-mono
+                    text-[9px]
+                    uppercase
+                    tracking-wider
+                    text-[var(--fg)]/25
+                  "
+                >
+                  DESFLYER
+                </span>
+
+                <span
+                  className="
+                    flex
+                    items-center
+                    gap-2
+                    text-[10px]
+                    text-[var(--fg)]/35
+                  "
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  Secure application
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  )
+}
+
+/* ============================================================
+   MAIN PAGE
+============================================================ */
+
 export default function JobsPage() {
   const allOpenings = useJobOpenings()
 
   const jobs = allOpenings.filter(
-    (o) => o.status === 'Open'
+    (opening) => opening.status === 'Open'
   )
 
+  const [selectedJob, setSelectedJob] = useState(null)
+  const [showApplication, setShowApplication] = useState(false)
   const [step, setStep] = useState(1)
 
-  async function handleSubmit(values) {
+  const applicationRef = useRef(null)
+
+  const handleApply = (job = null) => {
+    if (job) {
+      setSelectedJob(job)
+    }
+
+    setStep(1)
+    setShowApplication(true)
+
+    setTimeout(() => {
+      applicationRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }, 100)
+  }
+
+  const handleSubmit = async (values) => {
     await api.submitApplication({
       type: 'job',
+      jobId: selectedJob?.id,
+      jobTitle: selectedJob?.title,
       ...values,
       resumeFileName: values.resume?.name,
     })
   }
 
-  // ---------------------------------------------------------
-  // EXISTING FORM STRUCTURE — NOT CHANGED
-  // ---------------------------------------------------------
-
-  const step1Sections = jobFormSections.slice(0, 1)
-  const step2Sections = jobFormSections.slice(1, 2)
-  const step3Sections = jobFormSections.slice(2)
-
-  const cardAnim = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: 0.35,
-      },
-    },
-  }
-
   return (
     <>
-      <Seo />
+      <Seo
+        title="Careers | DesFlyer"
+        description="Explore career opportunities at DesFlyer and join our team building modern software, AI products and digital experiences."
+      />
 
       {/* =====================================================
-          HERO
+          HERO WITH JOB.PNG BACKGROUND
       ===================================================== */}
 
-      <section className="pt-40 pb-20 px-6 lg:px-10">
-        <div className="max-w-shell mx-auto">
-          <Eyebrow>Careers</Eyebrow>
+      {/* =====================================================
+    HERO WITH SHARP JOB.PNG BACKGROUND
+===================================================== */}
+
+      <section
+        className="
+    relative
+    isolate
+    flex
+    min-h-[620px]
+    items-center
+    overflow-hidden
+    px-6
+    py-28
+    lg:min-h-[700px]
+    lg:px-10
+    lg:py-32
+  "
+      >
+        {/* =================================================
+      ORIGINAL HERO IMAGE
+      NO BLUR / NO FILTER
+  ================================================= */}
+
+        <img
+          src="/images/portfolio/job.png"
+          alt="DesFlyer careers"
+          className="
+      absolute
+      inset-0
+      -z-20
+      h-full
+      w-full
+      object-cover
+      object-center
+    "
+        />
+
+        {/* =================================================
+      VERY LIGHT DARK OVERLAY
+      Keeps text readable without hiding the image
+  ================================================= */}
+
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-0
+      -z-10
+      bg-black/20
+    "
+        />
+
+        {/* =================================================
+      LEFT TEXT READABILITY
+      Only darkens the LEFT side
+  ================================================= */}
+
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-y-0
+      left-0
+      -z-10
+      w-[65%]
+      bg-gradient-to-r
+      from-black/65
+      via-black/30
+      to-transparent
+    "
+        />
+
+        {/* =================================================
+      BOTTOM FADE
+  ================================================= */}
+
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-x-0
+      bottom-0
+      -z-10
+      h-32
+      bg-gradient-to-t
+      from-[var(--bg)]
+      via-[var(--bg)]/30
+      to-transparent
+    "
+        />
+
+        {/* =================================================
+      CONTENT
+  ================================================= */}
+
+        <div className="relative z-10 mx-auto w-full max-w-shell  -mt-24">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+          >
+            <Eyebrow>Careers</Eyebrow>
+          </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{
+              delay: 0.1,
+            }}
             className="
-              mt-4
-              font-display
-              font-bold
-              text-[clamp(2.5rem,6vw,4.5rem)]
-              leading-[0.95]
-              text-[var(--fg)]
-            "
+        mt-5
+        max-w-5xl
+        xl:text-[80px]
+        font-display
+        text-[clamp(3rem,8vw,7rem)]
+        font-bold
+        leading-[0.88]
+        tracking-[-0.04em]
+        text-white
+      "
           >
             Build the
+
             <span className="block text-signal">
-              Future With Us
+              future with us.
             </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
             transition={{
               delay: 0.2,
-              duration: 0.6,
             }}
             className="
-              mt-8
-              max-w-2xl
-              text-lg
-              text-[var(--fg)]/65
-              leading-8
-            "
+        mt-10
+      
+        gap-8
+        lg:flex-row
+        lg:items-end
+        lg:justify-between
+      "
           >
-            Join a passionate team creating modern software,
-            AI products and digital experiences used by
-            businesses around the world.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* =====================================================
-          CURRENT OPENINGS
-          COMPLETELY REDESIGNED
-      ===================================================== */}
-
-      <section className="pb-28 px-6 lg:px-10">
-        <div className="max-w-shell mx-auto">
-
-          <div className="mb-12">
-            <Eyebrow>Open Positions</Eyebrow>
-
-            <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <div>
-                <h2
-                  className="
-                    font-display
-                    font-bold
-                    text-3xl
-                    lg:text-4xl
-                    text-[var(--fg)]
-                  "
-                >
-                  Find your next opportunity.
-                </h2>
-
-                <p className="mt-4 max-w-2xl text-[var(--fg)]/60 leading-7">
-                  Explore the roles where your skills can make
-                  a real impact at DesFlyer.
-                </p>
-              </div>
-
+            <p
+              className="
+          max-w-2xl
+          text-base
+          leading-8
+          text-white/75
+          lg:text-lg
+        "
+            >
+              Join a passionate team creating modern software,
+              AI products and digital experiences used by
+              businesses around the world.
+            </p>
+            <div className='flex space-x-8'>
               <div
                 className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-signal/30
-                  bg-signal/5
-                  px-4
-                  py-2
-                  text-xs
-                  font-mono
-                  text-signal
-                  self-start
-                "
+          flex
+          mt-10
+          w-fit
+          items-center
+          gap-3
+          rounded-full
+          border
+          border-signal/40
+          bg-black/20
+          px-5
+          py-3
+          font-mono
+          text-xs
+          text-signal
+        "
               >
                 <span className="relative flex h-2 w-2">
                   <span
                     className="
-                      absolute
-                      inline-flex
-                      h-full
-                      w-full
-                      animate-ping
-                      rounded-full
-                      bg-signal
-                      opacity-60
-                    "
+              absolute
+              inline-flex
+              h-full
+              w-full
+              animate-ping
+              rounded-full
+              bg-signal
+              opacity-60
+            "
                   />
+
                   <span
                     className="
-                      relative
-                      inline-flex
-                      h-2
-                      w-2
-                      rounded-full
-                      bg-signal
-                    "
+              relative
+              inline-flex
+              h-2
+              w-2
+              rounded-full
+              bg-signal
+            "
                   />
                 </span>
 
-                {jobs.length} OPEN ROLE{jobs.length !== 1 ? 'S' : ''}
+                {jobs.length} OPEN ROLE
+                {jobs.length !== 1 ? 'S' : ''}
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    document
+                      .getElementById('open-tracks')
+                      ?.scrollIntoView({
+                        behavior: 'smooth',
+                      })
+                  }}
+                  className="
+                    group
+                    flex
+                    items-center  
+                    gap-3
+                    rounded-xl
+                    bg-[#1976ff]
+                    px-5
+                    py-3
+                    
+                    text-xs
+                    font-semibold
+                    text-white
+                    shadow-[0_12px_35px_rgba(25,118,255,0.4)]
+                    transition-all
+                    duration-300
+                    hover:scale-[1.03]
+                    hover:bg-[#2884ff]
+                  "
+                >
+                  Explore Jobs
+
+                  <FiArrowRight
+                    size={15}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </button>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {jobs.length === 0 && (
+        </div>
+      </section>
+
+      {/* =====================================================
+          JOBS
+      ===================================================== */}
+
+      <section className="px-6 pb-28 pt-20 lg:px-10 lg:pt-24">
+        <div className="mx-auto max-w-shell">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{
+              once: true,
+            }}
+            className="
+              mb-12
+              flex
+              flex-col
+              gap-5
+              lg:flex-row
+              lg:items-end
+              lg:justify-between
+            "
+          >
+            <div>
+              <Eyebrow>Open Positions</Eyebrow>
+
+              <h2
+                className="
+                  mt-4
+                  font-display
+                  text-3xl
+                  font-bold
+                  text-[var(--fg)]
+                  lg:text-5xl
+                "
+              >
+                Find your next opportunity.
+              </h2>
+
+              <p
+                className="
+                  mt-4
+                  max-w-2xl
+                  leading-7
+                  text-[var(--fg)]/55
+                "
+              >
+                Explore roles where your skills, ideas and
+                creativity can make a real impact.
+              </p>
+            </div>
+
+            <div
+              className="
+                hidden
+                items-center
+                gap-2
+                font-mono
+                text-[10px]
+                uppercase
+                tracking-[0.15em]
+                text-[var(--fg)]/30
+                lg:flex
+              "
+            >
+              Scroll to explore
+
+              <FiArrowRight
+                size={13}
+                className="text-signal"
+              />
+            </div>
+          </motion.div>
+
+          {jobs.length === 0 ? (
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
               viewport={{
                 once: true,
               }}
               className="
-                rounded-[28px]
+                rounded-[30px]
                 border
                 border-dashed
                 border-[var(--border)]
-                p-12
-                lg:p-20
-                text-center
                 bg-[var(--card)]/40
+                px-6
+                py-20
+                text-center
               "
             >
               <div
                 className="
                   mx-auto
-                  mb-6
-                  w-16
-                  h-16
-                  rounded-2xl
-                  border
-                  border-signal/30
-                  bg-signal/10
                   flex
+                  h-16
+                  w-16
                   items-center
                   justify-center
+                  rounded-2xl
+                  border
+                  border-signal/25
+                  bg-signal/10
                   text-signal
                 "
               >
-                <FiClock size={28} />
+                <FiClock size={27} />
               </div>
 
               <h3
                 className="
+                  mt-6
                   font-display
                   text-2xl
                   font-semibold
@@ -2087,794 +1494,94 @@ export default function JobsPage() {
 
               <p
                 className="
+                  mx-auto
                   mt-3
                   max-w-md
-                  mx-auto
-                  text-[var(--fg)]/55
                   leading-7
+                  text-[var(--fg)]/50
                 "
               >
-                We aren't hiring at the moment,
-                but we'd still love to hear from you.
+                We are not hiring at the moment, but keep
+                checking back for future opportunities.
               </p>
             </motion.div>
-          )}
-
-          {jobs.length > 0 && (
-            <div className="grid gap-5">
-
+          ) : (
+            <div
+              className="
+                grid
+                gap-6
+                lg:grid-cols-2
+              "
+            >
               {jobs.map((job, index) => (
-                <motion.article
+                <JobCard
                   key={job.id}
-                  initial={{
-                    opacity: 0,
-                    y: 30,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.15,
-                  }}
-                  transition={{
-                    duration: 0.55,
-                    delay: index * 0.08,
-                  }}
-                  className="
-                    group
-                    relative
-                    overflow-hidden
-                    rounded-[28px]
-                    border
-                    border-[var(--border)]
-                    bg-[var(--card)]
-                    p-7
-                    lg:p-9
-                    transition-all
-                    duration-500
-                    hover:border-signal/40
-                    hover:-translate-y-1
-                  "
-                >
-
-                  {/* subtle animated background */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      -right-24
-                      -top-24
-                      w-64
-                      h-64
-                      rounded-full
-                      bg-signal/5
-                      blur-3xl
-                      transition-all
-                      duration-700
-                      group-hover:bg-signal/10
-                    "
-                  />
-
-                  <div
-                    className="
-                      relative
-                      flex
-                      flex-col
-                      lg:flex-row
-                      lg:items-center
-                      gap-8
-                    "
-                  >
-
-                    {/* NUMBER */}
-
-                    <div
-                      className="
-                        hidden
-                        lg:flex
-                        w-14
-                        h-14
-                        shrink-0
-                        rounded-2xl
-                        border
-                        border-[var(--border)]
-                        items-center
-                        justify-center
-                        font-mono
-                        text-xs
-                        text-[var(--fg)]/35
-                        group-hover:text-signal
-                        group-hover:border-signal/30
-                        transition-all
-                        duration-300
-                      "
-                    >
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-
-                    {/* MAIN CONTENT */}
-
-                    <div className="flex-1 min-w-0">
-
-                      <div
-                        className="
-                          flex
-                          flex-wrap
-                          items-center
-                          gap-x-5
-                          gap-y-2
-                          text-xs
-                          font-mono
-                          text-[var(--fg)]/45
-                        "
-                      >
-                        <span className="flex items-center gap-2">
-                          <FiBriefcase
-                            size={13}
-                            className="text-signal"
-                          />
-                          {job.department}
-                        </span>
-
-                        <span className="flex items-center gap-2">
-                          <FiMapPin
-                            size={13}
-                            className="text-signal"
-                          />
-                          {job.location}
-                        </span>
-
-                        <span className="flex items-center gap-2">
-                          <FiClock
-                            size={13}
-                            className="text-signal"
-                          />
-                          {job.employmentType}
-                        </span>
-                      </div>
-
-                      <h3
-                        className="
-                          mt-5
-                          font-display
-                          text-2xl
-                          lg:text-3xl
-                          font-semibold
-                          text-[var(--fg)]
-                          group-hover:text-signal
-                          transition-colors
-                          duration-300
-                        "
-                      >
-                        {job.title}
-                      </h3>
-
-                      <p
-                        className="
-                          mt-4
-                          max-w-3xl
-                          text-[var(--fg)]/60
-                          leading-7
-                        "
-                      >
-                        {job.description}
-                      </p>
-
-                    </div>
-
-                    {/* RIGHT SIDE */}
-
-                    <div
-                      className="
-                        flex
-                        lg:flex-col
-                        items-center
-                        lg:items-end
-                        justify-between
-                        gap-5
-                        shrink-0
-                      "
-                    >
-
-                      <span
-                        className="
-                          inline-flex
-                          items-center
-                          gap-2
-                          rounded-full
-                          border
-                          border-signal/30
-                          bg-signal/10
-                          px-4
-                          py-2
-                          text-[11px]
-                          font-mono
-                          tracking-wider
-                          text-signal
-                        "
-                      >
-                        <FiCheckCircle size={13} />
-                        OPEN
-                      </span>
-
-                      <motion.div
-                        whileHover={{
-                          x: 4,
-                        }}
-                        className="
-                          flex
-                          items-center
-                          gap-2
-                          text-sm
-                          font-medium
-                          text-[var(--fg)]/55
-                          group-hover:text-signal
-                          transition-colors
-                        "
-                      >
-                        Apply now
-                        <FiArrowUpRight size={16} />
-                      </motion.div>
-
-                    </div>
-
-                  </div>
-
-                  {/* bottom accent */}
-
-                  <div
-                    className="
-                      absolute
-                      bottom-0
-                      left-0
-                      h-[2px]
-                      w-0
-                      bg-signal
-                      transition-all
-                      duration-500
-                      group-hover:w-full
-                    "
-                  />
-
-                </motion.article>
+                  job={job}
+                  index={index}
+                  active={selectedJob?.id === job.id}
+                  onApply={handleApply}
+                />
               ))}
-
             </div>
           )}
-
         </div>
       </section>
 
       {/* =====================================================
-          APPLICATION FORM
+          APPLICATION
       ===================================================== */}
 
-      <section className="pb-32 px-6 lg:px-10">
-        <div className="max-w-shell mx-auto">
-
-          <div className="text-center">
-            <Eyebrow>Application</Eyebrow>
-
-            <h2
-              className="
-                mt-4
-                font-display
-                font-bold
-                text-3xl
-                lg:text-4xl
-                text-[var(--fg)]
-              "
-            >
-              Complete Your Application
-            </h2>
-
-            <p
-              className="
-                mt-4
-                text-[var(--fg)]/55
-              "
-            >
-              Finish one step to unlock the next.
-            </p>
-          </div>
-
-          {/* =================================================
-              CENTERED STEP PROGRESS
-          ================================================= */}
-
-          <div className="mt-14 flex justify-center">
-            <div
-              className="
-                w-full
-                max-w-3xl
-                flex
-                items-center
-                justify-center
-              "
-            >
-
-              {[
-                'Personal',
-                'Education',
-                'Resume',
-              ].map((label, index) => {
-
-                const current = index + 1
-                const active = step >= current
-                const completed = step > current
-
-                return (
-                  <div
-                    key={label}
-                    className="
-                      flex
-                      items-center
-                      flex-1
-                      last:flex-none
-                    "
-                  >
-
-                    {/* STEP */}
-
-                    <div
-                      className="
-                        flex
-                        flex-col
-                        items-center
-                        min-w-[72px]
-                      "
-                    >
-
-                      <motion.div
-                        animate={
-                          active
-                            ? {
-                                scale: [1, 1.04, 1],
-                              }
-                            : {
-                                scale: 1,
-                              }
-                        }
-                        transition={{
-                          duration: 0.6,
-                        }}
-                        className={`
-                          relative
-                          w-14
-                          h-14
-                          rounded-2xl
-                          flex
-                          items-center
-                          justify-center
-                          border
-                          transition-all
-                          duration-500
-                          ${
-                            active
-                              ? 'border-signal bg-signal text-white shadow-[0_0_30px_rgba(46,111,255,0.25)]'
-                              : 'border-[var(--border)] bg-[var(--card)] text-[var(--fg)]/35'
-                          }
-                        `}
-                      >
-
-                        {active && (
-                          <motion.div
-                            initial={{
-                              scale: 0.5,
-                              opacity: 0,
-                            }}
-                            animate={{
-                              scale: 1,
-                              opacity: 1,
-                            }}
-                            className="
-                              absolute
-                              inset-0
-                              rounded-2xl
-                              bg-signal/20
-                              blur-lg
-                            "
-                          />
-                        )}
-
-                        <span
-                          className="
-                            relative
-                            z-10
-                            text-base
-                            font-semibold
-                          "
-                        >
-                          {completed || current < step
-                            ? '✓'
-                            : current}
-                        </span>
-
-                      </motion.div>
-
-                      <span
-                        className={`
-                          mt-3
-                          text-xs
-                          font-medium
-                          transition-colors
-                          duration-300
-                          ${
-                            active
-                              ? 'text-signal'
-                              : 'text-[var(--fg)]/35'
-                          }
-                        `}
-                      >
-                        {label}
-                      </span>
-
-                    </div>
-
-                    {/* CONNECTOR */}
-
-                    {current !== 3 && (
-                      <div
-                        className="
-                          flex-1
-                          h-px
-                          mx-3
-                          bg-[var(--border)]
-                          relative
-                          overflow-hidden
-                          min-w-[35px]
-                        "
-                      >
-                        <motion.div
-                          initial={{
-                            width: '0%',
-                          }}
-                          animate={{
-                            width:
-                              step > current
-                                ? '100%'
-                                : '0%',
-                          }}
-                          transition={{
-                            duration: 0.5,
-                            ease: 'easeOut',
-                          }}
-                          className="
-                            absolute
-                            inset-y-0
-                            left-0
-                            bg-signal
-                          "
-                        />
-                      </div>
-                    )}
-
-                  </div>
-                )
-              })}
-
-            </div>
-          </div>
-
-          {/* =================================================
-              FORM AREA
-          ================================================= */}
-
-          <div className="mt-14 max-w-4xl mx-auto">
-
-            <AnimatePresence mode="wait">
-
-              {/* STEP 1 */}
-
-              {step === 1 && (
-                <motion.div
-                  key="step1"
-                  variants={cardAnim}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                >
-
-                  <div
-                    className="
-                      relative
-                      overflow-hidden
-                      rounded-[30px]
-                      border
-                      border-[var(--border)]
-                      bg-[var(--card)]
-                      p-6
-                      sm:p-8
-                      lg:p-10
-                    "
-                  >
-
-                    <div
-                      className="
-                        absolute
-                        top-0
-                        left-0
-                        right-0
-                        h-px
-                        bg-gradient-to-r
-                        from-transparent
-                        via-signal
-                        to-transparent
-                      "
-                    />
-
-                    <div className="mb-8">
-                      <span
-                        className="
-                          font-mono
-                          text-[11px]
-                          uppercase
-                          tracking-[0.2em]
-                          text-signal
-                        "
-                      >
-                        Step 01
-                      </span>
-
-                      <h3
-                        className="
-                          mt-2
-                          font-display
-                          text-2xl
-                          font-semibold
-                          text-[var(--fg)]
-                        "
-                      >
-                        Personal Information
-                      </h3>
-
-                      <p
-                        className="
-                          mt-2
-                          text-sm
-                          text-[var(--fg)]/50
-                        "
-                      >
-                        Tell us a little about yourself.
-                      </p>
-                    </div>
-
-                    <div
-                      className="
-                        rounded-2xl
-                        border
-                        border-[var(--border)]
-                        bg-[var(--bg)]/30
-                        p-5
-                        sm:p-7
-                      "
-                    >
-                      <DynamicForm
-                        sections={step1Sections}
-                        submitLabel="Continue"
-                        onSubmit={() => {
-                          setStep(2)
-                        }}
-                      />
-                    </div>
-
-                  </div>
-
-                </motion.div>
-              )}
-
-              {/* STEP 2 */}
-
-              {step === 2 && (
-                <motion.div
-                  key="step2"
-                  variants={cardAnim}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                >
-
-                  <div
-                    className="
-                      relative
-                      overflow-hidden
-                      rounded-[30px]
-                      border
-                      border-[var(--border)]
-                      bg-[var(--card)]
-                      p-6
-                      sm:p-8
-                      lg:p-10
-                    "
-                  >
-
-                    <div
-                      className="
-                        absolute
-                        top-0
-                        left-0
-                        right-0
-                        h-px
-                        bg-gradient-to-r
-                        from-transparent
-                        via-signal
-                        to-transparent
-                      "
-                    />
-
-                    <div className="mb-8">
-                      <span
-                        className="
-                          font-mono
-                          text-[11px]
-                          uppercase
-                          tracking-[0.2em]
-                          text-signal
-                        "
-                      >
-                        Step 02
-                      </span>
-
-                      <h3
-                        className="
-                          mt-2
-                          font-display
-                          text-2xl
-                          font-semibold
-                          text-[var(--fg)]
-                        "
-                      >
-                        Education & Background
-                      </h3>
-
-                      <p
-                        className="
-                          mt-2
-                          text-sm
-                          text-[var(--fg)]/50
-                        "
-                      >
-                        Share your education and professional background.
-                      </p>
-                    </div>
-
-                    <div
-                      className="
-                        rounded-2xl
-                        border
-                        border-[var(--border)]
-                        bg-[var(--bg)]/30
-                        p-5
-                        sm:p-7
-                      "
-                    >
-                      <DynamicForm
-                        sections={step2Sections}
-                        submitLabel="Continue"
-                        onSubmit={() => {
-                          setStep(3)
-                        }}
-                      />
-                    </div>
-
-                  </div>
-
-                </motion.div>
-              )}
-
-              {/* STEP 3 */}
-
-              {step === 3 && (
-                <motion.div
-                  key="step3"
-                  variants={cardAnim}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                >
-
-                  <div
-                    className="
-                      relative
-                      overflow-hidden
-                      rounded-[30px]
-                      border
-                      border-[var(--border)]
-                      bg-[var(--card)]
-                      p-6
-                      sm:p-8
-                      lg:p-10
-                    "
-                  >
-
-                    <div
-                      className="
-                        absolute
-                        top-0
-                        left-0
-                        right-0
-                        h-px
-                        bg-gradient-to-r
-                        from-transparent
-                        via-signal
-                        to-transparent
-                      "
-                    />
-
-                    <div className="mb-8">
-                      <span
-                        className="
-                          font-mono
-                          text-[11px]
-                          uppercase
-                          tracking-[0.2em]
-                          text-signal
-                        "
-                      >
-                        Step 03
-                      </span>
-
-                      <h3
-                        className="
-                          mt-2
-                          font-display
-                          text-2xl
-                          font-semibold
-                          text-[var(--fg)]
-                        "
-                      >
-                        Resume & Final Details
-                      </h3>
-
-                      <p
-                        className="
-                          mt-2
-                          text-sm
-                          text-[var(--fg)]/50
-                        "
-                      >
-                        Upload your resume and complete your application.
-                      </p>
-                    </div>
-
-                    <div
-                      className="
-                        rounded-2xl
-                        border
-                        border-[var(--border)]
-                        bg-[var(--bg)]/30
-                        p-5
-                        sm:p-7
-                      "
-                    >
-                      <DynamicForm
-                        sections={step3Sections}
-                        submitLabel="Submit Application"
-                        onSubmit={handleSubmit}
-                      />
-                    </div>
-
-                  </div>
-
-                </motion.div>
-              )}
-
-            </AnimatePresence>
-
-          </div>
-        </div>
-      </section>
+      <AnimatePresence>
+        {showApplication && (
+          <ApplicationSection
+            step={step}
+            setStep={setStep}
+            applicationRef={applicationRef}
+            selectedJob={selectedJob}
+            onClose={() => {
+              setShowApplication(false)
+              setSelectedJob(null)
+              setStep(1)
+            }}
+            onSubmit={handleSubmit}
+          />
+        )}
+      </AnimatePresence>
 
       {/* =====================================================
           BENEFITS
       ===================================================== */}
 
-      <BenefitsGrid
+      {/* <BenefitsGrid
         benefits={jobBenefits}
         title="Why Work at DesFlyer"
-      />
+      /> */}
+
+      {/* =====================================================
+          FINAL CTA
+      ===================================================== */}
+
+      <section className="px-6 py-24 lg:px-10 lg:py-32">
+        <div
+          className="
+            relative
+            mx-auto
+            max-w-shell
+            overflow-hidden
+            rounded-[32px]
+            border
+            border-signal/20
+            bg-signal/[0.06]
+            px-7
+            py-14
+            text-center
+            sm:px-12
+            lg:py-20
+          "
+        >
+          <CTABand />
+        </div>
+      </section>
 
       {/* =====================================================
           FAQ

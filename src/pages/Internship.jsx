@@ -22,6 +22,7 @@ export default function Internship() {
 
   return (
     <>
+
       <Seo
         title="Internships"
         description="Internship opportunities at DesFlyer in engineering, design, and marketing."

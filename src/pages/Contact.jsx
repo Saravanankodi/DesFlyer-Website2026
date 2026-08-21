@@ -1,754 +1,34 @@
-// // import { useState } from 'react'
-// // import { motion } from 'framer-motion'
-// // import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi'
-// // import Seo from '../lib/Seo'
-// // import Eyebrow from '../components/ui/Eyebrow'
-// // import Button from '../components/ui/Button'
-// // import FAQ from '../components/FAQ'
-// // import { siteConfig } from '../data/siteConfig'
-
-// // export default function Contact() {
-// //   const [status, setStatus] = useState('idle')
-// //   const [form, setForm] = useState({ name: '', email: '', message: '' })
-
-// //   function handleChange(e) {
-// //     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-// //   }
-
-// //   function handleSubmit(e) {
-// //     e.preventDefault()
-// //     // No backend yet — this is wired to a mock submit so the UI/UX is final
-// //     // and a real endpoint can be dropped in via src/lib/api.js later.
-// //     setStatus('sent')
-// //   }
-
-// //   return (
-// //     <>
-// //       <Seo
-// //         title="Contact"
-// //         description="Get in touch with DesFlyer — email, call, or send us a message about your project."
-// //         path="/contact"
-// //       />
-// //       <section className="pt-40 pb-28 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto grid lg:grid-cols-5 gap-16">
-// //           <div className="lg:col-span-2">
-// //             <Eyebrow>Get In Touch</Eyebrow>
-// //             <h1 className="font-display font-bold text-[clamp(2.2rem,4.5vw,3.25rem)] text-[var(--fg)]">
-// //               Let&rsquo;s talk about your project
-// //             </h1>
-// //             <p className="mt-6 text-[var(--fg)]/65 leading-relaxed max-w-sm">
-// //               Tell us what you&rsquo;re building. We usually reply within one business day.
-// //             </p>
-
-// //             <div className="mt-10 flex flex-col gap-6">
-// //               <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-4 group">
-// //                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal transition-colors">
-// //                   <FiMail size={16} />
-// //                 </span>
-// //                 <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-// //                   {siteConfig.email}
-// //                 </span>
-// //               </a>
-// //               <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group">
-// //                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal transition-colors">
-// //                   <FiPhone size={16} />
-// //                 </span>
-// //                 <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-// //                   {siteConfig.phone}
-// //                 </span>
-// //               </a>
-// //               <div className="flex items-center gap-4">
-// //                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal">
-// //                   <FiMapPin size={16} />
-// //                 </span>
-// //                 <span className="text-[var(--fg)]/80">{siteConfig.location}</span>
-// //               </div>
-// //             </div>
-// //           </div>
-
-// //           <motion.form
-// //             initial={{ opacity: 0, y: 24 }}
-// //             whileInView={{ opacity: 1, y: 0 }}
-// //             viewport={{ once: true }}
-// //             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-// //             onSubmit={handleSubmit}
-// //             className="lg:col-span-3 border border-[var(--border)] rounded-2xl p-8 lg:p-10 flex flex-col gap-6"
-// //           >
-// //             <div className="grid sm:grid-cols-2 gap-6">
-// //               <div>
-// //                 <label htmlFor="name" className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--fg)]/60">
-// //                   Name
-// //                 </label>
-// //                 <input
-// //                   id="name"
-// //                   name="name"
-// //                   required
-// //                   value={form.name}
-// //                   onChange={handleChange}
-// //                   className="mt-2 w-full bg-transparent border-b border-[var(--border)] py-2.5 text-[var(--fg)] focus:border-signal outline-none transition-colors"
-// //                 />
-// //               </div>
-// //               <div>
-// //                 <label htmlFor="email" className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--fg)]/60">
-// //                   Email
-// //                 </label>
-// //                 <input
-// //                   id="email"
-// //                   name="email"
-// //                   type="email"
-// //                   required
-// //                   value={form.email}
-// //                   onChange={handleChange}
-// //                   className="mt-2 w-full bg-transparent border-b border-[var(--border)] py-2.5 text-[var(--fg)] focus:border-signal outline-none transition-colors"
-// //                 />
-// //               </div>
-// //             </div>
-// //             <div>
-// //               <label htmlFor="message" className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--fg)]/60">
-// //                 Project details
-// //               </label>
-// //               <textarea
-// //                 id="message"
-// //                 name="message"
-// //                 rows={5}
-// //                 required
-// //                 value={form.message}
-// //                 onChange={handleChange}
-// //                 className="mt-2 w-full bg-transparent border-b border-[var(--border)] py-2.5 text-[var(--fg)] focus:border-signal outline-none transition-colors resize-none"
-// //               />
-// //             </div>
-// //             <Button type="submit" className="self-start">
-// //               Send Message <FiSend />
-// //             </Button>
-// //             {status === 'sent' && (
-// //               <p role="status" className="text-sm text-signal">
-// //                 Message captured. (Connect a backend in src/lib/api.js to send this for real.)
-// //               </p>
-// //             )}
-// //           </motion.form>
-// //         </div>
-// //       </section>
-
-// //       <FAQ />
-// //     </>
-// //   )
-// // }
-
-
-
-// import { useState } from 'react'
-// import { motion } from 'framer-motion'
-// import {
-//   FiMail,
-//   FiPhone,
-//   FiMapPin,
-//   FiSend,
-// } from 'react-icons/fi'
-// import Seo from '../lib/Seo'
-// import Eyebrow from '../components/ui/Eyebrow'
-// import Button from '../components/ui/Button'
-// import FAQ from '../components/FAQ'
-// import { siteConfig } from '../data/siteConfig'
-
-// export default function Contact() {
-//   const [status, setStatus] = useState('idle')
-//   const [form, setForm] = useState({
-//     name: '',
-//     email: '',
-//     message: '',
-//   })
-
-//   function handleChange(e) {
-//     setForm((f) => ({
-//       ...f,
-//       [e.target.name]: e.target.value,
-//     }))
-//   }
-
-//   function handleSubmit(e) {
-//     e.preventDefault()
-
-//     // No backend yet — mock submit
-//     setStatus('sent')
-//   }
-
-//   return (
-//     <>
-//       <Seo
-//         title="Contact"
-//         description="Get in touch with DesFlyer — email, call, or send us a message about your project."
-//         path="/contact"
-//       />
-
-//       <section className="pt-40 pb-28 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto grid lg:grid-cols-5 gap-16">
-
-//           {/* LEFT SIDE — unchanged */}
-//           <div className="lg:col-span-2">
-//             <Eyebrow>Get In Touch</Eyebrow>
-
-//             <h1 className="font-display font-bold text-[clamp(2.2rem,4.5vw,3.25rem)] text-[var(--fg)]">
-//               Let&rsquo;s talk about your project
-//             </h1>
-
-//             <p className="mt-6 text-[var(--fg)]/65 leading-relaxed max-w-sm">
-//               Tell us what you&rsquo;re building. We usually reply within one business day.
-//             </p>
-
-//             <div className="mt-10 flex flex-col gap-6">
-
-//               <a
-//                 href={`mailto:${siteConfig.email}`}
-//                 className="flex items-center gap-4 group"
-//               >
-//                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal transition-colors">
-//                   <FiMail size={16} />
-//                 </span>
-
-//                 <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-//                   {siteConfig.email}
-//                 </span>
-//               </a>
-
-//               <a
-//                 href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
-//                 className="flex items-center gap-4 group"
-//               >
-//                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal transition-colors">
-//                   <FiPhone size={16} />
-//                 </span>
-
-//                 <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-//                   {siteConfig.phone}
-//                 </span>
-//               </a>
-
-//               <div className="flex items-center gap-4">
-//                 <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal">
-//                   <FiMapPin size={16} />
-//                 </span>
-
-//                 <span className="text-[var(--fg)]/80">
-//                   {siteConfig.location}
-//                 </span>
-//               </div>
-
-//             </div>
-//           </div>
-
-//           {/* =====================================================
-//               NEW FORM DESIGN
-//           ===================================================== */}
-
-//           <motion.form
-//             initial={{ opacity: 0, y: 24 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{
-//               duration: 0.6,
-//               ease: [0.16, 1, 0.3, 1],
-//             }}
-//             onSubmit={handleSubmit}
-//             className="
-//               lg:col-span-3
-//               relative
-//               overflow-hidden
-//               rounded-[2rem]
-//               border
-//               border-[var(--border)]
-//               bg-[var(--fg)]/[0.025]
-//               p-7
-//               lg:p-10
-//             "
-//           >
-
-//             {/* Decorative corner */}
-//             <div
-//               className="
-//                 absolute
-//                 -top-16
-//                 -right-16
-//                 w-40
-//                 h-40
-//                 rounded-full
-//                 border
-//                 border-[var(--border)]
-//                 pointer-events-none
-//               "
-//             />
-
-//             <div
-//               className="
-//                 absolute
-//                 top-0
-//                 right-0
-//                 w-20
-//                 h-20
-//                 bg-signal/[0.035]
-//                 rounded-bl-[4rem]
-//                 pointer-events-none
-//               "
-//             />
-
-//             <div className="relative z-10">
-
-//               {/* FORM HEADER */}
-//               <div className="flex items-start justify-between mb-10">
-
-//                 <div>
-//                   <div className="flex items-center gap-3">
-
-//                     <span className="w-2 h-2 rounded-full bg-signal" />
-
-//                     <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-signal">
-//                       Project Brief
-//                     </span>
-
-//                   </div>
-
-//                   <h2 className="mt-4 font-display font-semibold text-2xl lg:text-3xl text-[var(--fg)]">
-//                     Tell us about it.
-//                   </h2>
-
-//                   <p className="mt-2 text-sm text-[var(--fg)]/40">
-//                     A few details are enough to get started.
-//                   </p>
-//                 </div>
-
-//                 <span className="font-mono text-[10px] text-[var(--fg)]/20">
-//                   01
-//                 </span>
-
-//               </div>
-
-//               {/* NAME */}
-//               <div className="mb-7">
-
-//                 <div className="flex items-center justify-between mb-2">
-
-//                   <label
-//                     htmlFor="name"
-//                     className="
-//                       font-mono
-//                       text-[10px]
-//                       uppercase
-//                       tracking-[0.14em]
-//                       text-[var(--fg)]/45
-//                     "
-//                   >
-//                     Name
-//                   </label>
-
-//                   <span className="text-[10px] text-signal">
-//                     Required
-//                   </span>
-
-//                 </div>
-
-//                 <div className="relative">
-
-//                   <input
-//                     id="name"
-//                     name="name"
-//                     required
-//                     value={form.name}
-//                     onChange={handleChange}
-//                     placeholder="Your name"
-//                     className="
-//                       w-full
-//                       bg-[var(--fg)]/[0.025]
-//                       border
-//                       border-[var(--border)]
-//                       rounded-xl
-//                       px-4
-//                       py-4
-//                       text-sm
-//                       text-[var(--fg)]
-//                       placeholder:text-[var(--fg)]/20
-//                       outline-none
-//                       focus:border-signal
-//                       focus:bg-signal/[0.025]
-//                       transition-all
-//                       duration-300
-//                     "
-//                   />
-
-//                   <span
-//                     className="
-//                       absolute
-//                       bottom-0
-//                       left-4
-//                       right-4
-//                       h-px
-//                       bg-signal
-//                       scale-x-0
-//                       origin-left
-//                       transition-transform
-//                       duration-300
-//                       pointer-events-none
-//                     "
-//                   />
-
-//                 </div>
-
-//               </div>
-
-//               {/* EMAIL */}
-//               <div className="mb-7">
-
-//                 <div className="flex items-center justify-between mb-2">
-
-//                   <label
-//                     htmlFor="email"
-//                     className="
-//                       font-mono
-//                       text-[10px]
-//                       uppercase
-//                       tracking-[0.14em]
-//                       text-[var(--fg)]/45
-//                     "
-//                   >
-//                     Email
-//                   </label>
-
-//                   <span className="text-[10px] text-signal">
-//                     Required
-//                   </span>
-
-//                 </div>
-
-//                 <input
-//                   id="email"
-//                   name="email"
-//                   type="email"
-//                   required
-//                   value={form.email}
-//                   onChange={handleChange}
-//                   placeholder="you@example.com"
-//                   className="
-//                     w-full
-//                     bg-[var(--fg)]/[0.025]
-//                     border
-//                     border-[var(--border)]
-//                     rounded-xl
-//                     px-4
-//                     py-4
-//                     text-sm
-//                     text-[var(--fg)]
-//                     placeholder:text-[var(--fg)]/20
-//                     outline-none
-//                     focus:border-signal
-//                     focus:bg-signal/[0.025]
-//                     transition-all
-//                     duration-300
-//                   "
-//                 />
-
-//               </div>
-
-//               {/* MESSAGE */}
-//               <div className="mb-8">
-
-//                 <div className="flex items-center justify-between mb-2">
-
-//                   <label
-//                     htmlFor="message"
-//                     className="
-//                       font-mono
-//                       text-[10px]
-//                       uppercase
-//                       tracking-[0.14em]
-//                       text-[var(--fg)]/45
-//                     "
-//                   >
-//                     Project details
-//                   </label>
-
-//                   <span className="font-mono text-[9px] text-[var(--fg)]/20">
-//                     03
-//                   </span>
-
-//                 </div>
-
-//                 <textarea
-//                   id="message"
-//                   name="message"
-//                   rows={5}
-//                   required
-//                   value={form.message}
-//                   onChange={handleChange}
-//                   placeholder="Tell us what you're building..."
-//                   className="
-//                     w-full
-//                     bg-[var(--fg)]/[0.025]
-//                     border
-//                     border-[var(--border)]
-//                     rounded-xl
-//                     px-4
-//                     py-4
-//                     text-sm
-//                     text-[var(--fg)]
-//                     placeholder:text-[var(--fg)]/20
-//                     outline-none
-//                     focus:border-signal
-//                     focus:bg-signal/[0.025]
-//                     transition-all
-//                     duration-300
-//                     resize-none
-//                   "
-//                 />
-
-//               </div>
-
-//               {/* FORM FOOTER */}
-//               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-
-//                 <div>
-
-//                   {status === 'sent' ? (
-//                     <motion.div
-//                       initial={{
-//                         opacity: 0,
-//                         x: -10,
-//                       }}
-//                       animate={{
-//                         opacity: 1,
-//                         x: 0,
-//                       }}
-//                       className="flex items-center gap-2"
-//                     >
-
-//                       <span className="w-2 h-2 rounded-full bg-signal" />
-
-//                       <p
-//                         role="status"
-//                         className="
-//                           font-mono
-//                           text-[9px]
-//                           uppercase
-//                           tracking-[0.12em]
-//                           text-signal
-//                         "
-//                       >
-//                         Message received
-//                       </p>
-
-//                     </motion.div>
-//                   ) : (
-//                     <p
-//                       className="
-//                         max-w-[180px]
-//                         font-mono
-//                         text-[9px]
-//                         uppercase
-//                         tracking-[0.1em]
-//                         leading-relaxed
-//                         text-[var(--fg)]/25
-//                       "
-//                     >
-//                       Your information stays private.
-//                     </p>
-//                   )}
-
-//                 </div>
-
-//                 <Button
-//                   type="submit"
-//                   className="
-//                     group
-//                     self-start
-//                     sm:self-auto
-//                     !rounded-xl
-//                     !px-6
-//                     !py-3.5
-//                   "
-//                 >
-
-//                   <span>
-//                     {status === 'sent'
-//                       ? 'Message Sent'
-//                       : 'Send Message'}
-//                   </span>
-
-//                   {status === 'sent' ? (
-//                     <span className="ml-2">
-//                       ✓
-//                     </span>
-//                   ) : (
-//                     <FiSend
-//                       size={14}
-//                       className="
-//                         ml-2
-//                         transition-transform
-//                         duration-300
-//                         group-hover:translate-x-1
-//                       "
-//                     />
-//                   )}
-
-//                 </Button>
-
-//               </div>
-
-//               {/* SUCCESS MESSAGE */}
-//               {status === 'sent' && (
-//                 <motion.div
-//                   initial={{
-//                     opacity: 0,
-//                     y: 8,
-//                   }}
-//                   animate={{
-//                     opacity: 1,
-//                     y: 0,
-//                   }}
-//                   className="
-//                     mt-5
-//                     rounded-xl
-//                     border
-//                     border-signal/20
-//                     bg-signal/[0.04]
-//                     px-4
-//                     py-3
-//                   "
-//                 >
-//                   <p
-//                     className="text-xs text-signal"
-//                   >
-//                     Message captured successfully. Connect your backend
-//                     when you're ready.
-//                   </p>
-//                 </motion.div>
-//               )}
-
-//             </div>
-//           </motion.form>
-//         </div>
-//       </section>
-
-//       <FAQ />
-//     </>
-//   )
-// }
-
-
-
-
-import { useState, useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   FiMail,
   FiPhone,
   FiMapPin,
   FiSend,
+  FiArrowUpRight,
+  FiCheck,
+  FiZap,
+  FiArrowRight,
 } from 'react-icons/fi'
+
 import Seo from '../lib/Seo'
 import Eyebrow from '../components/ui/Eyebrow'
-import Button from '../components/ui/Button'
 import FAQ from '../components/FAQ'
 import { siteConfig } from '../data/siteConfig'
 
-// Small helper: fires a burst of particles from the button on success
-function Particles({ show }) {
-  const particles = Array.from({ length: 10 })
-  return (
-    <AnimatePresence>
-      {show && (
-        <span className="pointer-events-none absolute inset-0">
-          {particles.map((_, i) => {
-            const angle = (i / particles.length) * Math.PI * 2
-            const distance = 60 + Math.random() * 30
-            return (
-              <motion.span
-                key={i}
-                initial={{ opacity: 1, x: 0, y: 0, scale: 0 }}
-                animate={{
-                  opacity: 0,
-                  x: Math.cos(angle) * distance,
-                  y: Math.sin(angle) * distance,
-                  scale: 1,
-                }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute left-1/2 top-1/2 w-1.5 h-1.5 rounded-full bg-signal"
-              />
-            )
-          })}
-        </span>
-      )}
-    </AnimatePresence>
-  )
-}
-
-// Wraps an input/textarea with a tilt-reactive glow that tracks the cursor
-function FieldShell({ children, className = '' }) {
-  const glowX = useMotionValue(50)
-  const glowY = useMotionValue(50)
-
-  function handleMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect()
-    glowX.set(((e.clientX - rect.left) / rect.width) * 100)
-    glowY.set(((e.clientY - rect.top) / rect.height) * 100)
-  }
-
-  return (
-    <div
-      onMouseMove={handleMouseMove}
-      className={`relative group ${className}`}
-    >
-      <motion.div
-        style={{
-          background: useTransform(
-            [glowX, glowY],
-            ([x, y]) =>
-              `radial-gradient(160px circle at ${x}% ${y}%, var(--signal-glow, rgba(255,255,255,0.08)), transparent 70%)`
-          ),
-        }}
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
-      />
-      {children}
-    </div>
-  )
-}
-
 export default function Contact() {
   const [status, setStatus] = useState('idle')
+  const [activeField, setActiveField] = useState(null)
+
   const [form, setForm] = useState({
     name: '',
     email: '',
     message: '',
   })
-  const [focused, setFocused] = useState(null)
-
-  // ---- 3D tilt for the whole form card ----
-  const cardRef = useRef(null)
-  const rawRotateX = useMotionValue(0)
-  const rawRotateY = useMotionValue(0)
-  const rotateX = useSpring(rawRotateX, { stiffness: 150, damping: 18, mass: 0.6 })
-  const rotateY = useSpring(rawRotateY, { stiffness: 150, damping: 18, mass: 0.6 })
-  const cardScale = useSpring(1, { stiffness: 200, damping: 20 })
-  const sheenX = useTransform(rotateY, [-8, 8], [0, 100])
-  const sheenY = useTransform(rotateX, [8, -8], [0, 100])
-
-  function handleCardMouseMove(e) {
-    const rect = cardRef.current.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5 // -0.5 .. 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    rawRotateY.set(px * 10) // left/right tilt
-    rawRotateX.set(-py * 10) // up/down tilt
-  }
-
-  function handleCardMouseEnter() {
-    cardScale.set(1.012)
-  }
-
-  function handleCardMouseLeave() {
-    rawRotateX.set(0)
-    rawRotateY.set(0)
-    cardScale.set(1)
-  }
 
   function handleChange(e) {
-    setForm((f) => ({
-      ...f,
+    setForm((current) => ({
+      ...current,
       [e.target.name]: e.target.value,
     }))
   }
@@ -756,27 +36,12 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault()
 
-    // No backend yet — mock submit
     setStatus('sending')
-    setTimeout(() => setStatus('sent'), 550)
-  }
 
-  const fieldBase = `
-    w-full
-    bg-[var(--fg)]/[0.025]
-    border
-    border-[var(--border)]
-    rounded-xl
-    px-4
-    py-4
-    text-sm
-    text-[var(--fg)]
-    placeholder:text-[var(--fg)]/20
-    outline-none
-    transition-all
-    duration-300
-    relative
-  `
+    setTimeout(() => {
+      setStatus('sent')
+    }, 900)
+  }
 
   return (
     <>
@@ -786,531 +51,1234 @@ export default function Contact() {
         path="/contact"
       />
 
-      <section className="pt-40 pb-28 px-6 lg:px-10 relative overflow-hidden">
+      {/* =========================================================
+          CONTACT HERO
+      ========================================================= */}
 
-        {/* Ambient floating orbs — drift slowly behind the content */}
-        <motion.div
-          aria-hidden
-          animate={{
-            x: [0, 30, -10, 0],
-            y: [0, -20, 15, 0],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-          className="pointer-events-none absolute -top-24 right-[8%] w-72 h-72 rounded-full bg-signal/[0.06] blur-3xl"
-        />
-        <motion.div
-          aria-hidden
-          animate={{
-            x: [0, -25, 10, 0],
-            y: [0, 25, -15, 0],
-          }}
-          transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="pointer-events-none absolute bottom-0 left-[4%] w-64 h-64 rounded-full bg-signal/[0.05] blur-3xl"
-        />
+      <section
+        className="
+          relative
+          flex
+          min-h-screen
+          items-center
+          overflow-hidden
+          px-5
+          py-20
+          sm:px-6
+          lg:px-10
+          lg:py-24
+          xl:py-20
+        "
+      >
+        {/* =====================================================
+            BLUE MOVING BACKGROUND
+        ===================================================== */}
 
-        <div className="max-w-shell mx-auto grid lg:grid-cols-5 gap-16 relative">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* Left blue orb */}
 
-          {/* LEFT SIDE — subtle entrance + hover lift on contact rows */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-2"
+            animate={{
+              x: [0, 90, -40, 0],
+              y: [0, -60, 30, 0],
+              scale: [1, 1.15, 0.92, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="
+              absolute
+              -left-40
+              top-10
+              h-[30rem]
+              w-[30rem]
+              rounded-full
+              bg-blue-500/[0.10]
+              blur-[100px]
+            "
+          />
+
+          {/* Right blue orb */}
+
+          <motion.div
+            animate={{
+              x: [0, -80, 35, 0],
+              y: [0, 45, -35, 0],
+              scale: [1, 0.9, 1.12, 1],
+            }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="
+              absolute
+              -right-48
+              top-1/4
+              h-[34rem]
+              w-[34rem]
+              rounded-full
+              bg-cyan-500/[0.07]
+              blur-[110px]
+            "
+          />
+
+          {/* Center rotating glow */}
+
+          <motion.div
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              duration: 45,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+            className="
+              absolute
+              left-1/2
+              top-1/2
+              h-[600px]
+              w-[600px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-[radial-gradient(circle,rgba(37,99,235,0.12)_0%,transparent_65%)]
+            "
+          />
+
+          {/* Blue grid */}
+
+          <div
+            className="
+              absolute
+              inset-0
+              opacity-[0.025]
+              [background-image:linear-gradient(rgba(59,130,246,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.8)_1px,transparent_1px)]
+              [background-size:75px_75px]
+            "
+          />
+
+          {/* Subtle top glow */}
+
+          <div
+            className="
+              absolute
+              left-1/2
+              top-0
+              h-96
+              w-[700px]
+              -translate-x-1/2
+              rounded-full
+              bg-blue-600/[0.07]
+              blur-[120px]
+            "
+          />
+        </div>
+
+        {/* =====================================================
+            MAIN CONTENT
+        ===================================================== */}
+
+        <div
+          className="
+            relative
+            z-10
+            mx-auto
+            flex
+            w-full
+            max-w-shell
+            flex-col
+            justify-center
+          "
+        >
+          {/* =====================================================
+              HEADER
+          ===================================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="
+              max-w-5xl
+              mt-8
+            "
           >
             <Eyebrow>Get In Touch</Eyebrow>
 
-            <h1 className="font-display font-bold text-[clamp(2.2rem,4.5vw,3.25rem)] text-[var(--fg)]">
-              Let&rsquo;s talk about your project
+            <h1
+              className="
+                mt-2
+                font-display
+                text-[clamp(2.2rem,4.5vw,4.5rem)]
+                font-bold
+                leading-[0.92]
+                tracking-tight
+                text-[var(--fg)]
+                whitespace-nowrap
+              "
+            >
+              Let&rsquo;s build{' '}
+
+              <motion.span
+                initial={{
+                  opacity: 0,
+                  x: -25,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.6,
+                }}
+                className="
+                  bg-gradient-to-r
+                  from-blue-300
+                  via-blue-500
+                  to-cyan-400
+                  bg-clip-text
+                  text-transparent
+                "
+              >
+                something remarkable.
+              </motion.span>
             </h1>
 
-            <p className="mt-6 text-[var(--fg)]/65 leading-relaxed max-w-sm">
-              Tell us what you&rsquo;re building. We usually reply within one business day.
-            </p>
-
-            <div className="mt-10 flex flex-col gap-6">
-
-              <motion.a
-                href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-4 group"
-                whileHover={{ x: 6 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <motion.span
-                  whileHover={{ rotateY: 180 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                  className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal group-hover:shadow-[0_0_20px_-4px_var(--signal)] transition-[border-color,box-shadow] duration-300"
-                >
-                  <FiMail size={16} />
-                </motion.span>
-
-                <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-                  {siteConfig.email}
-                </span>
-              </motion.a>
-
-              <motion.a
-                href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
-                className="flex items-center gap-4 group"
-                whileHover={{ x: 6 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <motion.span
-                  whileHover={{ rotateY: 180 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                  className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal group-hover:border-signal group-hover:shadow-[0_0_20px_-4px_var(--signal)] transition-[border-color,box-shadow] duration-300"
-                >
-                  <FiPhone size={16} />
-                </motion.span>
-
-                <span className="text-[var(--fg)]/80 group-hover:text-signal transition-colors">
-                  {siteConfig.phone}
-                </span>
-              </motion.a>
-
-              <div className="flex items-center gap-4">
-                <span className="w-11 h-11 rounded-full border border-[var(--border)] flex items-center justify-center text-signal">
-                  <FiMapPin size={16} />
-                </span>
-
-                <span className="text-[var(--fg)]/80">
-                  {siteConfig.location}
-                </span>
-              </div>
-
-            </div>
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 12,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.35,
+                duration: 0.6,
+              }}
+              className="
+                mt-3
+                mb-4
+                max-w-3xl
+                text-xs
+                leading-5
+                text-[var(--fg)]/55
+                sm:text-sm
+                lg:text-base
+              "
+            >
+              Have an idea, product, website, or digital experience in mind?
+              Tell us what you are working on and let&rsquo;s turn it into
+              something real.
+            </motion.p>
           </motion.div>
 
           {/* =====================================================
-              FORM — 3D tilt card, glowing focus states, particle burst
+              MAIN CONTACT AREA
           ===================================================== */}
 
-          <motion.form
-            ref={cardRef}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            onMouseMove={handleCardMouseMove}
-            onMouseEnter={handleCardMouseEnter}
-            onMouseLeave={handleCardMouseLeave}
-            onSubmit={handleSubmit}
-            style={{
-              rotateX,
-              rotateY,
-              scale: cardScale,
-              transformPerspective: 1200,
-              transformStyle: 'preserve-3d',
-            }}
+          <div
             className="
-              lg:col-span-3
-              relative
-              overflow-hidden
-              rounded-[2rem]
-              border
-              border-[var(--border)]
-              bg-[var(--fg)]/[0.025]
-              p-7
-              lg:p-10
-              will-change-transform
+              grid
+              items-stretch
+              gap-4
+              lg:grid-cols-[0.78fr_1.65fr]
             "
           >
+            {/* =================================================
+                LEFT SIDE
+            ================================================= */}
 
-            {/* Moving sheen that follows the tilt — gives the glass a light-catching feel */}
             <motion.div
-              aria-hidden
-              style={{
-                background: useTransform(
-                  [sheenX, sheenY],
-                  ([x, y]) =>
-                    `radial-gradient(600px circle at ${x}% ${y}%, var(--fg-05, rgba(255,255,255,0.06)), transparent 60%)`
-                ),
+              initial={{
+                opacity: 0,
+                x: -30,
               }}
-              className="absolute inset-0 pointer-events-none"
-            />
-
-            {/* Decorative corner — now drifts gently with its own float loop */}
-            <motion.div
-              aria-hidden
-              animate={{ rotate: 360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="
-                absolute
-                -top-16
-                -right-16
-                w-40
-                h-40
-                rounded-full
+                relative
+                min-h-[400px]
+                overflow-hidden
+                rounded-[30px]
                 border
-                border-dashed
-                border-[var(--border)]
-                pointer-events-none
+                border-blue-400/[0.10]
+                bg-gradient-to-br
+                from-blue-500/[0.13]
+                via-blue-900/[0.12]
+                to-blue-950/[0.22]
+                p-5
+                shadow-[0_30px_100px_rgba(0,20,80,0.35)]
+                backdrop-blur-2xl
+                sm:p-6
+                lg:p-6
               "
-            />
+            >
+              {/* Blue border glow */}
 
-            <div
-              className="
-                absolute
-                top-0
-                right-0
-                w-20
-                h-20
-                bg-signal/[0.035]
-                rounded-bl-[4rem]
-                pointer-events-none
-              "
-            />
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  rounded-[30px]
+                  bg-[linear-gradient(135deg,rgba(59,130,246,0.15),transparent_35%,transparent_65%,rgba(6,182,212,0.08))]
+                "
+              />
 
-            <div className="relative z-10" style={{ transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}>
+              {/* Floating orb */}
 
-              {/* FORM HEADER */}
-              <div className="flex items-start justify-between mb-10">
+              <motion.div
+                animate={{
+                  x: [0, 30, -15, 0],
+                  y: [0, -30, 20, 0],
+                  scale: [1, 1.12, 0.95, 1],
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="
+                  pointer-events-none
+                  absolute
+                  -right-24
+                  -top-24
+                  h-72
+                  w-72
+                  rounded-full
+                  bg-blue-500/[0.13]
+                  blur-3xl
+                "
+              />
 
+              {/* Rotating blue ring */}
+
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+                className="
+                  pointer-events-none
+                  absolute
+                  -right-28
+                  -top-28
+                  h-72
+                  w-72
+                  rounded-full
+                  bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.25),transparent,rgba(6,182,212,0.18),transparent)]
+                  blur-sm
+                "
+              />
+
+              <div className="relative flex h-full flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-3">
+                  {/* Availability */}
 
+                  <div
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      border
+                      border-blue-400/[0.10]
+                      bg-blue-400/[0.07]
+                      px-3
+                      py-1.5
+                    "
+                  >
                     <motion.span
-                      animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                      className="w-2 h-2 rounded-full bg-signal"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                      className="
+                        h-1.5
+                        w-1.5
+                        rounded-full
+                        bg-blue-400
+                        shadow-[0_0_12px_rgba(59,130,246,0.9)]
+                      "
                     />
 
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-signal">
-                      Project Brief
+                    <span
+                      className="
+                        font-mono
+                        text-[8px]
+                        uppercase
+                        tracking-[0.18em]
+                        text-blue-300
+                      "
+                    >
+                      Available to connect
                     </span>
-
                   </div>
 
-                  <h2 className="mt-4 font-display font-semibold text-2xl lg:text-3xl text-[var(--fg)]">
-                    Tell us about it.
+                  <h2
+                    className="
+                      mt-4
+                      max-w-sm
+                      font-display
+                      text-xl
+                      font-semibold
+                      leading-tight
+                      text-[var(--fg)]
+                      lg:text-2xl
+                    "
+                  >
+                    Your idea starts with a conversation.
                   </h2>
 
-                  <p className="mt-2 text-sm text-[var(--fg)]/40">
-                    A few details are enough to get started.
+                  <p
+                    className="
+                      mt-2
+                      max-w-sm
+                      text-[11px]
+                      leading-5
+                      text-[var(--fg)]/45
+                      lg:text-xs
+                    "
+                  >
+                    Give us the context. We&rsquo;ll bring the strategy,
+                    design, engineering, and execution.
                   </p>
                 </div>
 
-                <span className="font-mono text-[10px] text-[var(--fg)]/20">
-                  01
-                </span>
+                {/* CONTACT DETAILS */}
 
-              </div>
+                <div className="mt-6 space-y-3">
+                  <ContactItem
+                    icon={<FiMail size={15} />}
+                    label="Email"
+                    value={siteConfig.email}
+                    href={`mailto:${siteConfig.email}`}
+                  />
 
-              {/* NAME */}
-              <div className="mb-7" style={{ transform: 'translateZ(10px)' }}>
+                  <ContactItem
+                    icon={<FiPhone size={15} />}
+                    label="Phone"
+                    value={siteConfig.phone}
+                    href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
+                  />
 
-                <div className="flex items-center justify-between mb-2">
-
-                  <label
-                    htmlFor="name"
-                    className="
-                      font-mono
-                      text-[10px]
-                      uppercase
-                      tracking-[0.14em]
-                      text-[var(--fg)]/45
-                    "
-                  >
-                    Name
-                  </label>
-
-                  <span className="text-[10px] text-signal">
-                    Required
-                  </span>
-
+                  <ContactItem
+                    icon={<FiMapPin size={15} />}
+                    label="Location"
+                    value={siteConfig.location}
+                  />
                 </div>
-
-                <FieldShell>
-                  <input
-                    id="name"
-                    name="name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('name')}
-                    onBlur={() => setFocused(null)}
-                    placeholder="Your name"
-                    className={`${fieldBase} focus:border-signal focus:bg-signal/[0.025] ${
-                      focused === 'name' ? 'shadow-[0_0_0_3px_var(--signal-ring,rgba(255,255,255,0.06))]' : ''
-                    }`}
-                  />
-
-                  <motion.span
-                    initial={false}
-                    animate={{ scaleX: focused === 'name' ? 1 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="
-                      absolute
-                      bottom-0
-                      left-4
-                      right-4
-                      h-px
-                      bg-signal
-                      origin-left
-                      pointer-events-none
-                    "
-                  />
-                </FieldShell>
-
               </div>
+            </motion.div>
 
-              {/* EMAIL */}
-              <div className="mb-7" style={{ transform: 'translateZ(10px)' }}>
+            {/* =================================================
+                RIGHT FORM
+            ================================================= */}
 
-                <div className="flex items-center justify-between mb-2">
+            <motion.form
+              initial={{
+                opacity: 0,
+                x: 30,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              onSubmit={handleSubmit}
+              className="
+                relative
+                overflow-hidden
+                rounded-[30px]
+                border
+                border-blue-400/[0.10]
+                bg-gradient-to-br
+                from-blue-500/[0.12]
+                via-blue-900/[0.10]
+                to-blue-950/[0.20]
+                p-1
+                shadow-[0_30px_100px_rgba(0,20,80,0.4)]
+              "
+            >
+              {/* Moving blue light */}
 
-                  <label
-                    htmlFor="email"
-                    className="
-                      font-mono
-                      text-[10px]
-                      uppercase
-                      tracking-[0.14em]
-                      text-[var(--fg)]/45
-                    "
-                  >
-                    Email
-                  </label>
+              <motion.div
+                animate={{
+                  x: ['-120%', '220%'],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+                className="
+                  pointer-events-none
+                  absolute
+                  -top-20
+                  h-[150%]
+                  w-24
+                  rotate-[20deg]
+                  bg-gradient-to-b
+                  from-transparent
+                  via-blue-400/[0.20]
+                  to-transparent
+                  blur-2xl
+                "
+              />
 
-                  <span className="text-[10px] text-signal">
-                    Required
-                  </span>
-
-                </div>
-
-                <FieldShell>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('email')}
-                    onBlur={() => setFocused(null)}
-                    placeholder="you@example.com"
-                    className={`${fieldBase} focus:border-signal focus:bg-signal/[0.025] ${
-                      focused === 'email' ? 'shadow-[0_0_0_3px_var(--signal-ring,rgba(255,255,255,0.06))]' : ''
-                    }`}
-                  />
-
-                  <motion.span
-                    initial={false}
-                    animate={{ scaleX: focused === 'email' ? 1 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute bottom-0 left-4 right-4 h-px bg-signal origin-left pointer-events-none"
-                  />
-                </FieldShell>
-
-              </div>
-
-              {/* MESSAGE */}
-              <div className="mb-8" style={{ transform: 'translateZ(10px)' }}>
-
-                <div className="flex items-center justify-between mb-2">
-
-                  <label
-                    htmlFor="message"
-                    className="
-                      font-mono
-                      text-[10px]
-                      uppercase
-                      tracking-[0.14em]
-                      text-[var(--fg)]/45
-                    "
-                  >
-                    Project details
-                  </label>
-
-                  <span className="font-mono text-[9px] text-[var(--fg)]/20">
-                    03
-                  </span>
-
-                </div>
-
-                <FieldShell>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    required
-                    value={form.message}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('message')}
-                    onBlur={() => setFocused(null)}
-                    placeholder="Tell us what you're building..."
-                    className={`${fieldBase} resize-none focus:border-signal focus:bg-signal/[0.025] ${
-                      focused === 'message' ? 'shadow-[0_0_0_3px_var(--signal-ring,rgba(255,255,255,0.06))]' : ''
-                    }`}
-                  />
-
-                  <motion.span
-                    initial={false}
-                    animate={{ scaleX: focused === 'message' ? 1 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute bottom-0 left-4 right-4 h-px bg-signal origin-left pointer-events-none"
-                  />
-                </FieldShell>
-
-              </div>
-
-              {/* FORM FOOTER */}
               <div
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-5"
-                style={{ transform: 'translateZ(20px)' }}
+                className="
+                  relative
+                  h-full
+                  overflow-hidden
+                  rounded-[27px]
+                  border
+                  border-blue-400/[0.08]
+                  bg-[#020817]/95
+                  px-5
+                  py-5
+                  sm:px-6
+                  sm:py-6
+                  lg:px-7
+                  lg:py-6
+                "
               >
-
-                <div>
-
-                  <AnimatePresence mode="wait">
-                    {status === 'sent' ? (
-                      <motion.div
-                        key="sent"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="flex items-center gap-2"
-                      >
-                        <motion.span
-                          animate={{ scale: [1, 1.6, 1] }}
-                          transition={{ duration: 0.6 }}
-                          className="w-2 h-2 rounded-full bg-signal"
-                        />
-
-                        <p
-                          role="status"
-                          className="
-                            font-mono
-                            text-[9px]
-                            uppercase
-                            tracking-[0.12em]
-                            text-signal
-                          "
-                        >
-                          Message received
-                        </p>
-                      </motion.div>
-                    ) : (
-                      <motion.p
-                        key="idle"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="
-                          max-w-[180px]
-                          font-mono
-                          text-[9px]
-                          uppercase
-                          tracking-[0.1em]
-                          leading-relaxed
-                          text-[var(--fg)]/25
-                        "
-                      >
-                        Your information stays private.
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-
-                </div>
+                {/* Background blue orb */}
 
                 <motion.div
-                  className="relative self-start sm:self-auto"
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  whileTap={{ scale: 0.96, y: 0 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                >
-                  <Particles show={status === 'sent'} />
+                  animate={{
+                    x: [0, 40, -20, 0],
+                    y: [0, -20, 25, 0],
+                  }}
+                  transition={{
+                    duration: 14,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="
+                    pointer-events-none
+                    absolute
+                    -right-32
+                    -top-32
+                    h-72
+                    w-72
+                    rounded-full
+                    bg-blue-500/[0.10]
+                    blur-3xl
+                  "
+                />
 
-                  <Button
-                    type="submit"
-                    disabled={status === 'sending'}
-                    className="
-                      group
-                      !rounded-xl
-                      !px-6
-                      !py-3.5
-                    "
-                  >
+                <div className="relative z-10">
+                  {/* FORM HEADING */}
 
-                    <span>
-                      {status === 'sent'
-                        ? 'Message Sent'
-                        : status === 'sending'
-                        ? 'Sending…'
-                        : 'Send Message'}
-                    </span>
+                  <div className="flex items-start justify-between gap-5">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="
+                            h-1.5
+                            w-1.5
+                            rounded-full
+                            bg-blue-400
+                            shadow-[0_0_15px_rgba(59,130,246,0.8)]
+                          "
+                        />
 
-                    {status === 'sent' ? (
-                      <motion.span
-                        initial={{ scale: 0, rotate: -90 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                        className="ml-2 inline-block"
-                      >
-                        ✓
-                      </motion.span>
-                    ) : status === 'sending' ? (
-                      <motion.span
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
-                        className="ml-2 inline-block"
-                      >
-                        <FiSend size={14} />
-                      </motion.span>
-                    ) : (
-                      <FiSend
-                        size={14}
+                        <span
+                          className="
+                            font-mono
+                            text-[8px]
+                            uppercase
+                            tracking-[0.2em]
+                            text-blue-300
+                          "
+                        >
+                          Start a conversation
+                        </span>
+                      </div>
+
+                      <h2
                         className="
-                          ml-2
-                          transition-transform
-                          duration-300
-                          group-hover:translate-x-1
+                          mt-2
+                          font-display
+                          text-lg
+                          font-semibold
+                          text-white
+                          lg:text-xl
+                        "
+                      >
+                        Tell us about your project.
+                      </h2>
+
+                      <p
+                        className="
+                          mt-1
+                          max-w-md
+                          text-[10px]
+                          leading-5
+                          text-blue-100/40
+                          lg:text-xs
+                        "
+                      >
+                        Share the essentials. We&rsquo;ll take it from there.
+                      </p>
+                    </div>
+
+                    <div
+                      className="
+                        hidden
+                        rounded-full
+                        border
+                        border-blue-400/[0.08]
+                        bg-blue-400/[0.05]
+                        px-3
+                        py-1.5
+                        font-mono
+                        text-[8px]
+                        text-blue-300/50
+                        sm:block
+                      "
+                    >
+
+                    </div>
+                  </div>
+
+                  {/* INPUTS */}
+
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2 ">
+                    <AnimatedInput
+                      id="name"
+                      label="Your name"
+                      placeholder="Enter your name"
+                      
+                      value={form.name}
+                      onChange={handleChange}
+                      active={activeField === 'name'}
+                      onFocus={() => setActiveField('name')}
+                      onBlur={() => setActiveField(null)}
+                    />
+
+                    <AnimatedInput
+                      id="email"
+                      label="Email address"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={form.email}
+                      onChange={handleChange}
+                      active={activeField === 'email'}
+                      onFocus={() => setActiveField('email')}
+                      onBlur={() => setActiveField(null)}
+                    />
+                  </div>
+
+                  {/* MESSAGE */}
+
+                  <div className="mt-4">
+                    <label
+                      htmlFor="message"
+                      className="
+                        mb-1.5
+                        flex
+                        items-center
+                        justify-between
+                        font-mono
+                        text-[8px]
+                        uppercase
+                        tracking-[0.16em]
+                        text-blue-300/50
+                      "
+                    >
+                      <span>Project details</span>
+                      {/* <span className="text-blue-300/60">03</span> */}
+                    </label>
+
+                    <div className="relative">
+                      <motion.div
+                        animate={{
+                          opacity: activeField === 'message' ? 1 : 0,
+                        }}
+                        className="
+                          pointer-events-none
+                          absolute
+                          -inset-2
+                          rounded-3xl
+                          bg-blue-500/[0.10]
+                          blur-xl
                         "
                       />
-                    )}
 
-                  </Button>
-                </motion.div>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        required
+                        value={form.message}
+                        onChange={handleChange}
+                        onFocus={() => setActiveField('message')}
+                        onBlur={() => setActiveField(null)}
+                        placeholder="What are you building? Tell us about your goals, timeline, or anything else that matters..."
+                        className="
+                          relative
+                          w-full
+                          resize-none
+                          rounded-2xl
+                          border
+                          border-blue-400/[0.07]
+                          bg-blue-400/[0.045]
+                          px-4
+                          py-3
+                          text-xs
+                          leading-5
+                          text-white
+                          outline-none
+                          placeholder:text-blue-100/20
+                          transition-all
+                          duration-300
+                          focus:border-blue-400/[0.18]
+                          focus:bg-blue-400/[0.075]
+                        "
+                      />
 
-              </div>
+                      <motion.span
+                        animate={{
+                          scaleX: activeField === 'message' ? 1 : 0,
+                        }}
+                        className="
+                          absolute
+                          bottom-0
+                          left-4
+                          right-4
+                          h-[2px]
+                          origin-left
+                          rounded-full
+                          bg-gradient-to-r
+                          from-blue-500
+                          to-cyan-400
+                        "
+                      />
 
-              {/* SUCCESS MESSAGE */}
-              <AnimatePresence>
-                {status === 'sent' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      <span
+                        className="
+                          pointer-events-none
+                          absolute
+                          bottom-3
+                          right-4
+                          font-mono
+                          text-[7px]
+                          uppercase
+                          tracking-[0.15em]
+                          text-blue-300/20
+                        "
+                      >
+                        Brief
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* BOTTOM */}
+
+                  <div
                     className="
-                      mt-5
-                      rounded-xl
-                      border
-                      border-signal/20
-                      bg-signal/[0.04]
-                      px-4
-                      py-3
+                      mt-4
+                      flex
+                      flex-col
+                      gap-3
+                      sm:flex-row
+                      sm:items-center
+                      sm:justify-between
                     "
                   >
-                    <p className="text-xs text-signal">
-                      Message captured successfully. Connect your backend
-                      when you're ready.
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    <div className="flex items-center gap-2.5">
+                      <div
+                        className="
+                          flex
+                          h-8
+                          w-8
+                          items-center
+                          justify-center
+                          rounded-lg
+                          border
+                          border-blue-400/[0.10]
+                          bg-blue-400/[0.08]
+                          text-blue-300
+                        "
+                      >
+                        <FiCheck size={13} />
+                      </div>
 
-            </div>
-          </motion.form>
+                      <div>
+                        <p className="text-[10px] text-blue-100/80">
+                          Your information
+                        </p>
+
+                        <p className="mt-0.5 text-[9px] text-blue-100/30">
+                          Stays private &amp; secure
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* BLUE CTA */}
+
+                    <motion.button
+                      type="submit"
+                      disabled={status === 'sending'}
+                      whileHover={{
+                        scale: 1.03,
+                        x: 3,
+                      }}
+                      whileTap={{
+                        scale: 0.97,
+                      }}
+                      className="
+                        group
+                        mt-1
+                        flex
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-blue-300/30
+                        bg-gradient-to-r
+                        from-blue-300
+                        via-blue-500
+                        to-cyan-500
+                        px-5
+                        py-2.5
+                        text-xs
+                        font-semibold
+                        text-white
+                        shadow-[0_15px_40px_rgba(37,99,235,0.35)]
+                        transition-all
+                        duration-300
+                        hover:from-blue-200
+                        hover:via-blue-400
+                        hover:to-cyan-400
+                        hover:shadow-[0_18px_50px_rgba(37,99,235,0.5)]
+                      "
+                    >
+                      {status === 'sent' ? (
+                        <>
+                          Message Sent
+                          <FiCheck
+                            size={14}
+                            className="ml-2"
+                          />
+                        </>
+                      ) : status === 'sending' ? (
+                        <>
+                          Sending
+
+                          <motion.span
+                            animate={{
+                              rotate: 360,
+                            }}
+                            transition={{
+                              duration: 0.7,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            }}
+                            className="ml-2"
+                          >
+                            <FiSend size={13} />
+                          </motion.span>
+                        </>
+                      ) : (
+                        <>
+                          Send Project Brief
+
+                          <FiArrowRight
+                            size={14}
+                            className="
+                              ml-2
+                              transition-transform
+                              duration-300
+                              group-hover:translate-x-1
+                            "
+                          />
+                        </>
+                      )}
+                    </motion.button>
+                  </div>
+
+                  {/* SUCCESS */}
+
+                  <AnimatePresence>
+                    {status === 'sent' && (
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                          y: 8,
+                          height: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          height: 'auto',
+                        }}
+                        exit={{
+                          opacity: 0,
+                          y: 8,
+                          height: 0,
+                        }}
+                        className="
+                          mt-3
+                          overflow-hidden
+                          rounded-xl
+                          border
+                          border-blue-400/[0.10]
+                          bg-blue-500/[0.07]
+                          p-3
+                        "
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div
+                            className="
+                              flex
+                              h-7
+                              w-7
+                              items-center
+                              justify-center
+                              rounded-full
+                              bg-gradient-to-br
+                              from-blue-300
+                              to-blue-600
+                              text-white
+                              shadow-[0_0_20px_rgba(37,99,235,0.35)]
+                            "
+                          >
+                            <FiCheck size={13} />
+                          </div>
+
+                          <div>
+                            <p className="text-xs font-medium text-blue-100">
+                              Project brief received.
+                            </p>
+
+                            <p className="mt-0.5 text-[10px] text-blue-100/35">
+                              We&rsquo;ll get back to you within one business
+                              day.
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </motion.form>
+          </div>
         </div>
       </section>
 
+      {/* =========================================================
+          FAQ
+      ========================================================= */}
+
       <FAQ />
     </>
+  )
+}
+
+/* =========================================================
+   CONTACT ITEM
+========================================================= */
+
+function ContactItem({
+  icon,
+  label,
+  value,
+  href,
+}) {
+  const content = (
+    <>
+      <motion.div
+        whileHover={{
+          rotate: 8,
+          scale: 1.08,
+        }}
+        className="
+          flex
+          h-9
+          w-9
+          shrink-0
+          items-center
+          justify-center
+          rounded-lg
+          border
+          border-blue-400/[0.08]
+          bg-blue-500/[0.07]
+          text-blue-300
+          shadow-[0_0_20px_rgba(37,99,235,0.08)]
+        "
+      >
+        {icon}
+      </motion.div>
+
+      <span className="min-w-0 flex-1">
+        <span
+          className="
+            block
+            font-mono
+            text-[7px]
+            uppercase
+            tracking-[0.15em]
+            text-blue-300/35
+          "
+        >
+          {label}
+        </span>
+
+        <span
+          className="
+            mt-0.5
+            block
+            truncate
+            text-xs
+            text-blue-100/75
+            transition-colors
+            group-hover:text-blue-200
+          "
+        >
+          {value}
+        </span>
+      </span>
+
+      {href && (
+        <FiArrowUpRight
+          size={14}
+          className="
+            text-blue-400/30
+            transition-all
+            duration-300
+            group-hover:-translate-y-1
+            group-hover:translate-x-1
+            group-hover:text-cyan-300
+          "
+        />
+      )}
+    </>
+  )
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        whileHover={{
+          x: 4,
+        }}
+        className="
+          group
+          flex
+          items-center
+          gap-3
+          rounded-xl
+          border
+          border-blue-400/[0.05]
+          bg-blue-500/[0.035]
+          p-3
+          transition-all
+          duration-300
+          hover:border-blue-400/[0.12]
+          hover:bg-blue-500/[0.075]
+          hover:shadow-[0_10px_30px_rgba(37,99,235,0.08)]
+        "
+      >
+        {content}
+      </motion.a>
+    )
+  }
+
+  return (
+    <motion.div
+      whileHover={{
+        x: 4,
+      }}
+      className="
+        group
+        flex
+        items-center
+        gap-3
+        rounded-xl
+        border
+        border-blue-400/[0.05]
+        bg-blue-500/[0.035]
+        p-3
+        transition-all
+        duration-300
+        hover:border-blue-400/[0.12]
+        hover:bg-blue-500/[0.075]
+      "
+    >
+      {content}
+    </motion.div>
+  )
+}
+
+/* =========================================================
+   ANIMATED INPUT
+========================================================= */
+
+function AnimatedInput({
+  id,
+  label,
+  number,
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  active,
+  onFocus,
+  onBlur,
+}) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="
+          mb-1.5
+          flex
+          items-center
+          justify-between
+          font-mono
+          text-[8px]
+          uppercase
+          tracking-[0.16em]
+          text-blue-300/45
+        "
+      >
+        <span>{label}</span>
+        <span className="text-blue-300/60">{number}</span>
+      </label>
+
+      <div className="relative">
+        <motion.div
+          animate={{
+            opacity: active ? 1 : 0,
+            scale: active ? 1 : 0.96,
+          }}
+          transition={{
+            duration: 0.25,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            -inset-2
+            rounded-3xl
+            bg-blue-500/[0.10]
+            blur-xl
+          "
+        />
+
+        <input
+          id={id}
+          name={id}
+          type={type}
+          required
+          value={value}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          className="
+            relative
+            w-full
+            rounded-xl
+            border
+            border-blue-400/[0.08]
+            bg-blue-400/[0.045]
+            px-4
+            py-2.5
+            text-xs
+            text-blue-50
+            outline-none
+            placeholder:text-blue-100/20
+            transition-all
+            duration-300
+            focus:border-blue-400/[0.22]
+            focus:bg-blue-400/[0.08]
+            focus:shadow-[0_0_30px_rgba(37,99,235,0.08)]
+          "
+        />
+
+        <motion.span
+          animate={{
+            scaleX: active ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="
+            absolute
+            bottom-0
+            left-4
+            right-4
+            h-[2px]
+            origin-left
+            rounded-full
+            bg-gradient-to-r
+            from-blue-500
+            via-blue-400
+            to-cyan-400
+          "
+        />
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: -10,
+          }}
+          animate={{
+            opacity: active ? 1 : 0,
+            x: active ? 0 : -10,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            right-3
+            top-1/2
+            -translate-y-1/2
+            text-blue-300
+          "
+        >
+          <FiArrowRight size={13} />
+        </motion.div>
+      </div>
+    </div>
   )
 }

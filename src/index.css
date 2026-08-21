@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
 :root {
   --bg: theme('colors.paper');
   --fg: theme('colors.graphite');
@@ -92,4 +92,22 @@ textarea:focus-visible,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }

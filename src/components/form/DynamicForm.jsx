@@ -74,7 +74,7 @@ export default function DynamicForm({ sections, onSubmit, submitLabel = 'Submit 
           transition={{ duration: 0.5, delay: si * 0.05 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-xs text-signal border border-signal/30 rounded-full w-7 h-7 flex items-center justify-center shrink-0">
+            <span className="font-mono text-xs text-signal border border-signal/40 rounded-full w-7 h-7 flex items-center justify-center shrink-0">
               {si + 1}
             </span>
             <h3 className="font-display font-semibold text-lg text-[var(--fg)]">{section.title}</h3>
