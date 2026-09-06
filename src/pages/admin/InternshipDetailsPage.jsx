@@ -58,9 +58,7 @@ export default function InternshipDetailsPage() {
               <div className="flex items-start justify-between">
                 <h3 className="font-display font-semibold text-lg text-[var(--fg)]">{item.title}</h3>
                 <span
-                  className={`text-[10px] font-mono uppercase px-2 py-1 rounded-full shrink-0 ${
-                    item.status === 'Open' ? 'bg-signal/15 text-signal' : 'bg-[var(--fg)]/10 text-[var(--fg)]/50'
-                  }`}
+                  className={`text-[10px] font-mono uppercase px-2 py-1 rounded-full shrink-0 ${ item.status === 'Open' ? 'bg-signal/15 text-signal' : 'bg-[var(--fg)]/10 text-[var(--fg)]/50' }`}
                 >
                   {item.status}
                 </span>

@@ -92,20 +92,7 @@ export default function InteractiveLogo() {
           repeat: Infinity,
           duration: 4,
         }}
-        className="
-          relative
-          w-72
-          h-72
-          rounded-[40px]
-          backdrop-blur-xl
-          bg-white/5
-          border
-          border-white/10
-          flex
-          items-center
-          justify-center
-          shadow-[0_0_80px_rgba(79,140,255,.35)]
-        "
+        className="relative w-72 h-72 rounded-[40px] backdrop-blur-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(79,140,255,.35)]"
       >
         <motion.img
           whileHover={{

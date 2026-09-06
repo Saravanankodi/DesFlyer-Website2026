@@ -1,4 +1,5 @@
 // General methodology steps (not client-specific facts).
+
 export const process = [
   {
     step: '01',

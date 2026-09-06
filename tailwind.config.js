@@ -20,32 +20,54 @@ export default {
           dark: 'rgba(234,241,255,0.10)',
         },
       },
+
       fontFamily: {
         display: ['"Chakra Petch"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+
+        // Iceberg
+        iceberg: ['"Iceberg"', 'sans-serif'],
       },
+
       maxWidth: {
         shell: '1400px',
       },
+
       backdropBlur: {
         xs: '2px',
       },
+
       keyframes: {
         'pulse-node': {
-          '0%, 100%': { opacity: 0.35, transform: 'scale(1)' },
-          '50%': { opacity: 1, transform: 'scale(1.4)' },
+          '0%, 100%': {
+            opacity: 0.35,
+            transform: 'scale(1)',
+          },
+          '50%': {
+            opacity: 1,
+            transform: 'scale(1.4)',
+          },
         },
+
         'fade-up': {
-          from: { opacity: 0, transform: 'translateY(24px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: {
+            opacity: 0,
+            transform: 'translateY(24px)',
+          },
+          to: {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
         },
       },
+
       animation: {
         'pulse-node': 'pulse-node 2.4s ease-in-out infinite',
         'fade-up': 'fade-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
       },
     },
   },
+
   plugins: [],
 }

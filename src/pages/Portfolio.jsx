@@ -1,7719 +1,3241 @@
-// // import { motion } from 'framer-motion'
-// // import { FiClock } from 'react-icons/fi'
-// // import Seo from '../lib/Seo'
-// // import Eyebrow from '../components/ui/Eyebrow'
-// // import CTABand from '../components/sections/CTABand'
-// // import { projects } from '../data/projects'
-
-// // const upcomingProducts = ['Product Slot 01', 'Product Slot 02', 'Product Slot 03']
-
-// // export default function Portfolio() {
-// //   return (
-// //     <>
-// //       <Seo
-// //         title="Portfolio"
-// //         description="Explore DesFlyer's featured projects — from invoicing software to booking platforms — built for real clients."
-// //         path="/portfolio"
-// //       />
-// //       <section className="pt-40 pb-20 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Selected Work</Eyebrow>
-// //           <h1 className="font-display font-bold text-[clamp(2.2rem,5vw,3.75rem)] text-[var(--fg)] max-w-2xl">
-// //             Highlighted Projects
-// //           </h1>
-// //           <p className="mt-6 text-lg text-[var(--fg)]/65 max-w-2xl leading-relaxed">
-// //             Explore our featured projects that demonstrate our expertise in delivering innovative software
-// //             solutions tailored to client needs.
-// //           </p>
-// //         </div>
-// //       </section>
-
-// //       <section className="pb-20 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto flex flex-col gap-5">
-// //           {projects.map((p, i) => (
-// //             <motion.article
-// //               key={p.slug}
-// //               initial={{ opacity: 0, y: 24 }}
-// //               whileInView={{ opacity: 1, y: 0 }}
-// //               viewport={{ once: true, margin: '-60px' }}
-// //               transition={{ duration: 0.6, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-// //               className="border border-[var(--border)] rounded-2xl p-8 lg:p-10 hover:border-signal/50 transition-colors duration-300 grid sm:grid-cols-[1fr_auto] gap-8 items-center"
-// //             >
-// //               <div>
-// //                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-[var(--fg)]/50">
-// //                   <span>Client: {p.client}</span>
-// //                   <span>Date: {p.date}</span>
-// //                 </div>
-// //                 <h2 className="font-display font-semibold text-2xl mt-4 text-[var(--fg)]">{p.title}</h2>
-// //                 <p className="mt-3 text-[var(--fg)]/65 leading-relaxed max-w-2xl">{p.body}</p>
-// //                 <div className="flex flex-wrap gap-2 mt-6">
-// //                   {p.technologies.map((t) => (
-// //                     <span
-// //                       key={t}
-// //                       className="font-mono text-[11px] px-2.5 py-1 rounded-full border border-[var(--border)] text-[var(--fg)]/60"
-// //                     >
-// //                       {t}
-// //                     </span>
-// //                   ))}
-// //                 </div>
-// //               </div>
-// //               {p.image && (
-// //                 <div className="w-full sm:w-44 h-32 rounded-xl bg-white flex items-center justify-center p-4 shrink-0">
-// //                   <img src={p.image} alt={`${p.title} logo`} className="max-w-full max-h-full object-contain" loading="lazy" />
-// //                 </div>
-// //               )}
-// //             </motion.article>
-// //           ))}
-// //         </div>
-// //       </section>
-
-// //       <section className="pb-28 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Coming Soon</Eyebrow>
-// //           <h2 className="font-display font-bold text-2xl text-[var(--fg)] mb-8">More products on the way</h2>
-// //           <div className="grid sm:grid-cols-3 gap-5">
-// //             {upcomingProducts.map((label) => (
-// //               <div
-// //                 key={label}
-// //                 className="border border-dashed border-[var(--border)] rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-3 text-[var(--fg)]/40"
-// //               >
-// //                 <FiClock size={22} />
-// //                 <span className="font-mono text-xs uppercase tracking-[0.15em]">{label}</span>
-// //               </div>
-// //             ))}
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       <CTABand />
-// //     </>
-// //   )
-// // }
-
-
-// // import { useMemo, useState } from 'react'
-// // import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-// // import { FiClock, FiX } from 'react-icons/fi'
-// // import Seo from '../lib/Seo'
-// // import Eyebrow from '../components/ui/Eyebrow'
-// // import CTABand from '../components/sections/CTABand'
-// // import { projects } from '../data/projects'
-
-// // const upcomingProducts = ['Product Slot 01', 'Product Slot 02', 'Product Slot 03']
-
-// // // ---------------------------------------------------------------------------
-// // // Word-by-word heading reveal — matches the About page's opening move.
-// // // ---------------------------------------------------------------------------
-// // function RevealHeading({ text, className }) {
-// //   const words = useMemo(() => text.split(' '), [text])
-// //   return (
-// //     <h1 className={className} aria-label={text}>
-// //       {words.map((word, i) => (
-// //         <span key={i} className="inline-block overflow-hidden align-top mr-[0.28em]">
-// //           <motion.span
-// //             className="inline-block"
-// //             initial={{ y: '110%' }}
-// //             animate={{ y: '0%' }}
-// //             transition={{ duration: 0.6, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-// //           >
-// //             {word}
-// //           </motion.span>
-// //         </span>
-// //       ))}
-// //     </h1>
-// //   )
-// // }
-
-// // export default function Portfolio() {
-// //   const reduceMotion = useReducedMotion()
-// //   const [activeTech, setActiveTech] = useState(null)
-
-// //   const techs = useMemo(() => {
-// //     const set = new Set()
-// //     projects.forEach((p) => p.technologies.forEach((t) => set.add(t)))
-// //     return Array.from(set).sort()
-// //   }, [])
-
-// //   const visible = activeTech
-// //     ? projects.filter((p) => p.technologies.includes(activeTech))
-// //     : projects
-
-// //   return (
-// //     <>
-// //       <Seo
-// //         title="Portfolio"
-// //         description="Explore DesFlyer's featured projects — from invoicing software to booking platforms — built for real clients."
-// //         path="/portfolio"
-// //       />
-
-// //       <section className="pt-40 pb-16 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Selected Work</Eyebrow>
-// //           <RevealHeading
-// //             text="Highlighted Projects"
-// //             className="font-display font-bold text-[clamp(2.2rem,5vw,3.75rem)] text-[var(--fg)] max-w-2xl leading-[1.05]"
-// //           />
-// //           <motion.p
-// //             initial={{ opacity: 0, y: 12 }}
-// //             animate={{ opacity: 1, y: 0 }}
-// //             transition={{ duration: 0.5, delay: 0.4 }}
-// //             className="mt-6 text-lg text-[var(--fg)]/65 max-w-2xl leading-relaxed"
-// //           >
-// //             Explore our featured projects that demonstrate our expertise in delivering innovative software
-// //             solutions tailored to client needs.
-// //           </motion.p>
-// //         </div>
-// //       </section>
-
-// //       {/* FILTER BAR — browse the work the way a client would: by what it's built with */}
-// //       <section className="pb-6 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <div className="flex flex-wrap items-center gap-2">
-// //             <button
-// //               type="button"
-// //               onClick={() => setActiveTech(null)}
-// //               className={`font-mono text-xs px-3.5 py-1.5 rounded-full border transition-colors duration-200 ${
-// //                 activeTech === null
-// //                   ? 'bg-signal border-signal text-white'
-// //                   : 'border-[var(--border)] text-[var(--fg)]/60 hover:border-signal/50 hover:text-signal'
-// //               }`}
-// //             >
-// //               All work
-// //             </button>
-// //             {techs.map((t) => (
-// //               <button
-// //                 key={t}
-// //                 type="button"
-// //                 onClick={() => setActiveTech(t === activeTech ? null : t)}
-// //                 aria-pressed={activeTech === t}
-// //                 className={`font-mono text-xs px-3.5 py-1.5 rounded-full border transition-colors duration-200 ${
-// //                   activeTech === t
-// //                     ? 'bg-signal border-signal text-white'
-// //                     : 'border-[var(--border)] text-[var(--fg)]/60 hover:border-signal/50 hover:text-signal'
-// //                 }`}
-// //               >
-// //                 {t}
-// //               </button>
-// //             ))}
-// //           </div>
-
-// //           <div className="mt-4 flex items-center gap-3 font-mono text-xs text-[var(--fg)]/40">
-// //             <span>
-// //               Showing {visible.length} of {projects.length}
-// //             </span>
-// //             {activeTech && (
-// //               <button
-// //                 type="button"
-// //                 onClick={() => setActiveTech(null)}
-// //                 className="inline-flex items-center gap-1 text-signal hover:underline"
-// //               >
-// //                 <FiX size={12} /> clear filter
-// //               </button>
-// //             )}
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       {/* PROJECT LIST */}
-// //       <section className="pb-20 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto flex flex-col gap-5">
-// //           <AnimatePresence mode="popLayout">
-// //             {visible.map((p, i) => (
-// //               <motion.article
-// //                 key={p.slug}
-// //                 layout={!reduceMotion}
-// //                 initial={{ opacity: 0, y: 20 }}
-// //                 animate={{ opacity: 1, y: 0 }}
-// //                 exit={{ opacity: 0, y: -12 }}
-// //                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-// //                 className="group relative border border-[var(--border)] rounded-2xl p-8 lg:p-10 hover:border-signal/50 transition-colors duration-300 grid sm:grid-cols-[auto_1fr_auto] gap-8 items-center"
-// //               >
-// //                 <span className="hidden sm:block font-mono text-xs text-[var(--fg)]/30 group-hover:text-signal transition-colors duration-300 self-start pt-1">
-// //                   {String(i + 1).padStart(2, '0')}
-// //                 </span>
-
-// //                 <div>
-// //                   <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-[var(--fg)]/50">
-// //                     <span className="sm:hidden">{String(i + 1).padStart(2, '0')} ·</span>
-// //                     <span>Client: {p.client}</span>
-// //                     <span>Date: {p.date}</span>
-// //                   </div>
-// //                   <h2 className="font-display font-semibold text-2xl mt-4 text-[var(--fg)]">{p.title}</h2>
-// //                   <p className="mt-3 text-[var(--fg)]/65 leading-relaxed max-w-2xl">{p.body}</p>
-// //                   <div className="flex flex-wrap gap-2 mt-6">
-// //                     {p.technologies.map((t) => (
-// //                       <button
-// //                         key={t}
-// //                         type="button"
-// //                         onClick={() => setActiveTech(t === activeTech ? null : t)}
-// //                         className={`font-mono text-[11px] px-2.5 py-1 rounded-full border transition-colors duration-200 ${
-// //                           activeTech === t
-// //                             ? 'border-signal text-signal bg-signal/10'
-// //                             : 'border-[var(--border)] text-[var(--fg)]/60 hover:border-signal/50 hover:text-signal'
-// //                         }`}
-// //                       >
-// //                         {t}
-// //                       </button>
-// //                     ))}
-// //                   </div>
-// //                 </div>
-
-// //                 {p.image && (
-// //                   <div className="w-full sm:w-44 h-32 rounded-xl bg-white flex items-center justify-center p-4 shrink-0 overflow-hidden">
-// //                     <motion.img
-// //                       src={p.image}
-// //                       alt={`${p.title} logo`}
-// //                       loading="lazy"
-// //                       className="max-w-full max-h-full object-contain"
-// //                       whileHover={reduceMotion ? undefined : { scale: 1.08 }}
-// //                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-// //                     />
-// //                   </div>
-// //                 )}
-// //               </motion.article>
-// //             ))}
-// //           </AnimatePresence>
-
-// //           {visible.length === 0 && (
-// //             <div className="border border-dashed border-[var(--border)] rounded-2xl p-12 text-center text-[var(--fg)]/50">
-// //               Nothing built with <span className="text-signal">{activeTech}</span> yet — check back soon, or{' '}
-// //               <button type="button" onClick={() => setActiveTech(null)} className="text-signal hover:underline">
-// //                 view all work
-// //               </button>
-// //               .
-// //             </div>
-// //           )}
-// //         </div>
-// //       </section>
-
-// //       <section className="pb-28 px-6 lg:px-10">
-// //         <div className="max-w-shell mx-auto">
-// //           <Eyebrow>Coming Soon</Eyebrow>
-// //           <h2 className="font-display font-bold text-2xl text-[var(--fg)] mb-8">More products on the way</h2>
-// //           <div className="grid sm:grid-cols-3 gap-5">
-// //             {upcomingProducts.map((label) => (
-// //               <motion.div
-// //                 key={label}
-// //                 whileHover={reduceMotion ? undefined : { y: -4 }}
-// //                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-// //                 className="border border-dashed border-[var(--border)] rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-3 text-[var(--fg)]/40 hover:border-signal/40 hover:text-signal/70 transition-colors duration-300"
-// //               >
-// //                 <motion.span
-// //                   whileHover={reduceMotion ? undefined : { rotate: 360 }}
-// //                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-// //                 >
-// //                   <FiClock size={22} />
-// //                 </motion.span>
-// //                 <span className="font-mono text-xs uppercase tracking-[0.15em]">{label}</span>
-// //               </motion.div>
-// //             ))}
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       <CTABand />
-// //     </>
-// //   )
-// // }
-
-
-
-
-
-// // import {
-// //   useMemo,
-// //   useRef,
-// //   useState,
-// //   useEffect,
-// // } from "react";
-
-// // import {
-// //   motion,
-// //   useMotionValue,
-// //   useReducedMotion,
-// //   useSpring,
-// //   useTransform,
-// // } from "framer-motion";
-
-// // import { FiArrowUpRight } from "react-icons/fi";
-
-// // const categories = [
-// //   "All",
-// //   "Web",
-// //   "App",
-// //   "UI/UX",
-// //   "Branding",
-// // ];
-
-// // const SAMPLE_PROJECTS = [
-// //   {
-// //     slug: "north-freight",
-// //     client: "North Freight Co.",
-// //     date: "2025",
-// //     category: "Web",
-// //     title: "Logistics Dashboard",
-// //     body:
-// //       "A modern logistics platform for managing deliveries, routes and real-time fleet tracking with analytics.",
-// //     technologies: ["React", "Node", "MongoDB"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80",
-// //   },
-// //   {
-// //     slug: "hearth",
-// //     client: "Hearth",
-// //     date: "2025",
-// //     category: "App",
-// //     title: "Booking Application",
-// //     body:
-// //       "Mobile booking platform with technician tracking, secure payments and notifications.",
-// //     technologies: ["Flutter", "Firebase", "Figma"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
-// //   },
-// //   {
-// //     slug: "ledger-club",
-// //     client: "Ledger Club",
-// //     date: "2024",
-// //     category: "UI/UX",
-// //     title: "Finance Dashboard",
-// //     body:
-// //       "Dashboard redesign focused on usability, accessibility and simplified financial insights.",
-// //     technologies: ["Figma", "Framer"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
-// //   },
-// //   {
-// //     slug: "monarch-post",
-// //     client: "Monarch & Post",
-// //     date: "2024",
-// //     category: "Branding",
-// //     title: "Brand Identity",
-// //     body:
-// //       "Complete branding system including logo, typography and visual identity.",
-// //     technologies: ["Illustrator", "Photoshop"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&q=80",
-// //   },
-// //   {
-// //     slug: "fieldnote",
-// //     client: "Fieldnote",
-// //     date: "2024",
-// //     category: "Web",
-// //     title: "Developer Platform",
-// //     body:
-// //       "Documentation-first website with high performance search and responsive design.",
-// //     technologies: ["Next.js", "Tailwind"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80",
-// //   },
-// //   {
-// //     slug: "saltwater",
-// //     client: "Saltwater Supply",
-// //     date: "2023",
-// //     category: "UI/UX",
-// //     title: "Inventory System",
-// //     body:
-// //       "Enterprise inventory management interface optimized for industrial workflows.",
-// //     technologies: ["React", "Tauri"],
-// //     image:
-// //       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
-// //   },
-// // ];
-
-// // const CARD_W = 950;
-// // const CARD_H = 530;
-
-// // const CENTER_X = CARD_W / 2;
-// // const CENTER_Y = 250;
-
-// // const BIG_SIZE = 950;
-
-// // const LOGO_SIZE = 100;
-// // const LOGO_POS = 40;
-
-// // function initials(name) {
-// //   return name
-// //     .split(" ")
-// //     .map((word) => word[0])
-// //     .join("")
-// //     .substring(0, 2)
-// //     .toUpperCase();
-// // }
-
-// // export default function PortfolioTeaser({
-// //   projects = SAMPLE_PROJECTS,
-// // }) {
-// //   const prefersReducedMotion = useReducedMotion();
-
-// //   const sectionRef = useRef(null);
-
-// //   const [category, setCategory] = useState("All");
-// //   const [index, setIndex] = useState(0);
-// //   const [paused, setPaused] = useState(false);
-
-// //   /* =====================================================
-// //      FILTER PROJECTS
-// //   ===================================================== */
-
-// //   const filtered = useMemo(() => {
-// //     if (category === "All") return projects;
-
-// //     return projects.filter(
-// //       (project) => project.category === category
-// //     );
-// //   }, [projects, category]);
-
-// //   const displayProjects =
-// //     filtered.length > 1
-// //       ? [...filtered, ...filtered, ...filtered]
-// //       : filtered;
-
-// //   const centerIndex =
-// //     filtered.length + index;
-
-// //   const safeIndex =
-// //     filtered.length > 0
-// //       ? index % filtered.length
-// //       : 0;
-
-// //   /* =====================================================
-// //      CATEGORY
-// //   ===================================================== */
-
-// //   function changeCategory(cat) {
-// //     setCategory(cat);
-// //     setIndex(0);
-// //   }
-
-// //   /* =====================================================
-// //      PREVIOUS / NEXT
-// //   ===================================================== */
-
-// //   function go(direction) {
-// //     setIndex((prev) => {
-// //       if (filtered.length === 0) return 0;
-
-// //       return (
-// //         (prev + direction + filtered.length) %
-// //         filtered.length
-// //       );
-// //     });
-// //   }
-
-// //   /* =====================================================
-// //      AUTO SLIDE
-// //   ===================================================== */
-
-// //   useEffect(() => {
-// //     if (paused) return;
-// //     if (filtered.length <= 1) return;
-
-// //     const timer = setInterval(() => {
-// //       setIndex(
-// //         (prev) =>
-// //           (prev + 1) % filtered.length
-// //       );
-// //     }, 2500);
-
-// //     return () => clearInterval(timer);
-// //   }, [paused, filtered.length]);
-
-// //   /* =====================================================
-// //      CARD MOUSE EFFECT
-// //   ===================================================== */
-
-// //   const mouseX = useMotionValue(0.5);
-// //   const mouseY = useMotionValue(0.5);
-
-// //   const rotateX = useSpring(
-// //     useTransform(
-// //       mouseY,
-// //       [0, 1],
-// //       [12, -12]
-// //     ),
-// //     {
-// //       stiffness: 180,
-// //       damping: 18,
-// //     }
-// //   );
-
-// //   const rotateY = useSpring(
-// //     useTransform(
-// //       mouseX,
-// //       [0, 1],
-// //       [-14, 14]
-// //     ),
-// //     {
-// //       stiffness: 180,
-// //       damping: 18,
-// //     }
-// //   );
-
-// //   const sheenX = useTransform(
-// //     mouseX,
-// //     [0, 1],
-// //     ["20%", "80%"]
-// //   );
-
-// //   function onCardMove(e) {
-// //     if (prefersReducedMotion) return;
-
-// //     const rect =
-// //       e.currentTarget.getBoundingClientRect();
-
-// //     mouseX.set(
-// //       (e.clientX - rect.left) /
-// //         rect.width
-// //     );
-
-// //     mouseY.set(
-// //       (e.clientY - rect.top) /
-// //         rect.height
-// //     );
-// //   }
-
-// //   function onCardLeave() {
-// //     mouseX.set(0.5);
-// //     mouseY.set(0.5);
-// //   }
-
-// //   /* =====================================================
-// //      SECTION SPOTLIGHT
-// //   ===================================================== */
-
-// //   const spotX = useMotionValue(50);
-// //   const spotY = useMotionValue(50);
-
-// //   function onSectionMove(e) {
-// //     if (prefersReducedMotion) return;
-
-// //     const rect =
-// //       sectionRef.current.getBoundingClientRect();
-
-// //     spotX.set(
-// //       ((e.clientX - rect.left) /
-// //         rect.width) *
-// //         100
-// //     );
-
-// //     spotY.set(
-// //       ((e.clientY - rect.top) /
-// //         rect.height) *
-// //         100
-// //     );
-// //   }
-
-// //   const spotlight = useTransform(
-// //     [spotX, spotY],
-// //     ([x, y]) =>
-// //       `radial-gradient(
-// //         700px circle at ${x}% ${y}%,
-// //         rgba(37,99,235,.15),
-// //         transparent 70%
-// //       )`
-// //   );
-
-// //   /* =====================================================
-// //      KEYBOARD
-// //   ===================================================== */
-
-// //   function onKeyDown(e) {
-// //     if (e.key === "ArrowLeft") {
-// //       go(-1);
-// //     }
-
-// //     if (e.key === "ArrowRight") {
-// //       go(1);
-// //     }
-// //   }
-
-// //   /* =====================================================
-// //      VIEW PROJECT
-// //      NOW LINKS TO SERVICES PAGE
-// //   ===================================================== */
-
-// //   function goToServices() {
-// //     window.location.href = "/services";
-// //   }
-
-// //   return (
-// //     <section
-// //       ref={sectionRef}
-// //       onMouseMove={onSectionMove}
-// //       className="
-// //         relative
-// //         overflow-hidden
-// //         py-20
-// //         lg:py-28
-// //         px-6
-// //       "
-// //       style={{
-// //         background: "#081120",
-// //         color: "#FFFFFF",
-// //       }}
-// //     >
-// //       {/* =================================================
-// //           BACKGROUND
-// //       ================================================= */}
-
-// //       <motion.div
-// //         className="
-// //           absolute
-// //           inset-0
-// //           pointer-events-none
-// //         "
-// //         style={{
-// //           background: spotlight,
-// //         }}
-// //       />
-
-// //       <div className="relative max-w-7xl mx-auto">
-
-// //         {/* =================================================
-// //             HEADER
-// //         ================================================= */}
-
-// //         <div
-// //           className="
-// //             flex
-// //             flex-wrap
-// //             justify-between
-// //             items-end
-// //             gap-8
-// //             mb-14
-// //           "
-// //         >
-// //           <div>
-// //             <div
-// //               className="
-// //                 flex
-// //                 items-center
-// //                 gap-2
-// //                 text-xs
-// //                 tracking-[.25em]
-// //                 text-blue-400
-// //                 mb-3
-// //               "
-// //               style={{
-// //                 fontFamily:
-// //                   "'IBM Plex Mono', monospace",
-// //               }}
-// //             >
-// //               <span
-// //                 className="
-// //                   w-2
-// //                   h-2
-// //                   rounded-full
-// //                   bg-blue-500
-// //                 "
-// //               />
-
-// //               SELECTED WORK
-// //             </div>
-
-// //             <h2
-// //               className="
-// //                 text-5xl
-// //                 lg:text-6xl
-// //                 font-semibold
-// //                 leading-none
-// //               "
-// //               style={{
-// //                 fontFamily:
-// //                   "'Fraunces', serif",
-// //               }}
-// //             >
-// //               Featured Projects
-// //             </h2>
-// //           </div>
-
-// //           <a
-// //             href="/portfolio"
-// //             className="
-// //               flex
-// //               items-center
-// //               gap-2
-// //               border-b
-// //               border-blue-500
-// //               pb-1
-// //               text-blue-300
-// //               hover:text-blue-400
-// //               transition
-// //             "
-// //             style={{
-// //               fontFamily:
-// //                 "'IBM Plex Mono', monospace",
-// //             }}
-// //           >
-// //             View Portfolio
-
-// //             <FiArrowUpRight />
-// //           </a>
-// //         </div>
-
-// //         {/* =================================================
-// //             FILTERS
-// //         ================================================= */}
-
-// //         <div
-// //           className="
-// //             flex
-// //             flex-wrap
-// //             gap-4
-// //             mb-16
-// //           "
-// //         >
-// //           {categories.map((cat) => {
-// //             const activeTab =
-// //               cat === category;
-
-// //             return (
-// //               <button
-// //                 key={cat}
-// //                 type="button"
-// //                 onClick={() =>
-// //                   changeCategory(cat)
-// //                 }
-// //                 className="
-// //                   rounded-full
-// //                   px-6
-// //                   py-3
-// //                   text-sm
-// //                   transition-all
-// //                   duration-300
-// //                 "
-// //                 style={{
-// //                   fontFamily:
-// //                     "'IBM Plex Mono', monospace",
-
-// //                   background: activeTab
-// //                     ? "rgba(37,99,235,.18)"
-// //                     : "transparent",
-
-// //                   border: `1px solid ${
-// //                     activeTab
-// //                       ? "#3B82F6"
-// //                       : "rgba(255,255,255,.08)"
-// //                   }`,
-
-// //                   color: activeTab
-// //                     ? "#60A5FA"
-// //                     : "#94A3B8",
-// //                 }}
-// //               >
-// //                 {cat}
-// //               </button>
-// //             );
-// //           })}
-// //         </div>
-
-// //         {/* =================================================
-// //             COVERFLOW
-// //         ================================================= */}
-
-// //         <div
-// //           tabIndex={0}
-// //           onKeyDown={onKeyDown}
-// //           onMouseEnter={() =>
-// //             setPaused(true)
-// //           }
-// //           onMouseLeave={() =>
-// //             setPaused(false)
-// //           }
-// //           className="
-// //             relative
-// //             flex
-// //             items-center
-// //             justify-center
-// //             outline-none
-// //             mb-16
-// //           "
-// //           style={{
-// //             perspective: 1800,
-// //             height: 560,
-// //           }}
-// //         >
-// //           {displayProjects.map(
-// //             (project, i) => {
-// //               const offset =
-// //                 i - centerIndex;
-
-// //               const distance =
-// //                 Math.abs(offset);
-
-// //               const isActive =
-// //                 offset === 0;
-
-// //               if (distance > 2)
-// //                 return null;
-
-// //               const animation =
-// //                 prefersReducedMotion
-// //                   ? {
-// //                       x: offset * 450,
-// //                       scale: isActive
-// //                         ? 1
-// //                         : 0.9,
-// //                       opacity: 1,
-// //                     }
-// //                   : {
-// //                       x: offset * 180,
-// //                       rotateY: 0,
-// //                       scale: isActive
-// //                         ? 1
-// //                         : 0.9,
-// //                       opacity: isActive
-// //                         ? 1
-// //                         : 0.75,
-// //                       filter: isActive
-// //                         ? "blur(0px)"
-// //                         : "blur(5px)",
-// //                     };
-
-// //               return (
-// //                 <motion.div
-// //                   key={`${project.slug}-${i}`}
-// //                   animate={animation}
-// //                   transition={{
-// //                     type: "tween",
-// //                     stiffness: 240,
-// //                     damping: 28,
-// //                   }}
-// //                   onClick={() =>
-// //                     setIndex(
-// //                       i %
-// //                         Math.max(
-// //                           filtered.length,
-// //                           1
-// //                         )
-// //                     )
-// //                   }
-// //                   onMouseMove={
-// //                     isActive
-// //                       ? onCardMove
-// //                       : undefined
-// //                   }
-// //                   onMouseLeave={
-// //                     isActive
-// //                       ? onCardLeave
-// //                       : undefined
-// //                   }
-// //                   className="
-// //                     absolute
-// //                     cursor-pointer
-// //                   "
-// //                   style={{
-// //                     width: CARD_W,
-// //                     height: CARD_H,
-
-// //                     background:
-// //                       "linear-gradient(160deg,#0F172A,#1E293B)",
-
-// //                     rotateX: isActive
-// //                       ? rotateX
-// //                       : 0,
-
-// //                     ...(isActive
-// //                       ? { rotateY }
-// //                       : {}),
-
-// //                     transformStyle:
-// //                       "preserve-3d",
-
-// //                     zIndex: isActive
-// //                       ? 20
-// //                       : 10,
-// //                   }}
-// //                 >
-// //                   {/* =================================================
-// //                       CARD
-// //                   ================================================= */}
-
-// //                   <div
-// //                     className="
-// //                       relative
-// //                       overflow-hidden
-// //                       rounded-[28px]
-// //                       w-full
-// //                       h-full
-// //                       p-8
-// //                     "
-// //                     style={{
-// //                       background:
-// //                         "rgba(18,32,61,.72)",
-
-// //                       backdropFilter:
-// //                         "blur(16px)",
-
-// //                       border:
-// //                         "1px solid rgba(59,130,246,.18)",
-
-// //                       boxShadow:
-// //                         "0 0 20px rgba(59,130,246,.20), 0 20px 60px rgba(0,0,0,.35)",
-// //                     }}
-// //                   >
-// //                     {/* =================================================
-// //                         SHEEN
-// //                     ================================================= */}
-
-// //                     {isActive && (
-// //                       <motion.div
-// //                         className="
-// //                           absolute
-// //                           inset-0
-// //                           pointer-events-none
-// //                         "
-// //                         style={{
-// //                           background:
-// //                             useTransform(
-// //                               sheenX,
-// //                               (x) =>
-// //                                 `linear-gradient(
-// //                                   120deg,
-// //                                   transparent 20%,
-// //                                   rgba(255,255,255,.10) ${x},
-// //                                   transparent 80%
-// //                                 )`
-// //                             ),
-// //                         }}
-// //                       />
-// //                     )}
-
-// //                     {/* =================================================
-// //                         PROJECT IMAGE
-// //                     ================================================= */}
-
-// //                     {isActive ? (
-// //                       <motion.img
-// //                         key={`hero-${project.slug}-${i}`}
-// //                         src={project.image}
-// //                         alt={project.client}
-// //                         initial={{
-// //                           top: CENTER_Y,
-// //                           left:
-// //                             CARD_W + 120,
-// //                           width: BIG_SIZE,
-// //                           height: BIG_SIZE,
-// //                           borderRadius: 24,
-// //                           opacity: 0,
-// //                         }}
-// //                         animate={{
-// //                           top: [
-// //                             CENTER_Y,
-// //                             CENTER_Y,
-// //                             LOGO_POS +
-// //                               LOGO_SIZE / 2,
-// //                           ],
-
-// //                           left: [
-// //                             CARD_W + 120,
-// //                             CENTER_X,
-// //                             LOGO_POS +
-// //                               LOGO_SIZE / 2,
-// //                           ],
-
-// //                           width: [
-// //                             BIG_SIZE,
-// //                             BIG_SIZE,
-// //                             LOGO_SIZE,
-// //                           ],
-
-// //                           height: [
-// //                             BIG_SIZE,
-// //                             BIG_SIZE,
-// //                             LOGO_SIZE,
-// //                           ],
-
-// //                           borderRadius: [
-// //                             24,
-// //                             24,
-// //                             14,
-// //                           ],
-
-// //                           opacity: [0, 1, 1],
-// //                         }}
-// //                         transition={{
-// //                           duration: 2,
-// //                           times: [
-// //                             0,
-// //                             0.45,
-// //                             1,
-// //                           ],
-// //                           ease: [
-// //                             "easeOut",
-// //                             "easeInOut",
-// //                           ],
-// //                         }}
-// //                         className="
-// //                           absolute
-// //                           object-cover
-// //                           shadow-xl
-// //                           z-20
-// //                         "
-// //                         style={{
-// //                           transform:
-// //                             "translate(-50%,-50%)",
-// //                         }}
-// //                       />
-// //                     ) : (
-// //                       <img
-// //                         src={project.image}
-// //                         alt={project.client}
-// //                         className="
-// //                           absolute
-// //                           object-cover
-// //                           shadow-lg
-// //                           z-20
-// //                         "
-// //                         style={{
-// //                           top:
-// //                             LOGO_POS +
-// //                             LOGO_SIZE / 2,
-
-// //                           left:
-// //                             LOGO_POS +
-// //                             LOGO_SIZE / 2,
-
-// //                           width: LOGO_SIZE,
-// //                           height: LOGO_SIZE,
-
-// //                           borderRadius: 14,
-
-// //                           transform:
-// //                             "translate(-50%,-50%)",
-// //                         }}
-// //                       />
-// //                     )}
-
-// //                     {/* =================================================
-// //                         TEXT
-// //                     ================================================= */}
-
-// //                     <motion.div
-// //                       key={
-// //                         isActive
-// //                           ? `text-active-${project.slug}-${i}`
-// //                           : `text-static-${project.slug}-${i}`
-// //                       }
-// //                       className="
-// //                         relative
-// //                         z-10
-// //                         flex
-// //                         flex-col
-// //                         h-full
-// //                       "
-// //                       initial={
-// //                         isActive
-// //                           ? {
-// //                               opacity: 0,
-// //                               y: 16,
-// //                             }
-// //                           : false
-// //                       }
-// //                       animate={{
-// //                         opacity: 1,
-// //                         y: 0,
-// //                       }}
-// //                       transition={
-// //                         isActive
-// //                           ? {
-// //                               delay: 1.05,
-// //                               duration: 0.5,
-// //                               ease: "easeOut",
-// //                             }
-// //                           : {
-// //                               duration: 0,
-// //                             }
-// //                       }
-// //                     >
-// //                       {/* TOP */}
-
-// //                       <div
-// //                         className="
-// //                           flex
-// //                           items-start
-// //                           justify-between
-// //                         "
-// //                       >
-// //                         <div
-// //                           style={{
-// //                             marginLeft:
-// //                               LOGO_SIZE + 20,
-// //                           }}
-// //                         >
-// //                           <p
-// //                             className="
-// //                               text-blue-200
-// //                               text-xs
-// //                               uppercase
-// //                               tracking-[0.25em]
-// //                             "
-// //                             style={{
-// //                               fontFamily:
-// //                                 "'IBM Plex Mono', monospace",
-// //                             }}
-// //                           >
-// //                             {project.client}
-// //                           </p>
-// //                         </div>
-
-// //                         <div className="text-right">
-// //                           <div
-// //                             className="
-// //                               text-xs
-// //                               text-slate-400
-// //                             "
-// //                             style={{
-// //                               fontFamily:
-// //                                 "'IBM Plex Mono', monospace",
-// //                             }}
-// //                           >
-// //                             {project.date}
-// //                           </div>
-
-// //                           <div
-// //                             className="
-// //                               mt-2
-// //                               inline-flex
-// //                               rounded-full
-// //                               bg-blue-500/20
-// //                               border
-// //                               border-blue-500/40
-// //                               px-3
-// //                               py-1
-// //                               text-[11px]
-// //                               text-blue-300
-// //                             "
-// //                           >
-// //                             {project.category}
-// //                           </div>
-// //                         </div>
-// //                       </div>
-
-// //                       {/* CONTENT */}
-
-// //                       <div
-// //                         className="
-// //                           mt-10
-// //                           flex-1
-// //                           flex
-// //                           flex-col
-// //                         "
-// //                       >
-// //                         <h3
-// //                           className="
-// //                             text-4xl
-// //                             leading-tight
-// //                             font-semibold
-// //                             text-white
-// //                           "
-// //                           style={{
-// //                             fontFamily:
-// //                               "'Fraunces', serif",
-// //                           }}
-// //                         >
-// //                           {project.title}
-// //                         </h3>
-
-// //                         <p
-// //                           className="
-// //                             mt-5
-// //                             text-[15px]
-// //                             leading-7
-// //                             text-slate-300
-// //                           "
-// //                           style={{
-// //                             fontFamily:
-// //                               "'Inter', sans-serif",
-// //                           }}
-// //                         >
-// //                           {project.body}
-// //                         </p>
-
-// //                         {/* TECHNOLOGIES */}
-
-// //                         <div
-// //                           className="
-// //                             flex
-// //                             flex-wrap
-// //                             gap-3
-// //                             mt-8
-// //                           "
-// //                         >
-// //                           {project.technologies.map(
-// //                             (tech) => (
-// //                               <span
-// //                                 key={tech}
-// //                                 className="
-// //                                   px-4
-// //                                   py-2
-// //                                   rounded-full
-// //                                   text-[11px]
-// //                                   bg-blue-500/10
-// //                                   border
-// //                                   border-blue-500/30
-// //                                   text-blue-200
-// //                                 "
-// //                                 style={{
-// //                                   fontFamily:
-// //                                     "'IBM Plex Mono', monospace",
-// //                                 }}
-// //                               >
-// //                                 {tech}
-// //                               </span>
-// //                             )
-// //                           )}
-// //                         </div>
-
-// //                         {/* =================================================
-// //                             VIEW PROJECT -> SERVICES
-// //                         ================================================= */}
-
-// //                         <div className="mt-auto pt-10">
-// //                           <button
-// //                             type="button"
-// //                             onClick={(e) => {
-// //                               e.stopPropagation();
-// //                               goToServices();
-// //                             }}
-// //                             className="
-// //                               group
-// //                               flex
-// //                               items-center
-// //                               gap-3
-// //                               rounded-full
-// //                               bg-blue-600
-// //                               hover:bg-blue-500
-// //                               px-7
-// //                               py-3
-// //                               text-white
-// //                               font-medium
-// //                               transition-all
-// //                               duration-300
-// //                               hover:scale-105
-// //                             "
-// //                           >
-// //                             <span>
-// //                               View Project
-// //                             </span>
-
-// //                             <FiArrowUpRight
-// //                               className="
-// //                                 transition-transform
-// //                                 duration-300
-// //                                 group-hover:translate-x-1
-// //                                 group-hover:-translate-y-1
-// //                               "
-// //                             />
-// //                           </button>
-// //                         </div>
-// //                       </div>
-// //                     </motion.div>
-
-// //                     {/* =================================================
-// //                         CARD BORDER GLOW
-// //                     ================================================= */}
-
-// //                     <motion.div
-// //                       className="
-// //                         absolute
-// //                         inset-0
-// //                         rounded-[28px]
-// //                         pointer-events-none
-// //                       "
-// //                       animate={
-// //                         isActive
-// //                           ? {
-// //                               opacity: [
-// //                                 0.2,
-// //                                 0.55,
-// //                                 0.2,
-// //                               ],
-// //                             }
-// //                           : {
-// //                               opacity: 0,
-// //                             }
-// //                       }
-// //                       transition={{
-// //                         duration: 2.5,
-// //                         repeat:
-// //                           isActive
-// //                             ? Infinity
-// //                             : 0,
-// //                         ease: "easeInOut",
-// //                       }}
-// //                       style={{
-// //                         boxShadow:
-// //                           "inset 0 0 40px rgba(59,130,246,.10)",
-// //                       }}
-// //                     />
-// //                   </div>
-// //                 </motion.div>
-// //               );
-// //             }
-// //           )}
-// //         </div>
-// //       </div>
-
-// //       {/* =================================================
-// //           GOOGLE FONT IMPORT
-// //       ================================================= */}
-
-// //       <style>
-// //         {`
-// //           @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
-// //         `}
-// //       </style>
-// //     </section>
-// //   );
-// // }
-
-
-
-
-
-// import { useMemo, useRef, useState } from "react";
-// import {
-//   motion,
-//   AnimatePresence,
-//   useReducedMotion,
-// } from "framer-motion";
-// import { FiClock, FiX } from "react-icons/fi";
-
-// import Seo from "../lib/Seo";
-// import Eyebrow from "../components/ui/Eyebrow";
-// import CTABand from "../components/sections/CTABand";
-// import { projects } from "../data/projects";
-
-// /* =========================================================
-//    UPCOMING PRODUCTS
-// ========================================================= */
-
-// const upcomingProducts = [
-//   "Product Slot 01",
-//   "Product Slot 02",
-//   "Product Slot 03",
-// ];
-
-// /* =========================================================
-//    PIXEL CARD
-// ========================================================= */
-
-// class Pixel {
-//   constructor(canvas, context, x, y, color, speed, delay) {
-//     this.width = canvas.width;
-//     this.height = canvas.height;
-//     this.ctx = context;
-
-//     this.x = x;
-//     this.y = y;
-//     this.color = color;
-
-//     this.speed = this.random(0.1, 0.9) * speed;
-
-//     this.size = 0;
-//     this.sizeStep = Math.random() * 0.4;
-
-//     this.minSize = 0.5;
-//     this.maxSizeInteger = 2;
-
-//     this.maxSize = this.random(
-//       this.minSize,
-//       this.maxSizeInteger
-//     );
-
-//     this.delay = delay;
-//     this.counter = 0;
-
-//     this.counterStep =
-//       Math.random() * 4 +
-//       (this.width + this.height) * 0.01;
-
-//     this.isIdle = false;
-//     this.isReverse = false;
-//     this.isShimmer = false;
-//   }
-
-//   random(min, max) {
-//     return Math.random() * (max - min) + min;
-//   }
-
-//   draw() {
-//     const centerOffset =
-//       this.maxSizeInteger * 0.5 -
-//       this.size * 0.5;
-
-//     this.ctx.fillStyle = this.color;
-
-//     this.ctx.fillRect(
-//       this.x + centerOffset,
-//       this.y + centerOffset,
-//       this.size,
-//       this.size
-//     );
-//   }
-
-//   appear() {
-//     this.isIdle = false;
-
-//     if (this.counter <= this.delay) {
-//       this.counter += this.counterStep;
-//       return;
-//     }
-
-//     if (this.size >= this.maxSize) {
-//       this.isShimmer = true;
-//     }
-
-//     if (this.isShimmer) {
-//       this.shimmer();
-//     } else {
-//       this.size += this.sizeStep;
-//     }
-
-//     this.draw();
-//   }
-
-//   disappear() {
-//     this.isShimmer = false;
-//     this.counter = 0;
-
-//     if (this.size <= 0) {
-//       this.isIdle = true;
-//       return;
-//     }
-
-//     this.size -= 0.1;
-//     this.draw();
-//   }
-
-//   shimmer() {
-//     if (this.size >= this.maxSize) {
-//       this.isReverse = true;
-//     } else if (this.size <= this.minSize) {
-//       this.isReverse = false;
-//     }
-
-//     if (this.isReverse) {
-//       this.size -= this.speed;
-//     } else {
-//       this.size += this.speed;
-//     }
-//   }
-// }
-
-// /* =========================================================
-//    PIXEL PROJECT CARD
-// ========================================================= */
-
-// function PixelProjectCard({
-//   children,
-//   className = "",
-// }) {
-//   const containerRef = useRef(null);
-//   const canvasRef = useRef(null);
-//   const pixelsRef = useRef([]);
-//   const animationRef = useRef(null);
-
-//   const initializePixels = () => {
-//     if (
-//       !containerRef.current ||
-//       !canvasRef.current
-//     ) {
-//       return;
-//     }
-
-//     const rect =
-//       containerRef.current.getBoundingClientRect();
-
-//     const width = Math.floor(rect.width);
-//     const height = Math.floor(rect.height);
-
-//     const canvas = canvasRef.current;
-
-//     canvas.width = width;
-//     canvas.height = height;
-
-//     canvas.style.width = `${width}px`;
-//     canvas.style.height = `${height}px`;
-
-//     const ctx = canvas.getContext("2d");
-
-//     if (!ctx) return;
-
-//     const colors = [
-//       "#60a5fa",
-//       "#3b82f6",
-//       "#93c5fd",
-//       "#dbeafe",
-//     ];
-
-//     const gap = 7;
-
-//     const pixels = [];
-
-//     for (let x = 0; x < width; x += gap) {
-//       for (let y = 0; y < height; y += gap) {
-//         const color =
-//           colors[
-//             Math.floor(
-//               Math.random() * colors.length
-//             )
-//           ];
-
-//         const dx = x - width / 2;
-//         const dy = y - height / 2;
-
-//         const distance = Math.sqrt(
-//           dx * dx + dy * dy
-//         );
-
-//         pixels.push(
-//           new Pixel(
-//             canvas,
-//             ctx,
-//             x,
-//             y,
-//             color,
-//             0.45,
-//             distance
-//           )
-//         );
-//       }
-//     }
-
-//     pixelsRef.current = pixels;
-//   };
-
-//   const animate = (method) => {
-//     cancelAnimationFrame(
-//       animationRef.current
-//     );
-
-//     const loop = () => {
-//       if (!canvasRef.current) return;
-
-//       const ctx =
-//         canvasRef.current.getContext("2d");
-
-//       if (!ctx) return;
-
-//       ctx.clearRect(
-//         0,
-//         0,
-//         canvasRef.current.width,
-//         canvasRef.current.height
-//       );
-
-//       let allIdle = true;
-
-//       pixelsRef.current.forEach((pixel) => {
-//         pixel[method]();
-
-//         if (!pixel.isIdle) {
-//           allIdle = false;
-//         }
-//       });
-
-//       if (!allIdle) {
-//         animationRef.current =
-//           requestAnimationFrame(loop);
-//       }
-//     };
-
-//     animationRef.current =
-//       requestAnimationFrame(loop);
-//   };
-
-//   const handleEnter = () => {
-//     animate("appear");
-//   };
-
-//   const handleLeave = () => {
-//     animate("disappear");
-//   };
-
-//   useMemo(() => {
-//     initializePixels();
-//   }, []);
-
-//   return (
-//     <div
-//       ref={containerRef}
-//       onMouseEnter={handleEnter}
-//       onMouseLeave={handleLeave}
-//       className={`relative overflow-hidden ${className}`}
-//     >
-//       <canvas
-//         ref={canvasRef}
-//         className="
-//           absolute
-//           inset-0
-//           w-full
-//           h-full
-//           pointer-events-none
-//           z-20
-//         "
-//       />
-
-//       <div className="relative z-10">
-//         {children}
-//       </div>
-//     </div>
-//   );
-// }
-
-// /* =========================================================
-//    HEADING REVEAL
-// ========================================================= */
-
-// function RevealHeading({
-//   text,
-//   className = "",
-// }) {
-//   const words = useMemo(
-//     () => text.split(" "),
-//     [text]
-//   );
-
-//   return (
-//     <div className="overflow-hidden">
-//       {words.map((word, index) => (
-//         <motion.span
-//           key={`${word}-${index}`}
-//           className={`inline-block mr-[0.25em] ${className}`}
-//           initial={{ y: "110%" }}
-//           animate={{ y: "0%" }}
-//           transition={{
-//             duration: 0.6,
-//             delay: 0.1 + index * 0.05,
-//             ease: [0.16, 1, 0.3, 1],
-//           }}
-//         >
-//           {word}
-//         </motion.span>
-//       ))}
-//     </div>
-//   );
-// }
-
-// /* =========================================================
-//    PORTFOLIO
-// ========================================================= */
-
-// export default function Portfolio() {
-//   const reduceMotion = useReducedMotion();
-
-//   const [activeTech, setActiveTech] =
-//     useState(null);
-
-//   /* =====================================================
-//      TECHNOLOGIES
-//   ===================================================== */
-
-//   const techs = useMemo(() => {
-//     const techSet = new Set();
-
-//     projects.forEach((project) => {
-//       project.technologies.forEach((technology) => {
-//         techSet.add(technology);
-//       });
-//     });
-
-//     return Array.from(techSet).sort();
-//   }, []);
-
-//   /* =====================================================
-//      FILTER
-//   ===================================================== */
-
-//   const visible = activeTech
-//     ? projects.filter((project) =>
-//         project.technologies.includes(
-//           activeTech
-//         )
-//       )
-//     : projects;
-
-//   return (
-//     <>
-//       <Seo
-//         title="Portfolio"
-//         description="Explore our selected software projects and digital experiences."
-//       />
-
-//       {/* =====================================================
-//           HEADER
-//       ===================================================== */}
-
-//       <section className="pt-40 pb-16 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto">
-//           <Eyebrow>
-//             Selected Work
-//           </Eyebrow>
-
-//           <RevealHeading
-//             text="Highlighted Projects"
-//             className="
-//               font-display
-//               font-bold
-//               text-[clamp(2.2rem,5vw,3.75rem)]
-//               text-[var(--fg)]
-//               leading-[1.05]
-//             "
-//           />
-
-//           <motion.p
-//             initial={{
-//               opacity: 0,
-//               y: 12,
-//             }}
-//             animate={{
-//               opacity: 1,
-//               y: 0,
-//             }}
-//             transition={{
-//               duration: 0.5,
-//               delay: 0.4,
-//             }}
-//             className="
-//               mt-6
-//               text-lg
-//               max-w-2xl
-//               leading-relaxed
-//               text-[var(--fg)]
-//               opacity-65
-//             "
-//           >
-//             Explore our featured projects that
-//             demonstrate our expertise in
-//             delivering innovative software
-//             solutions tailored to client needs.
-//           </motion.p>
-//         </div>
-//       </section>
-
-//       {/* =====================================================
-//           FILTER BAR
-//       ===================================================== */}
-
-//       <section className="pb-6 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto">
-//           <div className="flex flex-wrap items-center gap-2">
-//             {/* ALL */}
-
-//             <button
-//               type="button"
-//               onClick={() =>
-//                 setActiveTech(null)
-//               }
-//               className={`
-//                 font-mono
-//                 text-xs
-//                 px-3.5
-//                 py-1.5
-//                 rounded-full
-//                 border
-//                 transition-colors
-//                 duration-200
-//                 ${
-//                   activeTech === null
-//                     ? "bg-signal border-signal text-white"
-//                     : "border-[var(--border)] text-[var(--fg)] hover:border-signal/50 hover:text-signal"
-//                 }
-//               `}
-//               style={{
-//                 opacity:
-//                   activeTech === null
-//                     ? 1
-//                     : 0.6,
-//               }}
-//             >
-//               All work
-//             </button>
-
-//             {/* TECHNOLOGIES */}
-
-//             {techs.map((technology) => (
-//               <button
-//                 key={technology}
-//                 type="button"
-//                 onClick={() =>
-//                   setActiveTech(
-//                     technology === activeTech
-//                       ? null
-//                       : technology
-//                   )
-//                 }
-//                 aria-pressed={
-//                   activeTech === technology
-//                 }
-//                 className={`
-//                   font-mono
-//                   text-xs
-//                   px-3.5
-//                   py-1.5
-//                   rounded-full
-//                   border
-//                   transition-colors
-//                   duration-200
-//                   ${
-//                     activeTech === technology
-//                       ? "border-signal text-signal bg-signal/10"
-//                       : "border-[var(--border)] text-[var(--fg)] hover:border-signal/50 hover:text-signal"
-//                   }
-//                 `}
-//                 style={{
-//                   opacity:
-//                     activeTech === technology
-//                       ? 1
-//                       : 0.6,
-//                 }}
-//               >
-//                 {technology}
-//               </button>
-//             ))}
-//           </div>
-
-//           {/* RESULT COUNT */}
-
-//           <div
-//             className="
-//               mt-4
-//               flex
-//               items-center
-//               gap-3
-//               font-mono
-//               text-xs
-//               text-[var(--fg)]
-//             "
-//             style={{
-//               opacity: 0.4,
-//             }}
-//           >
-//             <span>
-//               Showing {visible.length} of{" "}
-//               {projects.length}
-//             </span>
-
-//             {activeTech && (
-//               <button
-//                 type="button"
-//                 onClick={() =>
-//                   setActiveTech(null)
-//                 }
-//                 className="
-//                   inline-flex
-//                   items-center
-//                   gap-1
-//                   text-signal
-//                   hover:underline
-//                 "
-//               >
-//                 <FiX size={12} />
-
-//                 clear filter
-//               </button>
-//             )}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* =====================================================
-//           PROJECT LIST
-//       ===================================================== */}
-
-//       <section className="pb-20 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto flex flex-col gap-5">
-//           <AnimatePresence mode="popLayout">
-//             {visible.map((project, index) => (
-//               <motion.article
-//                 key={project.slug}
-//                 layout={!reduceMotion}
-//                 initial={{
-//                   opacity: 0,
-//                   y: 20,
-//                 }}
-//                 animate={{
-//                   opacity: 1,
-//                   y: 0,
-//                 }}
-//                 exit={{
-//                   opacity: 0,
-//                   y: -12,
-//                 }}
-//                 transition={{
-//                   duration: 0.4,
-//                   ease: [
-//                     0.16,
-//                     1,
-//                     0.3,
-//                     1,
-//                   ],
-//                 }}
-//                 className="
-//                   group
-//                   relative
-//                   border
-//                   border-[var(--border)]
-//                   rounded-2xl
-//                   overflow-hidden
-//                   hover:border-signal/50
-//                   transition-colors
-//                   duration-300
-//                   grid
-//                   sm:grid-cols-[auto_1fr_auto]
-//                   gap-8
-//                   items-center
-//                 "
-//               >
-//                 {/* PIXEL EFFECT */}
-
-//                 <PixelProjectCard
-//                   className="
-//                     absolute
-//                     inset-0
-//                     pointer-events-none
-//                   "
-//                 >
-//                   <div />
-//                 </PixelProjectCard>
-
-//                 {/* PROJECT NUMBER */}
-
-//                 <span
-//                   className="
-//                     hidden
-//                     sm:block
-//                     font-mono
-//                     text-xs
-//                     self-start
-//                     pt-9
-//                     pl-8
-//                     relative
-//                     z-30
-//                   "
-//                   style={{
-//                     color:
-//                       "var(--fg)",
-//                     opacity: 0.3,
-//                   }}
-//                 >
-//                   {String(index + 1).padStart(
-//                     2,
-//                     "0"
-//                   )}
-//                 </span>
-
-//                 {/* CONTENT */}
-
-//                 <div
-//                   className="
-//                     relative
-//                     z-30
-//                     p-8
-//                     lg:p-10
-//                   "
-//                 >
-//                   <div
-//                     className="
-//                       flex
-//                       flex-wrap
-//                       items-center
-//                       gap-x-6
-//                       gap-y-2
-//                       font-mono
-//                       text-xs
-//                     "
-//                     style={{
-//                       color:
-//                         "var(--fg)",
-//                       opacity: 0.5,
-//                     }}
-//                   >
-//                     <span className="sm:hidden">
-//                       {String(index + 1).padStart(
-//                         2,
-//                         "0"
-//                       )}{" "}
-//                       ·
-//                     </span>
-
-//                     <span>
-//                       Client:{" "}
-//                       {project.client}
-//                     </span>
-
-//                     <span>
-//                       Date: {project.date}
-//                     </span>
-//                   </div>
-
-//                   <h2
-//                     className="
-//                       font-display
-//                       font-semibold
-//                       text-2xl
-//                       mt-4
-//                       text-[var(--fg)]
-//                     "
-//                   >
-//                     {project.title}
-//                   </h2>
-
-//                   <p
-//                     className="
-//                       mt-3
-//                       leading-relaxed
-//                       max-w-2xl
-//                       text-[var(--fg)]
-//                     "
-//                     style={{
-//                       opacity: 0.65,
-//                     }}
-//                   >
-//                     {project.body}
-//                   </p>
-
-//                   {/* TECHNOLOGIES */}
-
-//                   <div className="flex flex-wrap gap-2 mt-6">
-//                     {project.technologies.map(
-//                       (technology) => (
-//                         <button
-//                           key={technology}
-//                           type="button"
-//                           onClick={() =>
-//                             setActiveTech(
-//                               technology ===
-//                                 activeTech
-//                                 ? null
-//                                 : technology
-//                             )
-//                           }
-//                           className={`
-//                             font-mono
-//                             text-[11px]
-//                             px-2.5
-//                             py-1
-//                             rounded-full
-//                             border
-//                             transition-colors
-//                             duration-200
-//                             ${
-//                               activeTech ===
-//                               technology
-//                                 ? "border-signal text-signal bg-signal/10"
-//                                 : "border-[var(--border)] text-[var(--fg)] hover:border-signal/50 hover:text-signal"
-//                             }
-//                           `}
-//                           style={{
-//                             opacity:
-//                               activeTech ===
-//                               technology
-//                                 ? 1
-//                                 : 0.6,
-//                           }}
-//                         >
-//                           {technology}
-//                         </button>
-//                       )
-//                     )}
-//                   </div>
-//                 </div>
-
-//                 {/* PROJECT IMAGE */}
-
-//                 {project.image && (
-//                   <div
-//                     className="
-//                       relative
-//                       z-30
-//                       w-full
-//                       sm:w-44
-//                       h-32
-//                       mr-8
-//                       mb-8
-//                       sm:mb-0
-//                       rounded-xl
-//                       bg-white
-//                       flex
-//                       items-center
-//                       justify-center
-//                       p-4
-//                       shrink-0
-//                       overflow-hidden
-//                     "
-//                   >
-//                     <motion.img
-//                       src={project.image}
-//                       alt={`${project.title} logo`}
-//                       loading="lazy"
-//                       className="
-//                         max-w-full
-//                         max-h-full
-//                         object-contain
-//                       "
-//                       whileHover={
-//                         reduceMotion
-//                           ? undefined
-//                           : {
-//                               scale: 1.08,
-//                             }
-//                       }
-//                       transition={{
-//                         duration: 0.3,
-//                         ease: [
-//                           0.16,
-//                           1,
-//                           0.3,
-//                           1,
-//                         ],
-//                       }}
-//                     />
-//                   </div>
-//                 )}
-//               </motion.article>
-//             ))}
-//           </AnimatePresence>
-
-//           {/* EMPTY STATE */}
-
-//           {visible.length === 0 && (
-//             <div
-//               className="
-//                 border
-//                 border-dashed
-//                 border-[var(--border)]
-//                 rounded-2xl
-//                 p-12
-//                 text-center
-//               "
-//               style={{
-//                 color: "var(--fg)",
-//                 opacity: 0.5,
-//               }}
-//             >
-//               Nothing built with{" "}
-//               <span className="text-signal">
-//                 {activeTech}
-//               </span>{" "}
-//               yet — check back soon, or{" "}
-//               <button
-//                 type="button"
-//                 onClick={() =>
-//                   setActiveTech(null)
-//                 }
-//                 className="
-//                   text-signal
-//                   hover:underline
-//                 "
-//               >
-//                 view all work
-//               </button>
-//               .
-//             </div>
-//           )}
-//         </div>
-//       </section>
-
-//       {/* =====================================================
-//           COMING SOON
-//       ===================================================== */}
-
-//       <section className="pb-28 px-6 lg:px-10">
-//         <div className="max-w-shell mx-auto">
-//           <Eyebrow>
-//             Coming Soon
-//           </Eyebrow>
-
-//           <h2
-//             className="
-//               font-display
-//               font-bold
-//               text-2xl
-//               text-[var(--fg)]
-//               mb-8
-//             "
-//           >
-//             More products on the way
-//           </h2>
-
-//           <div className="grid sm:grid-cols-3 gap-5">
-//             {upcomingProducts.map(
-//               (label) => (
-//                 <motion.div
-//                   key={label}
-//                   whileHover={
-//                     reduceMotion
-//                       ? undefined
-//                       : {
-//                           y: -4,
-//                         }
-//                   }
-//                   transition={{
-//                     duration: 0.25,
-//                     ease: [
-//                       0.16,
-//                       1,
-//                       0.3,
-//                       1,
-//                     ],
-//                   }}
-//                   className="
-//                     border
-//                     border-dashed
-//                     border-[var(--border)]
-//                     rounded-2xl
-//                     p-8
-//                     flex
-//                     flex-col
-//                     items-center
-//                     justify-center
-//                     text-center
-//                     gap-3
-//                     transition-colors
-//                     duration-300
-//                   "
-//                   style={{
-//                     color:
-//                       "var(--fg)",
-//                     opacity: 0.4,
-//                   }}
-//                 >
-//                   <motion.span
-//                     whileHover={
-//                       reduceMotion
-//                         ? undefined
-//                         : {
-//                             rotate: 360,
-//                           }
-//                     }
-//                     transition={{
-//                       duration: 0.6,
-//                       ease: [
-//                         0.16,
-//                         1,
-//                         0.3,
-//                         1,
-//                       ],
-//                     }}
-//                   >
-//                     <FiClock size={22} />
-//                   </motion.span>
-
-//                   <span
-//                     className="
-//                       font-mono
-//                       text-xs
-//                       uppercase
-//                       tracking-[0.15em]
-//                     "
-//                   >
-//                     {label}
-//                   </span>
-//                 </motion.div>
-//               )
-//             )}
-//           </div>
-//         </div>
-//       </section>
-
-//       <CTABand />
-//     </>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-// import {
-//   useMemo,
-//   useRef,
-//   useState,
-//   useEffect,
-// } from "react";
-
-// import {
-//   motion,
-//   useMotionValue,
-//   useReducedMotion,
-//   useSpring,
-//   useTransform,
-// } from "framer-motion";
-
-// import { FiArrowUpRight } from "react-icons/fi";
-
-// const categories = [
-//   "All",
-//   "Web",
-//   "App",
-//   "UI/UX",
-//   "Branding",
-// ];
-
-// const SAMPLE_PROJECTS = [
-//   {
-//     slug: 'tamil-printer',
-//     title: 'Tamil Printer \u2013 Invoice Application',
-//     body: 'Tamil Printer \u2013 Invoice Application is a simple and efficient billing app that helps businesses create, manage, and print professional invoices quickly. Designed for speed and accuracy, it streamlines daily billing operations and keeps your financial records organized with ease.',
-//     client: 'Tamilarasi K',
-//     date: 'Feb 2026',
-//     technologies: ['React', 'Electron JS', 'MySQL'],
-//     image: '/images/portfolio/tamil-printer.png',
-//     isPlaceholder: false,
-//   },
-//   {
-//     slug: 'kings-mechanical-symposium',
-//     title: 'Kings-Mechanical Symposium 2k25',
-//     body: 'Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.',
-//     client: 'Mech Dept - Kings',
-//     date: 'Apr 2025',
-//     technologies: ['React', 'Node.js', 'MongoDB'],
-//     image: '/images/portfolio/mechancientz.png',
-//     isPlaceholder: true,
-//     placeholderNote: 'Description copy-pasted incorrectly on live site (mentions "Retail Corp" / payment gateways for what is a technical symposium event). Client asked to leave as-is for now.',
-//   },
-//   {
-//     slug: 'sm-manpower-service',
-//     title: 'SM Manpower Service',
-//     body: 'Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.',
-//     client: 'Abi Shek',
-//     date: 'Apr 2026',
-//     technologies: ['React', 'MongoDB', 'Firebase'],
-//     image: '/images/portfolio/sm-manpower.png',
-//     isPlaceholder: true,
-//     placeholderNote: 'Same copy-paste bug as above. Client asked to leave as-is for now.',
-//   },
-//   {
-//     slug: 'kings-hall-booking-software',
-//     title: 'Kings Hall Booking Software',
-//     body: 'Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.',
-//     client: 'Kings College',
-//     date: 'Dec 2024',
-//     technologies: ['React', 'Node.js', 'MongoDB'],
-//     image: '/images/portfolio/kings-hall.png',
-//     isPlaceholder: true,
-//     placeholderNote: 'Same copy-paste bug as above. Client asked to leave as-is for now.',
-//   },
-// ]
-
-// const CARD_W = 800;
-// const CARD_H = 530;
-
-// const CENTER_X = CARD_W / 2;
-// const CENTER_Y = 250;
-
-// const BIG_SIZE = 950;
-
-// const LOGO_SIZE = 130;
-// const LOGO_POS = 50;
-
-// function initials(name) {
-//   return name
-//     .split(" ")
-//     .map((word) => word[0])
-//     .join("")
-//     .substring(0, 2)
-//     .toUpperCase();
-// }
-
-// export default function PortfolioTeaser({
-//   projects = SAMPLE_PROJECTS,
-// }) {
-//   const prefersReducedMotion = useReducedMotion();
-
-//   const sectionRef = useRef(null);
-
-//   const [category, setCategory] = useState("All");
-//   const [index, setIndex] = useState(0);
-//   const [paused, setPaused] = useState(false);
-
-//   /* =====================================================
-//      FILTER PROJECTS
-//   ===================================================== */
-
-//   const filtered = useMemo(() => {
-//     if (category === "All") return projects;
-
-//     return projects.filter(
-//       (project) => project.category === category
-//     );
-//   }, [projects, category]);
-
-//   const displayProjects =
-//     filtered.length > 1
-//       ? [...filtered, ...filtered, ...filtered]
-//       : filtered;
-
-//   const centerIndex =
-//     filtered.length + index;
-
-//   const safeIndex =
-//     filtered.length > 0
-//       ? index % filtered.length
-//       : 0;
-
-//   /* =====================================================
-//      CATEGORY
-//   ===================================================== */
-
-//   function changeCategory(cat) {
-//     setCategory(cat);
-//     setIndex(0);
-//   }
-
-//   /* =====================================================
-//      PREVIOUS / NEXT
-//   ===================================================== */
-
-//   function go(direction) {
-//     setIndex((prev) => {
-//       if (filtered.length === 0) return 0;
-
-//       return (
-//         (prev + direction + filtered.length) %
-//         filtered.length
-//       );
-//     });
-//   }
-
-//   /* =====================================================
-//      AUTO SLIDE
-//   ===================================================== */
-
-//   useEffect(() => {
-//     if (paused) return;
-//     if (filtered.length <= 1) return;
-
-//     const timer = setInterval(() => {
-//       setIndex(
-//         (prev) =>
-//           (prev + 1) % filtered.length
-//       );
-//     }, 3000);
-
-//     return () => clearInterval(timer);
-//   }, [paused, filtered.length]);
-
-//   /* =====================================================
-//      CARD MOUSE EFFECT
-//   ===================================================== */
-
-//   const mouseX = useMotionValue(0.5);
-//   const mouseY = useMotionValue(0.5);
-
-//   const rotateX = useSpring(
-//     useTransform(
-//       mouseY,
-//       [0, 1],
-//       [12, -12]
-//     ),
-//     {
-//       stiffness: 180,
-//       damping: 18,
-//     }
-//   );
-
-//   const rotateY = useSpring(
-//     useTransform(
-//       mouseX,
-//       [0, 1],
-//       [-14, 14]
-//     ),
-//     {
-//       stiffness: 180,
-//       damping: 18,
-//     }
-//   );
-
-//   const sheenX = useTransform(
-//     mouseX,
-//     [0, 1],
-//     ["20%", "80%"]
-//   );
-
-//   function onCardMove(e) {
-//     if (prefersReducedMotion) return;
-
-//     const rect =
-//       e.currentTarget.getBoundingClientRect();
-
-//     mouseX.set(
-//       (e.clientX - rect.left) /
-//         rect.width
-//     );
-
-//     mouseY.set(
-//       (e.clientY - rect.top) /
-//         rect.height
-//     );
-//   }
-
-//   function onCardLeave() {
-//     mouseX.set(0.5);
-//     mouseY.set(0.5);
-//   }
-
-//   /* =====================================================
-//      SECTION SPOTLIGHT
-//   ===================================================== */
-
-//   const spotX = useMotionValue(50);
-//   const spotY = useMotionValue(50);
-
-//   function onSectionMove(e) {
-//     if (prefersReducedMotion) return;
-
-//     const rect =
-//       sectionRef.current.getBoundingClientRect();
-
-//     spotX.set(
-//       ((e.clientX - rect.left) /
-//         rect.width) *
-//         100
-//     );
-
-//     spotY.set(
-//       ((e.clientY - rect.top) /
-//         rect.height) *
-//         100
-//     );
-//   }
-
-//   const spotlight = useTransform(
-//     [spotX, spotY],
-//     ([x, y]) =>
-//       `radial-gradient(
-//         700px circle at ${x}% ${y}%,
-//         rgba(37,99,235,.15),
-//         transparent 70%
-//       )`
-//   );
-
-//   /* =====================================================
-//      KEYBOARD
-//   ===================================================== */
-
-//   function onKeyDown(e) {
-//     if (e.key === "ArrowLeft") {
-//       go(-1);
-//     }
-
-//     if (e.key === "ArrowRight") {
-//       go(1);
-//     }
-//   }
-
-//   /* =====================================================
-//      VIEW PROJECT
-//      NOW LINKS TO SERVICES PAGE
-//   ===================================================== */
-
-//   function goToServices() {
-//     window.location.href = "/services";
-//   }
-
-//   return (
-//     <section
-//       ref={sectionRef}
-//       onMouseMove={onSectionMove}
-//       className="
-//         relative
-//         overflow-hidden
-//         py-20
-//         lg:py-28
-//         px-6
-
-//       "
-//       style={{
-//         background: "#081120",
-//         color: "#FFFFFF",
-//       }}
-//     >
-//       {/* =================================================
-//           BACKGROUND
-//       ================================================= */}
-
-//       <motion.div
-//         className="
-//           absolute
-//           inset-0
-//           pointer-events-none
-//         "
-//         style={{
-//           background: spotlight,
-//         }}
-//       />
-
-//       <div className="relative max-w-7xl mx-auto">
-
-//         {/* =================================================
-//             HEADER
-//         ================================================= */}
-
-//         <div
-//           className="
-//             flex
-//             flex-wrap
-//             justify-between
-//             items-end
-//             gap-18
-//             mb-14
-
-//           "
-//         >
-//           <div>
-//             <div
-//               className="
-//                 flex
-//                 items-center
-//                 gap-2
-//                 text-xs
-//                 tracking-[.25em]
-//                 text-blue-400
-//                 mb-3
-
-//               "
-//               style={{
-//                 fontFamily:
-//                   "'IBM Plex Mono', monospace",
-//               }}
-//             >
-//               <span
-//                 className="
-//                   w-2
-//                   h-2
-//                   rounded-full
-//                   bg-blue-500
-//                 "
-//               />
-
-//               SELECTED WORK
-//             </div>
-
-//             <h2
-//               className="
-//                 text-5xl
-//                 lg:text-6xl
-//                 font-semibold
-//                 leading-none
-//               "
-//               style={{
-//                 fontFamily:
-//                   "'Fraunces', serif",
-//               }}
-//             >
-//               Featured Projects
-//             </h2>
-//           </div>
-
-//           <a
-//             href="/portfolio"
-//             className="
-//               flex
-//               items-center
-//               gap-2
-//               border-b
-//               border-blue-500
-//               pb-1
-//               text-blue-300
-//               hover:text-blue-400
-//               transition
-//             "
-//             style={{
-//               fontFamily:
-//                 "'IBM Plex Mono', monospace",
-//             }}
-//           >
-//             View Portfolio
-
-//             <FiArrowUpRight />
-//           </a>
-//         </div>
-
-//         {/* =================================================
-//             FILTERS
-//         ================================================= */}
-
-//         <div
-//           className="
-//             flex
-//             flex-wrap
-//             gap-4
-//             mb-16
-//           "
-//         >
-//           {categories.map((cat) => {
-//             const activeTab =
-//               cat === category;
-
-//             return (
-//               <button
-//                 key={cat}
-//                 type="button"
-//                 onClick={() =>
-//                   changeCategory(cat)
-//                 }
-//                 className="
-//                   rounded-full
-//                   px-6
-//                   py-3
-//                   text-sm
-//                   transition-all
-//                   duration-300
-//                 "
-//                 style={{
-//                   fontFamily:
-//                     "'IBM Plex Mono', monospace",
-
-//                   background: activeTab
-//                     ? "rgba(37,99,235,.18)"
-//                     : "transparent",
-
-//                   border: `1px solid ${
-//                     activeTab
-//                       ? "#3B82F6"
-//                       : "rgba(255,255,255,.08)"
-//                   }`,
-
-//                   color: activeTab
-//                     ? "#60A5FA"
-//                     : "#94A3B8",
-//                 }}
-//               >
-//                 {cat}
-//               </button>
-//             );
-//           })}
-//         </div>
-
-//         {/* =================================================
-//             COVERFLOW
-//         ================================================= */}
-
-//         <div
-//           tabIndex={0}
-//           onKeyDown={onKeyDown}
-//           onMouseEnter={() =>
-//             setPaused(true)
-//           }
-//           onMouseLeave={() =>
-//             setPaused(false)
-//           }
-//           className="
-//             relative
-//             flex
-//             items-center
-//             justify-center
-//             outline-none
-//             mb-16
-//           "
-//           style={{
-//             perspective: 1800,
-//             height: 560,
-//           }}
-//         >
-//           {displayProjects.map(
-//             (project, i) => {
-//               const offset =
-//                 i - centerIndex;
-
-//               const distance =
-//                 Math.abs(offset);
-
-//               const isActive =
-//                 offset === 0;
-
-//               if (distance > 2)
-//                 return null;
-
-//               const animation =
-//                 prefersReducedMotion
-//                   ? {
-//                       x: offset * 450,
-//                       scale: isActive
-//                         ? 1
-//                         : 0.9,
-//                       opacity: 1,
-//                     }
-//                   : {
-//                       x: offset * 180,
-//                       rotateY: 0,
-//                       scale: isActive
-//                         ? 1
-//                         : 0.9,
-//                       opacity: isActive
-//                         ? 1
-//                         : 0.75,
-//                       filter: isActive
-//                         ? "blur(0px)"
-//                         : "blur(5px)",
-//                     };
-
-//               return (
-//                 <motion.div
-//                   key={`${project.slug}-${i}`}
-//                   animate={animation}
-//                   transition={{
-//                     type: "tween",
-//                     stiffness: 240,
-//                     damping: 28,
-//                   }}
-//                   onClick={() =>
-//                     setIndex(
-//                       i %
-//                         Math.max(
-//                           filtered.length,
-//                           1
-//                         )
-//                     )
-//                   }
-//                   onMouseMove={
-//                     isActive
-//                       ? onCardMove
-//                       : undefined
-//                   }
-//                   onMouseLeave={
-//                     isActive
-//                       ? onCardLeave
-//                       : undefined
-//                   }
-//                   className="
-//                     absolute
-//                     cursor-pointer
-//                   "
-//                   style={{
-//                     width: CARD_W,
-//                     height: CARD_H,
-
-//                     background:
-//                       "linear-gradient(160deg,#0F172A,#1E293B)",
-
-//                     rotateX: isActive
-//                       ? rotateX
-//                       : 0,
-
-//                     ...(isActive
-//                       ? { rotateY }
-//                       : {}),
-
-//                     transformStyle:
-//                       "preserve-3d",
-
-//                     zIndex: isActive
-//                       ? 20
-//                       : 10,
-//                   }}
-//                 >
-//                   {/* =================================================
-//                       CARD
-//                   ================================================= */}
-
-//                   <div
-//                     className="
-//                       relative
-//                       overflow-hidden
-//                       rounded-[28px]
-//                       w-full
-//                       h-full
-//                       p-8
-//                     "
-//                     style={{
-//                       background:
-//                         "rgba(18,32,61,.72)",
-
-//                       backdropFilter:
-//                         "blur(16px)",
-
-//                       border:
-//                         "1px solid rgba(59,130,246,.18)",
-
-//                       boxShadow:
-//                         "0 0 20px rgba(59,130,246,.20), 0 20px 60px rgba(0,0,0,.35)",
-//                     }}
-//                   >
-//                     {/* =================================================
-//                         SHEEN
-//                     ================================================= */}
-
-//                     {isActive && (
-//                       <motion.div
-//                         className="
-//                           absolute
-//                           inset-0
-//                           pointer-events-none
-//                         "
-//                         style={{
-//                           background:
-//                             useTransform(
-//                               sheenX,
-//                               (x) =>
-//                                 `linear-gradient(
-//                                   120deg,
-//                                   transparent 20%,
-//                                   rgba(255,255,255,.10) ${x},
-//                                   transparent 80%
-//                                 )`
-//                             ),
-//                         }}
-//                       />
-//                     )}
-
-//                     {/* =================================================
-//                         PROJECT IMAGE
-//                     ================================================= */}
-
-//                     {isActive ? (
-//                       <motion.img
-//                         key={`hero-${project.slug}-${i}`}
-//                         src={project.image}
-//                         alt={project.client}
-//                         initial={{
-//                           top: CENTER_Y,
-//                           left:
-//                             CARD_W + 120,
-//                           width: BIG_SIZE,
-//                           height: BIG_SIZE,
-//                           borderRadius: 24,
-//                           opacity: 0,
-//                         }}
-//                         animate={{
-//                           top: [
-//                             CENTER_Y,
-//                             CENTER_Y,
-//                             LOGO_POS +
-//                               LOGO_SIZE / 2,
-//                           ],
-
-//                           left: [
-//                             CARD_W + 120,
-//                             CENTER_X,
-//                             LOGO_POS +
-//                               LOGO_SIZE / 2,
-//                           ],
-
-//                           width: [
-//                             BIG_SIZE,
-//                             BIG_SIZE,
-//                             LOGO_SIZE,
-//                           ],
-
-//                           height: [
-//                             BIG_SIZE,
-//                             BIG_SIZE,
-//                             LOGO_SIZE,
-//                           ],
-
-//                           borderRadius: [
-//                             24,
-//                             24,
-//                             14,
-//                           ],
-
-//                           opacity: [0, 1, 1],
-//                         }}
-//                         transition={{
-//                           duration: 2,
-//                           times: [
-//                             0,
-//                             0.45,
-//                             1,
-//                           ],
-//                           ease: [
-//                             "easeOut",
-//                             "easeInOut",
-//                           ],
-//                         }}
-//                         className="
-//                           absolute
-//                           object-cover
-//                           shadow-xl
-//                           z-20
-//                         "
-//                         style={{
-//                           transform:
-//                             "translate(-50%,-50%)",
-//                         }}
-//                       />
-//                     ) : (
-//                       <img
-//                         src={project.image}
-//                         alt={project.client}
-//                         className="
-//                           absolute
-//                           object-cover
-//                           shadow-lg
-//                           z-20
-//                         "
-//                         style={{
-//                           top:
-//                             LOGO_POS +
-//                             LOGO_SIZE / 2,
-
-//                           left:
-//                             LOGO_POS +
-//                             LOGO_SIZE / 2,
-
-//                           width: LOGO_SIZE,
-//                           height: LOGO_SIZE,
-
-//                           borderRadius: 14,
-
-//                           transform:
-//                             "translate(-50%,-50%)",
-//                         }}
-//                       />
-//                     )}
-
-//                     {/* =================================================
-//                         TEXT
-//                     ================================================= */}
-
-//                     <motion.div
-//                       key={
-//                         isActive
-//                           ? `text-active-${project.slug}-${i}`
-//                           : `text-static-${project.slug}-${i}`
-//                       }
-//                       className="
-//                         relative
-//                         z-10
-//                         flex
-//                         flex-col
-//                         h-full
-//                       "
-//                       initial={
-//                         isActive
-//                           ? {
-//                               opacity: 0,
-//                               y: 16,
-//                             }
-//                           : false
-//                       }
-//                       animate={{
-//                         opacity: 1,
-//                         y: 0,
-//                       }}
-//                       transition={
-//                         isActive
-//                           ? {
-//                               delay: 2,
-//                               duration: 0.5,
-//                               ease: "easeOut",
-//                             }
-//                           : {
-//                               duration: 0,
-//                             }
-//                       }
-//                     >
-//                       {/* TOP */}
-
-//                       <div
-//                         className="
-//                           flex
-//                           items-start
-//                           justify-between
-//                         "
-//                       >
-//                         <div
-//                           style={{
-//                             marginLeft:
-//                               LOGO_SIZE + 20,
-//                           }}
-//                         >
-//                           <p
-//                             className="
-//                               text-blue-200
-//                               xl:text-[15px]
-//                               uppercase
-//                               tracking-[0.25em]
-//                               mt-[60px]
-//                               pl-12
-//                             "
-//                             style={{
-//                               fontFamily:
-//                                 "'IBM Plex Mono', monospace",
-//                             }}
-//                           >
-//                             {project.client}
-//                           </p>
-//                         </div>
-
-//                         <div className="text-right">
-//                           <div
-//                             className="
-//                               text-xs
-//                               text-slate-400
-//                             "
-//                             style={{
-//                               fontFamily:
-//                                 "'IBM Plex Mono', monospace",
-//                             }}
-//                           >
-//                             {project.date}
-//                           </div>
-
-//                           <div
-//                             className="
-//                               mt-2
-//                               inline-flex
-//                               rounded-full
-//                               bg-blue-500/20
-//                               border
-//                               border-blue-500/40
-//                               px-3
-//                               py-1
-//                               text-[11px]
-//                               text-blue-300
-//                             "
-//                           >
-//                             {project.category}
-//                           </div>
-//                         </div>
-//                       </div>
-
-//                       {/* CONTENT */}
-
-//                       <div
-//                         className="
-//                           mt-28
-//                           flex-1
-//                           flex
-//                           flex-col
-//                         "
-//                       >
-//                         <h3
-//                           className="
-//                             text-4xl
-//                             leading-tight
-//                             font-semibold
-//                             text-white
-//                           "
-//                           style={{
-//                             fontFamily:
-//                               "'Fraunces', serif",
-//                           }}
-//                         >
-//                           {project.title}
-//                         </h3>
-
-//                         <p
-//                           className="
-//                             mt-5
-//                             text-[15px]
-//                             leading-7
-//                             text-slate-300
-//                           "
-//                           style={{
-//                             fontFamily:
-//                               "'Inter', sans-serif",
-//                           }}
-//                         >
-//                           {project.body}
-//                         </p>
-
-//                         {/* TECHNOLOGIES */}
-
-//                         <div
-//                           className="
-//                             flex
-//                             flex-wrap
-//                             gap-3
-//                             mt-8
-//                           "
-//                         >
-//                           {project.technologies.map(
-//                             (tech) => (
-//                               <span
-//                                 key={tech}
-//                                 className="
-//                                   px-4
-//                                   py-2
-//                                   rounded-full
-//                                   text-[11px]
-//                                   bg-blue-500/10
-//                                   border
-//                                   border-blue-500/30
-//                                   text-blue-200
-//                                 "
-//                                 style={{
-//                                   fontFamily:
-//                                     "'IBM Plex Mono', monospace",
-//                                 }}
-//                               >
-//                                 {tech}
-//                               </span>
-//                             )
-//                           )}
-//                         </div>
-
-//                         {/* =================================================
-//                             VIEW PROJECT -> SERVICES
-//                         ================================================= */}
-
-//                         <div className="mt-auto pt-10">
-//                           <button
-//                             type="button"
-//                             onClick={(e) => {
-//                               e.stopPropagation();
-//                               goToServices();
-//                             }}
-//                             className="
-//                               group
-//                               flex
-//                               items-center
-//                               gap-3
-//                               rounded-full
-//                               bg-blue-600
-//                               hover:bg-blue-500
-//                               px-7
-//                               py-3
-//                               text-white
-//                               font-medium
-//                               transition-all
-//                               duration-300
-//                               hover:scale-105
-//                             "
-//                           >
-//                             <span>
-//                               View Project
-//                             </span>
-
-//                             <FiArrowUpRight
-//                               className="
-//                                 transition-transform
-//                                 duration-300
-//                                 group-hover:translate-x-1
-//                                 group-hover:-translate-y-1
-//                               "
-//                             />
-//                           </button>
-//                         </div>
-//                       </div>
-//                     </motion.div>
-
-//                     {/* =================================================
-//                         CARD BORDER GLOW
-//                     ================================================= */}
-
-//                     <motion.div
-//                       className="
-//                         absolute
-//                         inset-0
-//                         rounded-[28px]
-//                         pointer-events-none
-//                       "
-//                       animate={
-//                         isActive
-//                           ? {
-//                               opacity: [
-//                                 0.2,
-//                                 0.55,
-//                                 0.2,
-//                               ],
-//                             }
-//                           : {
-//                               opacity: 0,
-//                             }
-//                       }
-//                       transition={{
-//                         duration: 2.5,
-//                         repeat:
-//                           isActive
-//                             ? Infinity
-//                             : 0,
-//                         ease: "easeInOut",
-//                       }}
-//                       style={{
-//                         boxShadow:
-//                           "inset 0 0 40px rgba(59,130,246,.10)",
-//                       }}
-//                     />
-//                   </div>
-//                 </motion.div>
-//               );
-//             }
-//           )}
-//         </div>
-//       </div>
-
-//       {/* =================================================
-//           GOOGLE FONT IMPORT
-//       ================================================= */}
-
-//       <style>
-//         {`
-//           @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
-//         `}
-//       </style>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useMemo, useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import {
-//   FiArrowUpRight,
-//   FiChevronLeft,
-//   FiChevronRight,
-//   FiExternalLink,
-//   FiLayers,
-//   FiCalendar,
-//   FiUser,
-//   FiGrid,
-// } from "react-icons/fi";
-
-// const categories = [
-//   "All",
-//   "Web",
-//   "App",
-//   "UI/UX",
-//   "Branding",
-// ];
-
-// const SAMPLE_PROJECTS = [
-//   {
-//     slug: "tamil-printer",
-//     title: "Tamil Printer – Invoice Application",
-//     body: "Tamil Printer – Invoice Application is a simple and efficient billing app that helps businesses create, manage, and print professional invoices quickly. Designed for speed and accuracy, it streamlines daily billing operations and keeps your financial records organized with ease.",
-//     client: "Tamilarasi K",
-//     date: "Feb 2026",
-//     category: "App",
-//     technologies: ["React", "Electron JS", "MySQL"],
-//     image: "/images/portfolio/tamil-printer.png",
-//   },
-//   {
-//     slug: "kings-mechanical-symposium",
-//     title: "Kings-Mechanical Symposium 2k25",
-//     body: "Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.",
-//     client: "Mech Dept - Kings",
-//     date: "Apr 2025",
-//     category: "Web",
-//     technologies: ["React", "Node.js", "MongoDB"],
-//     image: "/images/portfolio/mechancientz.png",
-//   },
-//   {
-//     slug: "sm-manpower-service",
-//     title: "SM Manpower Service",
-//     body: "Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.",
-//     client: "Abi Shek",
-//     date: "Apr 2026",
-//     category: "Web",
-//     technologies: ["React", "MongoDB", "Firebase"],
-//     image: "/images/portfolio/sm-manpower.png",
-//   },
-//   {
-//     slug: "kings-hall-booking-software",
-//     title: "Kings Hall Booking Software",
-//     body: "Developed for Retail Corp, this platform supports multiple payment gateways, ensuring a seamless shopping experience for users.",
-//     client: "Kings College",
-//     date: "Dec 2024",
-//     category: "App",
-//     technologies: ["React", "Node.js", "MongoDB"],
-//     image: "/images/portfolio/kings-hall.png",
-//   },
-// ];
-
-// export default function PortfolioTeaser({
-//   projects = SAMPLE_PROJECTS,
-// }) {
-//   const [category, setCategory] = useState("All");
-//   const [activeIndex, setActiveIndex] = useState(0);
-//   const [hovered, setHovered] = useState(false);
-
-//   const filteredProjects = useMemo(() => {
-//     if (category === "All") return projects;
-
-//     return projects.filter(
-//       (project) => project.category === category
-//     );
-//   }, [projects, category]);
-
-//   const safeIndex =
-//     filteredProjects.length > 0
-//       ? Math.min(activeIndex, filteredProjects.length - 1)
-//       : 0;
-
-//   const activeProject = filteredProjects[safeIndex];
-
-//   function changeCategory(nextCategory) {
-//     setCategory(nextCategory);
-//     setActiveIndex(0);
-//   }
-
-//   function previousProject() {
-//     if (!filteredProjects.length) return;
-
-//     setActiveIndex((current) =>
-//       current === 0
-//         ? filteredProjects.length - 1
-//         : current - 1
-//     );
-//   }
-
-//   function nextProject() {
-//     if (!filteredProjects.length) return;
-
-//     setActiveIndex(
-//       (current) =>
-//         (current + 1) % filteredProjects.length
-//     );
-//   }
-
-//   function openProject() {
-//     window.location.href = "/portfolio";
-//   }
-
-//   if (!activeProject) {
-//     return null;
-//   }
-
-//   return (
-//     <section
-//       className="
-//         relative
-//         overflow-hidden
-//         bg-[#050A14]
-//         px-5
-//         py-20
-//         text-white
-//         sm:px-8
-//         lg:px-10
-//         lg:py-28
-//       "
-//     >
-//       {/* =====================================================
-//           BACKGROUND
-//       ===================================================== */}
-
-//       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-//         <div
-//           className="
-//             absolute
-//             left-1/2
-//             top-[10%]
-//             h-[500px]
-//             w-[500px]
-//             -translate-x-1/2
-//             rounded-full
-//             bg-blue-600/10
-//             blur-[140px]
-//           "
-//         />
-
-//         <div
-//           className="
-//             absolute
-//             -right-32
-//             bottom-0
-//             h-[420px]
-//             w-[420px]
-//             rounded-full
-//             bg-cyan-500/5
-//             blur-[120px]
-//           "
-//         />
-
-//         <div
-//           className="
-//             absolute
-//             inset-0
-//             opacity-[0.035]
-//           "
-//           style={{
-//             backgroundImage:
-//               "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-//             backgroundSize: "70px 70px",
-//           }}
-//         />
-//       </div>
-
-//       <div className="relative mx-auto max-w-7xl">
-
-//         {/* =====================================================
-//             HEADER
-//         ===================================================== */}
-
-//         <div className="mb-12 flex flex-col gap-8 lg:mb-16 lg:flex-row lg:items-end lg:justify-between">
-
-//           <div className="max-w-3xl">
-
-//             <div
-//               className="
-//                 mb-5
-//                 inline-flex
-//                 items-center
-//                 gap-3
-//                 rounded-full
-//                 border
-//                 border-white/10
-//                 bg-white/[0.03]
-//                 px-4
-//                 py-2
-//                 text-[10px]
-//                 font-medium
-//                 uppercase
-//                 tracking-[0.28em]
-//                 text-blue-300
-//               "
-//             >
-//               <span className="relative flex h-2 w-2">
-//                 <span
-//                   className="
-//                     absolute
-//                     inline-flex
-//                     h-full
-//                     w-full
-//                     animate-ping
-//                     rounded-full
-//                     bg-blue-400
-//                     opacity-50
-//                   "
-//                 />
-//                 <span
-//                   className="
-//                     relative
-//                     inline-flex
-//                     h-2
-//                     w-2
-//                     rounded-full
-//                     bg-blue-400
-//                   "
-//                 />
-//               </span>
-
-//               Selected Work
-//             </div>
-
-//             <h2
-//               className="
-//                 max-w-2xl
-//                 text-4xl
-//                 font-semibold
-//                 leading-[0.95]
-//                 tracking-[-0.04em]
-//                 sm:text-5xl
-//                 lg:text-7xl
-//               "
-//               style={{
-//                 fontFamily: "'Fraunces', serif",
-//               }}
-//             >
-//               Products built
-//               <br />
-//               <span className="text-slate-500">
-//                 for real people.
-//               </span>
-//             </h2>
-
-//           </div>
-
-//           <a
-//             href="/portfolio"
-//             className="
-//               group
-//               inline-flex
-//               w-fit
-//               items-center
-//               gap-3
-//               rounded-full
-//               border
-//               border-white/10
-//               bg-white/[0.03]
-//               px-5
-//               py-3
-//               text-sm
-//               text-slate-300
-//               transition-all
-//               duration-300
-//               hover:border-blue-400/40
-//               hover:bg-blue-500/10
-//               hover:text-white
-//             "
-//           >
-//             Explore portfolio
-
-//             <span
-//               className="
-//                 flex
-//                 h-7
-//                 w-7
-//                 items-center
-//                 justify-center
-//                 rounded-full
-//                 bg-white/10
-//                 transition-transform
-//                 duration-300
-//                 group-hover:translate-x-1
-//                 group-hover:-translate-y-1
-//               "
-//             >
-//               <FiArrowUpRight size={14} />
-//             </span>
-//           </a>
-//         </div>
-
-//         {/* =====================================================
-//             CATEGORY NAVIGATION
-//         ===================================================== */}
-
-//         <div className="mb-8 flex items-center justify-between gap-5">
-
-//           <div className="flex max-w-full gap-2 overflow-x-auto pb-2 scrollbar-hide">
-//             {categories.map((item) => {
-//               const active = category === item;
-
-//               return (
-//                 <button
-//                   key={item}
-//                   type="button"
-//                   onClick={() => changeCategory(item)}
-//                   className="
-//                     relative
-//                     shrink-0
-//                     rounded-full
-//                     px-5
-//                     py-2.5
-//                     text-xs
-//                     font-medium
-//                     transition-all
-//                     duration-300
-//                   "
-//                 >
-//                   {active && (
-//                     <motion.span
-//                       layoutId="portfolio-category"
-//                       className="
-//                         absolute
-//                         inset-0
-//                         rounded-full
-//                         bg-white
-//                       "
-//                       transition={{
-//                         type: "spring",
-//                         stiffness: 400,
-//                         damping: 30,
-//                       }}
-//                     />
-//                   )}
-
-//                   <span
-//                     className={`
-//                       relative z-10
-//                       ${
-//                         active
-//                           ? "text-[#050A14]"
-//                           : "text-slate-500 hover:text-slate-200"
-//                       }
-//                     `}
-//                   >
-//                     {item}
-//                   </span>
-//                 </button>
-//               );
-//             })}
-//           </div>
-
-//           <div className="hidden shrink-0 items-center gap-2 text-xs text-slate-500 sm:flex">
-//             <FiGrid size={13} />
-
-//             <span>
-//               {String(safeIndex + 1).padStart(2, "0")}
-//             </span>
-
-//             <span className="text-slate-700">
-//               /
-//             </span>
-
-//             <span>
-//               {String(filteredProjects.length).padStart(2, "0")}
-//             </span>
-//           </div>
-
-//         </div>
-
-//         {/* =====================================================
-//             MAIN PRODUCT SHOWCASE
-//         ===================================================== */}
-
-//         <div
-//           className="
-//             relative
-//             overflow-hidden
-//             rounded-[30px]
-//             border
-//             border-white/[0.08]
-//             bg-[#0A1220]
-//             shadow-[0_30px_100px_rgba(0,0,0,.35)]
-//             lg:rounded-[40px]
-//           "
-//           onMouseEnter={() => setHovered(true)}
-//           onMouseLeave={() => setHovered(false)}
-//         >
-
-//           {/* TOP BAR */}
-
-//           <div
-//             className="
-//               flex
-//               items-center
-//               justify-between
-//               border-b
-//               border-white/[0.07]
-//               px-5
-//               py-4
-//               sm:px-7
-//             "
-//           >
-
-//             <div className="flex items-center gap-2">
-//               <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-//               <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-//               <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-//             </div>
-
-//             <div
-//               className="
-//                 hidden
-//                 items-center
-//                 gap-2
-//                 rounded-full
-//                 border
-//                 border-white/[0.06]
-//                 bg-black/20
-//                 px-4
-//                 py-1.5
-//                 text-[10px]
-//                 uppercase
-//                 tracking-[0.2em]
-//                 text-slate-500
-//                 sm:flex
-//               "
-//             >
-//               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-//               Live showcase
-//             </div>
-
-//             <div className="text-[10px] uppercase tracking-[0.18em] text-slate-600">
-//               DES / 2026
-//             </div>
-
-//           </div>
-
-//           {/* CONTENT */}
-
-//           <div className="grid lg:grid-cols-[1.35fr_.65fr]">
-
-//             {/* =================================================
-//                 VISUAL PANEL
-//             ================================================= */}
-
-//             <div
-//               className="
-//                 relative
-//                 min-h-[360px]
-//                 overflow-hidden
-//                 border-b
-//                 border-white/[0.07]
-//                 bg-[#07101D]
-//                 sm:min-h-[500px]
-//                 lg:min-h-[620px]
-//                 lg:border-b-0
-//                 lg:border-r
-//               "
-//             >
-
-//               {/* image glow */}
-
-//               <motion.div
-//                 key={`glow-${activeProject.slug}`}
-//                 initial={{ opacity: 0, scale: 0.8 }}
-//                 animate={{ opacity: 1, scale: 1 }}
-//                 transition={{ duration: 0.8 }}
-//                 className="
-//                   pointer-events-none
-//                   absolute
-//                   left-1/2
-//                   top-1/2
-//                   h-[55%]
-//                   w-[65%]
-//                   -translate-x-1/2
-//                   -translate-y-1/2
-//                   rounded-full
-//                   bg-blue-500/20
-//                   blur-[100px]
-//                 "
-//               />
-
-//               {/* floating number */}
-
-//               <div
-//                 className="
-//                   absolute
-//                   left-6
-//                   top-6
-//                   z-20
-//                   text-[10px]
-//                   font-medium
-//                   uppercase
-//                   tracking-[0.25em]
-//                   text-slate-500
-//                   sm:left-8
-//                   sm:top-8
-//                 "
-//               >
-//                 PROJECT
-//                 <span className="ml-2 text-blue-400">
-//                   {String(safeIndex + 1).padStart(2, "0")}
-//                 </span>
-//               </div>
-
-//               {/* image */}
-
-//               <AnimatePresence mode="wait">
-//                 <motion.div
-//                   key={activeProject.slug}
-//                   initial={{
-//                     opacity: 0,
-//                     scale: 0.94,
-//                     x: 30,
-//                   }}
-//                   animate={{
-//                     opacity: 1,
-//                     scale: hovered ? 1.025 : 1,
-//                     x: 0,
-//                   }}
-//                   exit={{
-//                     opacity: 0,
-//                     scale: 0.96,
-//                     x: -30,
-//                   }}
-//                   transition={{
-//                     duration: 0.65,
-//                     ease: [0.22, 1, 0.36, 1],
-//                   }}
-//                   className="
-//                     absolute
-//                     inset-[12%]
-//                     sm:inset-[13%]
-//                     lg:inset-[12%]
-//                   "
-//                 >
-
-//                   <div
-//                     className="
-//                       relative
-//                       h-full
-//                       w-full
-//                       overflow-hidden
-//                       rounded-[22px]
-//                       border
-//                       border-white/10
-//                       bg-slate-900
-//                       shadow-[0_25px_80px_rgba(0,0,0,.5)]
-//                       sm:rounded-[30px]
-//                     "
-//                   >
-
-//                     <img
-//                       src={activeProject.image}
-//                       alt={activeProject.title}
-//                       className="
-//                         h-full
-//                         w-full
-//                         object-cover
-//                       "
-//                     />
-
-//                     {/* image overlay */}
-
-//                     <div
-//                       className="
-//                         pointer-events-none
-//                         absolute
-//                         inset-0
-//                         bg-gradient-to-t
-//                         from-black/40
-//                         via-transparent
-//                         to-white/5
-//                       "
-//                     />
-
-//                     {/* corner label */}
-
-//                     <div
-//                       className="
-//                         absolute
-//                         bottom-4
-//                         left-4
-//                         rounded-full
-//                         border
-//                         border-white/10
-//                         bg-black/40
-//                         px-3
-//                         py-1.5
-//                         text-[9px]
-//                         uppercase
-//                         tracking-[0.18em]
-//                         text-white/70
-//                         backdrop-blur-md
-//                       "
-//                     >
-//                       {activeProject.category || "Project"}
-//                     </div>
-
-//                   </div>
-
-//                 </motion.div>
-//               </AnimatePresence>
-
-//               {/* decorative line */}
-
-//               <div
-//                 className="
-//                   absolute
-//                   bottom-8
-//                   left-6
-//                   right-6
-//                   flex
-//                   items-center
-//                   gap-3
-//                   sm:left-8
-//                   sm:right-8
-//                 "
-//               >
-//                 <div className="h-px flex-1 bg-white/[0.08]" />
-
-//                 <div className="flex gap-1.5">
-//                   {filteredProjects.map((project, index) => (
-//                     <button
-//                       key={project.slug}
-//                       type="button"
-//                       aria-label={`Open project ${index + 1}`}
-//                       onClick={() => setActiveIndex(index)}
-//                       className={`
-//                         h-1
-//                         rounded-full
-//                         transition-all
-//                         duration-500
-//                         ${
-//                           index === safeIndex
-//                             ? "w-8 bg-blue-400"
-//                             : "w-2 bg-white/20 hover:bg-white/40"
-//                         }
-//                       `}
-//                     />
-//                   ))}
-//                 </div>
-
-//                 <div className="h-px flex-1 bg-white/[0.08]" />
-//               </div>
-
-//             </div>
-
-//             {/* =================================================
-//                 INFORMATION PANEL
-//             ================================================= */}
-
-//             <div className="flex flex-col justify-between p-6 sm:p-9 lg:p-10">
-
-//               <AnimatePresence mode="wait">
-
-//                 <motion.div
-//                   key={activeProject.slug}
-//                   initial={{
-//                     opacity: 0,
-//                     y: 18,
-//                   }}
-//                   animate={{
-//                     opacity: 1,
-//                     y: 0,
-//                   }}
-//                   exit={{
-//                     opacity: 0,
-//                     y: -12,
-//                   }}
-//                   transition={{
-//                     duration: 0.45,
-//                   }}
-//                   className="flex h-full flex-col"
-//                 >
-
-//                   {/* project metadata */}
-
-//                   <div className="mb-10 grid grid-cols-2 gap-3">
-
-//                     <div
-//                       className="
-//                         rounded-2xl
-//                         border
-//                         border-white/[0.07]
-//                         bg-white/[0.025]
-//                         p-4
-//                       "
-//                     >
-//                       <div className="mb-3 text-slate-600">
-//                         <FiUser size={15} />
-//                       </div>
-
-//                       <p className="mb-1 text-[9px] uppercase tracking-[0.18em] text-slate-600">
-//                         Client
-//                       </p>
-
-//                       <p className="truncate text-xs font-medium text-slate-300">
-//                         {activeProject.client}
-//                       </p>
-//                     </div>
-
-//                     <div
-//                       className="
-//                         rounded-2xl
-//                         border
-//                         border-white/[0.07]
-//                         bg-white/[0.025]
-//                         p-4
-//                       "
-//                     >
-//                       <div className="mb-3 text-slate-600">
-//                         <FiCalendar size={15} />
-//                       </div>
-
-//                       <p className="mb-1 text-[9px] uppercase tracking-[0.18em] text-slate-600">
-//                         Delivered
-//                       </p>
-
-//                       <p className="text-xs font-medium text-slate-300">
-//                         {activeProject.date}
-//                       </p>
-//                     </div>
-
-//                   </div>
-
-//                   {/* title */}
-
-//                   <div>
-
-//                     <div className="mb-4 flex items-center gap-2">
-//                       <span className="h-px w-7 bg-blue-400" />
-
-//                       <span className="text-[10px] uppercase tracking-[0.22em] text-blue-400">
-//                         {activeProject.category || "Featured"}
-//                       </span>
-//                     </div>
-
-//                     <h3
-//                       className="
-//                         max-w-xl
-//                         text-3xl
-//                         font-semibold
-//                         leading-[1.05]
-//                         tracking-[-0.03em]
-//                         sm:text-4xl
-//                         lg:text-[44px]
-//                       "
-//                       style={{
-//                         fontFamily: "'Fraunces', serif",
-//                       }}
-//                     >
-//                       {activeProject.title}
-//                     </h3>
-
-//                     <p
-//                       className="
-//                         mt-6
-//                         max-w-xl
-//                         text-sm
-//                         leading-7
-//                         text-slate-400
-//                       "
-//                     >
-//                       {activeProject.body}
-//                     </p>
-
-//                   </div>
-
-//                   {/* technology */}
-
-//                   <div className="mt-9">
-
-//                     <div className="mb-4 flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-slate-600">
-//                       <FiLayers size={13} />
-//                       Technology stack
-//                     </div>
-
-//                     <div className="flex flex-wrap gap-2">
-
-//                       {activeProject.technologies?.map(
-//                         (technology) => (
-//                           <span
-//                             key={technology}
-//                             className="
-//                               rounded-full
-//                               border
-//                               border-white/[0.08]
-//                               bg-white/[0.035]
-//                               px-3
-//                               py-2
-//                               text-[10px]
-//                               text-slate-400
-//                               transition-colors
-//                               hover:border-blue-400/30
-//                               hover:text-blue-300
-//                             "
-//                           >
-//                             {technology}
-//                           </span>
-//                         )
-//                       )}
-
-//                     </div>
-
-//                   </div>
-
-//                   {/* bottom controls */}
-
-//                   <div className="mt-auto pt-12">
-
-//                     <div className="mb-5 h-px bg-white/[0.07]" />
-
-//                     <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-
-//                       <button
-//                         type="button"
-//                         onClick={openProject}
-//                         className="
-//                           group
-//                           inline-flex
-//                           w-fit
-//                           items-center
-//                           gap-3
-//                           text-sm
-//                           font-medium
-//                           text-white
-//                         "
-//                       >
-//                         <span
-//                           className="
-//                             flex
-//                             h-11
-//                             w-11
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             bg-white
-//                             text-[#050A14]
-//                             transition-transform
-//                             duration-300
-//                             group-hover:rotate-45
-//                           "
-//                         >
-//                           <FiExternalLink size={16} />
-//                         </span>
-
-//                         Explore project
-//                       </button>
-
-//                       {/* arrows */}
-
-//                       <div className="flex items-center gap-2">
-
-//                         <button
-//                           type="button"
-//                           onClick={previousProject}
-//                           aria-label="Previous project"
-//                           className="
-//                             flex
-//                             h-11
-//                             w-11
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             border
-//                             border-white/10
-//                             bg-white/[0.03]
-//                             text-slate-400
-//                             transition-all
-//                             hover:border-white/20
-//                             hover:bg-white/[0.07]
-//                             hover:text-white
-//                           "
-//                         >
-//                           <FiChevronLeft />
-//                         </button>
-
-//                         <button
-//                           type="button"
-//                           onClick={nextProject}
-//                           aria-label="Next project"
-//                           className="
-//                             flex
-//                             h-11
-//                             w-11
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             border
-//                             border-white/10
-//                             bg-white/[0.03]
-//                             text-slate-400
-//                             transition-all
-//                             hover:border-blue-400/40
-//                             hover:bg-blue-500/10
-//                             hover:text-white
-//                           "
-//                         >
-//                           <FiChevronRight />
-//                         </button>
-
-//                       </div>
-
-//                     </div>
-
-//                   </div>
-
-//                 </motion.div>
-
-//               </AnimatePresence>
-
-//             </div>
-
-//           </div>
-
-//           {/* =====================================================
-//               BOTTOM STATUS BAR
-//           ===================================================== */}
-
-//           <div
-//             className="
-//               flex
-//               flex-col
-//               gap-3
-//               border-t
-//               border-white/[0.07]
-//               px-5
-//               py-4
-//               text-[9px]
-//               uppercase
-//               tracking-[0.18em]
-//               text-slate-600
-//               sm:flex-row
-//               sm:items-center
-//               sm:justify-between
-//               sm:px-7
-//             "
-//           >
-
-//             <div className="flex items-center gap-2">
-//               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-//               Selected project
-//             </div>
-
-//             <div className="flex items-center gap-4">
-//               <span>
-//                 {activeProject.technologies?.length || 0} technologies
-//               </span>
-
-//               <span className="text-slate-800">•</span>
-
-//               <span>
-//                 {activeProject.date}
-//               </span>
-//             </div>
-
-//           </div>
-
-//         </div>
-
-//         {/* =====================================================
-//             PROJECT QUICK SELECTOR
-//         ===================================================== */}
-
-//         <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-
-//           {filteredProjects.map((project, index) => {
-//             const active = index === safeIndex;
-
-//             return (
-//               <button
-//                 key={project.slug}
-//                 type="button"
-//                 onClick={() => setActiveIndex(index)}
-//                 className={`
-//                   group
-//                   relative
-//                   overflow-hidden
-//                   rounded-2xl
-//                   border
-//                   p-4
-//                   text-left
-//                   transition-all
-//                   duration-300
-//                   ${
-//                     active
-//                       ? "border-blue-400/30 bg-blue-500/[0.08]"
-//                       : "border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]"
-//                   }
-//                 `}
-//               >
-
-//                 <div className="flex items-center gap-3">
-
-//                   <div
-//                     className="
-//                       relative
-//                       h-12
-//                       w-12
-//                       shrink-0
-//                       overflow-hidden
-//                       rounded-xl
-//                       bg-slate-900
-//                     "
-//                   >
-//                     <img
-//                       src={project.image}
-//                       alt=""
-//                       className="
-//                         h-full
-//                         w-full
-//                         object-cover
-//                         opacity-70
-//                         transition-transform
-//                         duration-500
-//                         group-hover:scale-110
-//                       "
-//                     />
-
-//                     <div className="absolute inset-0 bg-black/20" />
-//                   </div>
-
-//                   <div className="min-w-0 flex-1">
-
-//                     <div className="mb-1 flex items-center gap-2">
-
-//                       <span
-//                         className={`
-//                           text-[9px]
-//                           ${
-//                             active
-//                               ? "text-blue-400"
-//                               : "text-slate-600"
-//                           }
-//                         `}
-//                       >
-//                         {String(index + 1).padStart(2, "0")}
-//                       </span>
-
-//                       <span className="h-px w-4 bg-white/10" />
-
-//                       <span className="text-[8px] uppercase tracking-[0.16em] text-slate-600">
-//                         {project.category || "Work"}
-//                       </span>
-
-//                     </div>
-
-//                     <p
-//                       className={`
-//                         truncate
-//                         text-xs
-//                         font-medium
-//                         ${
-//                           active
-//                             ? "text-white"
-//                             : "text-slate-500"
-//                         }
-//                       `}
-//                     >
-//                       {project.title}
-//                     </p>
-
-//                   </div>
-
-//                   <FiArrowUpRight
-//                     className={`
-//                       shrink-0
-//                       transition-all
-//                       duration-300
-//                       ${
-//                         active
-//                           ? "text-blue-400"
-//                           : "text-slate-700 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-slate-400"
-//                       }
-//                     `}
-//                     size={14}
-//                   />
-
-//                 </div>
-
-//               </button>
-//             );
-//           })}
-
-//         </div>
-
-//       </div>
-
-//       {/* =====================================================
-//           FONT IMPORT
-//       ===================================================== */}
-
-//       <style>
-//         {`
-//           @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap');
-
-//           .scrollbar-hide::-webkit-scrollbar {
-//             display: none;
-//           }
-
-//           .scrollbar-hide {
-//             -ms-overflow-style: none;
-//             scrollbar-width: none;
-//           }
-//         `}
-//       </style>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useEffect, useMemo, useRef, useState } from "react";
-// import {
-//   motion,
-//   AnimatePresence,
-//   useMotionValue,
-//   useSpring,
-//   useTransform,
-// } from "framer-motion";
-
-// import {
-//   FiArrowUpRight,
-//   FiChevronLeft,
-//   FiChevronRight,
-//   FiExternalLink,
-//   FiLayers,
-//   FiCalendar,
-//   FiUser,
-//   FiGrid,
-// } from "react-icons/fi";
-
-// const categories = [
-//   "All",
-//   "Web",
-//   "App",
-//   "UI/UX",
-//   "Branding",
-// ];
-
-// const SAMPLE_PROJECTS = [
-//   {
-//     slug: "tamil-printer",
-//     title: "Tamil Printer – Invoice Application",
-//     body:
-//       "Tamil Printer – Invoice Application is a simple and efficient billing app that helps businesses create, manage, and print professional invoices quickly. Designed for speed and accuracy, it streamlines daily billing operations and keeps your financial records organized with ease.",
-//     client: "Tamilarasi K",
-//     date: "Feb 2026",
-//     technologies: ["React", "Electron JS", "MySQL"],
-//     image: "/images/portfolio/tamil-printer.png",
-//     category: "App",
-//   },
-
-//   {
-//     slug: "kings-mechanical-symposium",
-//     title: "Kings-Mechanical Symposium 2k25",
-//     body:
-//       "A modern event platform created for Kings Mechanical Symposium with an interactive experience for students, participants, and organizers.",
-//     client: "Mech Dept - Kings",
-//     date: "Apr 2025",
-//     technologies: ["React", "Node.js", "MongoDB"],
-//     image: "/images/portfolio/mechancientz.png",
-//     category: "Web",
-//   },
-
-//   {
-//     slug: "sm-manpower-service",
-//     title: "SM Manpower Service",
-//     body:
-//       "A professional manpower service platform designed to present services, connect clients, and provide a clean digital experience.",
-//     client: "Abi Shek",
-//     date: "Apr 2026",
-//     technologies: ["React", "MongoDB", "Firebase"],
-//     image: "/images/portfolio/sm-manpower.png",
-//     category: "Web",
-//   },
-
-//   {
-//     slug: "kings-hall-booking-software",
-//     title: "Kings Hall Booking Software",
-//     body:
-//       "A dedicated booking platform designed to simplify hall reservations and manage booking information through a structured digital workflow.",
-//     client: "Kings College",
-//     date: "Dec 2024",
-//     technologies: ["React", "Node.js", "MongoDB"],
-//     image: "/images/portfolio/kings-hall.png",
-//     category: "App",
-//   },
-// ];
-
-// export default function PortfolioTeaser({
-//   projects = SAMPLE_PROJECTS,
-// }) {
-//   const sectionRef = useRef(null);
-
-//   const [category, setCategory] = useState("All");
-//   const [activeIndex, setActiveIndex] = useState(0);
-//   const [isPaused, setIsPaused] = useState(false);
-//   const [isHoveringImage, setIsHoveringImage] = useState(false);
-
-//   /* =========================================================
-//      FILTER
-//   ========================================================= */
-
-//   const filteredProjects = useMemo(() => {
-//     if (!projects || projects.length === 0) {
-//       return [];
-//     }
-
-//     if (category === "All") {
-//       return projects;
-//     }
-
-//     return projects.filter(
-//       (project) => project.category === category
-//     );
-//   }, [projects, category]);
-
-//   /* =========================================================
-//      KEEP INDEX SAFE
-//   ========================================================= */
-
-//   useEffect(() => {
-//     if (activeIndex >= filteredProjects.length) {
-//       setActiveIndex(0);
-//     }
-//   }, [filteredProjects.length, activeIndex]);
-
-//   const activeProject =
-//     filteredProjects.length > 0
-//       ? filteredProjects[activeIndex]
-//       : null;
-
-//   /* =========================================================
-//      AUTO SLIDE
-//   ========================================================= */
-
-//   useEffect(() => {
-//     if (filteredProjects.length <= 1) {
-//       return;
-//     }
-
-//     if (isPaused) {
-//       return;
-//     }
-
-//     const timer = setInterval(() => {
-//       setActiveIndex((current) => {
-//         return (current + 1) % filteredProjects.length;
-//       });
-//     }, 2500);
-
-//     return () => {
-//       clearInterval(timer);
-//     };
-//   }, [filteredProjects.length, isPaused]);
-
-//   /* =========================================================
-//      MOUSE PARALLAX
-//   ========================================================= */
-
-//   const mouseX = useMotionValue(0.5);
-//   const mouseY = useMotionValue(0.5);
-
-//   const imageX = useSpring(
-//     useTransform(mouseX, [0, 1], [-10, 10]),
-//     {
-//       stiffness: 120,
-//       damping: 20,
-//     }
-//   );
-
-//   const imageY = useSpring(
-//     useTransform(mouseY, [0, 1], [-10, 10]),
-//     {
-//       stiffness: 120,
-//       damping: 20,
-//     }
-//   );
-
-//   const imageRotateX = useSpring(
-//     useTransform(mouseY, [0, 1], [2, -2]),
-//     {
-//       stiffness: 120,
-//       damping: 20,
-//     }
-//   );
-
-//   const imageRotateY = useSpring(
-//     useTransform(mouseX, [0, 1], [-2, 2]),
-//     {
-//       stiffness: 120,
-//       damping: 20,
-//     }
-//   );
-
-//   function handleImageMove(event) {
-//     const rect =
-//       event.currentTarget.getBoundingClientRect();
-
-//     const x =
-//       (event.clientX - rect.left) / rect.width;
-
-//     const y =
-//       (event.clientY - rect.top) / rect.height;
-
-//     mouseX.set(x);
-//     mouseY.set(y);
-//   }
-
-//   function handleImageLeave() {
-//     mouseX.set(0.5);
-//     mouseY.set(0.5);
-//     setIsHoveringImage(false);
-//   }
-
-//   /* =========================================================
-//      NAVIGATION
-//   ========================================================= */
-
-//   function nextProject() {
-//     if (filteredProjects.length <= 1) {
-//       return;
-//     }
-
-//     setActiveIndex(
-//       (current) =>
-//         (current + 1) % filteredProjects.length
-//     );
-//   }
-
-//   function previousProject() {
-//     if (filteredProjects.length <= 1) {
-//       return;
-//     }
-
-//     setActiveIndex((current) =>
-//       current === 0
-//         ? filteredProjects.length - 1
-//         : current - 1
-//     );
-//   }
-
-//   function selectProject(index) {
-//     setActiveIndex(index);
-//   }
-
-//   function changeCategory(nextCategory) {
-//     setCategory(nextCategory);
-//     setActiveIndex(0);
-//   }
-
-//   function openPortfolio() {
-//     window.location.href = "/portfolio";
-//   }
-
-//   if (!activeProject) {
-//     return null;
-//   }
-
-//   const progress =
-//     ((activeIndex + 1) / filteredProjects.length) * 100;
-
-//   return (
-//     <section
-//       ref={sectionRef}
-//      className="
-//   relative
-//   overflow-hidden
-//   bg-[#050912]
-//   px-4
-//   py-10
-//   pt-30
-//   text-white
-//   sm:px-6
-//   sm:pt-28
-//   sm:pb-12
-//   lg:px-8
-//   lg:pt-14
-//   lg:pb-14
-//   xl:py-16
-// "
-
-//     >
-
-//       {/* =====================================================
-//           BACKGROUND
-//       ===================================================== */}
-
-//       <div className="pointer-events-none absolute inset-0">
-
-//         <motion.div
-//           animate={{
-//             scale: [1, 1.12, 1],
-//             opacity: [0.22, 0.35, 0.22],
-//           }}
-//           transition={{
-//             duration: 8,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//           }}
-//           className="
-//             absolute
-//             left-[15%]
-//             top-[10%]
-//             h-[300px]
-//             w-[300px]
-//             rounded-full
-//             bg-blue-600/20
-//             blur-[110px]
-//             sm:h-[400px]
-//             sm:w-[400px]
-//           "
-//         />
-
-//         <motion.div
-//           animate={{
-//             x: [0, 40, 0],
-//             y: [0, -30, 0],
-//           }}
-//           transition={{
-//             duration: 10,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//           }}
-//           className="
-//             absolute
-//             bottom-[-100px]
-//             right-[-80px]
-//             h-[350px]
-//             w-[350px]
-//             rounded-full
-//             bg-cyan-500/10
-//             blur-[120px]
-//           "
-//         />
-
-//         <div
-//           className="
-//             absolute
-//             inset-0
-//             opacity-[0.025]
-//           "
-//           style={{
-//             backgroundImage:
-//               "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-//             backgroundSize: "60px 60px",
-//           }}
-//         />
-
-//       </div>
-
-//       {/* =====================================================
-//           MAIN CONTAINER
-//       ===================================================== */}
-
-//       <div
-//         className="
-//           relative
-//           mx-auto
-//           flex
-//           min-h-[680px]
-//           max-w-7xl
-//           flex-col
-//           justify-center
-//         "
-//       >
-
-//         {/* ===================================================
-//             HEADER
-//         =================================================== */}
-
-//         <div
-//           className="
-//             mb-6
-//             flex
-//             flex-col
-//             gap-5
-//             sm:mb-7
-//             lg:mb-8
-//             lg:flex-row
-//             lg:items-end
-//             lg:justify-between
-//           "
-//         >
-
-//           <div>
-
-//             <motion.div
-//               initial={{
-//                 opacity: 0,
-//                 y: 10,
-//               }}
-//               whileInView={{
-//                 opacity: 1,
-//                 y: 0,
-//               }}
-//               viewport={{
-//                 once: true,
-//               }}
-//               className="
-//                 mb-3
-//                 flex
-//                 items-center
-//                 gap-2
-//                 text-[9px]
-//                 font-medium
-//                 uppercase
-//                 tracking-[0.3em]
-//                 text-blue-400
-//                 sm:text-[10px]
-//               "
-//             >
-//               <motion.span
-//                 animate={{
-//                   scale: [1, 1.5, 1],
-//                   opacity: [1, 0.5, 1],
-//                 }}
-//                 transition={{
-//                   duration: 2,
-//                   repeat: Infinity,
-//                 }}
-//                 className="
-//                   h-1.5
-//                   w-1.5
-//                   rounded-full
-//                   bg-blue-400
-//                 "
-//               />
-
-//               Selected Work
-//             </motion.div>
-
-//             <motion.h2
-//               initial={{
-//                 opacity: 0,
-//                 y: 20,
-//               }}
-//               whileInView={{
-//                 opacity: 1,
-//                 y: 0,
-//               }}
-//               viewport={{
-//                 once: true,
-//               }}
-//               transition={{
-//                 delay: 0.1,
-//                 duration: 0.6,
-//               }}
-//               className="
-//                 text-3xl
-//                 font-semibold
-//                 leading-[0.95]
-//                 tracking-[-0.04em]
-//                 sm:text-4xl
-//                 lg:text-5xl
-//                 xl:text-6xl
-//               "
-//               style={{
-//                 fontFamily:
-//                   "'Fraunces', serif",
-//               }}
-//             >
-//               Digital products
-//               <br />
-
-//               <span className="text-slate-600">
-//                 made with purpose.
-//               </span>
-//             </motion.h2>
-
-//           </div>
-
-//           <motion.a
-//             initial={{
-//               opacity: 0,
-//               x: 15,
-//             }}
-//             whileInView={{
-//               opacity: 1,
-//               x: 0,
-//             }}
-//             viewport={{
-//               once: true,
-//             }}
-//             href="/portfolio"
-//             className="
-//               group
-//               flex
-//               w-fit
-//               items-center
-//               gap-3
-//               rounded-full
-//               border
-//               border-white/10
-//               bg-white/[0.03]
-//               px-4
-//               py-2.5
-//               text-xs
-//               text-slate-400
-//               transition-all
-//               duration-300
-//               hover:border-blue-400/30
-//               hover:bg-blue-500/10
-//               hover:text-white
-//             "
-//           >
-//             View all projects
-
-//             <span
-//               className="
-//                 flex
-//                 h-6
-//                 w-6
-//                 items-center
-//                 justify-center
-//                 rounded-full
-//                 bg-white/10
-//                 transition-transform
-//                 duration-300
-//                 group-hover:rotate-45
-//               "
-//             >
-//               <FiArrowUpRight size={12} />
-//             </span>
-//           </motion.a>
-
-//         </div>
-
-//         {/* ===================================================
-//             CATEGORY NAVIGATION
-//         =================================================== */}
-
-//         <div
-//           className="
-//             mb-5
-//             flex
-//             items-center
-//             justify-between
-//             gap-4
-//           "
-//         >
-
-//           <div
-//             className="
-//               flex
-//               max-w-full
-//               gap-1
-//               overflow-x-auto
-//               pb-1
-//               scrollbar-hide
-//             "
-//           >
-//             {categories.map((item) => {
-//               const active = category === item;
-
-//               return (
-//                 <button
-//                   key={item}
-//                   type="button"
-//                   onClick={() =>
-//                     changeCategory(item)
-//                   }
-//                   className="
-//                     relative
-//                     shrink-0
-//                     rounded-full
-//                     px-4
-//                     py-2
-//                     text-[10px]
-//                     font-medium
-//                     transition-colors
-//                     duration-300
-//                     sm:px-5
-//                     sm:text-xs
-//                   "
-//                 >
-//                   {active && (
-//                     <motion.span
-//                       layoutId="activePortfolioCategory"
-//                       className="
-//                         absolute
-//                         inset-0
-//                         rounded-full
-//                         bg-white
-//                       "
-//                       transition={{
-//                         type: "spring",
-//                         stiffness: 350,
-//                         damping: 30,
-//                       }}
-//                     />
-//                   )}
-
-//                   <span
-//                     className={`
-//                       relative
-//                       z-10
-//                       ${active
-//                         ? "text-[#050912]"
-//                         : "text-slate-500 hover:text-white"
-//                       }
-//                     `}
-//                   >
-//                     {item}
-//                   </span>
-//                 </button>
-//               );
-//             })}
-//           </div>
-
-//           <div
-//             className="
-//               hidden
-//               shrink-0
-//               items-center
-//               gap-2
-//               text-[9px]
-//               uppercase
-//               tracking-[0.2em]
-//               text-slate-600
-//               sm:flex
-//             "
-//           >
-//             <FiGrid size={12} />
-
-//             {String(activeIndex + 1).padStart(2, "0")}
-
-//             <span className="text-slate-800">
-//               /
-//             </span>
-
-//             {String(filteredProjects.length).padStart(
-//               2,
-//               "0"
-//             )}
-//           </div>
-
-//         </div>
-
-//         {/* ===================================================
-//             PRODUCT WINDOW
-//         =================================================== */}
-
-//         <motion.div
-//           initial={{
-//             opacity: 0,
-//             y: 30,
-//           }}
-//           whileInView={{
-//             opacity: 1,
-//             y: 0,
-//           }}
-//           viewport={{
-//             once: true,
-//             amount: 0.15,
-//           }}
-//           transition={{
-//             duration: 0.7,
-//             ease: [0.22, 1, 0.36, 1],
-//           }}
-//           onMouseEnter={() => setIsPaused(true)}
-//           onMouseLeave={() => setIsPaused(false)}
-//           className="
-//     relative
-//     overflow-hidden
-//     rounded-[24px]
-//     border
-//     border-white/[0.08]
-//     bg-[#09111E]
-//     shadow-[0_30px_100px_rgba(0,0,0,.45)]
-//     sm:rounded-[30px]
-//     lg:rounded-[34px]
-//   "
-//         >
-
-//           {/* =================================================
-//               WINDOW TOP BAR
-//           ================================================= */}
-
-//           <div
-//             className="
-//               flex
-//               h-11
-//               items-center
-//               justify-between
-//               border-b
-//               border-white/[0.06]
-//               bg-white/[0.015]
-//               px-4
-//               sm:h-12
-//               sm:px-5
-//             "
-//           >
-
-//             <div className="flex items-center gap-1.5">
-
-//               <span className="h-2 w-2 rounded-full bg-red-400/70" />
-//               <span className="h-2 w-2 rounded-full bg-yellow-400/70" />
-//               <span className="h-2 w-2 rounded-full bg-green-400/70" />
-
-//             </div>
-
-//             <div
-//               className="
-//                 hidden
-//                 items-center
-//                 gap-2
-//                 rounded-full
-//                 border
-//                 border-white/[0.06]
-//                 bg-black/20
-//                 px-3
-//                 py-1
-//                 text-[8px]
-//                 uppercase
-//                 tracking-[0.2em]
-//                 text-slate-600
-//                 sm:flex
-//               "
-//             >
-//               <motion.span
-//                 animate={{
-//                   opacity: [0.4, 1, 0.4],
-//                 }}
-//                 transition={{
-//                   duration: 2,
-//                   repeat: Infinity,
-//                 }}
-//                 className="
-//                   h-1.5
-//                   w-1.5
-//                   rounded-full
-//                   bg-emerald-400
-//                 "
-//               />
-
-//               Auto showcase
-//             </div>
-
-//             <span
-//               className="
-//                 text-[8px]
-//                 uppercase
-//                 tracking-[0.2em]
-//                 text-slate-700
-//               "
-//             >
-//               DES / 2026
-//             </span>
-
-//           </div>
-
-//           {/* =================================================
-//               MAIN CONTENT
-//           ================================================= */}
-
-//           <div
-//             className="
-//               grid
-//               lg:grid-cols-[1.3fr_.7fr]
-//             "
-//           >
-
-//             {/* ===============================================
-//                 IMAGE
-//             =============================================== */}
-
-//             <div
-//               className="
-//                 relative
-//                 h-[280px]
-//                 overflow-hidden
-//                 border-b
-//                 border-white/[0.06]
-//                 bg-[#060D18]
-//                 sm:h-[390px]
-//                 md:h-[450px]
-//                 lg:h-[500px]
-//                 lg:border-b-0
-//                 lg:border-r
-//                 xl:h-[520px]
-//               "
-//               onMouseEnter={() => {
-//                 setIsHoveringImage(true);
-//               }}
-//               onMouseLeave={handleImageLeave}
-//             >
-
-//               {/* glow */}
-
-//               <motion.div
-//                 animate={{
-//                   scale: isHoveringImage
-//                     ? 1.2
-//                     : 1,
-//                   opacity: isHoveringImage
-//                     ? 0.4
-//                     : 0.22,
-//                 }}
-//                 transition={{
-//                   duration: 0.5,
-//                 }}
-//                 className="
-//                   absolute
-//                   left-1/2
-//                   top-1/2
-//                   h-[55%]
-//                   w-[55%]
-//                   -translate-x-1/2
-//                   -translate-y-1/2
-//                   rounded-full
-//                   bg-blue-500/30
-//                   blur-[100px]
-//                 "
-//               />
-
-//               {/* decorative circles */}
-
-//               <motion.div
-//                 animate={{
-//                   rotate: 360,
-//                 }}
-//                 transition={{
-//                   duration: 30,
-//                   repeat: Infinity,
-//                   ease: "linear",
-//                 }}
-//                 className="
-//                   pointer-events-none
-//                   absolute
-//                   left-1/2
-//                   top-1/2
-//                   h-[85%]
-//                   w-[70%]
-//                   -translate-x-1/2
-//                   -translate-y-1/2
-//                   rounded-full
-//                   border
-//                   border-dashed
-//                   border-white/[0.04]
-//                 "
-//               />
-
-//               <motion.div
-//                 animate={{
-//                   rotate: -360,
-//                 }}
-//                 transition={{
-//                   duration: 45,
-//                   repeat: Infinity,
-//                   ease: "linear",
-//                 }}
-//                 className="
-//                   pointer-events-none
-//                   absolute
-//                   left-1/2
-//                   top-1/2
-//                   h-[65%]
-//                   w-[55%]
-//                   -translate-x-1/2
-//                   -translate-y-1/2
-//                   rounded-full
-//                   border
-//                   border-white/[0.035]
-//                 "
-//               />
-
-//               {/* project counter */}
-
-//               <div
-//                 className="
-//                   absolute
-//                   left-5
-//                   top-5
-//                   z-30
-//                   flex
-//                   items-center
-//                   gap-2
-//                   text-[8px]
-//                   uppercase
-//                   tracking-[0.25em]
-//                   text-slate-500
-//                   sm:left-7
-//                   sm:top-7
-//                 "
-//               >
-//                 <span className="text-blue-400">
-//                   {String(
-//                     activeIndex + 1
-//                   ).padStart(2, "0")}
-//                 </span>
-
-//                 <span className="h-px w-5 bg-white/10" />
-
-//                 PROJECT
-//               </div>
-
-//               {/* image */}
-
-//               <AnimatePresence mode="wait">
-//                 <motion.div
-//                   key={activeProject.slug}
-//                   initial={{
-//                     opacity: 0,
-//                     x: 80,
-//                     scale: 0.9,
-//                     rotate: 1,
-//                   }}
-//                   animate={{
-//                     opacity: 1,
-//                     x: 0,
-//                     scale: 1,
-//                     rotate: 0,
-//                   }}
-//                   exit={{
-//                     opacity: 0,
-//                     x: -80,
-//                     scale: 0.92,
-//                     rotate: -1,
-//                   }}
-//                   transition={{
-//                     duration: 0.7,
-//                     ease: [0.22, 1, 0.36, 1],
-//                   }}
-//                   className="
-//                     absolute
-//                     inset-[10%]
-//                     sm:inset-[11%]
-//                   "
-//                   style={{
-//                     x: imageX,
-//                     y: imageY,
-//                     rotateX: imageRotateX,
-//                     rotateY: imageRotateY,
-//                     transformPerspective: 1200,
-//                   }}
-//                 >
-
-//                   <motion.div
-//                     animate={{
-//                       boxShadow: isHoveringImage
-//                         ? "0 30px 90px rgba(37,99,235,.30)"
-//                         : "0 25px 70px rgba(0,0,0,.45)",
-//                     }}
-//                     className="
-//                       relative
-//                       h-full
-//                       w-full
-//                       overflow-hidden
-//                       rounded-[18px]
-//                       border
-//                       border-white/10
-//                       bg-slate-900
-//                       sm:rounded-[24px]
-//                     "
-//                   >
-
-//                     <motion.img
-//                       src={activeProject.image}
-//                       alt={activeProject.title}
-//                       className="
-//                         h-full
-//                         w-full
-//                         object-cover
-//                       "
-//                       animate={{
-//                         scale: isHoveringImage
-//                           ? 1.06
-//                           : 1,
-//                       }}
-//                       transition={{
-//                         duration: 0.7,
-//                       }}
-//                     />
-
-//                     <div
-//                       className="
-//                         absolute
-//                         inset-0
-//                         bg-gradient-to-t
-//                         from-black/50
-//                         via-transparent
-//                         to-white/[0.04]
-//                       "
-//                     />
-
-//                     {/* floating category */}
-
-//                     <div
-//                       className="
-//                         absolute
-//                         bottom-4
-//                         left-4
-//                         rounded-full
-//                         border
-//                         border-white/10
-//                         bg-black/40
-//                         px-3
-//                         py-1.5
-//                         text-[8px]
-//                         uppercase
-//                         tracking-[0.18em]
-//                         text-white/70
-//                         backdrop-blur-xl
-//                         sm:bottom-5
-//                         sm:left-5
-//                       "
-//                     >
-//                       {activeProject.category ||
-//                         "Project"}
-//                     </div>
-
-//                     {/* image number */}
-
-//                     <motion.div
-//                       animate={{
-//                         y: [0, -5, 0],
-//                       }}
-//                       transition={{
-//                         duration: 3,
-//                         repeat: Infinity,
-//                         ease: "easeInOut",
-//                       }}
-//                       className="
-//                         absolute
-//                         right-4
-//                         top-4
-//                         flex
-//                         h-8
-//                         w-8
-//                         items-center
-//                         justify-center
-//                         rounded-full
-//                         border
-//                         border-white/10
-//                         bg-black/30
-//                         text-[9px]
-//                         text-white/70
-//                         backdrop-blur-xl
-//                         sm:right-5
-//                         sm:top-5
-//                       "
-//                     >
-//                       {String(
-//                         activeIndex + 1
-//                       ).padStart(2, "0")}
-//                     </motion.div>
-
-//                   </motion.div>
-
-//                 </motion.div>
-//               </AnimatePresence>
-
-//               {/* bottom progress */}
-
-//               <div
-//                 className="
-//                   absolute
-//                   bottom-5
-//                   left-5
-//                   right-5
-//                   z-30
-//                   sm:bottom-6
-//                   sm:left-7
-//                   sm:right-7
-//                 "
-//               >
-
-//                 <div className="mb-2 flex items-center justify-between text-[8px] uppercase tracking-[0.18em] text-slate-600">
-//                   <span>
-//                     {isPaused
-//                       ? "Paused"
-//                       : "Auto playing"}
-//                   </span>
-
-//                   <span>
-//                     04 SEC
-//                   </span>
-//                 </div>
-
-//                 <div className="h-[2px] overflow-hidden rounded-full bg-white/[0.08]">
-
-//                   <motion.div
-//                     key={activeProject.slug}
-//                     initial={{
-//                       width: "0%",
-//                     }}
-//                     animate={{
-//                       width: isPaused
-//                         ? `${progress}%`
-//                         : "100%",
-//                     }}
-//                     transition={{
-//                       duration: isPaused
-//                         ? 0
-//                         : 4,
-//                       ease: "linear",
-//                     }}
-//                     className="
-//                       h-full
-//                       rounded-full
-//                       bg-blue-400
-//                     "
-//                   />
-
-//                 </div>
-
-//               </div>
-
-//             </div>
-
-//             {/* ===============================================
-//                 INFORMATION
-//             =============================================== */}
-
-//             <div
-//               className="
-//                 flex
-//                 min-h-[390px]
-//                 flex-col
-//                 p-5
-//                 sm:min-h-[430px]
-//                 sm:p-7
-//                 lg:min-h-0
-//                 lg:p-8
-//                 xl:p-9
-//               "
-//             >
-
-//               <AnimatePresence
-//                 mode="wait"
-//               >
-//                 <motion.div
-//                   key={activeProject.slug}
-//                   initial={{
-//                     opacity: 0,
-//                     y: 20,
-//                   }}
-//                   animate={{
-//                     opacity: 1,
-//                     y: 0,
-//                   }}
-//                   exit={{
-//                     opacity: 0,
-//                     y: -15,
-//                   }}
-//                   transition={{
-//                     duration: 0.45,
-//                   }}
-//                   className="
-//                     flex
-//                     h-full
-//                     flex-col
-//                   "
-//                 >
-
-//                   {/* metadata */}
-
-//                   <div
-//                     className="
-//                       mb-7
-//                       grid
-//                       grid-cols-2
-//                       gap-2
-//                     "
-//                   >
-
-//                     <div
-//                       className="
-//                         rounded-xl
-//                         border
-//                         border-white/[0.06]
-//                         bg-white/[0.025]
-//                         p-3
-//                       "
-//                     >
-//                       <FiUser
-//                         size={13}
-//                         className="mb-2 text-slate-600"
-//                       />
-
-//                       <p
-//                         className="
-//                           mb-1
-//                           text-[7px]
-//                           uppercase
-//                           tracking-[0.18em]
-//                           text-slate-600
-//                         "
-//                       >
-//                         Client
-//                       </p>
-
-//                       <p
-//                         className="
-//                           truncate
-//                           text-[10px]
-//                           text-slate-300
-//                         "
-//                       >
-//                         {activeProject.client}
-//                       </p>
-//                     </div>
-
-//                     <div
-//                       className="
-//                         rounded-xl
-//                         border
-//                         border-white/[0.06]
-//                         bg-white/[0.025]
-//                         p-3
-//                       "
-//                     >
-//                       <FiCalendar
-//                         size={13}
-//                         className="mb-2 text-slate-600"
-//                       />
-
-//                       <p
-//                         className="
-//                           mb-1
-//                           text-[7px]
-//                           uppercase
-//                           tracking-[0.18em]
-//                           text-slate-600
-//                         "
-//                       >
-//                         Delivered
-//                       </p>
-
-//                       <p
-//                         className="
-//                           text-[10px]
-//                           text-slate-300
-//                         "
-//                       >
-//                         {activeProject.date}
-//                       </p>
-//                     </div>
-
-//                   </div>
-
-//                   {/* title */}
-
-//                   <div>
-
-//                     <div
-//                       className="
-//                         mb-3
-//                         flex
-//                         items-center
-//                         gap-2
-//                       "
-//                     >
-//                       <span className="h-px w-5 bg-blue-400" />
-
-//                       <span
-//                         className="
-//                           text-[8px]
-//                           uppercase
-//                           tracking-[0.22em]
-//                           text-blue-400
-//                         "
-//                       >
-//                         {activeProject.category ||
-//                           "Featured"}
-//                       </span>
-//                     </div>
-
-//                     <h3
-//                       className="
-//                         text-2xl
-//                         font-semibold
-//                         leading-[1.05]
-//                         tracking-[-0.035em]
-//                         sm:text-3xl
-//                         xl:text-[38px]
-//                       "
-//                       style={{
-//                         fontFamily:
-//                           "'Fraunces', serif",
-//                       }}
-//                     >
-//                       {activeProject.title}
-//                     </h3>
-
-//                     <p
-//                       className="
-//                         mt-4
-//                         text-[11px]
-//                         leading-6
-//                         text-slate-400
-//                         sm:text-xs
-//                         sm:leading-6
-//                       "
-//                     >
-//                       {activeProject.body}
-//                     </p>
-
-//                   </div>
-
-//                   {/* technologies */}
-
-//                   <div className="mt-6">
-
-//                     <div
-//                       className="
-//                         mb-3
-//                         flex
-//                         items-center
-//                         gap-2
-//                         text-[8px]
-//                         uppercase
-//                         tracking-[0.2em]
-//                         text-slate-600
-//                       "
-//                     >
-//                       <FiLayers size={11} />
-
-//                       Technology
-//                     </div>
-
-//                     <div className="flex flex-wrap gap-1.5">
-
-//                       {activeProject.technologies?.map(
-//                         (technology, index) => (
-//                           <motion.span
-//                             key={technology}
-//                             initial={{
-//                               opacity: 0,
-//                               scale: 0.8,
-//                             }}
-//                             animate={{
-//                               opacity: 1,
-//                               scale: 1,
-//                             }}
-//                             transition={{
-//                               delay:
-//                                 index * 0.06,
-//                             }}
-//                             whileHover={{
-//                               y: -3,
-//                               scale: 1.04,
-//                             }}
-//                             className="
-//                               cursor-default
-//                               rounded-full
-//                               border
-//                               border-white/[0.07]
-//                               bg-white/[0.025]
-//                               px-2.5
-//                               py-1.5
-//                               text-[8px]
-//                               text-slate-400
-//                               transition-colors
-//                               hover:border-blue-400/30
-//                               hover:text-blue-300
-//                             "
-//                           >
-//                             {technology}
-//                           </motion.span>
-//                         )
-//                       )}
-
-//                     </div>
-
-//                   </div>
-
-//                   {/* bottom controls */}
-
-//                   <div
-//                     className="
-//                       mt-auto
-//                       pt-6
-//                     "
-//                   >
-
-//                     <div className="mb-5 h-px bg-white/[0.06]" />
-
-//                     <div
-//                       className="
-//                         flex
-//                         items-center
-//                         justify-between
-//                         gap-3
-//                       "
-//                     >
-
-//                       <motion.button
-//                         type="button"
-//                         onClick={openPortfolio}
-//                         whileHover={{
-//                           scale: 1.03,
-//                         }}
-//                         whileTap={{
-//                           scale: 0.97,
-//                         }}
-//                         className="
-//                           group
-//                           flex
-//                           items-center
-//                           gap-2.5
-//                           text-xs
-//                           font-medium
-//                           text-white
-//                         "
-//                       >
-
-//                         <span
-//                           className="
-//                             flex
-//                             h-9
-//                             w-9
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             bg-white
-//                             text-[#050912]
-//                             transition-transform
-//                             duration-300
-//                             group-hover:rotate-45
-//                           "
-//                         >
-//                           <FiExternalLink
-//                             size={13}
-//                           />
-//                         </span>
-
-//                         Explore project
-//                       </motion.button>
-
-//                       <div className="flex gap-1.5">
-
-//                         <motion.button
-//                           type="button"
-//                           onClick={previousProject}
-//                           whileHover={{
-//                             scale: 1.08,
-//                           }}
-//                           whileTap={{
-//                             scale: 0.9,
-//                           }}
-//                           className="
-//                             flex
-//                             h-9
-//                             w-9
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             border
-//                             border-white/10
-//                             bg-white/[0.025]
-//                             text-slate-400
-//                             transition-colors
-//                             hover:border-white/20
-//                             hover:text-white
-//                           "
-//                           aria-label="Previous project"
-//                         >
-//                           <FiChevronLeft
-//                             size={15}
-//                           />
-//                         </motion.button>
-
-//                         <motion.button
-//                           type="button"
-//                           onClick={nextProject}
-//                           whileHover={{
-//                             scale: 1.08,
-//                           }}
-//                           whileTap={{
-//                             scale: 0.9,
-//                           }}
-//                           className="
-//                             flex
-//                             h-9
-//                             w-9
-//                             items-center
-//                             justify-center
-//                             rounded-full
-//                             border
-//                             border-blue-400/20
-//                             bg-blue-500/10
-//                             text-blue-300
-//                             transition-colors
-//                             hover:border-blue-400/40
-//                             hover:bg-blue-500/20
-//                             hover:text-white
-//                           "
-//                           aria-label="Next project"
-//                         >
-//                           <FiChevronRight
-//                             size={15}
-//                           />
-//                         </motion.button>
-
-//                       </div>
-
-//                     </div>
-
-//                   </div>
-
-//                 </motion.div>
-//               </AnimatePresence>
-
-//             </div>
-
-//           </div>
-
-//           {/* =================================================
-//               PROJECT SELECTOR
-//           ================================================= */}
-
-//           <div
-//             className="
-//               grid
-//               grid-cols-2
-//               border-t
-//               border-white/[0.06]
-//               sm:grid-cols-4
-//             "
-//           >
-
-//             {filteredProjects.map(
-//               (project, index) => {
-//                 const active =
-//                   index === activeIndex;
-
-//                 return (
-//                   <button
-//                     key={project.slug}
-//                     type="button"
-//                     onClick={() =>
-//                       selectProject(index)
-//                     }
-//                     className={`
-//                       group
-//                       relative
-//                       flex
-//                       min-w-0
-//                       items-center
-//                       gap-2
-//                       border-r
-//                       border-white/[0.06]
-//                       px-3
-//                       py-3
-//                       text-left
-//                       transition-all
-//                       duration-300
-//                       last:border-r-0
-//                       sm:px-4
-//                       ${active
-//                         ? "bg-blue-500/[0.07]"
-//                         : "hover:bg-white/[0.025]"
-//                       }
-//                     `}
-//                   >
-
-//                     {active && (
-//                       <motion.div
-//                         layoutId="activeProjectLine"
-//                         className="
-//                           absolute
-//                           left-0
-//                           right-0
-//                           top-0
-//                           h-[2px]
-//                           bg-blue-400
-//                         "
-//                       />
-//                     )}
-
-//                     <div
-//                       className="
-//                         relative
-//                         h-8
-//                         w-8
-//                         shrink-0
-//                         overflow-hidden
-//                         rounded-lg
-//                         bg-slate-900
-//                         sm:h-9
-//                         sm:w-9
-//                       "
-//                     >
-//                       <img
-//                         src={project.image}
-//                         alt=""
-//                         className="
-//                           h-full
-//                           w-full
-//                           object-cover
-//                           opacity-60
-//                           transition-transform
-//                           duration-500
-//                           group-hover:scale-110
-//                         "
-//                       />
-//                     </div>
-
-//                     <div className="min-w-0">
-
-//                       <div
-//                         className="
-//                           mb-0.5
-//                           flex
-//                           items-center
-//                           gap-1.5
-//                         "
-//                       >
-//                         <span
-//                           className={`
-//                             text-[7px]
-//                             ${active
-//                               ? "text-blue-400"
-//                               : "text-slate-700"
-//                             }
-//                           `}
-//                         >
-//                           {String(
-//                             index + 1
-//                           ).padStart(2, "0")}
-//                         </span>
-
-//                         <span
-//                           className="
-//                             hidden
-//                             text-[6px]
-//                             uppercase
-//                             tracking-[0.15em]
-//                             text-slate-700
-//                             sm:block
-//                           "
-//                         >
-//                           {project.category}
-//                         </span>
-//                       </div>
-
-//                       <p
-//                         className={`
-//                           truncate
-//                           text-[8px]
-//                           font-medium
-//                           sm:text-[9px]
-//                           ${active
-//                             ? "text-white"
-//                             : "text-slate-500"
-//                           }
-//                         `}
-//                       >
-//                         {project.title}
-//                       </p>
-
-//                     </div>
-
-//                     <FiArrowUpRight
-//                       size={11}
-//                       className={`
-//                         ml-auto
-//                         hidden
-//                         shrink-0
-//                         transition-all
-//                         duration-300
-//                         sm:block
-//                         ${active
-//                           ? "text-blue-400"
-//                           : "text-slate-700 group-hover:text-slate-400"
-//                         }
-//                       `}
-//                     />
-
-//                   </button>
-//                 );
-//               }
-//             )}
-
-//           </div>
-
-//         </motion.div>
-
-//         {/* ===================================================
-//             AUTO SLIDE STATUS
-//         =================================================== */}
-
-//         <div
-//           className="
-//             mt-4
-//             flex
-//             items-center
-//             justify-between
-//             text-[8px]
-//             uppercase
-//             tracking-[0.2em]
-//             text-slate-700
-//           "
-//         >
-
-//           <div className="flex items-center gap-2">
-
-//             <motion.span
-//               animate={{
-//                 opacity: isPaused
-//                   ? 0.3
-//                   : [0.3, 1, 0.3],
-//               }}
-//               transition={{
-//                 duration: 1.5,
-//                 repeat: isPaused
-//                   ? 0
-//                   : Infinity,
-//               }}
-//               className="
-//                 h-1.5
-//                 w-1.5
-//                 rounded-full
-//                 bg-blue-400
-//               "
-//             />
-
-//             {isPaused
-//               ? "Showcase paused"
-//               : "Automatically rotating"}
-//           </div>
-
-//           <span>
-//             {activeIndex + 1} /{" "}
-//             {filteredProjects.length}
-//           </span>
-
-//         </div>
-
-//       </div>
-
-//       {/* =====================================================
-//           FONT + SCROLLBAR
-//       ===================================================== */}
-
-//       <style>
-//         {`
-//           @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap');
-
-//           .scrollbar-hide::-webkit-scrollbar {
-//             display: none;
-//           }
-
-//           .scrollbar-hide {
-//             -ms-overflow-style: none;
-//             scrollbar-width: none;
-//           }
-//         `}
-//       </style>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
+  FiArrowDown,
+  FiArrowUp,
   FiArrowUpRight,
-  FiChevronLeft,
-  FiChevronRight,
-  FiExternalLink,
   FiLayers,
-  FiCalendar,
   FiUser,
-  FiGrid,
+  FiCalendar,
+  FiExternalLink,
+  FiHeart,
+  FiMessageCircle,
+  FiX,
+  FiSend,
+  FiCheck,
 } from "react-icons/fi";
 
-const categories = ["All", "Web", "App", "UI/UX", "Branding"];
+/* =========================================================
+   THEME
+========================================================= */
 
-const SAMPLE_PROJECTS = [
+const BLUE = "#2E6FFF";
+const BLUE_SOFT = "#5C8CFF";
+
+const ANIMATION_DURATION = 0.68;
+
+const LAYER_TOP = 18;
+const LAYER_LEFT = 15;
+const LAYER_RIGHT = 15;
+
+const MOBILE_BREAKPOINT = 768;
+const SWIPE_THRESHOLD = 45;
+const WHEEL_THRESHOLD = 8;
+
+/* =========================================================
+   PROJECT DATA
+========================================================= */
+
+const projects = [
   {
-    slug: "tamil-printer",
+    id: 1,
+    index: "01",
+    category: "APP",
     title: "Tamil Printer – Invoice Application",
-    body:
+    description:
       "Tamil Printer – Invoice Application is a simple and efficient billing app that helps businesses create, manage, and print professional invoices quickly. Designed for speed and accuracy, it streamlines daily billing operations and keeps your financial records organized with ease.",
+    technologies: ["React", "Electron JS", "MySQL"],
     client: "Tamilarasi K",
     date: "Feb 2026",
-    technologies: ["React", "Electron JS", "MySQL"],
     image: "/images/portfolio/tamil-printer.png",
-    category: "App",
+    githubUrl: "#",
   },
+
   {
-    slug: "kings-mechanical-symposium",
+    id: 2,
+    index: "02",
+    category: "WEB",
     title: "Kings-Mechanical Symposium 2k25",
-    body:
+    description:
       "A modern event platform created for Kings Mechanical Symposium with an interactive experience for students, participants, and organizers.",
+    technologies: ["React", "Node.js", "MongoDB"],
     client: "Mech Dept - Kings",
     date: "Apr 2025",
-    technologies: ["React", "Node.js", "MongoDB"],
     image: "/images/portfolio/mechancientz.png",
-    category: "Web",
+    githubUrl: "#",
   },
+
   {
-    slug: "sm-manpower-service",
+    id: 3,
+    index: "03",
+    category: "WEB",
     title: "SM Manpower Service",
-    body:
+    description:
       "A professional manpower service platform designed to present services, connect clients, and provide a clean digital experience.",
+    technologies: ["React", "MongoDB", "Firebase"],
     client: "Abi Shek",
     date: "Apr 2026",
-    technologies: ["React", "MongoDB", "Firebase"],
     image: "/images/portfolio/sm-manpower.png",
-    category: "Web",
+    githubUrl: "#",
   },
+
   {
-    slug: "kings-hall-booking-software",
+    id: 4,
+    index: "04",
+    category: "APP",
     title: "Kings Hall Booking Software",
-    body:
+    description:
       "A dedicated booking platform designed to simplify hall reservations and manage booking information through a structured digital workflow.",
+    technologies: ["React", "Node.js", "MongoDB"],
     client: "Kings College",
     date: "Dec 2024",
-    technologies: ["React", "Node.js", "MongoDB"],
     image: "/images/portfolio/kings-hall.png",
-    category: "App",
+    githubUrl: "#",
+  },
+
+  {
+    id: 5,
+    index: "05",
+    category: "UI/UX",
+    title: "Digital Product Experience",
+    description:
+      "A modern digital product experience focused on intuitive interfaces, structured interactions and a clean user journey across multiple screens.",
+    technologies: ["React", "Tailwind CSS", "Firebase"],
+    client: "DES",
+    date: "2026",
+    image: "/images/portfolio/product.png",
+    githubUrl: "#",
   },
 ];
 
-export default function PortfolioTeaser({
-  projects = SAMPLE_PROJECTS,
-}) {
-  const sectionRef = useRef(null);
+/* =========================================================
+   PROJECT DETAILS / COMMENT POPUP
+========================================================= */
 
-  const [category, setCategory] = useState("All");
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [direction, setDirection] = useState(1);
-
-  const filteredProjects = useMemo(() => {
-    if (!projects?.length) return [];
-
-    if (category === "All") {
-      return projects;
-    }
-
-    return projects.filter(
-      (project) => project.category === category
-    );
-  }, [projects, category]);
+function ProjectDetailsPopup({ project, onClose }) {
+  const [comment, setComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (
-      activeIndex >= filteredProjects.length &&
-      filteredProjects.length > 0
-    ) {
-      setActiveIndex(0);
-    }
-  }, [filteredProjects.length, activeIndex]);
+    if (!project) return;
 
-  const activeProject =
-    filteredProjects.length > 0
-      ? filteredProjects[activeIndex]
-      : null;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow =
+      document.documentElement.style.overflow;
 
-  /*
-   * =========================================================
-   * AUTO ROTATION
-   *
-   * One project at a time.
-   * No bounce.
-   * No scale bounce.
-   * No spring.
-   * =========================================================
-   */
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow =
+        previousHtmlOverflow;
+    };
+  }, [project]);
 
   useEffect(() => {
-    if (filteredProjects.length <= 1 || isPaused) {
-      return;
-    }
+    if (!project) return;
 
-    const timer = setInterval(() => {
-      setDirection(1);
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
 
-      setActiveIndex((current) => {
-        return (current + 1) % filteredProjects.length;
-      });
-    }, 3000);
+    window.addEventListener("keydown", handleEscape);
 
-    return () => clearInterval(timer);
-  }, [filteredProjects.length, isPaused]);
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [project, onClose]);
 
-  function nextProject() {
-    if (filteredProjects.length <= 1) return;
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    setDirection(1);
+    if (!comment.trim()) return;
 
-    setActiveIndex(
-      (current) =>
-        (current + 1) % filteredProjects.length
-    );
-  }
+    setSubmitted(true);
 
-  function previousProject() {
-    if (filteredProjects.length <= 1) return;
+    setTimeout(() => {
+      setComment("");
+      setSubmitted(false);
+      onClose();
+    }, 1500);
+  };
 
-    setDirection(-1);
-
-    setActiveIndex((current) =>
-      current === 0
-        ? filteredProjects.length - 1
-        : current - 1
-    );
-  }
-
-  function selectProject(index) {
-    setDirection(index > activeIndex ? 1 : -1);
-    setActiveIndex(index);
-  }
-
-  function changeCategory(nextCategory) {
-    setCategory(nextCategory);
-    setActiveIndex(0);
-    setDirection(1);
-  }
-
-  function openPortfolio() {
-    window.location.href = "/portfolio";
-  }
-
-  if (!activeProject) {
-    return null;
-  }
+  if (!project) return null;
 
   return (
-    <section
-      ref={sectionRef}
-      className="
-        relative
-        overflow-hidden
-        bg-[#050912]
-        px-4
-        py-16
-        text-white
-        sm:px-6
-        lg:px-8
-        lg:py-20
-      "
-    >
-      {/* =====================================================
-          BACKGROUND
-      ===================================================== */}
-
-      <div className="pointer-events-none absolute inset-0">
+    <AnimatePresence>
+      <motion.div
+        className="
+          fixed
+          inset-0
+          z-[99999]
+          flex
+          items-center
+          justify-center
+          bg-black/75
+          p-4
+          backdrop-blur-md
+        "
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        onMouseDown={(event) => {
+          if (event.target === event.currentTarget) {
+            onClose();
+          }
+        }}
+      >
         <motion.div
+          initial={{
+            opacity: 0,
+            scale: 0.92,
+            y: 25,
+          }}
           animate={{
-            scale: [1, 1.08, 1],
-            opacity: [0.18, 0.28, 0.18],
+            opacity: 1,
+            scale: 1,
+            y: 0,
+          }}
+          exit={{
+            opacity: 0,
+            scale: 0.95,
+            y: 20,
           }}
           transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 0.4,
+            ease: [0.22, 1, 0.36, 1],
           }}
+          onMouseDown={(event) => event.stopPropagation()}
           className="
-            absolute
-            left-[10%]
-            top-[10%]
-            h-[350px]
-            w-[350px]
-            rounded-full
-            bg-blue-600/20
-            blur-[120px]
-          "
-        />
-
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-            absolute
-            bottom-[-100px]
-            right-[-80px]
-            h-[400px]
-            w-[400px]
-            rounded-full
-            bg-cyan-500/10
-            blur-[130px]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            inset-0
-            opacity-[0.025]
-          "
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      {/* =====================================================
-          CONTAINER
-      ===================================================== */}
-
-      <div className="relative mx-auto max-w-7xl">
-
-        {/* ===================================================
-            HEADER
-        =================================================== */}
-
-        <div
-          className="
-            mb-8
-            flex
-            flex-col
-            gap-6
-            lg:flex-row
-            lg:items-end
-            lg:justify-between
+            relative
+            w-full
+            max-w-md
+            overflow-hidden
+            rounded-[28px]
+            border
+            border-blue-400/20
+            bg-[#080d17]
+            px-6
+            py-8
+            text-center
+            shadow-[0_30px_100px_rgba(0,0,0,0.7)]
+            sm:px-10
+            sm:py-10
           "
         >
-          <div>
+          {/* BLUE GLOW */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-0
+              h-40
+              w-64
+              -translate-x-1/2
+              rounded-full
+              bg-blue-500/10
+              blur-[80px]
+            "
+          />
+
+          {/* GRID */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              opacity-[0.025]
+            "
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+              backgroundSize: "35px 35px",
+            }}
+          />
+
+          {/* CLOSE */}
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="
+              absolute
+              right-4
+              top-4
+              z-20
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/10
+              bg-white/[0.03]
+              text-white/40
+              transition-all
+              duration-300
+              hover:border-blue-400/40
+              hover:bg-blue-500/10
+              hover:text-white
+            "
+          >
+            <FiX size={15} />
+          </button>
+
+          {/* CONTENT */}
+
+          <div className="relative z-10">
+            {/* LOGO */}
+
             <motion.div
               initial={{
                 opacity: 0,
-                y: 10,
+                scale: 0.8,
               }}
-              whileInView={{
+              animate={{
                 opacity: 1,
-                y: 0,
+                scale: 1,
               }}
-              viewport={{
-                once: true,
+              transition={{
+                duration: 0.5,
+                delay: 0.1,
               }}
               className="
-                mb-3
+                mx-auto
+                mb-6
                 flex
+                h-16
+                w-16
                 items-center
-                gap-2
-                text-[10px]
+                justify-center
+                rounded-2xl
+                border
+                border-blue-400/20
+                bg-blue-500/[0.06]
+                p-3
+                shadow-[0_0_35px_rgba(46,111,255,0.12)]
+              "
+            >
+              <img
+                src="/images/portfolio/logo.png"
+                alt="DESFlyer"
+                className="
+                  h-full
+                  w-full
+                  object-contain
+                "
+              />
+            </motion.div>
+
+            {/* SMALL LABEL */}
+
+            <div
+              className="
+                mb-3
+                text-[8px]
+                font-bold
                 uppercase
                 tracking-[0.3em]
                 text-blue-400
               "
             >
-              <span
-                className="
-                  h-1.5
-                  w-1.5
-                  rounded-full
-                  bg-blue-400
-                "
-              />
+              YOUR FEEDBACK
+            </div>
 
-              Selected Work
-            </motion.div>
+            {/* QUESTION */}
 
-            <motion.h2
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
+            <h3
               className="
-                text-4xl
-                font-semibold
-                leading-[0.95]
-                tracking-[-0.04em]
-                sm:text-5xl
-                lg:text-6xl
+                text-2xl
+                font-bold
+                leading-tight
+                tracking-tight
+                text-white
+                sm:text-3xl
               "
-              style={{
-                fontFamily: "'Fraunces', serif",
-              }}
             >
-              Digital products
-              <br />
-
-              <span className="text-slate-600">
-                made with purpose.
+              What do you think
+              <span className="block text-white/35">
+                about this web?
               </span>
-            </motion.h2>
+            </h3>
+
+            <p
+              className="
+                mx-auto
+                mt-3
+                max-w-xs
+                text-[10px]
+                leading-5
+                text-white/30
+              "
+            >
+              Your feedback helps us make
+              the experience better.
+            </p>
+
+            {/* INPUT */}
+
+            <form
+              onSubmit={handleSubmit}
+              className="mt-7"
+            >
+              <div
+                className="
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  border-white/[0.08]
+                  bg-white/[0.025]
+                  transition-all
+                  duration-300
+                  focus-within:border-blue-400/40
+                  focus-within:bg-blue-500/[0.03]
+                "
+              >
+                <textarea
+                  value={comment}
+                  onChange={(event) =>
+                    setComment(event.target.value)
+                  }
+                  placeholder="Type your answer..."
+                  rows={4}
+                  autoFocus
+                  className="
+                    block
+                    w-full
+                    resize-none
+                    bg-transparent
+                    px-4
+                    py-4
+                    text-xs
+                    leading-5
+                    text-white
+                    outline-none
+                    placeholder:text-white/20
+                  "
+                />
+
+                <div
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    border-t
+                    border-white/[0.06]
+                    px-3
+                    py-2.5
+                  "
+                >
+                  <span
+                    className="
+                      text-[7px]
+                      tracking-[0.15em]
+                      text-white/20
+                    "
+                  >
+                    YOUR THOUGHTS
+                  </span>
+
+                  <span
+                    className="
+                      text-[7px]
+                      text-white/20
+                    "
+                  >
+                    {comment.length}/500
+                  </span>
+                </div>
+              </div>
+
+              {/* SEND */}
+
+              <button
+                type="submit"
+                disabled={!comment.trim() || submitted}
+                className="
+                  group
+                  mt-4
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  gap-2.5
+                  rounded-2xl
+                  border
+                  border-blue-400/30
+                  bg-blue-500/10
+                  px-5
+                  py-3.5
+                  text-[9px]
+                  font-bold
+                  tracking-[0.2em]
+                  text-blue-300
+                  transition-all
+                  duration-300
+                  hover:border-blue-400/60
+                  hover:bg-blue-500/20
+                  hover:text-white
+                  disabled:pointer-events-none
+                  disabled:opacity-30
+                "
+              >
+                {submitted ? (
+                  <>
+                    <FiCheck size={14} />
+                    THANK YOU
+                  </>
+                ) : (
+                  <>
+                    SEND FEEDBACK
+                    <FiSend
+                      size={13}
+                      className="
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-1
+                      "
+                    />
+                  </>
+                )}
+              </button>
+            </form>
           </div>
 
-          <motion.a
-            href="/portfolio"
-            initial={{
-              opacity: 0,
-              x: 15,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+          {/* TOP BLUE LINE */}
+
+          <div
             className="
-              group
-              flex
-              w-fit
-              items-center
-              gap-3
-              rounded-full
-              border
-              border-white/10
-              bg-white/[0.03]
-              px-4
-              py-2.5
-              text-xs
-              text-slate-400
-              transition-all
-              duration-300
-              hover:border-blue-400/30
-              hover:bg-blue-500/10
-              hover:text-white
+              pointer-events-none
+              absolute
+              left-0
+              right-0
+              top-0
+              h-px
             "
-          >
-            View all projects
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(46,111,255,0.8), transparent)",
+            }}
+          />
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
-            <span
-              className="
-                flex
-                h-6
-                w-6
-                items-center
-                justify-center
-                rounded-full
-                bg-white/10
-                transition-transform
-                duration-300
-                group-hover:rotate-45
-              "
-            >
-              <FiArrowUpRight size={12} />
-            </span>
-          </motion.a>
-        </div>
+/* =========================================================
+   PROJECT CARD
+========================================================= */
 
-        {/* ===================================================
-            CATEGORY
-        =================================================== */}
+function ProjectCard({ project }) {
+  return (
+    <article
+      className="
+        relative
+        h-full
+        w-full
+        overflow-hidden
+        rounded-[22px]
+        border
+      "
+      style={{
+        borderColor: "rgba(46,111,255,0.55)",
+        background:
+          "linear-gradient(145deg, rgba(7,19,45,0.98) 0%, rgba(3,8,20,0.99) 100%)",
+        boxShadow:
+          "0 25px 80px rgba(0,0,0,0.65), 0 0 55px rgba(46,111,255,0.13)",
+      }}
+    >
+      {/* BLUE GLOW */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-40
+          -top-40
+          h-[420px]
+          w-[420px]
+          rounded-full
+          blur-3xl
+        "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(46,111,255,0.20), transparent 68%)",
+        }}
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          -left-40
+          h-[350px]
+          w-[350px]
+          rounded-full
+          blur-3xl
+        "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(92,140,255,0.09), transparent 68%)",
+        }}
+      />
+
+      {/* GRID */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.035]
+        "
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      {/* CONTENT */}
+
+      <div
+        className="
+          relative
+          z-10
+          grid
+          h-full
+          grid-cols-1
+          md:grid-cols-[1.15fr_0.85fr]
+        "
+      >
+        {/* LEFT */}
 
         <div
           className="
-            mb-6
             flex
-            items-center
-            justify-between
-            gap-4
+            min-h-0
+            flex-col
+            p-4
+            sm:p-6
+            lg:p-7
+          "
+        >
+          {/* CATEGORY */}
+
+          <div className="mb-3 flex items-center gap-3 sm:mb-4">
+            <span
+              className="
+                text-[9px]
+                font-medium
+                tracking-[0.25em]
+              "
+              style={{
+                fontFamily:
+                  "'JetBrains Mono', monospace",
+                color: BLUE_SOFT,
+              }}
+            >
+              {project.index}
+            </span>
+
+            <span
+              className="h-px w-7"
+              style={{
+                background:
+                  "rgba(46,111,255,0.4)",
+              }}
+            />
+
+            <span
+              className="
+                truncate
+                text-[8px]
+                tracking-[0.16em]
+                text-white/40
+              "
+              style={{
+                fontFamily:
+                  "'JetBrains Mono', monospace",
+              }}
+            >
+              {project.category}
+            </span>
+          </div>
+
+          {/* TITLE */}
+
+          <h2
+            className="
+              max-w-2xl
+              text-xl
+              leading-[0.98]
+              text-[#F3F7FF]
+              sm:text-3xl
+              lg:text-4xl
+                            mt-5
+
+            "
+            style={{
+              fontFamily:
+                "'Anton', sans-serif",
+            }}
+          >
+            {project.title}
+          </h2>
+
+          {/* DESCRIPTION */}
+
+          <p
+            className="
+              max-w-xl
+              text-[10px]
+              leading-5
+              text-white/45
+              sm:mt-4
+              sm:text-xs
+              sm:leading-6
+            "
+            style={{
+              fontFamily:
+                "'Inter', sans-serif",
+            }}
+          >
+            {project.description}
+          </p>
+
+          {/* TECHNOLOGY */}
+
+          <div className="mt-4 sm:mt-5">
+            <div
+              className="
+              
+                mb-2
+                flex
+                items-center
+                gap-2
+                text-[8px]
+                uppercase
+                tracking-[0.2em]
+                text-white/30
+              "
+              style={{
+                fontFamily:
+                  "'JetBrains Mono', monospace",
+              }}
+            >
+              <FiLayers size={11} />
+
+              Technology
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              {project.technologies.map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="
+                      rounded-full
+                      border
+                      px-2
+                      py-1
+                      mt-3
+                      text-[7px]
+                      font-medium
+                      tracking-wider
+                      text-white/55
+                      sm:px-2.5
+                      sm:py-1.5
+                      sm:text-[8px]
+                    "
+                    style={{
+                      fontFamily:
+                        "'JetBrains Mono', monospace",
+                      borderColor:
+                        "rgba(255,255,255,0.10)",
+                      background:
+                        "rgba(46,111,255,0.025)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* CLIENT + DATE */}
+
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5">
+            <div
+              className="
+                rounded-xl
+                border
+                border-white/[0.06]
+                bg-white/[0.02]
+                p-2.5
+                sm:p-3
+                mt-2
+              "
+            >
+              <FiUser
+                size={12}
+                className="mb-1.5 text-blue-400 sm:mb-2"
+              />
+
+              <p
+                className="
+                  mb-1
+                  text-[6px]
+                  uppercase
+                  tracking-[0.18em]
+                  text-white/25
+                  sm:text-[7px]
+                "
+              >
+                Client
+              </p>
+
+              <p className="truncate text-[8px] text-white/65 sm:text-[9px]">
+                {project.client}
+              </p>
+            </div>
+
+            <div
+              className="
+                rounded-xl
+                border
+                border-white/[0.06]
+                bg-white/[0.02]
+                p-2.5
+                sm:p-3
+              "
+            >
+              <FiCalendar
+                size={12}
+                className="mb-1.5 text-blue-400 sm:mb-2"
+              />
+
+              <p
+                className="
+                  mb-1
+                  text-[6px]
+                  uppercase
+                  tracking-[0.18em]
+                  text-white/25
+                  sm:text-[7px]
+                "
+              >
+                Delivered
+              </p>
+
+              <p className="text-[8px] text-white/65 sm:text-[9px]">
+                {project.date}
+              </p>
+            </div>
+          </div>
+
+          {/* VIEW */}
+
+          <div className="mt-auto pt-4 sm:pt-5">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) =>
+                event.stopPropagation()
+              }
+              className="
+                group
+                flex
+                w-fit
+                items-center
+                gap-2
+                text-[8px]
+                font-medium
+                tracking-[0.12em]
+                text-white/75
+                transition-all
+                duration-300
+                hover:text-white
+                sm:gap-2.5
+                sm:text-[10px]
+              "
+              style={{
+                fontFamily:
+                  "'JetBrains Mono', monospace",
+              }}
+            >
+              <span
+                className="
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white
+                  text-[#050912]
+                  transition-transform
+                  duration-300
+                  group-hover:rotate-45
+                  sm:h-9
+                  sm:w-9
+                "
+              >
+                <FiExternalLink size={12} />
+              </span>
+
+              VIEW PROJECT
+
+              <FiArrowUpRight
+                size={12}
+                className="
+                  text-blue-400
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-1
+                "
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT IMAGE */}
+
+        <div
+          className="
+            relative
+            min-h-[170px]
+            overflow-hidden
+            border-t
+            border-white/[0.06]
+            bg-[#060D18]
+            sm:min-h-[220px]
+            md:min-h-0
+            md:border-l
+            md:border-t-0
           "
         >
           <div
             className="
-              flex
-              max-w-full
-              gap-1
-              overflow-x-auto
-              pb-1
-              scrollbar-hide
+              pointer-events-none
+              absolute
+              left-1/2
+              top-1/2
+              h-[60%]
+              w-[60%]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-blue-500/20
+              blur-[100px]
             "
-          >
-            {categories.map((item) => {
-              const active = category === item;
-
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() =>
-                    changeCategory(item)
-                  }
-                  className="
-                    relative
-                    shrink-0
-                    rounded-full
-                    px-4
-                    py-2
-                    text-xs
-                  "
-                >
-                  {active && (
-                    <motion.span
-                      layoutId="portfolioCategory"
-                      className="
-                        absolute
-                        inset-0
-                        rounded-full
-                        bg-white
-                      "
-                      transition={{
-                        duration: 0.3,
-                      }}
-                    />
-                  )}
-
-                  <span
-                    className={`
-                      relative
-                      z-10
-                      ${
-                        active
-                          ? "text-[#050912]"
-                          : "text-slate-500 hover:text-white"
-                      }
-                    `}
-                  >
-                    {item}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+          />
 
           <div
             className="
-              hidden
-              items-center
-              gap-2
-              text-[9px]
-              uppercase
-              tracking-[0.2em]
-              text-slate-600
-              sm:flex
+              absolute
+              inset-3
+              overflow-hidden
+              rounded-[16px]
+              border
+              border-white/[0.08]
+              bg-[#071326]
+              sm:inset-5
+              sm:rounded-[18px]
+              md:inset-6
             "
           >
-            <FiGrid size={12} />
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              draggable="false"
+              className="
+                h-full
+                w-full
+                select-none
+                object-cover
+                transition-transform
+                duration-700
+                hover:scale-[1.03]
+              "
+            />
 
-            {String(activeIndex + 1).padStart(2, "0")}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-[#020611]/70
+                via-transparent
+                to-blue-500/[0.05]
+              "
+            />
 
-            <span className="text-slate-800">
-              /
+            <div
+              className="
+                absolute
+                right-3
+                top-3
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-white/10
+                bg-black/30
+                text-[8px]
+                text-white/70
+                backdrop-blur-xl
+                sm:right-4
+                sm:top-4
+                sm:h-9
+                sm:w-9
+                sm:text-[9px]
+              "
+            >
+              {project.index}
+            </div>
+
+            <div
+              className="
+                absolute
+                bottom-3
+                left-3
+                rounded-full
+                border
+                border-white/10
+                bg-black/35
+                px-2.5
+                py-1
+                text-[6px]
+                uppercase
+                tracking-[0.18em]
+                text-white/70
+                backdrop-blur-xl
+                sm:bottom-4
+                sm:left-4
+                sm:px-3
+                sm:py-1.5
+                sm:text-[7px]
+              "
+            >
+              {project.category}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BLUE EDGE */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-0
+          right-0
+          top-0
+          h-px
+        "
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(46,111,255,0.8), transparent)",
+        }}
+      />
+    </article>
+  );
+}
+
+/* =========================================================
+   SIDE NAVIGATION
+========================================================= */
+
+function SideControls({
+  activeCard,
+  totalProjects,
+  goToProject,
+  onOpenDetails,
+}) {
+  const [liked, setLiked] = useState(false);
+
+  const isFirst = activeCard === 0;
+  const isLast =
+    activeCard === totalProjects - 1;
+
+  return (
+    <>
+      {/* =====================================================
+          LEFT — PREVIOUS / NEXT
+      ===================================================== */}
+
+      <div
+        className="
+          absolute
+          left-0
+          top-1/2
+          z-[50]
+          hidden
+          -translate-x-[calc(100%+14px)]
+          -translate-y-1/2
+          flex-col
+          gap-2
+          lg:flex
+          xl:pr-16
+        "
+      >
+        {/* PREVIOUS */}
+
+        <button
+          type="button"
+          aria-label="Previous project"
+          disabled={isFirst}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!isFirst) {
+              goToProject(activeCard - 1);
+            }
+          }}
+          className="
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/10
+            bg-[#07111f]/95
+            text-white/50
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-blue-400/60
+            hover:bg-blue-500/10
+            hover:text-blue-300
+            disabled:pointer-events-none
+            disabled:opacity-20
+          "
+        >
+          <FiArrowUp
+            size={17}
+            className="
+              transition-transform
+              duration-300
+              group-hover:-translate-y-1
+            "
+          />
+        </button>
+
+        {/* NEXT */}
+
+        <button
+          type="button"
+          aria-label="Next project"
+          disabled={isLast}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!isLast) {
+              goToProject(activeCard + 1);
+            }
+          }}
+          className="
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/10
+            bg-[#07111f]/95
+            text-white/50
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-blue-400/60
+            hover:bg-blue-500/10
+            hover:text-blue-300
+            disabled:pointer-events-none
+            disabled:opacity-20
+          "
+        >
+          <FiArrowDown
+            size={17}
+            className="
+              transition-transform
+              duration-300
+              group-hover:translate-y-1
+            "
+          />
+        </button>
+      </div>
+
+      {/* =====================================================
+          RIGHT — LIKE / COMMENT
+      ===================================================== */}
+
+      <div
+        className="
+          absolute
+          right-0
+          top-1/2
+          z-[50]
+          hidden
+          translate-x-[calc(100%+14px)]
+          -translate-y-1/2
+          flex-col
+          gap-2
+          lg:flex
+          xl:pl-16
+        "
+      >
+        {/* LIKE */}
+
+        <button
+          type="button"
+          aria-label={
+            liked
+              ? "Unlike project"
+              : "Like project"
+          }
+          aria-pressed={liked}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            setLiked((value) => !value);
+          }}
+          className={`
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            bg-[#07111f]/95
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            ${
+              liked
+                ? "border-blue-400/70 bg-blue-500/15 text-blue-300"
+                : "border-white/10 text-white/50 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-blue-300"
+            }
+          `}
+        >
+          <FiHeart
+            size={17}
+            className={`
+              transition-all
+              duration-300
+              ${
+                liked
+                  ? "scale-110 fill-blue-400"
+                  : "group-hover:scale-110"
+              }
+            `}
+          />
+        </button>
+
+        {/* COMMENT */}
+
+        <button
+          type="button"
+          aria-label="View project details and comment"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            onOpenDetails();
+          }}
+          className="
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/10
+            bg-[#07111f]/95
+            text-white/50
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-blue-400/60
+            hover:bg-blue-500/10
+            hover:text-blue-300
+          "
+        >
+          <FiMessageCircle
+            size={17}
+            className="
+              transition-transform
+              duration-300
+              group-hover:scale-110
+            "
+          />
+        </button>
+      </div>
+    </>
+  );
+}
+
+/* =========================================================
+   PROJECT STACK
+========================================================= */
+
+export default function ProjectStack() {
+  const sectionRef = useRef(null);
+
+  const activeRef = useRef(0);
+  const animatingRef = useRef(false);
+
+  const touchStartRef = useRef(null);
+  const touchStartXRef = useRef(null);
+
+  const unlockTimerRef = useRef(null);
+  const wheelResetTimerRef = useRef(null);
+
+  const [activeCard, setActiveCard] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [detailsProject, setDetailsProject] =
+    useState(null);
+
+  const prefersReducedMotion =
+    useReducedMotion();
+
+  /* =========================================================
+     KEEP ACTIVE REF IN SYNC
+  ========================================================= */
+
+  useEffect(() => {
+    activeRef.current = activeCard;
+  }, [activeCard]);
+
+  /* =========================================================
+     DEVICE CHECK
+  ========================================================= */
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(
+        window.innerWidth <
+          MOBILE_BREAKPOINT
+      );
+    };
+
+    checkDevice();
+
+    window.addEventListener(
+      "resize",
+      checkDevice
+    );
+
+    window.addEventListener(
+      "orientationchange",
+      checkDevice
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        checkDevice
+      );
+
+      window.removeEventListener(
+        "orientationchange",
+        checkDevice
+      );
+    };
+  }, []);
+
+  /* =========================================================
+     OPEN DETAILS
+  ========================================================= */
+
+  const openDetails = useCallback(
+    (project) => {
+      setDetailsProject(project);
+    },
+    []
+  );
+
+  /* =========================================================
+     CLOSE DETAILS
+  ========================================================= */
+
+  const closeDetails = useCallback(() => {
+    setDetailsProject(null);
+  }, []);
+
+  /* =========================================================
+     LOCK PAGE
+  ========================================================= */
+
+  const lockPage = useCallback(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    document.body.style.overflow =
+      "hidden";
+
+    document.documentElement.style.overflow =
+      "hidden";
+
+    document.body.style.overscrollBehavior =
+      "none";
+
+    document.documentElement.style.overscrollBehavior =
+      "none";
+  }, []);
+
+  /* =========================================================
+     UNLOCK PAGE
+  ========================================================= */
+
+  const unlockPage = useCallback(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow =
+      "";
+
+    document.body.style.overscrollBehavior =
+      "";
+
+    document.documentElement.style.overscrollBehavior =
+      "";
+  }, []);
+
+  /* =========================================================
+     CHECK WHETHER STACK IS IN VIEW
+  ========================================================= */
+
+  const isStackInView = useCallback(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return false;
+    }
+
+    const rect =
+      section.getBoundingClientRect();
+
+    const tolerance = isMobile
+      ? 45
+      : 80;
+
+    const topVisible =
+      rect.top <= tolerance &&
+      rect.top >= -tolerance;
+
+    const bottomVisible =
+      rect.bottom >=
+      window.innerHeight - tolerance;
+
+    return (
+      topVisible &&
+      bottomVisible
+    );
+  }, [isMobile]);
+
+  /* =========================================================
+     SNAP SECTION TO VIEWPORT
+  ========================================================= */
+
+  const snapToSection = useCallback(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const rect =
+      section.getBoundingClientRect();
+
+    if (
+      rect.top > -100 &&
+      rect.top < 100
+    ) {
+      window.scrollTo({
+        top:
+          window.scrollY +
+          rect.top,
+
+        behavior:
+          prefersReducedMotion
+            ? "auto"
+            : "smooth",
+      });
+    }
+  }, [prefersReducedMotion]);
+
+  /* =========================================================
+     CHANGE CARD
+  ========================================================= */
+
+  const changeCard = useCallback(
+    (direction) => {
+      if (animatingRef.current) {
+        return false;
+      }
+
+      const current =
+        activeRef.current;
+
+      const next =
+        direction > 0
+          ? Math.min(
+              current + 1,
+              projects.length - 1
+            )
+          : Math.max(
+              current - 1,
+              0
+            );
+
+      if (next === current) {
+        return false;
+      }
+
+      animatingRef.current = true;
+
+      activeRef.current = next;
+
+      setActiveCard(next);
+
+      window.clearTimeout(
+        unlockTimerRef.current
+      );
+
+      unlockTimerRef.current =
+        window.setTimeout(
+          () => {
+            animatingRef.current =
+              false;
+          },
+          prefersReducedMotion
+            ? 150
+            : 700
+        );
+
+      return true;
+    },
+    [prefersReducedMotion]
+  );
+
+  /* =========================================================
+     HANDLE DIRECTION
+  ========================================================= */
+
+  const handleNavigation =
+    useCallback(
+      (direction, event = null) => {
+        const current =
+          activeRef.current;
+
+        if (!isStackInView()) {
+          return;
+        }
+
+        /* NEXT */
+
+        if (
+          direction > 0 &&
+          current <
+            projects.length - 1
+        ) {
+          if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          lockPage();
+
+          changeCard(1);
+
+          return;
+        }
+
+        /* LAST CARD */
+
+        if (
+          direction > 0 &&
+          current ===
+            projects.length - 1
+        ) {
+          unlockPage();
+
+          return;
+        }
+
+        /* PREVIOUS */
+
+        if (
+          direction < 0 &&
+          current > 0
+        ) {
+          if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          lockPage();
+
+          changeCard(-1);
+
+          return;
+        }
+
+        /* FIRST CARD */
+
+        if (
+          direction < 0 &&
+          current === 0
+        ) {
+          unlockPage();
+        }
+      },
+      [
+        changeCard,
+        isStackInView,
+        lockPage,
+        unlockPage,
+      ]
+    );
+
+  /* =========================================================
+     DESKTOP / TABLET WHEEL
+  ========================================================= */
+
+  useEffect(() => {
+    const handleWheel = (event) => {
+      if (
+        Math.abs(event.deltaX) >
+        Math.abs(event.deltaY)
+      ) {
+        return;
+      }
+
+      if (
+        Math.abs(event.deltaY) <
+        WHEEL_THRESHOLD
+      ) {
+        return;
+      }
+
+      if (!isStackInView()) {
+        return;
+      }
+
+      if (animatingRef.current) {
+        event.preventDefault();
+
+        return;
+      }
+
+      const direction =
+        event.deltaY > 0
+          ? 1
+          : -1;
+
+      handleNavigation(
+        direction,
+        event
+      );
+
+      window.clearTimeout(
+        wheelResetTimerRef.current
+      );
+
+      wheelResetTimerRef.current =
+        window.setTimeout(
+          () => {
+            animatingRef.current =
+              false;
+          },
+          prefersReducedMotion
+            ? 100
+            : 650
+        );
+    };
+
+    window.addEventListener(
+      "wheel",
+      handleWheel,
+      {
+        passive: false,
+      }
+    );
+
+    return () => {
+      window.removeEventListener(
+        "wheel",
+        handleWheel
+      );
+
+      window.clearTimeout(
+        wheelResetTimerRef.current
+      );
+
+      unlockPage();
+    };
+  }, [
+    handleNavigation,
+    isStackInView,
+    unlockPage,
+    prefersReducedMotion,
+  ]);
+
+  /* =========================================================
+     KEYBOARD NAVIGATION
+  ========================================================= */
+
+  useEffect(() => {
+    const handleKeyboard = (event) => {
+      if (!isStackInView()) {
+        return;
+      }
+
+      const tag =
+        event.target?.tagName?.toLowerCase();
+
+      if (
+        tag === "input" ||
+        tag === "textarea" ||
+        tag === "select"
+      ) {
+        return;
+      }
+
+      if (
+        event.key === "ArrowDown" ||
+        event.key === "PageDown"
+      ) {
+        handleNavigation(
+          1,
+          event
+        );
+
+        return;
+      }
+
+      if (
+        event.key === "ArrowUp" ||
+        event.key === "PageUp"
+      ) {
+        handleNavigation(
+          -1,
+          event
+        );
+      }
+
+      /* HOME */
+
+      if (event.key === "Home") {
+        event.preventDefault();
+
+        if (
+          activeRef.current > 0
+        ) {
+          lockPage();
+
+          activeRef.current = 0;
+
+          setActiveCard(0);
+        } else {
+          unlockPage();
+        }
+
+        return;
+      }
+
+      /* END */
+
+      if (event.key === "End") {
+        event.preventDefault();
+
+        if (
+          activeRef.current <
+          projects.length - 1
+        ) {
+          lockPage();
+
+          activeRef.current =
+            projects.length - 1;
+
+          setActiveCard(
+            projects.length - 1
+          );
+        } else {
+          unlockPage();
+        }
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handleKeyboard
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyboard
+      );
+    };
+  }, [
+    handleNavigation,
+    isStackInView,
+    lockPage,
+    unlockPage,
+  ]);
+
+  /* =========================================================
+     MOBILE TOUCH START
+  ========================================================= */
+
+  const handleTouchStart = (
+    event
+  ) => {
+    if (!isMobile) {
+      return;
+    }
+
+    const touch =
+      event.touches?.[0];
+
+    if (!touch) {
+      return;
+    }
+
+    touchStartRef.current =
+      touch.clientY;
+
+    touchStartXRef.current =
+      touch.clientX;
+  };
+
+  /* =========================================================
+     MOBILE TOUCH MOVE
+  ========================================================= */
+
+  const handleTouchMove = () => {
+    if (!isMobile) {
+      return;
+    }
+
+    /*
+     * Keep native mobile scrolling.
+     */
+  };
+
+  /* =========================================================
+     MOBILE TOUCH END
+  ========================================================= */
+
+  const handleTouchEnd = (
+    event
+  ) => {
+    if (!isMobile) {
+      return;
+    }
+
+    if (
+      touchStartRef.current ===
+      null
+    ) {
+      return;
+    }
+
+    const touch =
+      event.changedTouches?.[0];
+
+    if (!touch) {
+      touchStartRef.current =
+        null;
+
+      touchStartXRef.current =
+        null;
+
+      return;
+    }
+
+    const endY =
+      touch.clientY;
+
+    const endX =
+      touch.clientX;
+
+    const distanceY =
+      touchStartRef.current -
+      endY;
+
+    const distanceX =
+      touchStartXRef.current -
+      endX;
+
+    touchStartRef.current =
+      null;
+
+    touchStartXRef.current =
+      null;
+
+    if (
+      Math.abs(distanceX) >
+      Math.abs(distanceY)
+    ) {
+      return;
+    }
+
+    if (
+      Math.abs(distanceY) <
+      SWIPE_THRESHOLD
+    ) {
+      return;
+    }
+
+    if (!isStackInView()) {
+      return;
+    }
+
+    /* SWIPE UP */
+
+    if (distanceY > 0) {
+      handleNavigation(1);
+    }
+
+    /* SWIPE DOWN */
+
+    if (distanceY < 0) {
+      handleNavigation(-1);
+    }
+  };
+
+  /* =========================================================
+     HERO SCROLL
+  ========================================================= */
+
+  const scrollToProjects =
+    useCallback(() => {
+      const section =
+        sectionRef.current;
+
+      if (!section) {
+        return;
+      }
+
+      unlockPage();
+
+      section.scrollIntoView({
+        behavior:
+          prefersReducedMotion
+            ? "auto"
+            : "smooth",
+
+        block: "start",
+      });
+
+      window.setTimeout(
+        () => {
+          if (
+            isStackInView() &&
+            activeRef.current <
+              projects.length - 1
+          ) {
+            lockPage();
+          }
+        },
+        prefersReducedMotion
+          ? 50
+          : 800
+      );
+    },
+    [
+      isStackInView,
+      lockPage,
+      unlockPage,
+      prefersReducedMotion,
+    ]);
+
+  /* =========================================================
+     GO TO PROJECT
+  ========================================================= */
+
+  const goToProject =
+    useCallback(
+      (index) => {
+        if (
+          animatingRef.current ||
+          index ===
+            activeRef.current ||
+          index < 0 ||
+          index >= projects.length
+        ) {
+          return;
+        }
+
+        animatingRef.current =
+          true;
+
+        activeRef.current =
+          index;
+
+        setActiveCard(index);
+
+        window.clearTimeout(
+          unlockTimerRef.current
+        );
+
+        unlockTimerRef.current =
+          window.setTimeout(
+            () => {
+              animatingRef.current =
+                false;
+            },
+            prefersReducedMotion
+              ? 150
+              : 700
+          );
+
+        if (
+          index <
+          projects.length - 1
+        ) {
+          lockPage();
+        } else {
+          unlockPage();
+        }
+      },
+      [
+        lockPage,
+        unlockPage,
+        prefersReducedMotion,
+      ]
+    );
+
+  /* =========================================================
+     RELEASE LOCK WHEN USER LEAVES SECTION
+  ========================================================= */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isStackInView()) {
+        unlockPage();
+      }
+    };
+
+    window.addEventListener(
+      "scroll",
+      handleScroll,
+      {
+        passive: true,
+      }
+    );
+
+    return () => {
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+    };
+  }, [
+    isStackInView,
+    unlockPage,
+  ]);
+
+  /* =========================================================
+     CLEANUP
+  ========================================================= */
+
+  useEffect(() => {
+    return () => {
+      unlockPage();
+
+      window.clearTimeout(
+        unlockTimerRef.current
+      );
+
+      window.clearTimeout(
+        wheelResetTimerRef.current
+      );
+    };
+  }, [unlockPage]);
+
+  /* =========================================================
+     RENDER
+  ========================================================= */
+
+  return (
+    <main className="min-h-screen bg-[#07080c] text-white">
+      {/* =====================================================
+          HERO
+      ===================================================== */}
+
+
+<section
+  className="
+    relative
+    flex
+    min-h-[100svh]
+    w-full
+    items-center
+    overflow-hidden
+    bg-[#05070c]
+  "
+>
+  {/* BACKGROUND IMAGE */}
+
+  <div className="absolute inset-0 overflow-hidden">
+    <motion.img
+  src="/images/portfolio/portfolios.png"
+  alt="Selected Projects"
+  initial={{
+    scale: prefersReducedMotion ? 1 : 1.06,
+    opacity: 0,
+  }}
+  animate={{
+    scale: 1,
+    opacity: 1,
+  }}
+  transition={{
+    duration: 1.2,
+    ease: "easeOut",
+  }}
+  className="
+    absolute
+    inset-x-0
+    top-0
+    h-[55vh]
+    w-full
+    select-none
+    object-cover
+    object-center
+
+    sm:inset-0
+    sm:h-full
+    sm:object-cover
+
+    lg:object-contain
+    lg:object-center
+
+    xl:pl-96
+  "
+/>
+
+    {/* MOBILE DARK GRADIENT */}
+
+    <div
+      className="
+        absolute
+        inset-0
+        bg-gradient-to-b
+        from-[#05070c]/45
+        via-[#05070c]/35
+        to-[#05070c]/95
+        sm:from-[#05070c]/40
+        sm:via-transparent
+        sm:to-[#05070c]/85
+        lg:hidden
+      "
+    />
+
+    {/* DESKTOP SIDE GRADIENT */}
+
+    <div
+      className="
+        absolute
+        inset-0
+        hidden
+        lg:block
+      "
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(3,7,15,0.92) 0%, rgba(3,7,15,0.65) 28%, rgba(3,7,15,0.15) 65%, rgba(3,7,15,0.35) 100%)",
+      }}
+    />
+
+    {/* TOP GRADIENT */}
+
+    <div
+      className="
+        absolute
+        inset-x-0
+        top-0
+        h-28
+        bg-gradient-to-b
+        from-[#03070f]/80
+        to-transparent
+        sm:h-40
+      "
+    />
+
+    {/* BLUE LIGHT */}
+
+    <motion.div
+      animate={{
+        x: [0, 40, 0],
+        y: [0, -20, 0],
+        opacity: [0.07, 0.16, 0.07],
+      }}
+      transition={{
+        duration: 9,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className="
+        pointer-events-none
+        absolute
+        left-[20%]
+        top-[40%]
+        h-[240px]
+        w-[240px]
+        -translate-x-1/2
+        -translate-y-1/2
+        rounded-full
+        bg-blue-500/20
+        blur-[100px]
+        sm:h-[400px]
+        sm:w-[400px]
+        sm:blur-[130px]
+        lg:h-[500px]
+        lg:w-[500px]
+        lg:blur-[150px]
+      "
+    />
+
+    {/* GRID */}
+
+    <div
+      className="
+        pointer-events-none
+        absolute
+        inset-0
+        opacity-[0.025]
+      "
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+        backgroundSize: "55px 55px",
+      }}
+    />
+  </div>
+
+  {/* =====================================================
+      MOBILE HERO CONTENT
+  ===================================================== */}
+
+ <div
+  className="
+    relative z-10 flex min-h-[100svh] w-full flex-col
+    justify-start
+    px-4 pt-20 pb-16
+    sm:mt-20
+    md:px-8 md:pt-28 md:pb-24
+    lg:mx-auto lg:min-h-[100svh] lg:max-w-[1500px]
+    lg:flex-row lg:items-start lg:justify-start
+    lg:px-12 lg:pt-24 lg:pb-20
+    xl:px-16 xl:pt-28
+    2xl:px-20 2xl:pt-32
+  "
+>
+    {/* LEFT CONTENT */}
+
+   <div
+  className="
+    relative w-full
+    max-w-[92vw]
+    sm:max-w-[680px]
+    md:max-w-[760px]
+    lg:max-w-5xl
+    
+  "
+>
+      {/* MOBILE TOP LABEL */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -20,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          delay: 0.2,
+        }}
+        className="
+          mb-4
+          flex
+          items-center
+          gap-2.5
+          sm:mb-5
+          sm:gap-3
+          lg:mb-6
+        "
+      >
+        <span className="h-px w-7 bg-blue-400 sm:w-10 lg:w-12" />
+
+        <span
+          className="
+            text-[7px]
+            font-bold
+            tracking-[0.28em]
+            text-blue-400
+            sm:text-[9px]
+            lg:text-[10px]
+          "
+        >
+          DIGITAL WORKS
+        </span>
+
+        <span
+          className="
+            text-[7px]
+            tracking-[0.18em]
+            text-white/25
+            sm:text-[9px]
+            lg:text-[10px]
+          "
+        >
+          / 2026
+        </span>
+      </motion.div>
+
+      {/* INTRO */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 15,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          delay: 0.3,
+        }}
+        className="
+          mb-3
+          text-[7px]
+          uppercase
+          tracking-[0.2em]
+          text-white/35
+          sm:mb-4
+          sm:text-[9px]
+          lg:text-[11px]
+        "
+      >
+        WE DESIGN · ENGINEER · BUILD
+      </motion.div>
+
+      {/* MAIN HEADING */}
+
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 35,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.8,
+          delay: 0.4,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="
+          max-w-[600px]
+          text-[52px]
+          font-black
+          leading-[0.84]
+          tracking-[-0.065em]
+          text-white
+          xs:text-[58px]
+          sm:text-[72px]
+          md:text-[88px]
+          lg:max-w-4xl
+          lg:text-[105px]
+          xl:text-[75px]
+          2xl:text-[135px]
+        "
+      >
+        SELECTED
+
+        <span
+          className="
+            mt-1
+            block
+            text-white/25
+            sm:mt-2
+          "
+        >
+          PROJECTS
+        </span>
+      </motion.h1>
+
+      {/* DESCRIPTION */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.6,
+        }}
+        className="
+          mt-5
+          flex
+          max-w-[520px]
+          items-start
+          gap-3
+          sm:mt-7
+          sm:gap-4
+          lg:mt-9
+        "
+      >
+        <span
+          className="
+            mt-1
+            h-7
+            w-[2px]
+            shrink-0
+            bg-blue-400
+            sm:mt-2
+            sm:h-8
+          "
+        />
+
+        <p
+          className="
+            max-w-xl
+            text-[10px]
+            leading-5
+            text-white/55
+            sm:text-xs
+            sm:leading-6
+            lg:text-sm
+            lg:leading-7
+            xl:text-base
+          "
+        >
+          A collection of digital products,
+          platforms and engineering experiences
+          built across web, application development,
+          business systems and modern digital
+          experiences.
+        </p>
+      </motion.div>
+
+      {/* CTA + META */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.75,
+        }}
+        className="
+          mt-6
+          flex
+          flex-wrap
+          items-center
+          gap-4
+          sm:mt-8
+          sm:gap-5
+          lg:mt-9
+        "
+      >
+        <button
+          type="button"
+          onClick={scrollToProjects}
+          className="
+            group
+            relative
+            flex
+            items-center
+            gap-3
+            overflow-hidden
+            rounded-xl
+            border
+            border-blue-400/40
+            bg-blue-500/10
+            px-4
+            py-2.5
+            text-[8px]
+            font-bold
+            tracking-[0.18em]
+            text-white
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-blue-400/80
+            hover:bg-blue-500/20
+            active:scale-[0.98]
+            sm:gap-4
+            sm:px-5
+            sm:py-3
+            sm:text-[9px]
+          "
+        >
+          <span
+            className="
+              absolute
+              inset-0
+              -translate-x-full
+              bg-gradient-to-r
+              from-transparent
+              via-blue-400/10
+              to-transparent
+              transition-transform
+              duration-700
+              group-hover:translate-x-full
+            "
+          />
+
+          <span className="relative z-10">
+            EXPLORE PROJECTS
+          </span>
+
+          <span
+            className="
+              relative
+              z-10
+              flex
+              h-7
+              w-7
+              items-center
+              justify-center
+              rounded-full
+              bg-blue-400
+              text-black
+              transition-transform
+              duration-300
+              group-hover:rotate-45
+              sm:h-8
+              sm:w-8
+            "
+          >
+            <FiArrowUpRight size={13} />
+          </span>
+        </button>
+
+        <div
+          className="
+            flex
+            items-center
+            gap-2.5
+            text-[7px]
+            tracking-[0.18em]
+            text-white/30
+            sm:text-[8px]
+          "
+        >
+          <span
+            className="
+              h-1.5
+              w-1.5
+              rounded-full
+              bg-blue-400
+              shadow-[0_0_12px_rgba(46,111,255,0.8)]
+            "
+          />
+
+          05 SELECTED WORKS
+        </div>
+      </motion.div>
+
+      {/* CATEGORIES */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 15,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.9,
+        }}
+        className="
+          mt-6
+          flex
+          flex-wrap
+          items-center
+          gap-x-4
+          gap-y-2
+          border-t
+          border-white/[0.08]
+          pt-4
+          sm:mt-10
+          sm:gap-x-6
+          sm:pt-5
+          lg:mt-12
+        "
+      >
+        {[
+          "WEB",
+          "APP",
+          "BUSINESS SYSTEMS",
+          "UI / UX",
+        ].map((item, index) => (
+          <div
+            key={item}
+            className="
+              flex
+              items-center
+              gap-1.5
+              sm:gap-2
+            "
+          >
+            <span
+              className="
+                text-[6px]
+                text-blue-400
+                sm:text-[7px]
+              "
+            >
+              0{index + 1}
             </span>
 
-            {String(filteredProjects.length).padStart(
-              2,
-              "0"
+            <span
+              className="
+                text-[6px]
+                font-medium
+                tracking-[0.16em]
+                text-white/35
+                sm:text-[8px]
+                sm:tracking-[0.18em]
+              "
+            >
+              {item}
+            </span>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </div>
+</section>
+
+      {/* =====================================================
+          PROJECT STACK
+      ===================================================== */}
+
+      <section
+        ref={sectionRef}
+        onTouchStart={
+          handleTouchStart
+        }
+        onTouchMove={
+          handleTouchMove
+        }
+        onTouchEnd={
+          handleTouchEnd
+        }
+        className="
+          relative
+          h-screen
+          min-h-[620px]
+          w-full
+          overflow-hidden
+          bg-[#07080c]
+          touch-pan-y
+        "
+      >
+        {/* BACKGROUND */}
+
+        <div className="pointer-events-none absolute inset-0">
+          <motion.div
+            animate={{
+              scale: [
+                1,
+                1.08,
+                1,
+              ],
+              opacity: [
+                0.08,
+                0.16,
+                0.08,
+              ],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              left-1/2
+              top-1/2
+              h-[380px]
+              w-[380px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-blue-600/[0.08]
+              blur-[120px]
+              sm:h-[550px]
+              sm:w-[550px]
+              sm:blur-[150px]
+            "
+          />
+
+          <div
+            className="
+              absolute
+              inset-0
+              opacity-[0.04]
+            "
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px)",
+              backgroundSize:
+                "60px 60px",
+            }}
+          />
+
+          <div
+            className="
+              absolute
+              left-1/2
+              top-0
+              h-[250px]
+              w-[500px]
+              -translate-x-1/2
+              rounded-full
+              bg-blue-500/[0.035]
+              blur-[100px]
+              sm:h-[300px]
+              sm:w-[700px]
+              sm:blur-[120px]
+            "
+          />
+        </div>
+
+        {/* HEADER */}
+
+        <div
+          className="
+            relative
+            z-[500]
+            mx-auto
+            max-w-7xl
+            px-5
+            pt-7
+            text-center
+            sm:pt-12
+          "
+        >
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -10,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            className="
+              mb-2
+              text-[8px]
+              font-bold
+              tracking-[0.35em]
+              text-blue-400
+              sm:text-[9px]
+            "
+          >
+            SELECTED WORK
+          </motion.div>
+
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: -10,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            className="
+              text-2xl
+              font-black
+              tracking-tight
+              sm:text-4xl
+              lg:text-5xl
+            "
+          >
+            PROJECT
+
+            <span className="ml-2 text-white/25">
+              ARCHIVE
+            </span>
+          </motion.h2>
+        </div>
+
+        {/* CARD DECK */}
+
+       <div
+  className="
+    absolute
+    left-0
+    right-0
+    top-[60%]
+    z-10
+    mx-auto
+    flex
+    -translate-y-1/2
+    items-center
+    justify-center
+    px-3
+    sm:px-6
+    lg:px-10
+  "
+>
+          <div
+  className="
+    relative
+    h-[min(450px,calc(100vh-220px))]
+    w-full
+    max-w-6xl
+    sm:h-[min(450px,calc(100vh-210px))]
+  "
+>
+            {/* STACK CARDS */}
+
+            {projects.map(
+              (project, index) => {
+                if (
+                  index >
+                  activeCard
+                ) {
+                  return null;
+                }
+
+                const depth =
+                  activeCard -
+                  index;
+
+                const isActive =
+                  depth === 0;
+
+                const widthReduction =
+                  depth *
+                  (LAYER_LEFT +
+                    LAYER_RIGHT);
+
+                const leftOffset =
+                  depth *
+                  LAYER_LEFT;
+
+                const targetY =
+                  -(depth *
+                    LAYER_TOP);
+
+                const isEntering =
+                  index ===
+                  activeCard;
+
+                return (
+                  <motion.div
+                    key={project.id}
+                    className="
+                      absolute
+                      left-0
+                      top-0
+                      h-full
+                    "
+                    initial={
+                      isEntering
+                        ? {
+                            y: "100%",
+                            width: "100%",
+                            left: 0,
+                            opacity: 0,
+                          }
+                        : {
+                            y: targetY,
+                            width: `calc(100% - ${widthReduction}px)`,
+                            left: `${leftOffset}px`,
+                            opacity: 1,
+                          }
+                    }
+                    animate={{
+                      y: isActive
+                        ? 0
+                        : targetY,
+
+                      width: isActive
+                        ? "100%"
+                        : `calc(100% - ${widthReduction}px)`,
+
+                      left: isActive
+                        ? 0
+                        : `${leftOffset}px`,
+
+                      opacity: 1,
+                    }}
+                    transition={{
+                      duration:
+                        prefersReducedMotion
+                          ? 0.15
+                          : ANIMATION_DURATION,
+
+                      ease: [
+                        0.22,
+                        1,
+                        0.36,
+                        1,
+                      ],
+                    }}
+                    style={{
+                      zIndex:
+                        isActive
+                          ? 20
+                          : 20 -
+                            depth,
+                    }}
+                  >
+                    {/* ACTIVE CARD CONTROLS */}
+
+                    {isActive && (
+                      <SideControls
+                        activeCard={
+                          activeCard
+                        }
+                        totalProjects={
+                          projects.length
+                        }
+                        goToProject={
+                          goToProject
+                        }
+                        onOpenDetails={() =>
+                          openDetails(
+                            project
+                          )
+                        }
+                      />
+                    )}
+
+                    <ProjectCard
+                      project={project}
+                    />
+                  </motion.div>
+                );
+              }
             )}
+
+            {/* STACK LABEL */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -bottom-7
+                left-0
+                z-[2000]
+              "
+            >
+              <span
+                className="
+                  text-[7px]
+                  tracking-[0.25em]
+                  text-white/25
+                  sm:text-[8px]
+                "
+                style={{
+                  fontFamily:
+                    "'JetBrains Mono', monospace",
+                }}
+              >
+                PROJECT STACK
+              </span>
+            </div>
+
+            {/* COUNTER */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -bottom-7
+                right-0
+                z-[2000]
+              "
+            >
+              <span
+                className="
+                  text-[7px]
+                  tracking-[0.2em]
+                  text-white/25
+                  sm:text-[8px]
+                "
+                style={{
+                  fontFamily:
+                    "'JetBrains Mono', monospace",
+                }}
+              >
+                {String(
+                  activeCard + 1
+                ).padStart(2, "0")}
+                {" / "}
+                {String(
+                  projects.length
+                ).padStart(2, "0")}
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* ===================================================
-            MAIN PROJECT WINDOW
-        =================================================== */}
+        {/* PROGRESS */}
+
+        <div
+          className="
+            absolute
+            bottom-6
+            left-1/2
+            z-[3000]
+            flex
+            -translate-x-1/2
+            items-center
+            gap-1
+            sm:bottom-7
+            sm:gap-2
+          "
+        >
+          {projects.map(
+            (item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-label={`Go to project ${
+                  index + 1
+                }`}
+                aria-current={
+                  index === activeCard
+                    ? "true"
+                    : undefined
+                }
+                onClick={() =>
+                  goToProject(index)
+                }
+                className="
+                  flex
+                  h-5
+                  w-6
+                  touch-manipulation
+                  items-center
+                  justify-center
+                  outline-none
+                "
+              >
+                <motion.div
+                  animate={{
+                    width:
+                      index ===
+                      activeCard
+                        ? 30
+                        : 5,
+
+                    opacity:
+                      index ===
+                      activeCard
+                        ? 1
+                        : 0.25,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="
+                    h-1
+                    rounded-xl
+                    bg-blue-400
+                  "
+                />
+              </button>
+            )
+          )}
+        </div>
+
+        {/* MOBILE SWIPE HINT */}
 
         <motion.div
           initial={{
             opacity: 0,
-            y: 30,
           }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
+          animate={{
+            opacity:
+              isMobile &&
+              activeCard === 0
+                ? [
+                    0.2,
+                    0.6,
+                    0.2,
+                  ]
+                : 0,
           }}
           transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 2,
+            repeat:
+              isMobile &&
+              activeCard === 0
+                ? Infinity
+                : 0,
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
           className="
-            relative
-            overflow-hidden
-            rounded-[28px]
-            border
-            border-white/[0.08]
-            bg-[#09111E]
-            shadow-[0_30px_100px_rgba(0,0,0,.45)]
+            pointer-events-none
+            absolute
+            bottom-16
+            left-1/2
+            z-[3000]
+            -translate-x-1/2
+            whitespace-nowrap
+            text-[7px]
+            tracking-[0.22em]
+            text-white/30
+            sm:hidden
           "
         >
-          {/* TOP BAR */}
-
-          <div
-            className="
-              flex
-              h-12
-              items-center
-              justify-between
-              border-b
-              border-white/[0.06]
-              bg-white/[0.015]
-              px-5
-            "
-          >
-            <div className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-red-400/70" />
-              <span className="h-2 w-2 rounded-full bg-yellow-400/70" />
-              <span className="h-2 w-2 rounded-full bg-green-400/70" />
-            </div>
-
-            <div
-              className="
-                flex
-                items-center
-                gap-2
-                rounded-full
-                border
-                border-white/[0.06]
-                bg-black/20
-                px-3
-                py-1
-                text-[8px]
-                uppercase
-                tracking-[0.2em]
-                text-slate-600
-              "
-            >
-              <span
-                className="
-                  h-1.5
-                  w-1.5
-                  rounded-full
-                  bg-emerald-400
-                "
-              />
-
-              {isPaused
-                ? "Paused"
-                : "Auto showcase"}
-            </div>
-
-            <span
-              className="
-                text-[8px]
-                uppercase
-                tracking-[0.2em]
-                text-slate-700
-              "
-            >
-              DES / 2026
-            </span>
-          </div>
-
-          {/* =================================================
-              PROJECT CONTENT
-          ================================================= */}
-
-          <div
-            className="
-              grid
-              lg:grid-cols-[1.25fr_.75fr]
-            "
-          >
-            {/* =================================================
-                IMAGE AREA
-            ================================================= */}
-
-            <div
-              className="
-                relative
-                h-[300px]
-                overflow-hidden
-                border-b
-                border-white/[0.06]
-                bg-[#060D18]
-                sm:h-[430px]
-                lg:h-[540px]
-                lg:border-b-0
-                lg:border-r
-              "
-            >
-              {/* Background glow */}
-
-              <div
-                className="
-                  absolute
-                  left-1/2
-                  top-1/2
-                  h-[55%]
-                  w-[55%]
-                  -translate-x-1/2
-                  -translate-y-1/2
-                  rounded-full
-                  bg-blue-500/20
-                  blur-[100px]
-                "
-              />
-
-              {/* Orbit */}
-
-              <motion.div
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 35,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="
-                  pointer-events-none
-                  absolute
-                  left-1/2
-                  top-1/2
-                  h-[80%]
-                  w-[65%]
-                  -translate-x-1/2
-                  -translate-y-1/2
-                  rounded-full
-                  border
-                  border-dashed
-                  border-white/[0.04]
-                "
-              />
-
-              {/* PROJECT NUMBER */}
-
-              <div
-                className="
-                  absolute
-                  left-6
-                  top-6
-                  z-20
-                  flex
-                  items-center
-                  gap-2
-                  text-[8px]
-                  uppercase
-                  tracking-[0.25em]
-                  text-slate-500
-                "
-              >
-                <span className="text-blue-400">
-                  {String(activeIndex + 1).padStart(
-                    2,
-                    "0"
-                  )}
-                </span>
-
-                <span className="h-px w-5 bg-white/10" />
-
-                PROJECT
-              </div>
-
-              {/* =================================================
-                  BOTTOM → TOP PROJECT TRANSITION
-              ================================================= */}
-
-              <AnimatePresence
-                mode="wait"
-                custom={direction}
-              >
-                <motion.div
-                  key={activeProject.slug}
-                  custom={direction}
-                  variants={{
-                    enter: (direction) => ({
-                      opacity: 0,
-                      y:
-                        direction > 0
-                          ? 120
-                          : -120,
-                    }),
-
-                    center: {
-                      opacity: 1,
-                      y: 0,
-                    },
-
-                    exit: (direction) => ({
-                      opacity: 0,
-                      y:
-                        direction > 0
-                          ? -120
-                          : 120,
-                    }),
-                  }}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    duration: 0.75,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="
-                    absolute
-                    inset-[9%]
-                  "
-                >
-                  <div
-                    className="
-                      relative
-                      h-full
-                      w-full
-                      overflow-hidden
-                      rounded-[22px]
-                      border
-                      border-white/10
-                      bg-slate-900
-                      shadow-[0_30px_80px_rgba(0,0,0,.45)]
-                    "
-                  >
-                    <img
-                      src={activeProject.image}
-                      alt={activeProject.title}
-                      className="
-                        h-full
-                        w-full
-                        object-cover
-                      "
-                    />
-
-                    <div
-                      className="
-                        absolute
-                        inset-0
-                        bg-gradient-to-t
-                        from-black/60
-                        via-transparent
-                        to-white/[0.04]
-                      "
-                    />
-
-                    {/* Category */}
-
-                    <div
-                      className="
-                        absolute
-                        bottom-5
-                        left-5
-                        rounded-full
-                        border
-                        border-white/10
-                        bg-black/40
-                        px-3
-                        py-1.5
-                        text-[8px]
-                        uppercase
-                        tracking-[0.18em]
-                        text-white/70
-                        backdrop-blur-xl
-                      "
-                    >
-                      {activeProject.category}
-                    </div>
-
-                    {/* Number */}
-
-                    <div
-                      className="
-                        absolute
-                        right-5
-                        top-5
-                        flex
-                        h-9
-                        w-9
-                        items-center
-                        justify-center
-                        rounded-full
-                        border
-                        border-white/10
-                        bg-black/30
-                        text-[9px]
-                        text-white/70
-                        backdrop-blur-xl
-                      "
-                    >
-                      {String(
-                        activeIndex + 1
-                      ).padStart(2, "0")}
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Bottom progress */}
-
-              <div
-                className="
-                  absolute
-                  bottom-6
-                  left-6
-                  right-6
-                  z-30
-                "
-              >
-                <div
-                  className="
-                    mb-2
-                    flex
-                    justify-between
-                    text-[8px]
-                    uppercase
-                    tracking-[0.18em]
-                    text-slate-600
-                  "
-                >
-                  <span>
-                    {isPaused
-                      ? "Paused"
-                      : "Auto moving"}
-                  </span>
-
-                  <span>
-                    {String(activeIndex + 1).padStart(
-                      2,
-                      "0"
-                    )}
-                    {" / "}
-                    {String(
-                      filteredProjects.length
-                    ).padStart(2, "0")}
-                  </span>
-                </div>
-
-                <div
-                  className="
-                    h-[2px]
-                    overflow-hidden
-                    rounded-full
-                    bg-white/[0.08]
-                  "
-                >
-                  <motion.div
-                    key={activeProject.slug}
-                    initial={{
-                      width: "0%",
-                    }}
-                    animate={{
-                      width: isPaused
-                        ? "30%"
-                        : "100%",
-                    }}
-                    transition={{
-                      duration: isPaused
-                        ? 0
-                        : 4.5,
-                      ease: "linear",
-                    }}
-                    className="
-                      h-full
-                      rounded-full
-                      bg-blue-400
-                    "
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* =================================================
-                INFORMATION
-            ================================================= */}
-
-            <div
-              className="
-                flex
-                min-h-[430px]
-                flex-col
-                p-6
-                sm:p-8
-                lg:min-h-0
-                lg:p-9
-              "
-            >
-              <AnimatePresence
-                mode="wait"
-                custom={direction}
-              >
-                <motion.div
-                  key={activeProject.slug}
-                  custom={direction}
-                  variants={{
-                    enter: (direction) => ({
-                      opacity: 0,
-                      y:
-                        direction > 0
-                          ? 60
-                          : -60,
-                    }),
-
-                    center: {
-                      opacity: 1,
-                      y: 0,
-                    },
-
-                    exit: (direction) => ({
-                      opacity: 0,
-                      y:
-                        direction > 0
-                          ? -60
-                          : 60,
-                    }),
-                  }}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    duration: 0.65,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="
-                    flex
-                    h-full
-                    flex-col
-                  "
-                >
-                  {/* METADATA */}
-
-                  <div
-                    className="
-                      mb-8
-                      grid
-                      grid-cols-2
-                      gap-2
-                    "
-                  >
-                    <div
-                      className="
-                        rounded-xl
-                        border
-                        border-white/[0.06]
-                        bg-white/[0.025]
-                        p-3
-                      "
-                    >
-                      <FiUser
-                        size={13}
-                        className="mb-2 text-slate-600"
-                      />
-
-                      <p
-                        className="
-                          mb-1
-                          text-[7px]
-                          uppercase
-                          tracking-[0.18em]
-                          text-slate-600
-                        "
-                      >
-                        Client
-                      </p>
-
-                      <p className="truncate text-[10px] text-slate-300">
-                        {activeProject.client}
-                      </p>
-                    </div>
-
-                    <div
-                      className="
-                        rounded-xl
-                        border
-                        border-white/[0.06]
-                        bg-white/[0.025]
-                        p-3
-                      "
-                    >
-                      <FiCalendar
-                        size={13}
-                        className="mb-2 text-slate-600"
-                      />
-
-                      <p
-                        className="
-                          mb-1
-                          text-[7px]
-                          uppercase
-                          tracking-[0.18em]
-                          text-slate-600
-                        "
-                      >
-                        Delivered
-                      </p>
-
-                      <p className="text-[10px] text-slate-300">
-                        {activeProject.date}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CATEGORY */}
-
-                  <div
-                    className="
-                      mb-3
-                      flex
-                      items-center
-                      gap-2
-                    "
-                  >
-                    <span className="h-px w-5 bg-blue-400" />
-
-                    <span
-                      className="
-                        text-[8px]
-                        uppercase
-                        tracking-[0.22em]
-                        text-blue-400
-                      "
-                    >
-                      {activeProject.category}
-                    </span>
-                  </div>
-
-                  {/* TITLE */}
-
-                  <h3
-                    className="
-                      text-3xl
-                      font-semibold
-                      leading-[1.05]
-                      tracking-[-0.035em]
-                      sm:text-4xl
-                    "
-                    style={{
-                      fontFamily:
-                        "'Fraunces', serif",
-                    }}
-                  >
-                    {activeProject.title}
-                  </h3>
-
-                  {/* DESCRIPTION */}
-
-                  <p
-                    className="
-                      mt-5
-                      text-xs
-                      leading-6
-                      text-slate-400
-                    "
-                  >
-                    {activeProject.body}
-                  </p>
-
-                  {/* TECHNOLOGIES */}
-
-                  <div className="mt-7">
-                    <div
-                      className="
-                        mb-3
-                        flex
-                        items-center
-                        gap-2
-                        text-[8px]
-                        uppercase
-                        tracking-[0.2em]
-                        text-slate-600
-                      "
-                    >
-                      <FiLayers size={11} />
-
-                      Technology
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {activeProject.technologies?.map(
-                        (technology) => (
-                          <span
-                            key={technology}
-                            className="
-                              rounded-full
-                              border
-                              border-white/[0.07]
-                              bg-white/[0.025]
-                              px-3
-                              py-1.5
-                              text-[8px]
-                              text-slate-400
-                            "
-                          >
-                            {technology}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </div>
-
-                  {/* BOTTOM */}
-
-                  <div className="mt-auto pt-8">
-                    <div className="mb-5 h-px bg-white/[0.06]" />
-
-                    <div
-                      className="
-                        flex
-                        items-center
-                        justify-between
-                      "
-                    >
-                      <button
-                        type="button"
-                        onClick={openPortfolio}
-                        className="
-                          group
-                          flex
-                          items-center
-                          gap-2.5
-                          text-xs
-                          font-medium
-                        "
-                      >
-                        <span
-                          className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
-                            rounded-full
-                            bg-white
-                            text-[#050912]
-                            transition-transform
-                            duration-300
-                            group-hover:rotate-45
-                          "
-                        >
-                          <FiExternalLink size={13} />
-                        </span>
-
-                        Explore project
-                      </button>
-
-                      {/* CONTROLS */}
-
-                      <div className="flex gap-1.5">
-                        <button
-                          type="button"
-                          onClick={previousProject}
-                          className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-white/10
-                            bg-white/[0.025]
-                            text-slate-400
-                            transition
-                            hover:border-white/20
-                            hover:text-white
-                          "
-                          aria-label="Previous project"
-                        >
-                          <FiChevronLeft size={15} />
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={nextProject}
-                          className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-blue-400/20
-                            bg-blue-500/10
-                            text-blue-300
-                            transition
-                            hover:border-blue-400/40
-                            hover:bg-blue-500/20
-                            hover:text-white
-                          "
-                          aria-label="Next project"
-                        >
-                          <FiChevronRight size={15} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* =================================================
-              PROJECT SELECTOR
-          ================================================= */}
-
-          <div
-            className="
-              grid
-              grid-cols-2
-              border-t
-              border-white/[0.06]
-              sm:grid-cols-4
-            "
-          >
-            {filteredProjects.map(
-              (project, index) => {
-                const active =
-                  index === activeIndex;
-
-                return (
-                  <button
-                    key={project.slug}
-                    type="button"
-                    onClick={() =>
-                      selectProject(index)
-                    }
-                    className={`
-                      group
-                      relative
-                      flex
-                      min-w-0
-                      items-center
-                      gap-2
-                      border-r
-                      border-white/[0.06]
-                      px-3
-                      py-3
-                      text-left
-                      transition-all
-                      duration-300
-                      last:border-r-0
-                      sm:px-4
-                      ${
-                        active
-                          ? "bg-blue-500/[0.07]"
-                          : "hover:bg-white/[0.025]"
-                      }
-                    `}
-                  >
-                    {active && (
-                      <motion.div
-                        layoutId="activeProjectLine"
-                        className="
-                          absolute
-                          left-0
-                          right-0
-                          top-0
-                          h-[2px]
-                          bg-blue-400
-                        "
-                        transition={{
-                          duration: 0.3,
-                        }}
-                      />
-                    )}
-
-                    <div
-                      className="
-                        h-9
-                        w-9
-                        shrink-0
-                        overflow-hidden
-                        rounded-lg
-                        bg-slate-900
-                      "
-                    >
-                      <img
-                        src={project.image}
-                        alt=""
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          opacity-60
-                        "
-                      />
-                    </div>
-
-                    <div className="min-w-0">
-                      <div className="mb-0.5 flex items-center gap-1.5">
-                        <span
-                          className={`
-                            text-[7px]
-                            ${
-                              active
-                                ? "text-blue-400"
-                                : "text-slate-700"
-                            }
-                          `}
-                        >
-                          {String(index + 1).padStart(
-                            2,
-                            "0"
-                          )}
-                        </span>
-
-                        <span className="hidden text-[6px] uppercase tracking-[0.15em] text-slate-700 sm:block">
-                          {project.category}
-                        </span>
-                      </div>
-
-                      <p
-                        className={`
-                          truncate
-                          text-[8px]
-                          font-medium
-                          sm:text-[9px]
-                          ${
-                            active
-                              ? "text-white"
-                              : "text-slate-500"
-                          }
-                        `}
-                      >
-                        {project.title}
-                      </p>
-                    </div>
-
-                    <FiArrowUpRight
-                      size={11}
-                      className={`
-                        ml-auto
-                        hidden
-                        shrink-0
-                        sm:block
-                        ${
-                          active
-                            ? "text-blue-400"
-                            : "text-slate-700"
-                        }
-                      `}
-                    />
-                  </button>
-                );
-              }
-            )}
-          </div>
+          SWIPE TO EXPLORE
         </motion.div>
 
-        {/* STATUS */}
+        {/* DESKTOP SCROLL INDICATOR */}
+
+        <motion.div
+          animate={{
+            y: [0, 7, 0],
+            opacity: [
+              0.25,
+              0.65,
+              0.25,
+            ],
+          }}
+          transition={{
+            duration: 1.7,
+            repeat: Infinity,
+          }}
+          className="
+            absolute
+            bottom-8
+            right-6
+            z-[3000]
+            hidden
+            text-[8px]
+            tracking-[0.25em]
+            text-white/25
+            sm:block
+          "
+        >
+          SCROLL ↓
+        </motion.div>
+
+        {/* PROJECT COUNTER */}
 
         <div
           className="
-            mt-4
-            flex
-            items-center
-            justify-between
+            absolute
+            bottom-8
+            left-6
+            z-[3000]
+            hidden
             text-[8px]
-            uppercase
             tracking-[0.2em]
-            text-slate-700
+            text-white/20
+            sm:block
           "
         >
-          <div className="flex items-center gap-2">
-            <span
-              className="
-                h-1.5
-                w-1.5
-                rounded-full
-                bg-blue-400
-              "
-            />
-
-            {isPaused
-              ? "Showcase paused"
-              : "Automatically rotating"}
-          </div>
-
-          <span>
-            {activeIndex + 1} /{" "}
-            {filteredProjects.length}
-          </span>
+          {String(
+            activeCard + 1
+          ).padStart(2, "0")}
+          {" / "}
+          {String(
+            projects.length
+          ).padStart(2, "0")}
         </div>
-      </div>
 
-      {/* FONT */}
+        {/* KEYBOARD HINT */}
 
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&display=swap');
+        <div
+          className="
+            pointer-events-none
+            absolute
+            bottom-8
+            left-1/2
+            hidden
+            -translate-x-1/2
+            text-[7px]
+            tracking-[0.2em]
+            text-white/15
+            lg:block
+          "
+        >
+          ↑ ↓ &nbsp; NAVIGATE
+        </div>
+      </section>
 
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
+      {/* =====================================================
+          PROJECT DETAILS POPUP
+      ===================================================== */}
 
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}
-      </style>
-    </section>
+      {detailsProject && (
+        <ProjectDetailsPopup
+          project={detailsProject}
+          onClose={closeDetails}
+        />
+      )}
+    </main>
   );
 }

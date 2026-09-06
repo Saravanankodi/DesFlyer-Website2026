@@ -99,20 +99,7 @@ export default function Field({
                   onChange(field.name, opt)
                   onBlur(field.name)
                 }}
-                className={`
-                  rounded-xl
-                  border
-                  px-4
-                  py-2.5
-                  text-sm
-                  transition-all
-                  duration-300
-                  ${
-                    value === opt
-                      ? 'border-signal bg-signal text-white'
-                      : 'border-[var(--border)] text-[var(--fg)]/70 hover:border-signal/50 hover:text-signal'
-                  }
-                `}
+                className={`rounded-xl border px-4 py-2.5 text-sm transition-all duration-300 ${ value === opt ? 'border-signal bg-signal text-white' : 'border-[var(--border)] text-[var(--fg)]/70 hover:border-signal/50 hover:text-signal' }`}
               >
                 {opt}
               </button>
@@ -127,26 +114,7 @@ export default function Field({
           <div className="mt-2">
             <label
               htmlFor={inputId}
-              className={`
-                flex
-                min-h-[54px]
-                w-full
-                cursor-pointer
-                items-center
-                gap-3
-                rounded-xl
-                border
-                border-dashed
-                px-4
-                py-3.5
-                transition-all
-                duration-300
-                ${
-                  showError
-                    ? 'border-red-400'
-                    : 'border-[var(--border)] hover:border-signal/60 hover:bg-signal/[0.03]'
-                }
-              `}
+              className={`flex min-h-[54px] w-full cursor-pointer items-center gap-3 rounded-xl border border-dashed px-4 py-3.5 transition-all duration-300 ${ showError ? 'border-red-400' : 'border-[var(--border)] hover:border-signal/60 hover:bg-signal/[0.03]' }`}
             >
               {file ? (
                 <FiCheckCircle
@@ -239,13 +207,7 @@ export default function Field({
       <label
         id={`${inputId}-label`}
         htmlFor={inputId}
-        className="
-          font-mono
-          text-xs
-          uppercase
-          tracking-[0.1em]
-          text-[var(--fg)]/60
-        "
+        className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--fg)]/60"
       >
         {field.label}
 
@@ -260,14 +222,7 @@ export default function Field({
         <p
           id={`${inputId}-error`}
           role="alert"
-          className="
-            mt-1.5
-            flex
-            items-center
-            gap-1.5
-            text-xs
-            text-red-400
-          "
+          className="mt-1.5 flex items-center gap-1.5 text-xs text-red-400"
         >
           <FiAlertCircle size={12} />
           {error}

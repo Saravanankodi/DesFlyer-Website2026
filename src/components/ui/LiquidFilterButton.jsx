@@ -57,17 +57,7 @@ export default function LiquidFilterButton({
           whileTap={{
             scale: 0.95,
           }}
-          className="
-            relative
-            px-5
-            py-2.5
-            rounded-full
-            font-medium
-            overflow-visible
-            border
-            transition-all
-            duration-300
-          "
+          className="relative px-5 py-2.5 rounded-full font-medium overflow-visible border transition-all duration-300"
         >
           {/* Liquid Background */}
           {active && (
@@ -80,16 +70,7 @@ export default function LiquidFilterButton({
                 damping: 24,
               }}
 
-              className="
-                absolute
-                inset-0
-                rounded-full
-                bg-gradient-to-r
-                from-blue-500
-                via-sky-500
-                to-cyan-400
-                -z-10
-              "
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 -z-10"
             />
           )}
 
@@ -108,16 +89,7 @@ export default function LiquidFilterButton({
                 ease: "easeInOut",
               }}
 
-              className="
-                absolute
-                w-5
-                h-5
-                rounded-full
-                bg-sky-400
-                -top-2
-                left-5
-                -z-20
-              "
+              className="absolute w-5 h-5 rounded-full bg-sky-400 -top-2 left-5 -z-20"
             />
           )}
 
@@ -136,26 +108,13 @@ export default function LiquidFilterButton({
                 ease: "easeInOut",
               }}
 
-              className="
-                absolute
-                w-6
-                h-6
-                rounded-full
-                bg-blue-400
-                bottom-0
-                right-6
-                -z-20
-              "
+              className="absolute w-6 h-6 rounded-full bg-blue-400 bottom-0 right-6 -z-20"
             />
 
           )}
 
           <span
-            className={`relative z-20 ${
-              active
-                ? "text-white"
-                : "text-[var(--fg)]"
-            }`}
+            className={`relative z-20 ${ active ? "text-white" : "text-[var(--fg)]" }`}
           >
             {children}
           </span>

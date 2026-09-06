@@ -289,14 +289,7 @@ export default function PortfolioTeaser({
     <section
       ref={sectionRef}
       onMouseMove={onSectionMove}
-      className="
-        relative
-        overflow-hidden
-        py-20
-        lg:py-28
-        px-6
-        
-      "
+      className="relative overflow-hidden py-20 lg:py-28 px-6"
       style={{
         background: "#081120",
         color: "#FFFFFF",
@@ -307,11 +300,7 @@ export default function PortfolioTeaser({
       ================================================= */}
 
       <motion.div
-        className="
-          absolute
-          inset-0
-          pointer-events-none
-        "
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: spotlight,
         }}
@@ -324,52 +313,25 @@ export default function PortfolioTeaser({
         ================================================= */}
 
         <div
-          className="
-            flex
-            flex-wrap
-            justify-between
-            items-end
-            gap-18
-            mb-14
-          
-          "
+          className="flex flex-wrap justify-between items-end gap-18 mb-14"
         >
           <div>
             <div
-              className="
-                flex
-                items-center
-                gap-2
-                text-xs
-                tracking-[.25em]
-                text-blue-400
-                mb-3
-                
-              "
+              className="flex items-center gap-2 text-xs tracking-[.25em] text-blue-400 mb-3"
               style={{
                 fontFamily:
                   "'IBM Plex Mono', monospace",
               }}
             >
               <span
-                className="
-                  w-2
-                  h-2
-                  rounded-full
-                  bg-blue-500
-                "
+                className="w-2 h-2 rounded-full bg-blue-500"
               />
 
               SELECTED WORK
             </div>
 
             <h2
-              className="
-                text-5xl
-                lg:text-6xl
-                font-semibold
-                leading-none
-              "
+              className="text-5xl lg:text-6xl font-semibold leading-none"
               style={{
                 fontFamily:
                   "'Fraunces', serif",
@@ -381,17 +343,7 @@ export default function PortfolioTeaser({
 
           <a
             href="/portfolio"
-            className="
-              flex
-              items-center
-              gap-2
-              border-b
-              border-blue-500
-              pb-1
-              text-blue-300
-              hover:text-blue-400
-              transition
-            "
+            className="flex items-center gap-2 border-b border-blue-500 pb-1 text-blue-300 hover:text-blue-400 transition"
             style={{
               fontFamily:
                 "'IBM Plex Mono', monospace",
@@ -408,12 +360,7 @@ export default function PortfolioTeaser({
         ================================================= */}
 
         <div
-          className="
-            flex
-            flex-wrap
-            gap-4
-            mb-16
-          "
+          className="flex flex-wrap gap-4 mb-16"
         >
           {categories.map((cat) => {
             const activeTab =
@@ -426,14 +373,7 @@ export default function PortfolioTeaser({
                 onClick={() =>
                   changeCategory(cat)
                 }
-                className="
-                  rounded-full
-                  px-6
-                  py-3
-                  text-sm
-                  transition-all
-                  duration-300
-                "
+                className="rounded-full px-6 py-3 text-sm transition-all duration-300"
                 style={{
                   fontFamily:
                     "'IBM Plex Mono', monospace",
@@ -472,14 +412,7 @@ export default function PortfolioTeaser({
           onMouseLeave={() =>
             setPaused(false)
           }
-          className="
-            relative
-            flex
-            items-center
-            justify-center
-            outline-none
-            mb-16
-          "
+          className="relative flex items-center justify-center outline-none mb-16"
           style={{
             perspective: 1800,
             height: 560,
@@ -550,10 +483,7 @@ export default function PortfolioTeaser({
                       ? onCardLeave
                       : undefined
                   }
-                  className="
-                    absolute
-                    cursor-pointer
-                  "
+                  className="absolute cursor-pointer"
                   style={{
                     width: CARD_W,
                     height: CARD_H,
@@ -582,14 +512,7 @@ export default function PortfolioTeaser({
                   ================================================= */}
 
                   <div
-                    className="
-                      relative
-                      overflow-hidden
-                      rounded-[28px]
-                      w-full
-                      h-full
-                      p-8
-                    "
+                    className="relative overflow-hidden rounded-[28px] w-full h-full p-8"
                     style={{
                       background:
                         "rgba(18,32,61,.72)",
@@ -610,11 +533,7 @@ export default function PortfolioTeaser({
 
                     {isActive && (
                       <motion.div
-                        className="
-                          absolute
-                          inset-0
-                          pointer-events-none
-                        "
+                        className="absolute inset-0 pointer-events-none"
                         style={{
                           background:
                             useTransform(
@@ -696,12 +615,7 @@ export default function PortfolioTeaser({
                             "easeInOut",
                           ],
                         }}
-                        className="
-                          absolute
-                          object-cover
-                          shadow-xl
-                          z-20
-                        "
+                        className="absolute object-cover shadow-xl z-20"
                         style={{
                           transform:
                             "translate(-50%,-50%)",
@@ -711,12 +625,7 @@ export default function PortfolioTeaser({
                       <img
                         src={project.image}
                         alt={project.client}
-                        className="
-                          absolute
-                          object-cover
-                          shadow-lg
-                          z-20
-                        "
+                        className="absolute object-cover shadow-lg z-20"
                         style={{
                           top:
                             LOGO_POS +
@@ -747,13 +656,7 @@ export default function PortfolioTeaser({
                           ? `text-active-${project.slug}-${i}`
                           : `text-static-${project.slug}-${i}`
                       }
-                      className="
-                        relative
-                        z-10
-                        flex
-                        flex-col
-                        h-full
-                      "
+                      className="relative z-10 flex flex-col h-full"
                       initial={
                         isActive
                           ? {
@@ -781,11 +684,7 @@ export default function PortfolioTeaser({
                       {/* TOP */}
 
                       <div
-                        className="
-                          flex
-                          items-start
-                          justify-between
-                        "
+                        className="flex items-start justify-between"
                       >
                         <div
                           style={{
@@ -794,14 +693,7 @@ export default function PortfolioTeaser({
                           }}
                         >
                           <p
-                            className="
-                              text-blue-200
-                              xl:text-[15px]
-                              uppercase
-                              tracking-[0.25em]
-                              mt-[60px]
-                              pl-12
-                            "
+                            className="text-blue-200 xl:text-[15px] uppercase tracking-[0.25em] mt-[60px] pl-12"
                             style={{
                               fontFamily:
                                 "'IBM Plex Mono', monospace",
@@ -813,10 +705,7 @@ export default function PortfolioTeaser({
 
                         <div className="text-right">
                           <div
-                            className="
-                              text-xs
-                              text-slate-400
-                            "
+                            className="text-xs text-slate-400"
                             style={{
                               fontFamily:
                                 "'IBM Plex Mono', monospace",
@@ -826,18 +715,7 @@ export default function PortfolioTeaser({
                           </div>
 
                           <div
-                            className="
-                              mt-2
-                              inline-flex
-                              rounded-full
-                              bg-blue-500/20
-                              border
-                              border-blue-500/40
-                              px-3
-                              py-1
-                              text-[11px]
-                              text-blue-300
-                            "
+                            className="mt-2 inline-flex rounded-full bg-blue-500/20 border border-blue-500/40 px-3 py-1 text-[11px] text-blue-300"
                           >
                             {project.category}
                           </div>
@@ -847,20 +725,10 @@ export default function PortfolioTeaser({
                       {/* CONTENT */}
 
                       <div
-                        className="
-                          mt-28
-                          flex-1
-                          flex
-                          flex-col
-                        "
+                        className="mt-28 flex-1 flex flex-col"
                       >
                         <h3
-                          className="
-                            text-4xl
-                            leading-tight
-                            font-semibold
-                            text-white
-                          "
+                          className="text-4xl leading-tight font-semibold text-white"
                           style={{
                             fontFamily:
                               "'Fraunces', serif",
@@ -870,12 +738,7 @@ export default function PortfolioTeaser({
                         </h3>
 
                         <p
-                          className="
-                            mt-5
-                            text-[15px]
-                            leading-7
-                            text-slate-300
-                          "
+                          className="mt-5 text-[15px] leading-7 text-slate-300"
                           style={{
                             fontFamily:
                               "'Inter', sans-serif",
@@ -887,27 +750,13 @@ export default function PortfolioTeaser({
                         {/* TECHNOLOGIES */}
 
                         <div
-                          className="
-                            flex
-                            flex-wrap
-                            gap-3
-                            mt-8
-                          "
+                          className="flex flex-wrap gap-3 mt-8"
                         >
                           {project.technologies.map(
                             (tech) => (
                               <span
                                 key={tech}
-                                className="
-                                  px-4
-                                  py-2
-                                  rounded-full
-                                  text-[11px]
-                                  bg-blue-500/10
-                                  border
-                                  border-blue-500/30
-                                  text-blue-200
-                                "
+                                className="px-4 py-2 rounded-full text-[11px] bg-blue-500/10 border border-blue-500/30 text-blue-200"
                                 style={{
                                   fontFamily:
                                     "'IBM Plex Mono', monospace",
@@ -930,34 +779,14 @@ export default function PortfolioTeaser({
                               e.stopPropagation();
                               goToServices();
                             }}
-                            className="
-                              group
-                              flex
-                              items-center
-                              gap-3
-                              rounded-full
-                              bg-blue-600
-                              hover:bg-blue-500
-                              px-7
-                              py-3
-                              text-white
-                              font-medium
-                              transition-all
-                              duration-300
-                              hover:scale-105
-                            "
+                            className="group flex items-center gap-3 rounded-full bg-blue-600 hover:bg-blue-500 px-7 py-3 text-white font-medium transition-all duration-300 hover:scale-105"
                           >
                             <span>
                               View Project
                             </span>
 
                             <FiArrowUpRight
-                              className="
-                                transition-transform
-                                duration-300
-                                group-hover:translate-x-1
-                                group-hover:-translate-y-1
-                              "
+                              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                             />
                           </button>
                         </div>
@@ -969,12 +798,7 @@ export default function PortfolioTeaser({
                     ================================================= */}
 
                     <motion.div
-                      className="
-                        absolute
-                        inset-0
-                        rounded-[28px]
-                        pointer-events-none
-                      "
+                      className="absolute inset-0 rounded-[28px] pointer-events-none"
                       animate={
                         isActive
                           ? {

@@ -71,20 +71,7 @@ export default function DigitalMuseum() {
       <motion.div
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
-        className="
-        absolute
-        bottom-[-280px]
-        left-1/2
-        -translate-x-1/2
-        w-[1700px]
-        h-[650px]
-        rounded-full
-        bg-gradient-to-b
-        from-white
-        via-gray-100
-        to-gray-200
-        shadow-[0_-40px_100px_rgba(0,0,0,.08)]
-        "
+        className="absolute bottom-[-280px] left-1/2 -translate-x-1/2 w-[1700px] h-[650px] rounded-full bg-gradient-to-b from-white via-gray-100 to-gray-200 shadow-[0_-40px_100px_rgba(0,0,0,.08)]"
       />
 
       {/* Timeline */}
@@ -96,11 +83,7 @@ export default function DigitalMuseum() {
             className="flex flex-col items-center"
           >
             <div
-              className={`w-3 h-3 rounded-full ${
-                active === i
-                  ? "bg-black"
-                  : "bg-gray-300"
-              }`}
+              className={`w-3 h-3 rounded-full ${ active === i ? "bg-black" : "bg-gray-300" }`}
             />
 
             <div className="mt-3 text-xs text-gray-500">

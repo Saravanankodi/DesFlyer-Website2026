@@ -66,14 +66,7 @@ function CornerMarks() {
       {corners.map((position, index) => (
         <div
           key={index}
-          className={`
-            absolute
-            ${position}
-            w-4
-            h-4
-            pointer-events-none
-            z-40
-          `}
+          className={`absolute ${position} w-4 h-4 pointer-events-none z-40`}
           style={{
             opacity: 0.25,
           }}
@@ -134,7 +127,7 @@ function TypingText({
       if (index >= text.length) {
         clearInterval(timer)
       }
-    }, 25)
+    }, 5)
 
     return () => {
       if (timer) {
@@ -199,15 +192,7 @@ function ServiceCard({
     <motion.div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="
-        relative
-        w-full
-        h-full
-        min-h-[300px]
-        rounded-[22px]
-        overflow-hidden
-        outline-none
-      "
+      className="relative w-full h-full min-h-[300px] rounded-[22px] overflow-hidden outline-none"
       initial={{
         opacity: 0,
         y: 20,
@@ -237,13 +222,7 @@ function ServiceCard({
       ================================================= */}
 
       <div
-        className="
-          absolute
-          -inset-[1px]
-          rounded-[22px]
-          pointer-events-none
-          z-10
-        "
+        className="absolute -inset-[1px] rounded-[22px] pointer-events-none z-10"
         style={{
           background: `
             linear-gradient(
@@ -265,12 +244,7 @@ function ServiceCard({
       ================================================= */}
 
       <div
-        className="
-          absolute
-          inset-[1px]
-          rounded-[21px]
-          overflow-hidden
-        "
+        className="absolute inset-[1px] rounded-[21px] overflow-hidden"
         style={{
           background: `
             linear-gradient(
@@ -294,13 +268,7 @@ function ServiceCard({
               s.title ||
               `Service ${i + 1}`
             }
-            className="
-              absolute
-              inset-0
-              w-full
-              h-full
-              object-cover
-            "
+            className="absolute inset-0 w-full h-full object-cover"
             animate={{
               scale: isHovered ? 1.12 : 1.06,
               filter: isHovered
@@ -365,13 +333,7 @@ function ServiceCard({
           {!isHovered && (
             <motion.div
               key="normal-content"
-              className="
-                absolute
-                left-6
-                right-6
-                bottom-6
-                z-30
-              "
+              className="absolute left-6 right-6 bottom-6 z-30"
               initial={{
                 opacity: 1,
               }}
@@ -386,14 +348,7 @@ function ServiceCard({
               }}
             >
               <h3
-                className="
-                  font-display
-                  font-semibold
-                  text-xl
-                  md:text-[22px]
-                  leading-tight
-                  m-0
-                "
+                className="font-display font-semibold text-xl md:text-[22px] leading-tight m-0"
                 style={{
                   color: FG,
                 }}
@@ -413,17 +368,7 @@ function ServiceCard({
           {isHovered && (
             <motion.div
               key="hover-content"
-              className="
-                absolute
-                left-6
-                right-6
-                top-[28px]
-                bottom-6
-                z-30
-                flex
-                flex-col
-                overflow-hidden
-              "
+              className="absolute left-6 right-6 top-[28px] bottom-6 z-30 flex flex-col overflow-hidden"
               initial={{
                 opacity: 0,
               }}
@@ -457,15 +402,7 @@ function ServiceCard({
                   duration: 0.8,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="
-                  font-display
-                  font-bold
-                  text-xl
-                  md:text-[23px]
-                  leading-tight
-                  m-0
-                  pr-4
-                "
+                className="font-display font-bold text-xl md:text-[23px] leading-tight m-0 pr-4"
                 style={{
                   color: BLUE_LIGHT,
                   textShadow:
@@ -496,14 +433,7 @@ function ServiceCard({
                   delay: 0.15,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="
-                  mt-1
-                  m-0
-                  text-[12px]
-                  md:text-[13px]
-                  leading-[1.65]
-                  max-w-[96%]
-                "
+                className="mt-1 m-0 text-[12px] md:text-[13px] leading-[1.65] max-w-[96%]"
                 style={{
                   color:
                     'rgba(245,248,255,0.88)',
@@ -525,14 +455,7 @@ function ServiceCard({
         ================================================= */}
 
         <div
-          className="
-            absolute
-            bottom-0
-            left-0
-            right-0
-            h-[2px]
-            z-40
-          "
+          className="absolute bottom-0 left-0 right-0 h-[2px] z-40"
           style={{
             opacity: 0.85,
             background: `
@@ -578,14 +501,7 @@ function ServiceRail() {
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="
-        relative
-        hidden
-        lg:flex
-        items-center
-        justify-end
-        min-h-[180px]
-      "
+      className="relative hidden lg:flex items-center justify-end min-h-[180px]"
     >
 
       {/* =================================================
@@ -602,16 +518,7 @@ function ServiceRail() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="
-          pointer-events-none
-          absolute
-          right-4
-          h-40
-          w-80
-          rounded-full
-          bg-blue-500/20
-          blur-[80px]
-        "
+        className="pointer-events-none absolute right-4 h-40 w-80 rounded-full bg-blue-500/20 blur-[80px]"
       />
 
 
@@ -626,28 +533,7 @@ function ServiceRail() {
         whileTap={{
           scale: 0.97,
         }}
-        className="
-          group
-          relative
-          flex
-          min-w-[285px]
-          items-center
-          justify-between
-          gap-8
-          overflow-hidden
-          rounded-2xl
-          border
-          border-white/[0.10]
-          bg-white/[0.035]
-          px-5
-          py-4
-          backdrop-blur-2xl
-          transition-all
-          duration-500
-          hover:border-blue-400/40
-          hover:bg-blue-400/[0.055]
-          hover:shadow-[0_20px_70px_rgba(47,123,255,0.16)]
-        "
+        className="group relative flex min-w-[285px] items-center justify-between gap-8 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.035] px-5 py-4 backdrop-blur-2xl transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-400/[0.055] hover:shadow-[0_20px_70px_rgba(47,123,255,0.16)]"
       >
 
         {/* =================================================
@@ -669,18 +555,7 @@ function ServiceRail() {
             duration: 1,
             ease: 'easeInOut',
           }}
-          className="
-            pointer-events-none
-            absolute
-            inset-y-0
-            -left-20
-            w-20
-            skew-x-[-20deg]
-            bg-gradient-to-r
-            from-transparent
-            via-blue-300/20
-            to-transparent
-          "
+          className="pointer-events-none absolute inset-y-0 -left-20 w-20 skew-x-[-20deg] bg-gradient-to-r from-transparent via-blue-300/20 to-transparent"
         />
 
 
@@ -693,18 +568,7 @@ function ServiceRail() {
           {/* STATUS ICON */}
 
           <div
-            className="
-              relative
-              flex
-              h-11
-              w-11
-              items-center
-              justify-center
-              rounded-xl
-              border
-              border-blue-400/20
-              bg-blue-400/[0.06]
-            "
+            className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/[0.06]"
           >
 
             {/* ROTATING RING */}
@@ -722,14 +586,7 @@ function ServiceRail() {
                 duration: 0.8,
                 ease: 'easeOut',
               }}
-              className="
-                absolute
-                inset-1
-                rounded-lg
-                border
-                border-dashed
-                border-blue-400/25
-              "
+              className="absolute inset-1 rounded-lg border border-dashed border-blue-400/25"
             />
 
             {/* CENTER DOT */}
@@ -744,15 +601,7 @@ function ServiceRail() {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="
-                relative
-                z-10
-                h-2
-                w-2
-                rounded-full
-                bg-blue-300
-                shadow-[0_0_14px_rgba(94,162,255,0.9)]
-              "
+              className="relative z-10 h-2 w-2 rounded-full bg-blue-300 shadow-[0_0_14px_rgba(94,162,255,0.9)]"
             />
 
           </div>
@@ -763,31 +612,13 @@ function ServiceRail() {
           <div>
 
             <span
-              className="
-                block
-                font-mono
-                text-[8px]
-                uppercase
-                tracking-[0.35em]
-                text-blue-300/50
-              "
+              className="block font-mono text-[8px] uppercase tracking-[0.35em] text-blue-300/50"
             >
               Explore
             </span>
 
             <span
-              className="
-                mt-1
-                block
-                font-display
-                text-[15px]
-                font-semibold
-                tracking-wide
-                text-white
-                transition-colors
-                duration-300
-                group-hover:text-blue-200
-              "
+              className="mt-1 block font-display text-[15px] font-semibold tracking-wide text-white transition-colors duration-300 group-hover:text-blue-200"
             >
               All Services
             </span>
@@ -816,26 +647,7 @@ function ServiceRail() {
             duration: 0.4,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="
-            relative
-            z-10
-            flex
-            h-10
-            w-10
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-blue-400/20
-            bg-blue-400/[0.05]
-            text-blue-300
-            transition-all
-            duration-300
-            group-hover:border-blue-400/50
-            group-hover:bg-blue-400/10
-            group-hover:text-blue-200
-          "
+          className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-blue-400/20 bg-blue-400/[0.05] text-blue-300 transition-all duration-300 group-hover:border-blue-400/50 group-hover:bg-blue-400/10 group-hover:text-blue-200"
         >
           <span className="text-lg">
             ↗
@@ -862,16 +674,7 @@ function ServiceRail() {
             duration: 0.5,
             ease: 'easeOut',
           }}
-          className="
-            absolute
-            left-6
-            top-0
-            h-px
-            bg-gradient-to-r
-            from-blue-400
-            via-blue-300
-            to-transparent
-          "
+          className="absolute left-6 top-0 h-px bg-gradient-to-r from-blue-400 via-blue-300 to-transparent"
         />
 
 
@@ -894,16 +697,7 @@ function ServiceRail() {
             duration: 0.5,
             ease: 'easeOut',
           }}
-          className="
-            absolute
-            right-6
-            bottom-0
-            h-px
-            bg-gradient-to-l
-            from-blue-400
-            via-blue-300
-            to-transparent
-          "
+          className="absolute right-6 bottom-0 h-px bg-gradient-to-l from-blue-400 via-blue-300 to-transparent"
         />
 
       </motion.a>
@@ -922,29 +716,11 @@ function ServiceRail() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="
-          pointer-events-none
-          absolute
-          -top-1
-          right-8
-          rounded-full
-          border
-          border-blue-400/10
-          bg-blue-400/[0.04]
-          px-3
-          py-1
-          backdrop-blur-md
-        "
+        className="pointer-events-none absolute -top-1 right-8 rounded-full border border-blue-400/10 bg-blue-400/[0.04] px-3 py-1 backdrop-blur-md"
       >
 
         <span
-          className="
-            font-mono
-            text-[7px]
-            uppercase
-            tracking-[0.25em]
-            text-blue-300/50
-          "
+          className="font-mono text-[7px] uppercase tracking-[0.25em] text-blue-300/50"
         >
           Digital Solutions
         </span>
@@ -1045,14 +821,7 @@ export default function ServicesTeaser() {
 
   return (
     <section
-      className="
-        relative
-        overflow-hidden
-        px-6
-        py-24
-        lg:px-10
-        lg:py-32
-      "
+      className="relative overflow-hidden px-6 py-24 lg:px-10 lg:py-32"
       style={{
         background: INK,
       }}
@@ -1063,11 +832,7 @@ export default function ServicesTeaser() {
       ================================================= */}
 
       <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-        "
+        className="pointer-events-none absolute inset-0"
         style={{
           background: `
             radial-gradient(
@@ -1090,14 +855,7 @@ export default function ServicesTeaser() {
       ================================================= */}
 
       <div
-        className="
-          pointer-events-none
-          absolute
-          left-0
-          right-0
-          top-[22%]
-          h-px
-        "
+        className="pointer-events-none absolute left-0 right-0 top-[22%] h-px"
         style={{
           background:
             'linear-gradient(90deg, transparent, rgba(94,162,255,0.08), transparent)',
@@ -1110,14 +868,7 @@ export default function ServicesTeaser() {
       ================================================= */}
 
       <div
-        className="
-          pointer-events-none
-          absolute
-          left-0
-          right-0
-          bottom-[18%]
-          h-px
-        "
+        className="pointer-events-none absolute left-0 right-0 bottom-[18%] h-px"
         style={{
           background:
             'linear-gradient(90deg, transparent, rgba(94,162,255,0.06), transparent)',
@@ -1130,12 +881,7 @@ export default function ServicesTeaser() {
       ================================================= */}
 
       <div
-        className="
-          relative
-          z-10
-          mx-auto
-          max-w-shell
-        "
+        className="relative z-10 mx-auto max-w-shell"
       >
 
         {/* =================================================
@@ -1143,19 +889,14 @@ export default function ServicesTeaser() {
         ================================================= */}
 
         <div
-          className="
-            grid
-            items-center
-            gap-8
-            lg:grid-cols-[0.9fr_1.1fr]
-          "
+          className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]"
         >
 
           {/* =================================================
               LEFT HEADING
           ================================================= */}
 
-          <div>
+          <div className='-mt-32'>
 
             <Eyebrow>
               What We Do
@@ -1178,14 +919,7 @@ export default function ServicesTeaser() {
               transition={{
                 duration: 0.8,
               }}
-              className="
-                mt-4
-                max-w-xl
-                font-display
-                text-[clamp(1.9rem,3.5vw,3rem)]
-                font-bold
-                leading-tight
-              "
+              className="mt-4 max-w-xl font-display text-[clamp(1.9rem,3.5vw,3rem)] font-bold leading-tight"
               style={{
                 color: FG,
               }}
@@ -1213,14 +947,7 @@ export default function ServicesTeaser() {
                 duration: 0.7,
                 delay: 0.15,
               }}
-              className="
-                mt-4
-                mb-0
-                max-w-md
-                text-sm
-                leading-6
-                text-white/40
-              "
+              className="mt-4 mb-5  text-sm leading-6 text-white/40"
             >
               We combine technology, design, and
               strategy to create digital products
@@ -1261,17 +988,7 @@ export default function ServicesTeaser() {
             transition={{
               duration: 0.6,
             }}
-            className="
-              flex
-              items-center
-              justify-between
-              rounded-xl
-              border
-              border-blue-400/10
-              bg-blue-400/[0.03]
-              px-4
-              py-3
-            "
+            className="flex items-center justify-between rounded-xl border border-blue-400/10 bg-blue-400/[0.03] px-4 py-3"
           >
 
             <div className="flex items-center gap-2">
@@ -1284,23 +1001,11 @@ export default function ServicesTeaser() {
                   duration: 1.5,
                   repeat: Infinity,
                 }}
-                className="
-                  h-2
-                  w-2
-                  rounded-full
-                  bg-blue-400
-                  shadow-[0_0_10px_rgba(94,162,255,0.7)]
-                "
+                className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(94,162,255,0.7)]"
               />
 
               <span
-                className="
-                  font-mono
-                  text-[8px]
-                  uppercase
-                  tracking-[0.15em]
-                  text-blue-300/60
-                "
+                className="font-mono text-[8px] uppercase tracking-[0.15em] text-blue-300/60"
               >
                 Explore Services
               </span>
@@ -1310,24 +1015,7 @@ export default function ServicesTeaser() {
 
             <a
               href="/services"
-              className="
-                rounded-lg
-                border
-                border-blue-400/20
-                bg-blue-400/[0.06]
-                px-3
-                py-2
-                font-mono
-                text-[8px]
-                uppercase
-                tracking-wider
-                text-blue-300
-                transition-all
-                duration-300
-                hover:border-blue-400/50
-                hover:bg-blue-400/10
-                hover:text-blue-200
-              "
+              className="rounded-lg border border-blue-400/20 bg-blue-400/[0.06] px-3 py-2 font-mono text-[8px] uppercase tracking-wider text-blue-300 transition-all duration-300 hover:border-blue-400/50 hover:bg-blue-400/10 hover:text-blue-200"
             >
               Explore →
             </a>
@@ -1345,11 +1033,7 @@ export default function ServicesTeaser() {
         <div className="mt-10 sm:hidden">
 
           <div
-            className="
-              relative
-              w-full
-              overflow-hidden
-            "
+            className="relative w-full overflow-hidden"
           >
 
             <AnimatePresence mode="wait">
@@ -1416,13 +1100,7 @@ export default function ServicesTeaser() {
             {/* MOBILE DOTS */}
 
             <div
-              className="
-                mt-5
-                flex
-                items-center
-                justify-center
-                gap-2
-              "
+              className="mt-5 flex items-center justify-center gap-2"
             >
 
               {featured.map((_, index) => (
@@ -1433,17 +1111,7 @@ export default function ServicesTeaser() {
                   onClick={() =>
                     setMobileIndex(index)
                   }
-                  className={`
-                    h-1.5
-                    rounded-full
-                    transition-all
-                    duration-300
-                    ${
-                      mobileIndex === index
-                        ? 'w-7 bg-blue-400'
-                        : 'w-1.5 bg-blue-400/25'
-                    }
-                  `}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${ mobileIndex === index ? 'w-7 bg-blue-400' : 'w-1.5 bg-blue-400/25' }`}
                   aria-label={`Show service ${
                     index + 1
                   }`}
@@ -1463,14 +1131,7 @@ export default function ServicesTeaser() {
         ================================================= */}
 
         <div
-          className="
-            mt-8
-            hidden
-            sm:grid
-            sm:grid-cols-2
-            lg:grid-cols-4
-            gap-5
-          "
+          className="mt-8 hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
         >
 
           {featured.map((s, i) => (

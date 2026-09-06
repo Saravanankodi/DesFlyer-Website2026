@@ -16,8 +16,7 @@ export default function FloatingLogo() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="w-[500px] xl:w-[650px] 2xl:w-[750px] h-auto object-contain
-                   drop-shadow-[0_0_60px_rgba(34,211,238,0.35)]"
+        className="w-[500px] xl:w-[650px] 2xl:w-[750px] h-auto object-contain drop-shadow-[0_0_60px_rgba(34,211,238,0.35)]"
       />
     </div>
   );

@@ -5,8 +5,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { FiArrowUpRight, FiArrowRight } from 'react-icons/fi'
-import Button from '../ui/Button'
+import { FiArrowUpRight, FiSend } from 'react-icons/fi'
 
 const CAPABILITIES = [
   'Web Development',
@@ -26,6 +25,10 @@ const PARTICLES = Array.from({ length: 32 }, (_, i) => ({
   duration: 4 + (i % 5),
 }))
 
+/* =========================================================
+   PARTICLE FIELD
+========================================================= */
+
 function ParticleField() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -41,8 +44,13 @@ function ParticleField() {
             boxShadow: '0 0 12px rgba(101,217,255,0.7)',
           }}
           animate={{
-            opacity: [0.1, 0.8, 0.1],
+            opacity: [0.08, 0.8, 0.08],
             y: [0, -18, 0],
+            x: [
+              0,
+              particle.id % 2 === 0 ? 10 : -10,
+              0,
+            ],
             scale: [0.7, 1.4, 0.7],
           }}
           transition={{
@@ -57,19 +65,109 @@ function ParticleField() {
   )
 }
 
+/* =========================================================
+   FLOATING ENERGY SYSTEM
+========================================================= */
+
 function OrbitalSystem() {
-  const trailParticles = Array.from({ length: 8 }, (_, i) => i)
-  const swarmParticles = Array.from({ length: 18 }, (_, i) => i)
+  const particles = Array.from({ length: 28 }, (_, i) => i)
 
   return (
-    <div className="pointer-events-none absolute left-1/2 top-[48%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 sm:h-[560px] sm:w-[560px]">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {particles.map((i) => {
+        const left = (i * 37) % 100
+        const top = (i * 61) % 100
+        const size =
+          i % 5 === 0 ? 3 : i % 3 === 0 ? 2 : 1
 
-      {/* DEEP SPACE / CORE ATMOSPHERE */}
+        return (
+          <motion.span
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              width: size,
+              height: size,
+              background:
+                i % 4 === 0 ? '#A855F7' : '#65D9FF',
+              boxShadow:
+                i % 4 === 0
+                  ? '0 0 14px rgba(168,85,247,.8)'
+                  : '0 0 14px rgba(101,217,255,.8)',
+            }}
+            animate={{
+              x: [
+                0,
+                (i % 2 === 0 ? 1 : -1) *
+                (15 + (i % 4) * 10),
+                0,
+              ],
+              y: [
+                0,
+                -(20 + (i % 5) * 8),
+                0,
+              ],
+              opacity: [0.05, 0.8, 0.05],
+              scale: [0.6, 1.5, 0.6],
+            }}
+            transition={{
+              duration: 4 + (i % 6),
+              delay: i * 0.15,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        )
+      })}
+
+      {/* LEFT GLOW */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="absolute left-[12%] top-[35%] h-2 w-2 rounded-full bg-[#65D9FF]"
+        animate={{
+          x: [0, 35, 0, -20, 0],
+          y: [0, -25, 15, 5, 0],
+          scale: [0.6, 1.4, 0.8, 1.2, 0.6],
+          opacity: [0.2, 1, 0.3, 0.8, 0.2],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        style={{
+          boxShadow:
+            '0 0 15px #65D9FF, 0 0 35px rgba(101,217,255,.6)',
+        }}
+      />
+
+      {/* RIGHT GLOW */}
+      <motion.div
+        className="absolute right-[13%] top-[28%] h-2 w-2 rounded-full bg-[#A855F7]"
+        animate={{
+          x: [0, -30, 0, 20, 0],
+          y: [0, 25, -15, 5, 0],
+          scale: [0.5, 1.5, 0.7, 1.3, 0.5],
+          opacity: [0.2, 1, 0.3, 0.8, 0.2],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 1,
+        }}
+        style={{
+          boxShadow:
+            '0 0 15px #A855F7, 0 0 35px rgba(168,85,247,.6)',
+        }}
+      />
+
+      {/* CENTER AURA */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full"
         animate={{
           scale: [0.85, 1.15, 0.85],
-          opacity: [0.18, 0.42, 0.18],
+          opacity: [0.04, 0.15, 0.04],
         }}
         transition={{
           duration: 5,
@@ -78,469 +176,187 @@ function OrbitalSystem() {
         }}
         style={{
           background:
-            'radial-gradient(circle, rgba(54,203,255,.22), rgba(105,80,255,.10), transparent 68%)',
-          filter: 'blur(45px)',
+            'radial-gradient(circle, rgba(101,217,255,.25), rgba(168,85,247,.08), transparent 70%)',
+          filter: 'blur(30px)',
         }}
       />
 
-      {/* OUTER 3D ORBIT */}
+      {/* RIPPLE */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[320px] w-[530px] -translate-x-1/2 -translate-y-1/2 rounded-[50%]"
+        className="absolute left-1/2 top-1/2 h-[120px] w-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#65D9FF]/20"
         animate={{
-          rotate: 360,
+          scale: [0.7, 2.8],
+          opacity: [0.45, 0],
         }}
         transition={{
-          duration: 30,
+          duration: 4,
           repeat: Infinity,
-          ease: 'linear',
+          ease: 'easeOut',
         }}
-        style={{
-          transform: 'translate(-50%, -50%) rotate(22deg)',
-          border: '1px solid rgba(101,217,255,.16)',
-          boxShadow: '0 0 35px rgba(101,217,255,.03)',
-        }}
-      >
-        <motion.span
-          className="absolute left-[9%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#65D9FF]"
-          animate={{
-            scale: [0.7, 1.5, 0.7],
-            opacity: [0.4, 1, 0.4],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          style={{
-            boxShadow:
-              '0 0 10px #65D9FF, 0 0 30px rgba(101,217,255,.8)',
-          }}
-        />
+      />
 
-        <motion.span
-          className="absolute right-[12%] top-[12%] h-1.5 w-1.5 rounded-full bg-white"
-          animate={{
-            opacity: [0.2, 1, 0.2],
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-          }}
-          style={{
-            boxShadow: '0 0 15px white',
-          }}
-        />
-      </motion.div>
-
-      {/* SECOND CROSS ORBIT */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[275px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-[50%]"
+        className="absolute left-1/2 top-1/2 h-[120px] w-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#A855F7]/15"
         animate={{
-          rotate: -360,
-        }}
-        transition={{
-          duration: 23,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-        style={{
-          transform: 'translate(-50%, -50%) rotate(-28deg)',
-          border: '1px solid rgba(168,85,247,.17)',
-        }}
-      >
-        <motion.span
-          className="absolute right-[8%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#A855F7]"
-          animate={{
-            scale: [0.6, 1.6, 0.6],
-            opacity: [0.4, 1, 0.4],
-          }}
-          transition={{
-            duration: 2.4,
-            repeat: Infinity,
-          }}
-          style={{
-            boxShadow:
-              '0 0 12px #A855F7, 0 0 30px rgba(168,85,247,.7)',
-          }}
-        />
-      </motion.div>
-
-      {/* INNER 3D ORBIT */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[185px] w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-[50%]"
-        animate={{
-          rotate: 360,
-          scaleY: [1, 0.88, 1],
-        }}
-        transition={{
-          rotate: {
-            duration: 16,
-            repeat: Infinity,
-            ease: 'linear',
-          },
-          scaleY: {
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          },
-        }}
-        style={{
-          transform: 'translate(-50%, -50%) rotate(55deg)',
-          border: '1px solid rgba(255,255,255,.11)',
-        }}
-      >
-        <motion.span
-          className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-[#65D9FF]"
-          animate={{
-            scale: [0.6, 1.8, 0.6],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-          }}
-          style={{
-            boxShadow: '0 0 20px #65D9FF',
-          }}
-        />
-      </motion.div>
-
-      {/* DOTTED MICRO ORBIT */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[130px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-dashed border-[#65D9FF]/20"
-        animate={{
-          rotate: -360,
-        }}
-        transition={{
-          duration: 11,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-        style={{
-          transform: 'translate(-50%, -50%) rotate(-18deg)',
-        }}
-      >
-        <span className="absolute left-[10%] top-1/2 h-1 w-1 rounded-full bg-[#65D9FF] shadow-[0_0_10px_#65D9FF]" />
-
-        <span className="absolute right-[12%] top-1/2 h-1 w-1 rounded-full bg-[#A855F7] shadow-[0_0_10px_#A855F7]" />
-
-        <span className="absolute left-1/2 top-[4%] h-1 w-1 rounded-full bg-white shadow-[0_0_10px_white]" />
-      </motion.div>
-
-      {/* ROTATING SCANNER BEAM */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      >
-        <div
-          className="absolute left-1/2 top-1/2 h-[1px] w-[165px] origin-left"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(101,217,255,.5), transparent)',
-            boxShadow: '0 0 12px rgba(101,217,255,.4)',
-          }}
-        />
-
-        <div
-          className="absolute left-[48%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full"
-          style={{
-            background: '#65D9FF',
-            boxShadow: '0 0 20px #65D9FF',
-          }}
-        />
-      </motion.div>
-
-      {/* RADIAL ENERGY RAYS */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[350px] w-[350px] -translate-x-1/2 -translate-y-1/2"
-        animate={{
-          rotate: -360,
-        }}
-        transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      >
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-          <span
-            key={angle}
-            className="absolute left-1/2 top-1/2 h-px w-[175px] origin-left"
-            style={{
-              transform: `rotate(${angle}deg)`,
-              background:
-                'linear-gradient(90deg, rgba(101,217,255,.10), transparent)',
-            }}
-          />
-        ))}
-      </motion.div>
-
-      {/* MOVING ENERGY TRAILS */}
-      {trailParticles.map((i) => (
-        <motion.div
-          key={`trail-${i}`}
-          className="absolute left-1/2 top-1/2 h-1 w-1 rounded-full"
-          style={{
-            background: i % 2 === 0 ? '#65D9FF' : '#A855F7',
-            boxShadow:
-              i % 2 === 0
-                ? '0 0 15px #65D9FF'
-                : '0 0 15px #A855F7',
-          }}
-          animate={{
-            x: [
-              Math.cos((i / 8) * Math.PI * 2) * 100,
-              Math.cos((i / 8) * Math.PI * 2 + Math.PI) * 220,
-              Math.cos((i / 8) * Math.PI * 2) * 100,
-            ],
-            y: [
-              Math.sin((i / 8) * Math.PI * 2) * 60,
-              Math.sin((i / 8) * Math.PI * 2 + Math.PI) * 150,
-              Math.sin((i / 8) * Math.PI * 2) * 60,
-            ],
-            opacity: [0, 1, 0],
-            scale: [0.5, 1.8, 0.5],
-          }}
-          transition={{
-            duration: 5 + i * 0.35,
-            delay: i * 0.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
-      {/* PARTICLE SWARM */}
-      {swarmParticles.map((i) => {
-        const angle = (i / 18) * Math.PI * 2
-        const radius = 120 + (i % 4) * 18
-
-        return (
-          <motion.span
-            key={`swarm-${i}`}
-            className="absolute left-1/2 top-1/2 h-1 w-1 rounded-full bg-white/60"
-            animate={{
-              x: [
-                Math.cos(angle) * radius,
-                Math.cos(angle + 0.8) * (radius + 25),
-                Math.cos(angle) * radius,
-              ],
-              y: [
-                Math.sin(angle) * radius * 0.55,
-                Math.sin(angle + 0.8) * (radius + 25) * 0.55,
-                Math.sin(angle) * radius * 0.55,
-              ],
-              opacity: [0.1, 0.7, 0.1],
-            }}
-            transition={{
-              duration: 6 + (i % 5),
-              delay: i * 0.18,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        )
-      })}
-
-      {/* ENERGY COLLISION FLASH */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
-        animate={{
-          scale: [0, 1.5, 0, 0],
-          opacity: [0, 0.8, 0, 0],
+          scale: [0.7, 3.5],
+          opacity: [0.3, 0],
         }}
         transition={{
           duration: 5,
           repeat: Infinity,
-          times: [0, 0.08, 0.16, 1],
-        }}
-        style={{
-          boxShadow:
-            '0 0 20px white, 0 0 50px #65D9FF, 0 0 90px #A855F7',
+          ease: 'easeOut',
+          delay: 2,
         }}
       />
 
-      {/* CENTRAL REACTOR */}
+      {/* CENTER CORE */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[110px] w-[110px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-white/[0.025] backdrop-blur-md"
+        className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#65D9FF]"
         animate={{
-          scale: [0.96, 1.04, 0.96],
+          scale: [0.7, 1.5, 0.7],
+          opacity: [0.5, 1, 0.5],
         }}
         transition={{
-          duration: 3,
+          duration: 2.5,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
         style={{
           boxShadow:
-            '0 0 40px rgba(101,217,255,.08), inset 0 0 35px rgba(101,217,255,.06)',
-        }}
-      >
-        <motion.div
-          className="absolute inset-3 rounded-full border border-[#65D9FF]/25"
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        <motion.div
-          className="absolute inset-6 rounded-full border border-[#A855F7]/20 border-dashed"
-          animate={{
-            rotate: -360,
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        <motion.div
-          className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#65D9FF]"
-          animate={{
-            scale: [0.6, 1.6, 0.6],
-            opacity: [0.55, 1, 0.55],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          style={{
-            boxShadow:
-              '0 0 15px #65D9FF, 0 0 40px rgba(101,217,255,.8), 0 0 90px rgba(101,217,255,.35)',
-          }}
-        />
-
-        <motion.div
-          className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#65D9FF]/40"
-          animate={{
-            scale: [0.7, 3],
-            opacity: [0.7, 0],
-          }}
-          transition={{
-            duration: 2.2,
-            repeat: Infinity,
-            ease: 'easeOut',
-          }}
-        />
-      </motion.div>
-
-      {/* FLOATING ENERGY NODES */}
-      <motion.span
-        className="absolute left-[16%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#65D9FF]"
-        animate={{
-          x: [-8, 8, -8],
-          y: [8, -8, 8],
-          opacity: [0.2, 1, 0.2],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-        }}
-        style={{
-          boxShadow: '0 0 18px #65D9FF',
-        }}
-      />
-
-      <motion.span
-        className="absolute right-[15%] top-[30%] h-1.5 w-1.5 rounded-full bg-[#A855F7]"
-        animate={{
-          x: [8, -8, 8],
-          y: [-8, 8, -8],
-          opacity: [0.2, 1, 0.2],
-        }}
-        transition={{
-          duration: 3.5,
-          repeat: Infinity,
-        }}
-        style={{
-          boxShadow: '0 0 18px #A855F7',
-        }}
-      />
-
-      <motion.span
-        className="absolute bottom-[20%] left-[23%] h-1 w-1 rounded-full bg-white"
-        animate={{
-          scale: [0.4, 1.8, 0.4],
-          opacity: [0.1, 0.9, 0.1],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-        }}
-      />
-
-      <motion.span
-        className="absolute bottom-[17%] right-[23%] h-1.5 w-1.5 rounded-full bg-[#65D9FF]"
-        animate={{
-          scale: [1, 1.8, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-        }}
-        style={{
-          boxShadow: '0 0 18px #65D9FF',
+            '0 0 15px #65D9FF, 0 0 45px rgba(101,217,255,.7)',
         }}
       />
     </div>
   )
 }
 
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
 function BackgroundGrid() {
   return (
     <>
-      <div
-        className="absolute inset-0 opacity-[0.08]"
+      <motion.div
+        className="pointer-events-none absolute inset-[-60px] opacity-[0.07]"
+        animate={{
+          x: [0, 55, 0],
+          y: [0, 55, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
         style={{
           backgroundImage:
-            'linear-gradient(rgba(101,217,255,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(101,217,255,.45) 1px, transparent 1px)',
+            'linear-gradient(rgba(101,217,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(101,217,255,.5) 1px, transparent 1px)',
           backgroundSize: '55px 55px',
           maskImage:
-            'radial-gradient(circle at center, black, transparent 75%)',
+            'radial-gradient(circle at center, black, transparent 72%)',
           WebkitMaskImage:
-            'radial-gradient(circle at center, black, transparent 75%)',
+            'radial-gradient(circle at center, black, transparent 72%)',
         }}
       />
 
       <motion.div
-        className="absolute left-0 top-1/2 h-px w-full bg-gradient-to-r from-transparent via-[#65D9FF]/20 to-transparent"
+        className="pointer-events-none absolute -left-[15%] -top-[25%] h-[520px] w-[520px] rounded-full"
         animate={{
-          opacity: [0.1, 0.5, 0.1],
+          x: [0, 100, -40, 0],
+          y: [0, 70, 120, 0],
+          scale: [1, 1.2, 0.9, 1],
+          opacity: [0.18, 0.3, 0.2, 0.18],
         }}
         transition={{
-          duration: 4,
+          duration: 14,
           repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        style={{
+          background:
+            'radial-gradient(circle, rgba(37,169,255,.32), rgba(37,169,255,.08), transparent 70%)',
+          filter: 'blur(60px)',
         }}
       />
 
       <motion.div
-        className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-transparent via-[#65D9FF]/10 to-transparent"
+        className="pointer-events-none absolute -bottom-[25%] -right-[15%] h-[520px] w-[520px] rounded-full"
         animate={{
-          opacity: [0.1, 0.4, 0.1],
+          x: [0, -100, 40, 0],
+          y: [0, -60, -120, 0],
+          scale: [1, 0.85, 1.15, 1],
+          opacity: [0.14, 0.25, 0.18, 0.14],
         }}
         transition={{
-          duration: 5,
+          duration: 17,
           repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        style={{
+          background:
+            'radial-gradient(circle, rgba(168,85,247,.30), rgba(168,85,247,.07), transparent 70%)',
+          filter: 'blur(70px)',
+        }}
+      />
+
+      <motion.div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        animate={{
+          rotate: [0, 8, -8, 0],
+          scale: [1, 1.08, 0.94, 1],
+          opacity: [0.12, 0.2, 0.14, 0.12],
+        }}
+        transition={{
+          duration: 11,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        style={{
+          background:
+            'radial-gradient(ellipse, rgba(101,217,255,.16), rgba(168,85,247,.08), transparent 68%)',
+          filter: 'blur(55px)',
+        }}
+      />
+
+      <motion.div
+        className="pointer-events-none absolute bottom-0 top-0 w-px"
+        animate={{
+          left: ['5%', '95%', '5%'],
+          opacity: [0, 0.3, 0],
+        }}
+        transition={{
+          duration: 13,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 3,
+        }}
+        style={{
+          background:
+            'linear-gradient(to bottom, transparent, rgba(101,217,255,.45), transparent)',
+          boxShadow: '0 0 18px rgba(101,217,255,.3)',
+        }}
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(circle at center, transparent 20%, rgba(6,11,18,.25) 70%, rgba(6,11,18,.75) 100%)',
         }}
       />
     </>
   )
 }
 
-function FloatingChip({ children, className, delay = 0 }) {
+/* =========================================================
+   FLOATING CHIP
+========================================================= */
+
+function FloatingChip({
+  children,
+  className,
+  delay = 0,
+}) {
   return (
     <motion.div
       initial={{
@@ -565,7 +381,7 @@ function FloatingChip({ children, className, delay = 0 }) {
         y: -6,
         scale: 1.05,
       }}
-      className={`absolute hidden rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] text-white/55 shadow-[0_10px_40px_rgba(0,0,0,.25)] backdrop-blur-xl sm:block ${className}`}
+      className={`absolute hidden rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] text-white shadow-[0_10px_40px_rgba(0,0,0,.25)] backdrop-blur-xl sm:block ${className}`}
     >
       <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#65D9FF] shadow-[0_0_10px_#65D9FF]" />
       {children}
@@ -573,9 +389,13 @@ function FloatingChip({ children, className, delay = 0 }) {
   )
 }
 
+/* =========================================================
+   CAPABILITY STRIP
+========================================================= */
+
 function CapabilityStrip() {
   return (
-    <div className="relative mt-8 overflow-hidden border-y border-white/[0.07] py-3">
+    <div className="relative mt-5 overflow-hidden border-y border-white/[0.07] py-2.5">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#060B12] to-transparent" />
 
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#060B12] to-transparent" />
@@ -591,22 +411,366 @@ function CapabilityStrip() {
           ease: 'linear',
         }}
       >
-        {[...CAPABILITIES, ...CAPABILITIES].map((item, index) => (
-          <div
-            key={`${item}-${index}`}
-            className="flex items-center gap-3 whitespace-nowrap"
-          >
-            <span className="h-1 w-1 rounded-full bg-[#65D9FF]" />
+        {[...CAPABILITIES, ...CAPABILITIES].map(
+          (item, index) => (
+            <div
+              key={`${item}-${index}`}
+              className="flex items-center gap-3 whitespace-nowrap"
+            >
+              <span className="h-1 w-1 rounded-full bg-[#65D9FF]" />
 
-            <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/40">
-              {item}
-            </span>
-          </div>
-        ))}
+              <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/40">
+                {item}
+              </span>
+            </div>
+          )
+        )}
       </motion.div>
     </div>
   )
 }
+
+/* =========================================================
+   INPUT FIELD
+========================================================= */
+
+function InputField({
+  label,
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  name,
+  inputMode,
+  required = true,
+}) {
+  return (
+    <div className="group">
+      <label className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-white">
+        {label}
+      </label>
+
+      <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        inputMode={inputMode}
+        required={required}
+        className="w-full rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white outline-none placeholder:text-white/20 transition-all duration-300 focus:border-[#65D9FF]/50 focus:bg-[#65D9FF]/[0.04] focus:shadow-[0_0_30px_rgba(101,217,255,.07)]"
+      />
+    </div>
+  )
+}
+
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+function ContactForm() {
+  const initialForm = {
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    details: '',
+  }
+
+  const [form, setForm] = useState(initialForm)
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+
+  /* =======================================================
+     HANDLE INPUT
+  ======================================================= */
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+
+    let cleanValue = value
+
+    /* NAME = LETTERS + SPACES ONLY */
+    if (name === 'name') {
+      cleanValue = value.replace(/[^a-zA-Z\s]/g, '')
+    }
+
+    /* PHONE = NUMBERS ONLY */
+    if (name === 'phone') {
+      cleanValue = value.replace(/\D/g, '')
+    }
+
+    setForm((previous) => ({
+      ...previous,
+      [name]: cleanValue,
+    }))
+  }
+
+  /* =======================================================
+     HANDLE SUBMIT
+  ======================================================= */
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    setSending(true)
+    setSent(false)
+
+    /*
+      All submitted information is available here.
+
+      Example:
+      {
+        name: "John",
+        email: "john@example.com",
+        phone: "9876543210",
+        company: "ABC",
+        details: "We need a website..."
+      }
+    */
+
+    const submittedDetails = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      company: form.company.trim(),
+      details: form.details.trim(),
+    }
+
+    console.log('PROJECT INQUIRY:', submittedDetails)
+
+    /*
+      -------------------------------------------------------
+      PUT YOUR API REQUEST HERE IF YOU HAVE A BACKEND
+      -------------------------------------------------------
+
+      Example:
+
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submittedDetails),
+      })
+    */
+
+    try {
+      /*
+        Simulating sending.
+        Remove this timeout when connecting your backend.
+      */
+      await new Promise((resolve) =>
+        setTimeout(resolve, 800)
+      )
+
+      /* CLEAR ALL FIELDS AFTER SEND */
+      setForm(initialForm)
+
+      setSent(true)
+
+      /* Remove success message after 3 seconds */
+      setTimeout(() => {
+        setSent(false)
+      }, 3000)
+    } catch (error) {
+      console.error('Failed to send inquiry:', error)
+    } finally {
+      setSending(false)
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: 40,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+        margin: '-80px',
+      }}
+      transition={{
+        duration: 0.9,
+        delay: 0.15,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="relative h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#060B12]/90 p-5 shadow-[0_30px_100px_rgba(0,0,0,.35)] backdrop-blur-xl sm:p-6 lg:p-7"
+    >
+      {/* FORM GLOW */}
+
+      <div
+        className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(101,217,255,.13), transparent 70%)',
+          filter: 'blur(30px)',
+        }}
+      />
+
+      <form
+        onSubmit={handleSubmit}
+        className="relative z-10 flex h-full flex-col"
+      >
+        {/* FORM HEADER */}
+
+        <div className="mb-5">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#65D9FF] shadow-[0_0_12px_#65D9FF]" />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-[#65D9FF]/70">
+              Start a conversation
+            </span>
+          </div>
+
+          <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-[28px]">
+            Tell us about
+            <span className="ml-2 bg-gradient-to-r from-[#65D9FF] to-[#3d49f7] bg-clip-text text-transparent">
+              your project.
+            </span>
+          </h3>
+
+          <p className="mt-2 max-w-md text-xs leading-5 text-white/40">
+            Have an idea in mind? Send us the details and
+            we’ll get back to you.
+          </p>
+        </div>
+
+        {/* INPUTS */}
+
+        <div className="flex flex-1 flex-col justify-between space-y-3.5">
+          {/* NAME + EMAIL */}
+
+          <div className="grid gap-3.5 sm:grid-cols-2">
+            <InputField
+              name="name"
+              label="Your Name"
+              placeholder="Enter your name"
+              value={form.name}
+              onChange={handleChange}
+            />
+
+            <InputField
+              name="email"
+              label="Email Address"
+              type="email"
+              placeholder="you@example.com"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* PHONE + COMPANY */}
+
+          <div className="grid gap-3.5 sm:grid-cols-2">
+            <InputField
+              name="phone"
+              label="Phone Number"
+              type="tel"
+              inputMode="numeric"
+              placeholder="Enter phone number"
+              value={form.phone}
+              onChange={handleChange}
+            />
+
+            <InputField
+              name="company"
+              label="Company / Organization"
+              placeholder="Your company"
+              value={form.company}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* PROJECT DETAILS */}
+
+          <div>
+            <label className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-white">
+              Project Details
+            </label>
+
+            <textarea
+              name="details"
+              rows={3}
+              value={form.details}
+              onChange={handleChange}
+              required
+              placeholder="Tell us what you're building..."
+              className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white outline-none placeholder:text-white/20 transition-all duration-300 focus:border-[#65D9FF]/50 focus:bg-[#65D9FF]/[0.04] focus:shadow-[0_0_30px_rgba(101,217,255,.07)]"
+            />
+          </div>
+
+          {/* SUBMIT */}
+
+          <motion.button
+            type="submit"
+            disabled={sending}
+            whileHover={{
+              scale: sending ? 1 : 1.02,
+            }}
+            whileTap={{
+              scale: sending ? 1 : 0.97,
+            }}
+            className="group relative  flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#06b9f4]/50 bg-[#3063da]/20 px-5 py-3 text-xs font-semibold text-[#f9fbfc] shadow-[0_0_30px_rgba(101,217,255,.12)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(101,217,255,.3)] disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            <span className="relative z-10">
+              {sending
+                ? 'Sending...'
+                : sent
+                  ? 'Project inquiry sent'
+                  : 'Send project inquiry'}
+            </span>
+
+            <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#041018]/10">
+              {sending ? '...' : <FiSend />}
+            </span>
+            {/* <motion.span
+              className="pointer-events-none  absolute left-[-35%] top-[-40%] h-[180%] w-[2px] rotate-[25deg] bg-white/90 blur-[0.5px] shadow-[0_0_8px_rgba(255,255,255,0.9),0_0_18px_rgba(101,217,255,0.8)]"
+              animate={{
+                left: ['-35%', '135%'],
+                opacity: [0, 1, 1, 0],
+              }}
+              hovering={{
+                duration: 0.65,
+                delay: 2,
+                repeat: Infinity,
+                repeatDelay: 1.35,
+                ease: 'easeInOut',
+              }}
+            /> */}
+            <span className="absolute inset-0 -translate-x-full w-full bg-white/30 transition-transform duration-500 group-hover:translate-x-full" />
+          </motion.button>
+
+        </div>
+
+        {/* FORM STATUS */}
+
+        <div className="mt-3 flex items-center justify-center gap-2">
+          <span
+            className={`h-1.5 w-1.5 rounded-full shadow-[0_0_10px_rgba(74,222,128,.7)] ${sent
+              ? 'bg-blue-400'
+              : 'bg-blue-400'
+              }`}
+          />
+
+          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
+            {sent
+              ? 'Your inquiry has been received'
+              : 'Your information stays private'}
+          </span>
+        </div>
+      </form>
+    </motion.div>
+  )
+}
+
+/* =========================================================
+   CTA BAND
+========================================================= */
 
 export default function CTABand() {
   const sectionRef = useRef(null)
@@ -657,7 +821,10 @@ export default function CTABand() {
 
     const element = sectionRef.current
 
-    element?.addEventListener('mousemove', handleMove)
+    element?.addEventListener(
+      'mousemove',
+      handleMove
+    )
 
     return () => {
       element?.removeEventListener(
@@ -668,383 +835,392 @@ export default function CTABand() {
   }, [mouseX, mouseY])
 
   return (
-    <section className="px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-      <motion.div
-        ref={sectionRef}
-        initial={{
-          opacity: 0,
-          y: 40,
-          scale: 0.98,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-        }}
-        viewport={{
-          once: true,
-          margin: '-80px',
-        }}
-        transition={{
-          duration: 1,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="group relative mx-auto max-w-shell overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#060B12] px-5 pb-0 pt-12 shadow-[0_30px_120px_rgba(0,0,0,.45)] sm:px-8 sm:pt-14 lg:px-14 lg:pt-16"
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
-      >
-        {/* MOUSE FOLLOWING GLOW */}
+    <section className="px-4 py-3 sm:px-5 sm:py-4 lg:h-[calc(100vh-80px)] lg:min-h-[680px] lg:px-8 lg:py-5">
+      {/* =====================================================
+          TWO COLUMN LAYOUT
+      ===================================================== */}
+
+      <div className="mx-auto grid h-full max-w-[1500px] items-stretch gap-5 lg:grid-cols-[1fr_0.85fr]">
+
+        {/* =================================================
+            LEFT — CTA CARD
+        ================================================= */}
+
         <motion.div
-          className="pointer-events-none absolute h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
-          style={{
-            left: glowX,
-            top: glowY,
-            background:
-              'radial-gradient(circle, rgba(37,169,255,.18), rgba(111,64,255,.08), transparent 65%)',
+          ref={sectionRef}
+          initial={{
+            opacity: 0,
+            x: -40,
+            scale: 0.98,
           }}
-        />
-
-        <BackgroundGrid />
-
-        <ParticleField />
-
-        {/* SAME BACKGROUND DESIGN */}
-        <OrbitalSystem />
-
-        {/* CORNER LABELS */}
-        <motion.div
-          className="absolute left-4 top-4 hidden font-mono text-[8px] uppercase tracking-[0.2em] text-white/25 sm:block"
-          animate={{
-            opacity: [0.25, 0.55, 0.25],
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }}
+          viewport={{
+            once: true,
+            margin: '-80px',
           }}
           transition={{
-            duration: 3,
-            repeat: Infinity,
+            duration: 1,
+            ease: [0.16, 1, 0.3, 1],
           }}
+          className="group relative min-h-[500px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#060B12] px-5 pt-7 shadow-[0_30px_120px_rgba(0,0,0,.45)] sm:px-7 sm:pt-8 lg:min-h-0 lg:px-9 lg:pt-8" onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
         >
-          SYSTEM / 04
-        </motion.div>
+          {/* MOUSE GLOW */}
 
-        <motion.div
-          className="absolute right-4 top-4 hidden font-mono text-[8px] uppercase tracking-[0.2em] text-white/25 sm:block"
-          animate={{
-            opacity: [0.25, 0.55, 0.25],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: 1,
-          }}
-        >
-          BUILD / 2026
-        </motion.div>
-
-        <div className="relative z-20 mx-auto max-w-2xl text-center">
-
-          {/* EYEBROW */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 12,
+            className="pointer-events-none absolute h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
+            style={{
+              left: glowX,
+              top: glowY,
+              background:
+                'radial-gradient(circle, rgba(37,169,255,.18), rgba(111,64,255,.08), transparent 65%)',
             }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
+          />
+
+          <BackgroundGrid />
+          <ParticleField />
+          <OrbitalSystem />
+
+          {/* BUILD LABEL */}
+
+          {/* <motion.div
+            className="absolute right-5 top-5 hidden font-mono text-[8px] uppercase tracking-[0.2em] text-white/25 sm:block"
+            animate={{
+              opacity: [0.25, 0.55, 0.25],
             }}
             transition={{
-              delay: 0.15,
-              duration: 0.7,
+              duration: 3,
+              repeat: Infinity,
+              delay: 1,
             }}
-            className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[#65D9FF]/20 bg-[#65D9FF]/[0.05] px-3 py-1.5 backdrop-blur-md"
           >
-            <motion.span
-              className="h-1.5 w-1.5 rounded-full bg-[#65D9FF]"
-              animate={{
-                scale: [1, 1.6, 1],
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-              }}
-              style={{
-                boxShadow: '0 0 15px #65D9FF',
-              }}
-            />
+            BUILD / 2026
+          </motion.div> */}
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-[#65D9FF]/70">
-              Let's build something remarkable
-            </span>
-          </motion.div>
+          {/* CONTENT */}
 
-          {/* HEADING */}
-          <motion.h2
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.25,
-              duration: 0.9,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="text-[clamp(2.2rem,6vw,4.8rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-white"
-          >
-            Your idea.
-            <br />
+          <div className="relative z-20 mx-auto max-w-2xl text-center">
 
-            <motion.span
-              className="relative inline-block bg-gradient-to-r from-[#65D9FF] via-white to-[#A855F7] bg-clip-text text-transparent"
-              animate={{
-                backgroundPosition: [
-                  '0% 50%',
-                  '100% 50%',
-                  '0% 50%',
-                ],
-              }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-              style={{
-                backgroundSize: '200% 200%',
-              }}
-            >
-              Our craft.
-            </motion.span>
-          </motion.h2>
+            {/* EYEBROW */}
 
-          {/* SUBHEADING */}
-          <motion.p
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.4,
-              duration: 0.7,
-            }}
-            className="mx-auto mt-5 max-w-lg text-xs leading-6 text-white/45 sm:text-sm"
-          >
-            Bring the idea, the problem or the rough concept.
-            <br className="hidden sm:block" />
-            We turn it into a digital experience built to move forward.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.55,
-              duration: 0.7,
-            }}
-            className="mt-7 flex justify-center"
-          >
             <motion.div
-              whileHover={{
-                scale: 1.06,
+              initial={{
+                opacity: 0,
+                y: 12,
               }}
-              whileTap={{
-                scale: 0.96,
+              whileInView={{
+                opacity: 1,
+                y: 0,
               }}
-              className="relative"
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: 0.15,
+                duration: 0.7,
+              }}
+              className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-[#65D9FF]/20 bg-[#65D9FF]/[0.05] px-3 py-1.5 backdrop-blur-md"
             >
-              {/* BUTTON GLOW */}
-              <motion.div
-                className="absolute -inset-3 rounded-full bg-[#65D9FF]/20 blur-2xl"
-                animate={{
-                  opacity: hovering
-                    ? [0.3, 0.7, 0.3]
-                    : 0.2,
-                  scale: hovering
-                    ? [0.9, 1.1, 0.9]
-                    : 1,
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              />
-
-              <Button
-                to="/contact"
-                className="group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-[#65D9FF]/60 bg-[#65D9FF] px-6 py-3 text-xs font-semibold text-[#041018] shadow-[0_0_35px_rgba(101,217,255,.2)] transition-all duration-300 hover:shadow-[0_0_55px_rgba(101,217,255,.4)]"
-              >
-                <span className="relative z-10">
-                  Start a project
-                </span>
-
-                <motion.span
-                  className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#041018]/10"
-                  whileHover={{
-                    rotate: 45,
-                  }}
-                >
-                  <FiArrowUpRight />
-                </motion.span>
-
-                <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-500 group-hover:translate-x-full" />
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          {/* SMALL STATUS */}
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.8,
-              duration: 0.6,
-            }}
-            className="mt-4 flex items-center justify-center gap-2"
-          >
-            <span className="relative flex h-1.5 w-1.5">
               <motion.span
-                className="absolute inset-0 rounded-full bg-[#65D9FF]"
+                className="h-1.5 w-1.5 rounded-full bg-[#65D9FF]"
                 animate={{
-                  scale: [1, 2, 1],
-                  opacity: [0.8, 0, 0.8],
+                  scale: [1, 1.6, 1],
+                  opacity: [0.5, 1, 0.5],
                 }}
                 transition={{
                   duration: 1.8,
                   repeat: Infinity,
                 }}
+                style={{
+                  boxShadow: '0 0 15px #65D9FF',
+                }}
               />
 
-              <span className="relative h-1.5 w-1.5 rounded-full bg-[#65D9FF]" />
-            </span>
+              <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-[#65D9FF]/70">
+                Let's build something remarkable
+              </span>
+            </motion.div>
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/30">
-              Currently accepting new projects
-            </span>
-          </motion.div>
-        </div>
+            {/* HEADING */}
 
-        {/* FLOATING CHIPS */}
-        <FloatingChip
-          className="left-[7%] top-[27%] rotate-[-5deg]"
-          delay={0.4}
-        >
-          Digital Products
-        </FloatingChip>
+            <motion.h2
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: 0.25,
+                duration: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-6 text-[clamp(2rem,9vw,3.5rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-white sm:mt-10"            >
+              Your idea.
+              <br />
 
-        <FloatingChip
-          className="right-[7%] top-[31%] rotate-[5deg]"
-          delay={0.55}
-        >
-          Creative Systems
-        </FloatingChip>
+              <motion.span
+                className="relative inline-block bg-gradient-to-r from-[#1e03eb] via-white to-[#0059ff] bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: [
+                    '0% 50%',
+                    '100% 50%',
+                    '0% 50%',
+                  ],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+                style={{
+                  backgroundSize: '200% 200%',
+                }}
+              >
+                Our craft.
+              </motion.span>
+            </motion.h2>
 
-        <FloatingChip
-          className="left-[10%] top-[64%] rotate-[4deg]"
-          delay={0.7}
-        >
-          Scalable Tech
-        </FloatingChip>
+            {/* DESCRIPTION */}
 
-        <FloatingChip
-          className="right-[10%] top-[67%] rotate-[-4deg]"
-          delay={0.85}
-        >
-          Human Experience
-        </FloatingChip>
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: 0.4,
+                duration: 0.7,
+              }}
+              className="mx-auto mt-5 max-w-lg text-xs leading-5 text-white/45 sm:mt-8 sm:text-sm"            >
+              Bring the idea, the problem or the rough concept.
+              <br className="hidden sm:block" />
+              We turn it into a digital experience built to move forward.
+            </motion.p>
 
-        {/* BOTTOM SIGNAL */}
-        <motion.div
-          className="relative z-20 mx-auto mt-10 max-w-4xl"
-          initial={{
-            opacity: 0,
-            y: 15,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.7,
-            duration: 0.7,
-          }}
-        >
-          <div className="flex items-center justify-center gap-3 pb-2">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#65D9FF]/40" />
+            {/* CTA */}
 
-            <span className="font-mono text-[7px] uppercase tracking-[0.3em] text-white/25">
-              Capabilities
-            </span>
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: 0.55,
+                duration: 0.7,
+              }}
+              className="mt-6 flex justify-center sm:mt-10"            >
+              <motion.div
+                whileHover={{
+                  scale: 1.06,
+                }}
+                whileTap={{
+                  scale: 0.96,
+                }}
+                className="relative"
+              >
+                <motion.div
+                  className="absolute -inset-3 rounded-full bg-[#65D9FF]/20 blur-2xl"
+                  animate={{
+                    opacity: hovering
+                      ? [0.3, 0.7, 0.3]
+                      : 0.2,
+                    scale: hovering
+                      ? [0.9, 1.1, 0.9]
+                      : 1,
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
+                />
 
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#65D9FF]/40" />
+                <div className="group relative flex items-center gap-2.5 overflow-hidden rounded-xl border border-[#65D9FF]/60 bg-[#3471eb]/20 px-6 py-3 text-xs font-semibold text-[#f2f4f5] shadow-[0_0_35px_rgba(101,217,255,.2)]">
+
+                  {/* SPARKLE */}
+
+                  <motion.span
+                    className="pointer-events-none  absolute left-[-35%] top-[-40%] h-[180%] w-[2px] rotate-[25deg] bg-white/90 blur-[0.5px] shadow-[0_0_8px_rgba(255,255,255,0.9),0_0_18px_rgba(101,217,255,0.8)]"
+                    animate={{
+                      left: ['-35%', '135%'],
+                      opacity: [0, 1, 1, 0],
+                    }}
+                    transition={{
+                      duration: 0.65,
+                      delay: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1.35,
+                      ease: 'easeInOut',
+                    }}
+                  />
+
+                  <motion.span
+                    className="pointer-events-none absolute left-[-45%] top-[-60%] h-[220%] w-[18px] rotate-[25deg] bg-white/20 blur-md "
+                    animate={{
+                      left: ['-45%', '145%'],
+                      opacity: [0, 0.7, 0],
+                    }}
+                    transition={{
+                      duration: 0.65,
+                      delay: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1.35,
+                      ease: 'easeInOut',
+                    }}
+                  />
+
+                  <span className="relative z-10 ">
+                    Start a project
+                  </span>
+
+                  {/* <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#041018]/10">
+                    <FiArrowUpRight />
+                  </span> */}
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* STATUS */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              whileInView={{
+                opacity: 1,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: 0.8,
+                duration: 0.6,
+              }}
+              className="mt-3 flex items-center justify-center gap-2"
+            >
+              {/* <span className="relative flex h-1.5 w-1.5">
+                <motion.span
+                  className="absolute inset-0 rounded-full bg-[#65D9FF]"
+                  animate={{
+                    scale: [1, 2, 1],
+                    opacity: [0.8, 0, 0.8],
+                  }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                  }}
+                />
+
+                <span className="relative h-1.5 w-1.5 rounded-full bg-[#65D9FF]" />
+              </span> */}
+
+              {/* <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/30">
+                Currently accepting new projects
+              </span> */}
+            </motion.div>
           </div>
 
-          <CapabilityStrip />
+          {/* CHIPS */}
+
+          <FloatingChip
+            className="left-[7%] top-[27%] rotate-[-5deg] "
+            delay={0.4}
+          >
+            Digital Products
+          </FloatingChip>
+
+          <FloatingChip
+            className="right-[7%] top-[31%] rotate-[5deg]"
+            delay={0.55}
+          >
+            Creative Systems
+          </FloatingChip>
+
+          <FloatingChip
+            className="left-[9%] top-[60%] rotate-[4deg]"
+            delay={0.7}
+          >
+            Scalable Tech
+          </FloatingChip>
+
+          <FloatingChip
+            className="right-[6%] top-[60%] rotate-[-4deg]"
+            delay={0.85}
+          >
+            Human Experience
+          </FloatingChip>
+
+          <FloatingChip
+            className="right-[39%] top-[70%] rotate-[-4deg]"
+            delay={0.85}
+          >
+            Trustable Products
+          </FloatingChip>
+
+          {/* CAPABILITIES */}
+
+          <motion.div
+            className="absolute bottom-3 left-4 right-4 z-20 mx-auto max-w-4xl sm:bottom-5 sm:left-7 sm:right-7 lg:left-9 lg:right-9" initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              delay: 0.7,
+              duration: 0.7,
+            }}
+          >
+            <div className="flex items-center justify-center gap-3 pb-1">
+              <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#65D9FF]/40" />
+
+              <span className="font-mono text-[7px] uppercase tracking-[0.3em] text-white/25">
+                Capabilities
+              </span>
+
+              <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#65D9FF]/40" />
+            </div>
+
+            <CapabilityStrip />
+          </motion.div>
+
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#060B12] via-[#060B12]/70 to-transparent" />
         </motion.div>
 
-        {/* BOTTOM FADE */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#060B12] via-[#060B12]/70 to-transparent" />
-      </motion.div>
+        {/* =================================================
+            RIGHT — CONTACT FORM
+        ================================================= */}
 
-      {/* OUTSIDE LABEL */}
-      <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        whileInView={{
-          opacity: 1,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          delay: 1,
-        }}
-        className="mx-auto mt-3 flex max-w-shell items-center justify-between px-2 font-mono text-[7px] uppercase tracking-[0.2em] text-white/20"
-      >
-        <span>
-          DESIGN / ENGINEERING / EXPERIENCE
-        </span>
-
-        <span className="hidden items-center gap-2 sm:flex">
-          Explore
-          <FiArrowRight />
-        </span>
-      </motion.div>
+        <ContactForm />
+      </div>
     </section>
   )
 }
