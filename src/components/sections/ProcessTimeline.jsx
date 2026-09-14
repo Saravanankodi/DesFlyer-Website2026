@@ -229,7 +229,12 @@ function DNAHelix({ progress }) {
     <div className="pointer-events-none absolute inset-0">
       <svg
         viewBox="-500 -300 1000 600"
-        className="absolute left-1/2 top-1/2 h-[560px] w-[1000px] -translate-x-1/2 -translate-y-1/2"
+        className="
+          absolute left-1/2 top-1/2
+          h-[560px] w-[1000px]
+          -translate-x-1/2
+          -translate-y-1/2
+        "
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
@@ -353,7 +358,11 @@ function DNAHelix({ progress }) {
       ))}
 
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[2px] w-[260px] -translate-x-1/2"
+        className="
+          absolute left-1/2 top-1/2
+          h-[2px] w-[260px]
+          -translate-x-1/2
+        "
         animate={{
           scaleX: 0.7 + progress * 0.3,
           opacity: 0.3 + progress * 0.5,
@@ -421,13 +430,6 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      CHECK PROCESS CENTER POSITION
-
-     IMPORTANT:
-
-     The process cards take control only when the
-     CARD/STAGE itself reaches the center of the viewport.
-
-     Mouse position has NO effect on scroll locking.
   ======================================================= */
 
   const checkProcessPosition = useCallback(() => {
@@ -446,12 +448,6 @@ export default function ProcessTimeline() {
     const stageCenter =
       rect.top + rect.height / 2;
 
-    /*
-     * Distance allowed from exact viewport center.
-     *
-     * This prevents flickering when the stage is moving
-     * around the exact center pixel.
-     */
     const centerTolerance = 70;
 
     const stageReachedCenter =
@@ -459,10 +455,6 @@ export default function ProcessTimeline() {
         stageCenter - viewportCenter
       ) <= centerTolerance;
 
-    /*
-     * Make sure the stage is actually inside
-     * the viewport.
-     */
     const stageVisible =
       rect.bottom > 0 &&
       rect.top < window.innerHeight;
@@ -471,11 +463,6 @@ export default function ProcessTimeline() {
       stageReachedCenter &&
       stageVisible;
 
-    /*
-     * After releasing at the first/last card,
-     * don't immediately lock again while native
-     * page scrolling is moving away from the section.
-     */
     if (
       Date.now() <
       releaseCooldownUntilRef.current
@@ -498,7 +485,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      SCROLL POSITION WATCHER
-======================================================= */
+  ======================================================= */
 
   useEffect(() => {
     let ticking = false;
@@ -546,7 +533,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      NAVIGATION
-======================================================= */
+  ======================================================= */
 
   const goTo = useCallback(
     (nextIndex) => {
@@ -595,7 +582,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      RELEASE PROCESS CONTROL
-======================================================= */
+  ======================================================= */
 
   const releaseProcess = useCallback(
     () => {
@@ -617,35 +604,18 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      WHEEL CONTROL
-
-     One wheel gesture = one card.
-
-     The page is released only when:
-       DOWN + LAST CARD
-       UP   + FIRST CARD
-======================================================= */
+  ======================================================= */
 
   useEffect(() => {
     const onWheel = (e) => {
-      /*
-       * Process is not controlling the page.
-       * Let the browser scroll normally.
-       */
       if (!processLockedRef.current) {
         return;
       }
 
-      /*
-       * Ignore duplicate events immediately after release.
-       */
       if (releaseLockRef.current) {
         return;
       }
 
-      /*
-       * Current card is still transitioning.
-       * Absorb all wheel events.
-       */
       if (wheelLock.current) {
         e.preventDefault();
         return;
@@ -656,9 +626,6 @@ export default function ProcessTimeline() {
       =================================================== */
 
       if (e.deltaY > 0) {
-        /*
-         * More cards remaining.
-         */
         if (active < total - 1) {
           e.preventDefault();
 
@@ -673,13 +640,6 @@ export default function ProcessTimeline() {
           return;
         }
 
-        /*
-         * LAST CARD
-
-         * Do not preventDefault.
-         * Release control so browser can continue
-         * to the next section naturally.
-         */
         releaseProcess();
 
         return;
@@ -690,9 +650,6 @@ export default function ProcessTimeline() {
       =================================================== */
 
       if (e.deltaY < 0) {
-        /*
-         * More previous cards available.
-         */
         if (active > 0) {
           e.preventDefault();
 
@@ -707,13 +664,6 @@ export default function ProcessTimeline() {
           return;
         }
 
-        /*
-         * FIRST CARD
-
-         * Do not preventDefault.
-         * Browser can naturally scroll to the
-         * previous section.
-         */
         releaseProcess();
 
         return;
@@ -744,7 +694,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      KEYBOARD
-======================================================= */
+  ======================================================= */
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -811,11 +761,6 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      TOUCH
-
-     Mobile keeps normal page scrolling/swiping.
-
-     Only the process card swipe is handled while the
-     process is actually locked.
   ======================================================= */
 
   const onTouchStart = (e) => {
@@ -855,17 +800,10 @@ export default function ProcessTimeline() {
       return;
     }
 
-    /*
-     * Mobile page scrolling remains normal
-     * when Process is not locked.
-     */
     if (!processLockedRef.current) {
       return;
     }
 
-    /*
-     * Don't interrupt a card transition.
-     */
     if (wheelLock.current) {
       return;
     }
@@ -935,12 +873,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      MOUSE PARALLAX
-
-     IMPORTANT:
-     This only controls the visual 3D tilt.
-
-     It does NOT control scroll locking.
-======================================================= */
+  ======================================================= */
 
   const mouseX =
     useMotionValue(0.5);
@@ -986,12 +919,12 @@ export default function ProcessTimeline() {
 
     mouseX.set(
       (e.clientX - rect.left) /
-        rect.width
+      rect.width
     );
 
     mouseY.set(
       (e.clientY - rect.top) /
-        rect.height
+      rect.height
     );
   }
 
@@ -1002,7 +935,7 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      ACTIVE ITEM
-======================================================= */
+  ======================================================= */
 
   const item = process[active];
 
@@ -1012,18 +945,26 @@ export default function ProcessTimeline() {
 
   /* =======================================================
      RENDER
-======================================================= */
+  ======================================================= */
 
   return (
-    <section
-      ref={sectionRef}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      className="relative min-h-screen overflow-hidden bg-[#03070D] py-10 text-white"
-      style={{
-        perspective: "1800px",
-      }}
-    >
+   <section
+  ref={sectionRef}
+  onTouchStart={onTouchStart}
+  onTouchEnd={onTouchEnd}
+  className="
+    relative
+    min-h-0
+    overflow-hidden
+    bg-[#03070D]
+    pt-5 pb-0
+    text-white
+    sm:min-h-screen
+    sm:py-8
+    lg:py-10
+  "
+  style={{ perspective: "1800px" }}
+>
       {/* ===================================================
           AMBIENT BACKGROUND
       =================================================== */}
@@ -1056,7 +997,10 @@ export default function ProcessTimeline() {
       =================================================== */}
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        className="
+          pointer-events-none absolute inset-0
+          opacity-[0.18]
+        "
         style={{
           backgroundImage: `
             linear-gradient(
@@ -1080,7 +1024,9 @@ export default function ProcessTimeline() {
       =================================================== */}
 
       <div
-        className="pointer-events-none absolute inset-0"
+        className="
+          pointer-events-none absolute inset-0
+        "
       >
         {particles.map((particle) => (
           <motion.span
@@ -1124,8 +1070,7 @@ export default function ProcessTimeline() {
               background:
                 particle.color,
               boxShadow: `
-                0 0 ${
-                  particle.size * 5
+                0 0 ${particle.size * 5
                 }px ${particle.color}
               `,
             }}
@@ -1134,45 +1079,14 @@ export default function ProcessTimeline() {
       </div>
 
       {/* ===================================================
-          TOP NAV
-      =================================================== */}
-
-      <div
-        className="relative z-50 flex justify-end px-6 lg:px-12"
-      >
-        <div
-          className="flex items-center gap-5 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 backdrop-blur-xl"
-        >
-          <span
-            className="font-mono text-[10px] uppercase tracking-[.3em] text-white/50"
-          >
-            PROCESS
-          </span>
-
-          <span
-            className="h-3 w-px bg-white/15"
-          />
-
-          <span
-            className="font-mono text-[10px] uppercase tracking-[.3em] text-teal-300/80"
-          >
-            {String(
-              active + 1
-            ).padStart(2, "0")}{" "}
-            /{" "}
-            {String(
-              total
-            ).padStart(2, "0")}
-          </span>
-        </div>
-      </div>
-
-      {/* ===================================================
           HEADER
       =================================================== */}
 
       <div
-        className="relative z-30 px-6 text-center "
+        className="
+          relative z-30
+          px-6 text-center
+        "
       >
         <Eyebrow>
           OUR PROCESS
@@ -1194,7 +1108,16 @@ export default function ProcessTimeline() {
           transition={{
             duration: 0.7,
           }}
-          className="mt-5 font-display text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
+          className="
+            mt-2
+            font-display
+            text-4xl
+            font-bold
+            tracking-tight
+            md:mt-5
+            md:text-5xl
+            lg:text-6xl
+          "
         >
           How We Build
         </motion.h2>
@@ -1213,7 +1136,16 @@ export default function ProcessTimeline() {
             delay: 0.15,
             duration: 0.6,
           }}
-          className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/40"
+          className="
+            mx-auto
+            mt-2
+            max-w-xl
+            text-sm
+            leading-6
+            text-white/40
+            md:mt-4
+            md:leading-7
+          "
         >
           Scroll through our process and watch
           each stage move through the digital DNA.
@@ -1226,7 +1158,22 @@ export default function ProcessTimeline() {
 
       <div
         ref={stageRef}
-        className="relative z-20 mx-auto mt-10 flex h-[590px] w-full max-w-[1500px] items-center justify-center overflow-hidden"
+        className="
+          relative z-20
+          mx-auto
+          mt-4
+          flex
+          h-[470px]
+          w-full
+          max-w-[1500px]
+          items-center
+          justify-center
+          overflow-hidden
+          sm:mt-8
+          sm:h-[540px]
+          lg:mt-10
+          lg:h-[590px]
+        "
         style={{
           perspective: "1800px",
         }}
@@ -1249,10 +1196,31 @@ export default function ProcessTimeline() {
           transition={{
             duration: 0.3,
           }}
-          className="pointer-events-none absolute left-1/2 top-4 z-50 -translate-x-1/2 rounded-full border border-teal-300/10 bg-teal-300/[0.04] px-4 py-1.5 backdrop-blur-md"
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+top-2 
+        z-50
+            -translate-x-1/2
+            rounded-full
+            border
+            border-teal-300/10
+            bg-teal-300/[0.04]
+            px-4
+            py-1.5
+            sm:mb-5
+            backdrop-blur-md
+          "
         >
           <span
-            className="font-mono text-[8px] uppercase tracking-[.3em] text-teal-300/50"
+            className="
+              font-mono
+              text-[8px]
+              uppercase
+              tracking-[.3em]
+              text-teal-300/50
+            "
           >
             {active === 0
               ? "PROCESS CONTROL"
@@ -1275,7 +1243,14 @@ export default function ProcessTimeline() {
         ================================================= */}
 
         <motion.div
-          className="relative flex h-full w-full items-center justify-center"
+          className="
+            relative
+            flex
+            h-full
+            w-full
+            items-center
+            justify-center
+          "
           style={{
             rotateX,
             rotateY,
@@ -1312,7 +1287,7 @@ export default function ProcessTimeline() {
 
                 const ProcessIcon =
                   icons[
-                    processItem.icon
+                  processItem.icon
                   ];
 
                 const isActive =
@@ -1323,7 +1298,12 @@ export default function ProcessTimeline() {
                     key={
                       processItem.step
                     }
-                    className="absolute w-[300px] sm:w-[350px] lg:w-[430px]"
+                    className="
+                      absolute
+                      w-[300px]
+                      sm:w-[350px]
+                      lg:w-[430px]
+                    "
                     animate={{
                       x: position.x,
                       y: position.y,
@@ -1359,7 +1339,16 @@ export default function ProcessTimeline() {
                     ===================================== */}
 
                     <div
-                      className="relative h-[360px] overflow-hidden rounded-[30px] border p-7 lg:h-[390px] lg:p-9"
+                      className="
+                        relative
+                        h-[360px]
+                        overflow-hidden
+                        rounded-[30px]
+                        border
+                        p-7
+                        lg:h-[390px]
+                        lg:p-9
+                      "
                       style={{
                         background: `
                           linear-gradient(
@@ -1392,7 +1381,10 @@ export default function ProcessTimeline() {
                       {/* CARD GRADIENT */}
 
                       <div
-                        className="pointer-events-none absolute inset-0"
+                        className="
+                          pointer-events-none
+                          absolute inset-0
+                        "
                         style={{
                           background: `
                             radial-gradient(
@@ -1413,7 +1405,15 @@ export default function ProcessTimeline() {
 
                       {isActive && (
                         <motion.div
-                          className="pointer-events-none absolute -left-[40%] top-0 h-full w-[35%] rotate-[18deg]"
+                          className="
+                            pointer-events-none
+                            absolute
+                            -left-[40%]
+                            top-0
+                            h-full
+                            w-[35%]
+                            rotate-[18deg]
+                          "
                           animate={{
                             left: [
                               "-40%",
@@ -1439,14 +1439,33 @@ export default function ProcessTimeline() {
                       {/* CARD TOP */}
 
                       <div
-                        className="relative z-10 flex items-start justify-between"
+                        className="
+                          relative z-10
+                          flex
+                          items-start
+                          justify-between
+                        "
                       >
                         <div>
                           <div
-                            className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.3em] text-teal-300/70"
+                            className="
+                              flex
+                              items-center
+                              gap-2
+                              font-mono
+                              text-[10px]
+                              uppercase
+                              tracking-[.3em]
+                              text-teal-300/70
+                            "
                           >
                             <span
-                              className="h-1.5 w-1.5 rounded-full bg-teal-300"
+                              className="
+                                h-1.5
+                                w-1.5
+                                rounded-full
+                                bg-teal-300
+                              "
                               style={{
                                 boxShadow:
                                   "0 0 10px rgba(94,234,212,.9)",
@@ -1457,7 +1476,13 @@ export default function ProcessTimeline() {
                           </div>
 
                           <div
-                            className="mt-2 font-mono text-xs tracking-[.25em] text-white/30"
+                            className="
+                              mt-2
+                              font-mono
+                              text-xs
+                              tracking-[.25em]
+                              text-white/30
+                            "
                           >
                             {String(
                               processItem.step
@@ -1472,17 +1497,17 @@ export default function ProcessTimeline() {
                           animate={
                             isActive
                               ? {
-                                  rotate: [
-                                    0,
-                                    8,
-                                    0,
-                                  ],
-                                  y: [
-                                    0,
-                                    -3,
-                                    0,
-                                  ],
-                                }
+                                rotate: [
+                                  0,
+                                  8,
+                                  0,
+                                ],
+                                y: [
+                                  0,
+                                  -3,
+                                  0,
+                                ],
+                              }
                               : {}
                           }
                           transition={{
@@ -1491,7 +1516,15 @@ export default function ProcessTimeline() {
                               Infinity,
                             ease: "easeInOut",
                           }}
-                          className="flex h-12 w-12 items-center justify-center rounded-2xl border"
+                          className="
+                            flex
+                            h-12
+                            w-12
+                            items-center
+                            justify-center
+                            rounded-2xl
+                            border
+                          "
                           style={{
                             borderColor:
                               "rgba(94,234,212,.25)",
@@ -1519,7 +1552,10 @@ export default function ProcessTimeline() {
                       {/* CONTENT */}
 
                       <div
-                        className="relative z-10 mt-12"
+                        className="
+                          relative z-10
+                          mt-12
+                        "
                       >
                         <motion.div
                           animate={{
@@ -1528,7 +1564,10 @@ export default function ProcessTimeline() {
                                 ? 72
                                 : 40,
                           }}
-                          className="h-[2px] rounded-full"
+                          className="
+                            h-[2px]
+                            rounded-full
+                          "
                           style={{
                             background:
                               "linear-gradient(90deg,#5EEAD4,transparent)",
@@ -1538,7 +1577,15 @@ export default function ProcessTimeline() {
                         />
 
                         <h3
-                          className="mt-6 font-display text-3xl font-semibold leading-tight text-white lg:text-4xl"
+                          className="
+                            mt-6
+                            font-display
+                            text-3xl
+                            font-semibold
+                            leading-tight
+                            text-white
+                            lg:text-4xl
+                          "
                         >
                           {
                             processItem.title
@@ -1546,7 +1593,13 @@ export default function ProcessTimeline() {
                         </h3>
 
                         <p
-                          className="mt-5 text-sm leading-7 text-white/45 lg:text-[15px]"
+                          className="
+                            mt-5
+                            text-sm
+                            leading-7
+                            text-white/45
+                            lg:text-[15px]
+                          "
                         >
                           {
                             processItem.body
@@ -1557,10 +1610,28 @@ export default function ProcessTimeline() {
                       {/* CARD BOTTOM */}
 
                       <div
-                        className="absolute bottom-6 left-7 right-7 z-10 flex items-center justify-between lg:bottom-7 lg:left-9 lg:right-9"
+                        className="
+                          absolute
+                          bottom-6
+                          left-7
+                          right-7
+                          z-10
+                          flex
+                          items-center
+                          justify-between
+                          lg:bottom-7
+                          lg:left-9
+                          lg:right-9
+                        "
                       >
                         <span
-                          className="font-mono text-[9px] uppercase tracking-[.3em] text-white/25"
+                          className="
+                            font-mono
+                            text-[9px]
+                            uppercase
+                            tracking-[.3em]
+                            text-white/25
+                          "
                         >
                           DESFLYER
                         </span>
@@ -1579,10 +1650,24 @@ export default function ProcessTimeline() {
                               repeat:
                                 Infinity,
                             }}
-                            className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[.25em] text-teal-300/70"
+                            className="
+                              flex
+                              items-center
+                              gap-2
+                              font-mono
+                              text-[9px]
+                              uppercase
+                              tracking-[.25em]
+                              text-teal-300/70
+                            "
                           >
                             <span
-                              className="h-1.5 w-1.5 rounded-full bg-teal-300"
+                              className="
+                                h-1.5
+                                w-1.5
+                                rounded-full
+                                bg-teal-300
+                              "
                             />
 
                             ACTIVE
@@ -1593,19 +1678,25 @@ export default function ProcessTimeline() {
                       {/* BOTTOM NEON LINE */}
 
                       <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-[2px]"
+                        className="
+                          absolute
+                          bottom-0
+                          left-0
+                          right-0
+                          h-[2px]
+                        "
                         animate={
                           isActive
                             ? {
-                                opacity: [
-                                  0.35,
-                                  1,
-                                  0.35,
-                                ],
-                              }
+                              opacity: [
+                                0.35,
+                                1,
+                                0.35,
+                              ],
+                            }
                             : {
-                                opacity: 0.15,
-                              }
+                              opacity: 0.15,
+                            }
                         }
                         transition={{
                           duration: 1.8,
@@ -1632,7 +1723,17 @@ export default function ProcessTimeline() {
         ================================================= */}
 
         <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            h-[330px]
+            w-[330px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+          "
           animate={{
             scale: [
               0.95,
@@ -1662,9 +1763,21 @@ export default function ProcessTimeline() {
           MOBILE PROGRESS
       =================================================== */}
 
-      <div
-        className="relative z-40 mx-auto mt-2 flex max-w-md items-center justify-center gap-2 px-6 lg:hidden"
-      >
+     <div
+  className="
+    relative z-40
+    mx-auto
+    mt-0
+    mb-0
+    flex
+    max-w-md
+    items-center
+    justify-center
+    gap-2
+    px-6
+    lg:hidden
+  "
+>
         {process.map(
           (_, index) => (
             <button
@@ -1673,10 +1786,14 @@ export default function ProcessTimeline() {
               onClick={() =>
                 goTo(index)
               }
-              aria-label={`Go to process step ${
-                index + 1
-              }`}
-              className="h-2 rounded-full transition-all duration-300"
+              aria-label={`Go to process step ${index + 1
+                }`}
+              className="
+                h-2
+                rounded-full
+                transition-all
+                duration-300
+              "
               style={{
                 width:
                   index === active
@@ -1700,3 +1817,10 @@ export default function ProcessTimeline() {
     </section>
   );
 }
+
+
+
+
+
+
+

@@ -204,8 +204,7 @@ export default function Contact() {
                 delay: 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="relative min-h-[400px] overflow-hidden rounded-[30px] border border-blue-400/[0.10] bg-gradient-to-br from-blue-500/[0.13] via-blue-900/[0.12] to-blue-950/[0.22] p-5 shadow-[0_30px_100px_rgba(0,20,80,0.35)] backdrop-blur-2xl sm:p-6 lg:p-6"
-            >
+              className="order-2 relative min-h-[400px] overflow-hidden rounded-[30px] border border-blue-400/[0.10] bg-gradient-to-br from-blue-500/[0.13] via-blue-900/[0.12] to-blue-950/[0.22] p-5 shadow-[0_30px_100px_rgba(0,20,80,0.35)] backdrop-blur-2xl sm:p-6 lg:order-1 lg:p-6"            >
 
               <div className="pointer-events-none absolute inset-0 rounded-[30px] bg-[linear-gradient(135deg,rgba(59,130,246,0.15),transparent_35%,transparent_65%,rgba(6,182,212,0.08))]" />
 
@@ -316,8 +315,7 @@ export default function Contact() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               onSubmit={handleSubmit}
-              className="relative overflow-hidden rounded-[30px] border border-blue-400/[0.18] bg-gradient-to-br from-blue-500/[0.16] via-blue-900/[0.12] to-cyan-950/[0.22] p-1 shadow-[0_30px_100px_rgba(0,40,120,0.45)]"
-            >
+              className="order-1 relative overflow-hidden rounded-[30px] border border-blue-400/[0.18] bg-gradient-to-br from-blue-500/[0.16] via-blue-900/[0.12] to-cyan-950/[0.22] p-1 shadow-[0_30px_100px_rgba(0,40,120,0.45)] lg:order-2"            >
 
               {/* MOVING BLUE LIGHT */}
 
@@ -633,8 +631,7 @@ function HumanCommunicationCard() {
         delay: 0.3,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="relative min-h-[400px] overflow-hidden rounded-[30px] border border-blue-400/[0.10] bg-gradient-to-br from-blue-500/[0.08] via-[#06152f] to-cyan-950/[0.12] shadow-[0_30px_100px_rgba(0,20,80,0.35)] lg:min-h-[400px]"
-    >
+      className="order-3 relative min-h-[400px] overflow-hidden rounded-[30px] border border-blue-400/[0.10] bg-gradient-to-br from-blue-500/[0.08] via-[#06152f] to-cyan-950/[0.12] shadow-[0_30px_100px_rgba(0,20,80,0.35)] lg:min-h-[400px]"    >
 
       <motion.div
         animate={{
