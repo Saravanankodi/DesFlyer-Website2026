@@ -77,6 +77,7 @@ function OrbitalSystem() {
       {particles.map((i) => {
         const left = (i * 37) % 100
         const top = (i * 61) % 100
+
         const size =
           i % 5 === 0 ? 3 : i % 3 === 0 ? 2 : 1
 
@@ -100,7 +101,7 @@ function OrbitalSystem() {
               x: [
                 0,
                 (i % 2 === 0 ? 1 : -1) *
-                (15 + (i % 4) * 10),
+                  (15 + (i % 4) * 10),
                 0,
               ],
               y: [
@@ -164,7 +165,12 @@ function OrbitalSystem() {
 
       {/* CENTER AURA */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="
+          absolute left-1/2 top-1/2
+          h-[220px] w-[220px]
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+        "
         animate={{
           scale: [0.85, 1.15, 0.85],
           opacity: [0.04, 0.15, 0.04],
@@ -183,7 +189,13 @@ function OrbitalSystem() {
 
       {/* RIPPLE */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[120px] w-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#65D9FF]/20"
+        className="
+          absolute left-1/2 top-1/2
+          h-[120px] w-[120px]
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+          border border-[#65D9FF]/20
+        "
         animate={{
           scale: [0.7, 2.8],
           opacity: [0.45, 0],
@@ -196,7 +208,13 @@ function OrbitalSystem() {
       />
 
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[120px] w-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#A855F7]/15"
+        className="
+          absolute left-1/2 top-1/2
+          h-[120px] w-[120px]
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+          border border-[#A855F7]/15
+        "
         animate={{
           scale: [0.7, 3.5],
           opacity: [0.3, 0],
@@ -211,7 +229,13 @@ function OrbitalSystem() {
 
       {/* CENTER CORE */}
       <motion.div
-        className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#65D9FF]"
+        className="
+          absolute left-1/2 top-1/2
+          h-3 w-3
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+          bg-[#65D9FF]
+        "
         animate={{
           scale: [0.7, 1.5, 0.7],
           opacity: [0.5, 1, 0.5],
@@ -238,7 +262,10 @@ function BackgroundGrid() {
   return (
     <>
       <motion.div
-        className="pointer-events-none absolute inset-[-60px] opacity-[0.07]"
+        className="
+          pointer-events-none absolute inset-[-60px]
+          opacity-[0.07]
+        "
         animate={{
           x: [0, 55, 0],
           y: [0, 55, 0],
@@ -260,7 +287,12 @@ function BackgroundGrid() {
       />
 
       <motion.div
-        className="pointer-events-none absolute -left-[15%] -top-[25%] h-[520px] w-[520px] rounded-full"
+        className="
+          pointer-events-none absolute
+          -left-[15%] -top-[25%]
+          h-[520px] w-[520px]
+          rounded-full
+        "
         animate={{
           x: [0, 100, -40, 0],
           y: [0, 70, 120, 0],
@@ -280,7 +312,12 @@ function BackgroundGrid() {
       />
 
       <motion.div
-        className="pointer-events-none absolute -bottom-[25%] -right-[15%] h-[520px] w-[520px] rounded-full"
+        className="
+          pointer-events-none absolute
+          -bottom-[25%] -right-[15%]
+          h-[520px] w-[520px]
+          rounded-full
+        "
         animate={{
           x: [0, -100, 40, 0],
           y: [0, -60, -120, 0],
@@ -300,7 +337,13 @@ function BackgroundGrid() {
       />
 
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="
+          pointer-events-none absolute
+          left-1/2 top-1/2
+          h-[420px] w-[720px]
+          -translate-x-1/2 -translate-y-1/2
+          rounded-full
+        "
         animate={{
           rotate: [0, 8, -8, 0],
           scale: [1, 1.08, 0.94, 1],
@@ -319,7 +362,10 @@ function BackgroundGrid() {
       />
 
       <motion.div
-        className="pointer-events-none absolute bottom-0 top-0 w-px"
+        className="
+          pointer-events-none absolute
+          bottom-0 top-0 w-px
+        "
         animate={{
           left: ['5%', '95%', '5%'],
           opacity: [0, 0.3, 0],
@@ -352,39 +398,132 @@ function BackgroundGrid() {
    FLOATING CHIP
 ========================================================= */
 
+/* =========================================================
+   FLOATING SIGNAL LABEL
+========================================================= */
+
 function FloatingChip({
   children,
-  className,
+  className = '',
   delay = 0,
+  index = 0,
 }) {
   return (
     <motion.div
       initial={{
         opacity: 0,
-        scale: 0.8,
-        y: 15,
+        y: 14,
+        scale: 0.92,
+        filter: 'blur(5px)',
       }}
       whileInView={{
         opacity: 1,
-        scale: 1,
         y: 0,
+        scale: 1,
+        filter: 'blur(0px)',
       }}
       viewport={{
         once: true,
       }}
       transition={{
         delay,
-        duration: 0.6,
+        duration: 0.7,
         ease: [0.16, 1, 0.3, 1],
       }}
-      whileHover={{
-        y: -6,
-        scale: 1.05,
+      animate={{
+        y: [0, index % 2 === 0 ? -7 : 7, 0],
+        x: [0, index % 2 === 0 ? 4 : -4, 0],
       }}
-      className={`absolute hidden rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] text-white shadow-[0_10px_40px_rgba(0,0,0,.25)] backdrop-blur-xl sm:block ${className}`}
+      whileHover={{
+        scale: 1.05,
+        y: -4,
+      }}
+      className={`
+        absolute
+        hidden
+        sm:flex
+        items-center
+        gap-2.5
+        rounded-xl
+        border
+        border-white/[0.10]
+        bg-[#07111B]/75
+        px-3
+        py-2
+        backdrop-blur-xl
+        shadow-[0_12px_40px_rgba(0,0,0,.28)]
+        ${className}
+      `}
     >
-      <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#65D9FF] shadow-[0_0_10px_#65D9FF]" />
-      {children}
+      {/* SIGNAL NODE */}
+
+      <span className="relative flex h-4 w-4 items-center justify-center">
+        <motion.span
+          className="
+            absolute
+            h-2
+            w-2
+            rounded-full
+            bg-[#65D9FF]
+          "
+          animate={{
+            scale: [0.7, 1.3, 0.7],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 2,
+            delay: delay * 0.5,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          style={{
+            boxShadow:
+              '0 0 8px #65D9FF, 0 0 18px rgba(101,217,255,.6)',
+          }}
+        />
+
+        <motion.span
+          className="
+            absolute
+            h-4
+            w-4
+            rounded-full
+            border
+            border-[#65D9FF]/20
+          "
+          animate={{
+            scale: [0.8, 1.7],
+            opacity: [0.5, 0],
+          }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: 'easeOut',
+          }}
+        />
+      </span>
+
+      {/* LABEL */}
+
+      <span className="
+        whitespace-nowrap
+        font-mono
+        text-[8px]
+        font-medium
+        uppercase
+        tracking-[0.18em]
+        text-white/55
+      ">
+        {children}
+      </span>
+
+      {/* SMALL STATUS LINE */}
+
+      <span className="h-px w-3 bg-gradient-to-r from-[#65D9FF]/60 to-transparent" />
+
+      <span className="font-mono text-[6px] text-[#65D9FF]/50">
+        0{index + 1}
+      </span>
     </motion.div>
   )
 }
@@ -458,7 +597,19 @@ function InputField({
         placeholder={placeholder}
         inputMode={inputMode}
         required={required}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white outline-none placeholder:text-white/20 transition-all duration-300 focus:border-[#65D9FF]/50 focus:bg-[#65D9FF]/[0.04] focus:shadow-[0_0_30px_rgba(101,217,255,.07)]"
+        className="
+          w-full rounded-xl
+          border border-white/10
+          bg-white/[0.035]
+          px-4 py-3
+          text-sm text-white
+          outline-none
+          placeholder:text-white/20
+          transition-all duration-300
+          focus:border-[#65D9FF]/50
+          focus:bg-[#65D9FF]/[0.04]
+          focus:shadow-[0_0_30px_rgba(101,217,255,.07)]
+        "
       />
     </div>
   )
@@ -481,21 +632,15 @@ function ContactForm() {
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
 
-  /* =======================================================
-     HANDLE INPUT
-  ======================================================= */
-
   const handleChange = (event) => {
     const { name, value } = event.target
 
     let cleanValue = value
 
-    /* NAME = LETTERS + SPACES ONLY */
     if (name === 'name') {
       cleanValue = value.replace(/[^a-zA-Z\s]/g, '')
     }
 
-    /* PHONE = NUMBERS ONLY */
     if (name === 'phone') {
       cleanValue = value.replace(/\D/g, '')
     }
@@ -506,28 +651,11 @@ function ContactForm() {
     }))
   }
 
-  /* =======================================================
-     HANDLE SUBMIT
-  ======================================================= */
-
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     setSending(true)
     setSent(false)
-
-    /*
-      All submitted information is available here.
-
-      Example:
-      {
-        name: "John",
-        email: "john@example.com",
-        phone: "9876543210",
-        company: "ABC",
-        details: "We need a website..."
-      }
-    */
 
     const submittedDetails = {
       name: form.name.trim(),
@@ -539,37 +667,15 @@ function ContactForm() {
 
     console.log('PROJECT INQUIRY:', submittedDetails)
 
-    /*
-      -------------------------------------------------------
-      PUT YOUR API REQUEST HERE IF YOU HAVE A BACKEND
-      -------------------------------------------------------
-
-      Example:
-
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submittedDetails),
-      })
-    */
-
     try {
-      /*
-        Simulating sending.
-        Remove this timeout when connecting your backend.
-      */
       await new Promise((resolve) =>
         setTimeout(resolve, 800)
       )
 
-      /* CLEAR ALL FIELDS AFTER SEND */
       setForm(initialForm)
 
       setSent(true)
 
-      /* Remove success message after 3 seconds */
       setTimeout(() => {
         setSent(false)
       }, 3000)
@@ -599,12 +705,26 @@ function ContactForm() {
         delay: 0.15,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="relative h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#060B12]/90 p-5 shadow-[0_30px_100px_rgba(0,0,0,.35)] backdrop-blur-xl sm:p-6 lg:p-7"
+      className="
+        relative h-full
+        overflow-hidden
+        rounded-[1.75rem]
+        border border-white/[0.08]
+        bg-[#060B12]/90
+        p-5
+        shadow-[0_30px_100px_rgba(0,0,0,.35)]
+        backdrop-blur-xl
+        sm:p-6
+        lg:p-7
+      "
     >
-      {/* FORM GLOW */}
-
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full"
+        className="
+          pointer-events-none absolute
+          -right-24 -top-24
+          h-64 w-64
+          rounded-full
+        "
         style={{
           background:
             'radial-gradient(circle, rgba(101,217,255,.13), transparent 70%)',
@@ -616,8 +736,6 @@ function ContactForm() {
         onSubmit={handleSubmit}
         className="relative z-10 flex h-full flex-col"
       >
-        {/* FORM HEADER */}
-
         <div className="mb-5">
           <div className="mb-2 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#65D9FF] shadow-[0_0_12px_#65D9FF]" />
@@ -640,11 +758,7 @@ function ContactForm() {
           </p>
         </div>
 
-        {/* INPUTS */}
-
         <div className="flex flex-1 flex-col justify-between space-y-3.5">
-          {/* NAME + EMAIL */}
-
           <div className="grid gap-3.5 sm:grid-cols-2">
             <InputField
               name="name"
@@ -663,8 +777,6 @@ function ContactForm() {
               onChange={handleChange}
             />
           </div>
-
-          {/* PHONE + COMPANY */}
 
           <div className="grid gap-3.5 sm:grid-cols-2">
             <InputField
@@ -686,8 +798,6 @@ function ContactForm() {
             />
           </div>
 
-          {/* PROJECT DETAILS */}
-
           <div>
             <label className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-white">
               Project Details
@@ -700,11 +810,21 @@ function ContactForm() {
               onChange={handleChange}
               required
               placeholder="Tell us what you're building..."
-              className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white outline-none placeholder:text-white/20 transition-all duration-300 focus:border-[#65D9FF]/50 focus:bg-[#65D9FF]/[0.04] focus:shadow-[0_0_30px_rgba(101,217,255,.07)]"
+              className="
+                w-full resize-none rounded-xl
+                border border-white/10
+                bg-white/[0.035]
+                px-4 py-3
+                text-sm text-white
+                outline-none
+                placeholder:text-white/20
+                transition-all duration-300
+                focus:border-[#65D9FF]/50
+                focus:bg-[#65D9FF]/[0.04]
+                focus:shadow-[0_0_30px_rgba(101,217,255,.07)]
+              "
             />
           </div>
-
-          {/* SUBMIT */}
 
           <motion.button
             type="submit"
@@ -715,7 +835,21 @@ function ContactForm() {
             whileTap={{
               scale: sending ? 1 : 0.97,
             }}
-            className="group relative  flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#06b9f4]/50 bg-[#3063da]/20 px-5 py-3 text-xs font-semibold text-[#f9fbfc] shadow-[0_0_30px_rgba(101,217,255,.12)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(101,217,255,.3)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="
+              group relative flex w-full
+              items-center justify-center gap-3
+              overflow-hidden rounded-xl
+              border border-[#06b9f4]/50
+              bg-[#3063da]/20
+              px-5 py-3
+              text-xs font-semibold
+              text-[#f9fbfc]
+              shadow-[0_0_30px_rgba(101,217,255,.12)]
+              transition-all duration-300
+              hover:shadow-[0_0_45px_rgba(101,217,255,.3)]
+              disabled:cursor-not-allowed
+              disabled:opacity-70
+            "
           >
             <span className="relative z-10">
               {sending
@@ -728,33 +862,16 @@ function ContactForm() {
             <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#041018]/10">
               {sending ? '...' : <FiSend />}
             </span>
-            {/* <motion.span
-              className="pointer-events-none  absolute left-[-35%] top-[-40%] h-[180%] w-[2px] rotate-[25deg] bg-white/90 blur-[0.5px] shadow-[0_0_8px_rgba(255,255,255,0.9),0_0_18px_rgba(101,217,255,0.8)]"
-              animate={{
-                left: ['-35%', '135%'],
-                opacity: [0, 1, 1, 0],
-              }}
-              hovering={{
-                duration: 0.65,
-                delay: 2,
-                repeat: Infinity,
-                repeatDelay: 1.35,
-                ease: 'easeInOut',
-              }}
-            /> */}
-            <span className="absolute inset-0 -translate-x-full w-full bg-white/30 transition-transform duration-500 group-hover:translate-x-full" />
+
+            <span className="absolute inset-0 w-full -translate-x-full bg-white/30 transition-transform duration-500 group-hover:translate-x-full" />
           </motion.button>
-
         </div>
-
-        {/* FORM STATUS */}
 
         <div className="mt-3 flex items-center justify-center gap-2">
           <span
-            className={`h-1.5 w-1.5 rounded-full shadow-[0_0_10px_rgba(74,222,128,.7)] ${sent
-              ? 'bg-blue-400'
-              : 'bg-blue-400'
-              }`}
+            className={`h-1.5 w-1.5 rounded-full shadow-[0_0_10px_rgba(74,222,128,.7)] ${
+              sent ? 'bg-blue-400' : 'bg-blue-400'
+            }`}
           />
 
           <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
@@ -835,13 +952,25 @@ export default function CTABand() {
   }, [mouseX, mouseY])
 
   return (
-    <section className="px-4 py-3 sm:px-5 sm:py-4 lg:h-[calc(100vh-80px)] lg:min-h-[680px] lg:px-8 lg:py-5">
-      {/* =====================================================
-          TWO COLUMN LAYOUT
-      ===================================================== */}
-
-      <div className="mx-auto grid h-full max-w-[1500px] items-stretch gap-5 lg:grid-cols-[1fr_0.85fr]">
-
+    <section
+      className="
+        px-3 py-2
+        sm:px-5 sm:py-4
+        lg:h-[calc(100vh-80px)]
+        lg:min-h-[680px]
+        lg:px-8 lg:py-5
+        mb-10
+      "
+    >
+      <div
+        className="
+          mx-auto grid h-full max-w-[1500px]
+          items-stretch
+          gap-3
+          lg:grid-cols-[1fr_0.85fr]
+          lg:gap-5
+        "
+      >
         {/* =================================================
             LEFT — CTA CARD
         ================================================= */}
@@ -866,13 +995,35 @@ export default function CTABand() {
             duration: 1,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="group relative min-h-[500px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#060B12] px-5 pt-7 shadow-[0_30px_120px_rgba(0,0,0,.45)] sm:px-7 sm:pt-8 lg:min-h-0 lg:px-9 lg:pt-8" onMouseEnter={() => setHovering(true)}
+         className="
+  group relative
+  min-h-[380px]
+  overflow-hidden
+  rounded-[1.5rem]
+  border border-white/[0.08]
+  bg-[#060B12]
+  px-4 pt-5
+  shadow-[0_30px_120px_rgba(0,0,0,.45)]
+  sm:min-h-[500px]
+  sm:rounded-[1.75rem]
+  sm:px-7 sm:pt-8
+  lg:min-h-0
+  lg:px-9 lg:pt-8
+"
+          onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
           {/* MOUSE GLOW */}
-
           <motion.div
-            className="pointer-events-none absolute h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
+            className="
+              pointer-events-none absolute
+              h-[300px] w-[300px]
+              -translate-x-1/2 -translate-y-1/2
+              rounded-full
+              blur-[80px]
+              sm:h-[400px] sm:w-[400px]
+              sm:blur-[100px]
+            "
             style={{
               left: glowX,
               top: glowY,
@@ -885,26 +1036,14 @@ export default function CTABand() {
           <ParticleField />
           <OrbitalSystem />
 
-          {/* BUILD LABEL */}
-
-          {/* <motion.div
-            className="absolute right-5 top-5 hidden font-mono text-[8px] uppercase tracking-[0.2em] text-white/25 sm:block"
-            animate={{
-              opacity: [0.25, 0.55, 0.25],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: 1,
-            }}
-          >
-            BUILD / 2026
-          </motion.div> */}
-
           {/* CONTENT */}
-
-          <div className="relative z-20 mx-auto max-w-2xl text-center">
-
+          <div
+            className="
+              relative z-20
+              mx-auto max-w-2xl
+              text-center
+            "
+          >
             {/* EYEBROW */}
 
             <motion.div
@@ -923,7 +1062,19 @@ export default function CTABand() {
                 delay: 0.15,
                 duration: 0.7,
               }}
-              className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-[#65D9FF]/20 bg-[#65D9FF]/[0.05] px-3 py-1.5 backdrop-blur-md"
+              className="
+                mx-auto
+                mb-2
+                inline-flex
+                items-center gap-2
+                rounded-full
+                border border-[#65D9FF]/20
+                bg-[#65D9FF]/[0.05]
+                px-2.5 py-1
+                backdrop-blur-md
+                sm:mb-4
+                sm:px-3 sm:py-1.5
+              "
             >
               <motion.span
                 className="h-1.5 w-1.5 rounded-full bg-[#65D9FF]"
@@ -940,7 +1091,17 @@ export default function CTABand() {
                 }}
               />
 
-              <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-[#65D9FF]/70">
+              <span
+                className="
+                  font-mono
+                  text-[7px]
+                  uppercase
+                  tracking-[0.2em]
+                  text-[#65D9FF]/70
+                  sm:text-[8px]
+                  sm:tracking-[0.25em]
+                "
+              >
                 Let's build something remarkable
               </span>
             </motion.div>
@@ -964,12 +1125,31 @@ export default function CTABand() {
                 duration: 0.9,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-6 text-[clamp(2rem,9vw,3.5rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-white sm:mt-10"            >
+              className="
+                mt-2
+                text-[clamp(2.6rem,13vw,4rem)]
+                font-semibold
+                leading-[0.84]
+                tracking-[-0.06em]
+                text-white
+                sm:mt-6
+                sm:text-[clamp(2rem,9vw,3.5rem)]
+                sm:leading-[0.92]
+              "
+            >
               Your idea.
               <br />
 
               <motion.span
-                className="relative inline-block bg-gradient-to-r from-[#1e03eb] via-white to-[#0059ff] bg-clip-text text-transparent"
+                className="
+                  relative inline-block
+                  bg-gradient-to-r
+                  from-[#1e03eb]
+                  via-white
+                  to-[#0059ff]
+                  bg-clip-text
+                  text-transparent
+                "
                 animate={{
                   backgroundPosition: [
                     '0% 50%',
@@ -1008,7 +1188,18 @@ export default function CTABand() {
                 delay: 0.4,
                 duration: 0.7,
               }}
-              className="mx-auto mt-5 max-w-lg text-xs leading-5 text-white/45 sm:mt-8 sm:text-sm"            >
+              className="
+                mx-auto
+                mt-3
+                max-w-lg
+                text-[11px]
+                leading-[1.35rem]
+                text-white/45
+                sm:mt-8
+                sm:text-sm
+                sm:leading-5
+              "
+            >
               Bring the idea, the problem or the rough concept.
               <br className="hidden sm:block" />
               We turn it into a digital experience built to move forward.
@@ -1032,7 +1223,12 @@ export default function CTABand() {
                 delay: 0.55,
                 duration: 0.7,
               }}
-              className="mt-6 flex justify-center sm:mt-10"            >
+              className="
+                mt-4
+                flex justify-center
+                sm:mt-10
+              "
+            >
               <motion.div
                 whileHover={{
                   scale: 1.06,
@@ -1043,7 +1239,15 @@ export default function CTABand() {
                 className="relative"
               >
                 <motion.div
-                  className="absolute -inset-3 rounded-full bg-[#65D9FF]/20 blur-2xl"
+                  className="
+                    absolute
+                    -inset-2
+                    rounded-full
+                    bg-[#65D9FF]/20
+                    blur-xl
+                    sm:-inset-3
+                    sm:blur-2xl
+                  "
                   animate={{
                     opacity: hovering
                       ? [0.3, 0.7, 0.3]
@@ -1058,12 +1262,41 @@ export default function CTABand() {
                   }}
                 />
 
-                <div className="group relative flex items-center gap-2.5 overflow-hidden rounded-xl border border-[#65D9FF]/60 bg-[#3471eb]/20 px-6 py-3 text-xs font-semibold text-[#f2f4f5] shadow-[0_0_35px_rgba(101,217,255,.2)]">
-
+                <div
+                  className="
+                    group relative
+                    flex items-center
+                    gap-2
+                    overflow-hidden
+                    rounded-lg
+                    border border-[#65D9FF]/60
+                    bg-[#3471eb]/20
+                    px-4 py-2
+                    text-[10px]
+                    font-semibold
+                    text-[#f2f4f5]
+                    shadow-[0_0_25px_rgba(101,217,255,.18)]
+                    sm:rounded-xl
+                    sm:px-6 sm:py-3
+                    sm:text-xs
+                    sm:shadow-[0_0_35px_rgba(101,217,255,.2)]
+                  "
+                >
                   {/* SPARKLE */}
 
                   <motion.span
-                    className="pointer-events-none  absolute left-[-35%] top-[-40%] h-[180%] w-[2px] rotate-[25deg] bg-white/90 blur-[0.5px] shadow-[0_0_8px_rgba(255,255,255,0.9),0_0_18px_rgba(101,217,255,0.8)]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-[-35%]
+                      top-[-40%]
+                      h-[180%]
+                      w-[2px]
+                      rotate-[25deg]
+                      bg-white/90
+                      blur-[0.5px]
+                      shadow-[0_0_8px_rgba(255,255,255,0.9),0_0_18px_rgba(101,217,255,0.8)]
+                    "
                     animate={{
                       left: ['-35%', '135%'],
                       opacity: [0, 1, 1, 0],
@@ -1078,7 +1311,17 @@ export default function CTABand() {
                   />
 
                   <motion.span
-                    className="pointer-events-none absolute left-[-45%] top-[-60%] h-[220%] w-[18px] rotate-[25deg] bg-white/20 blur-md "
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-[-45%]
+                      top-[-60%]
+                      h-[220%]
+                      w-[18px]
+                      rotate-[25deg]
+                      bg-white/20
+                      blur-md
+                    "
                     animate={{
                       left: ['-45%', '145%'],
                       opacity: [0, 0.7, 0],
@@ -1092,61 +1335,18 @@ export default function CTABand() {
                     }}
                   />
 
-                  <span className="relative z-10 ">
+                  <span className="relative z-10 whitespace-nowrap">
                     Start a project
                   </span>
-
-                  {/* <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#041018]/10">
-                    <FiArrowUpRight />
-                  </span> */}
                 </div>
               </motion.div>
             </motion.div>
-
-            {/* STATUS */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              whileInView={{
-                opacity: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                delay: 0.8,
-                duration: 0.6,
-              }}
-              className="mt-3 flex items-center justify-center gap-2"
-            >
-              {/* <span className="relative flex h-1.5 w-1.5">
-                <motion.span
-                  className="absolute inset-0 rounded-full bg-[#65D9FF]"
-                  animate={{
-                    scale: [1, 2, 1],
-                    opacity: [0.8, 0, 0.8],
-                  }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                  }}
-                />
-
-                <span className="relative h-1.5 w-1.5 rounded-full bg-[#65D9FF]" />
-              </span> */}
-
-              {/* <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/30">
-                Currently accepting new projects
-              </span> */}
-            </motion.div>
           </div>
 
-          {/* CHIPS */}
+          {/* FLOATING CHIPS */}
 
           <FloatingChip
-            className="left-[7%] top-[27%] rotate-[-5deg] "
+            className="left-[7%] top-[27%] rotate-[-5deg]"
             delay={0.4}
           >
             Digital Products
@@ -1183,7 +1383,18 @@ export default function CTABand() {
           {/* CAPABILITIES */}
 
           <motion.div
-            className="absolute bottom-3 left-4 right-4 z-20 mx-auto max-w-4xl sm:bottom-5 sm:left-7 sm:right-7 lg:left-9 lg:right-9" initial={{
+            className="
+              absolute
+              bottom-2
+              left-3 right-3
+              z-20
+              mx-auto
+              max-w-4xl
+              sm:bottom-5
+              sm:left-7 sm:right-7
+              lg:left-9 lg:right-9
+            "
+            initial={{
               opacity: 0,
               y: 15,
             }}
@@ -1199,20 +1410,33 @@ export default function CTABand() {
               duration: 0.7,
             }}
           >
-            <div className="flex items-center justify-center gap-3 pb-1">
-              <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#65D9FF]/40" />
+            <div className="flex items-center justify-center gap-2 pb-0.5 sm:gap-3 sm:pb-1">
+              <span className="h-px w-6 bg-gradient-to-r from-transparent to-[#65D9FF]/40 sm:w-10" />
 
-              <span className="font-mono text-[7px] uppercase tracking-[0.3em] text-white/25">
+              <span className="font-mono text-[6px] uppercase tracking-[0.25em] text-white/25 sm:text-[7px] sm:tracking-[0.3em]">
                 Capabilities
               </span>
 
-              <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#65D9FF]/40" />
+              <span className="h-px w-6 bg-gradient-to-l from-transparent to-[#65D9FF]/40 sm:w-10" />
             </div>
 
-            <CapabilityStrip />
+            <div className="scale-[0.9] sm:scale-100">
+              <CapabilityStrip />
+            </div>
           </motion.div>
 
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#060B12] via-[#060B12]/70 to-transparent" />
+          <div
+            className="
+              pointer-events-none
+              absolute bottom-0 left-0 right-0
+              h-16
+              bg-gradient-to-t
+              from-[#060B12]
+              via-[#060B12]/70
+              to-transparent
+              sm:h-24
+            "
+          />
         </motion.div>
 
         {/* =================================================

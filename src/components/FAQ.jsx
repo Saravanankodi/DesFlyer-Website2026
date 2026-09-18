@@ -51,9 +51,20 @@ export default function FAQ({
   const visibleRightItems = rightItems.slice(0, -1)
 
   return (
-    <section
-      className="relative overflow-hidden px-6 pb-32 pt-32 lg:px-10"
-    >
+   <section 
+  className="
+    relative
+    overflow-hidden
+    px-6
+    pb-12
+    pt-12
+    sm:pb-20
+    sm:pt-20
+    lg:px-10
+    lg:pb-32
+    lg:pt-32
+  " 
+>
       {/* =====================================================
           BACKGROUND
       ===================================================== */}
@@ -86,8 +97,7 @@ export default function FAQ({
           MAIN CONTAINER
       ===================================================== */}
 
-      <div className="relative mx-auto max-w-[1500px] -mt-20 -mb-10">
-
+<div className="relative mx-auto max-w-[1500px] -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 lg:-mt-20 lg:-mb-10">
         {/* =================================================
             HEADER
         ================================================= */}

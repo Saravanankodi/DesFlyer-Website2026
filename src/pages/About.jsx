@@ -1423,532 +1423,590 @@ function LeadershipPhoto({
 ========================================================================== */
 
 export default function About() {
-  const heroRef =
-    useRef(null)
+  const heroRef = useRef(null)
 
-  const orbitSelectRef =
-    useRef(null)
+  const orbitSelectRef = useRef(null)
 
-  const reduceMotion =
-    useReducedMotion()
+  const reduceMotion = useReducedMotion()
 
-  const [active, setActive] =
-    useState(0)
+  const [active, setActive] = useState(0)
 
-  const {
-    scrollYProgress,
-  } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: [
-      'start start',
-      'end start',
-    ],
+    offset: ['start start', 'end start'],
   })
 
-  const imageY =
-    useTransform(
-      scrollYProgress,
-      [0, 1],
-      [
-        0,
-        reduceMotion
-          ? 0
-          : 80,
-      ]
-    )
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, reduceMotion ? 0 : 80]
+  )
 
-  const heroOpacity =
-    useTransform(
-      scrollYProgress,
-      [0, 0.8],
-      [1, 0]
-    )
+  const heroOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.8],
+    [1, 0]
+  )
 
   const years =
     new Date().getFullYear() -
-    Number(
-      siteConfig.founded
-    )
+    Number(siteConfig.founded)
 
-  const activeCard =
-    cards[active]
+  const activeCard = cards[active]
 
   return (
     <>
       <Seo
         title="About"
-        description={
-          aboutContent.intro
-        }
+        description={aboutContent.intro}
       />
 
-      {/* ==================================================================
+      {/* ================================================================
           ABOUT HERO
-      ================================================================== */}
+      ================================================================= */}
 
       <section
-        ref={heroRef}
+  ref={heroRef}
+  className="
+    relative
+    min-h-[680px]
+    overflow-hidden
+    px-4
+    pb-12
+    pt-[88px]
+    sm:min-h-[700px]
+    sm:px-6
+    sm:pb-20
+    sm:pt-[100px]
+    md:px-8
+    lg:min-h-[760px]
+    lg:px-10
+    lg:pt-[112px]
+    xl:px-12
+  "
+>
+  <CursorLight
+    containerRef={heroRef}
+    reduceMotion={reduceMotion}
+  />
+
+  {/* HERO IMAGE */}
+
+  <motion.div
+    initial={{
+      scale: 1.18,
+      opacity: 0.9,
+    }}
+    animate={{
+      scale: 1,
+      opacity: 1,
+    }}
+    transition={{
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    style={{
+      y: imageY,
+    }}
+    className="
+      pointer-events-none
+      absolute
+      inset-0
+    "
+  >
+    <img
+      src="/images/portfolio/about.png"
+      alt=""
+      className="
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        object-[50%_50%]
+        sm:object-center
+      "
+    />
+
+    <div className="absolute inset-0 bg-black/20" />
+
+    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+  </motion.div>
+
+  {/* HERO CONTENT */}
+
+  <motion.div
+    style={{
+      opacity: heroOpacity,
+    }}
+    className="
+      relative
+      z-10
+      mx-auto
+      flex
+      min-h-[590px]
+      w-full
+      max-w-shell
+      items-center
+      justify-center
+      sm:min-h-[610px]
+      lg:justify-start
+    "
+  >
+    <div
+      className="
+        w-full
+        max-w-3xl
+        text-center
+        lg:text-left
+      "
+    >
+
+      {/* EYEBROW */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.15,
+          ease: [0.16, 1, 0.3, 1],
+        }}
         className="
-          relative
-          min-h-[680px]
-          overflow-hidden
-          px-4
-          pb-16
-          pt-[88px]
-          sm:min-h-[700px]
-          sm:px-6
-          sm:pb-20
-          sm:pt-[100px]
-          md:px-8
-          lg:min-h-[760px]
-          lg:px-10
-          lg:pt-[112px]
-          xl:px-12
+          mb-5
+          flex
+          justify-center
+          sm:mb-6
+          lg:justify-start
         "
       >
-        <CursorLight
-          containerRef={
-            heroRef
-          }
-          reduceMotion={
-            reduceMotion
-          }
+        <Eyebrow>
+          {aboutContent.eyebrow}
+        </Eyebrow>
+      </motion.div>
+
+      {/* HEADING */}
+
+      <RevealHeading
+        text={aboutContent.heading}
+        className="
+          mx-auto
+          max-w-4xl
+          font-display
+          text-[42px]
+          font-black
+          leading-[0.92]
+          text-white
+          drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+          sm:text-[50px]
+          md:text-[58px]
+          lg:mx-0
+          lg:text-[64px]
+          xl:text-[70px]
+        "
+      />
+
+      {/* SIGNAL LINE */}
+
+      <motion.div
+        initial={{
+          width: 0,
+          opacity: 0,
+        }}
+        animate={{
+          width: 140,
+          opacity: 1,
+        }}
+        transition={{
+          delay: 0.7,
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="
+          mx-auto
+          mt-6
+          h-[2px]
+          rounded-full
+          bg-signal
+          shadow-[0_0_15px_rgba(46,111,255,0.8)]
+          sm:mt-8
+          lg:mx-0
+        "
+      />
+
+      {/* INTRO */}
+
+      <motion.p
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.5,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="
+          mx-auto
+          mt-6
+          max-w-2xl
+          text-sm
+          leading-6
+          text-white/80
+          drop-shadow-[0_4px_15px_rgba(0,0,0,0.5)]
+          sm:mt-7
+          sm:text-base
+          sm:leading-7
+          lg:mx-0
+          lg:text-lg
+          lg:leading-8
+        "
+      >
+        {aboutContent.intro}
+      </motion.p>
+
+      {/* FOUNDED / LOCATION */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 15,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.7,
+          duration: 0.6,
+        }}
+        className="
+          mt-6
+          flex
+          flex-wrap
+          items-center
+          justify-center
+          gap-2
+          font-mono
+          text-[8px]
+          uppercase
+          tracking-[0.14em]
+          text-white/65
+          sm:mt-7
+          sm:gap-3
+          sm:text-[9px]
+          sm:tracking-[0.16em]
+          lg:justify-start
+        "
+      >
+        <span
+          className="
+            h-1.5
+            w-1.5
+            animate-pulse
+            rounded-full
+            bg-signal
+            shadow-[0_0_10px_rgba(46,111,255,0.8)]
+          "
         />
 
-        <motion.div
-          initial={{
-            scale: 1.18,
-            opacity: 0.9,
-          }}
-          animate={{
-            scale: 1,
-            opacity: 1,
-          }}
-          transition={{
-            duration: 1.8,
-            ease: [
-              0.16,
-              1,
-              0.3,
-              1,
-            ],
-          }}
-          style={{
-            y: imageY,
-          }}
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-          "
-        >
-          <img
-            src="/images/portfolio/aboutus.png"
-            alt=""
+        Founded {siteConfig.founded}
+
+        <span className="text-white/30">
+          /
+        </span>
+
+        {siteConfig.location}
+      </motion.div>
+
+      {/* TAGS */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 15,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.8,
+          duration: 0.6,
+        }}
+        className="
+          mt-6
+          flex
+          flex-wrap
+          justify-center
+          gap-2
+          sm:mt-7
+          lg:justify-start
+        "
+      >
+        {[
+          'Digital systems',
+          'Product engineering',
+          'Creative technology',
+        ].map((item, index) => (
+          <div
+            key={item}
             className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-cover
-              object-center
+              flex
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-white/15
+              bg-black/20
+              px-2.5
+              py-1.5
+              backdrop-blur-sm
+              sm:px-3
+              sm:py-2
             "
-          />
-
-          <div className="absolute inset-0 bg-black/20" />
-
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
-        </motion.div>
-
-        <motion.div
-          style={{
-            opacity:
-              heroOpacity,
-          }}
-          className="
-            relative
-            z-10
-            mx-auto
-            flex
-            min-h-[590px]
-            w-full
-            max-w-shell
-            items-center
-            sm:min-h-[610px]
-          "
-        >
-          <div className="w-full max-w-3xl">
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.15,
-                ease: [
-                  0.16,
-                  1,
-                  0.3,
-                  1,
-                ],
-              }}
-              className="mb-5 sm:mb-6 -sm:mt-10"
-            >
-              <Eyebrow>
-                {
-                  aboutContent.eyebrow
-                }
-              </Eyebrow>
-            </motion.div>
-
-            <RevealHeading
-              text={
-                aboutContent.heading
-              }
+          >
+            <span
               className="
-                max-w-4xl
-                font-display
-                text-[42px]
-                font-black
-                leading-[0.92]
-                text-white
-                drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]
-                sm:text-[50px]
-                md:text-[58px]
-                lg:text-[64px]
-                xl:text-[70px]
-              "
-            />
-
-            <motion.div
-              initial={{
-                width: 0,
-                opacity: 0,
-              }}
-              animate={{
-                width: 140,
-                opacity: 1,
-              }}
-              transition={{
-                delay: 0.7,
-                duration: 0.8,
-                ease: [
-                  0.16,
-                  1,
-                  0.3,
-                  1,
-                ],
-              }}
-              className="
-                mt-6
-                h-[2px]
-                rounded-full
-                bg-signal
-                shadow-[0_0_15px_rgba(46,111,255,0.8)]
-                sm:mt-8
-              "
-            />
-
-            <motion.p
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.5,
-                ease: [
-                  0.16,
-                  1,
-                  0.3,
-                  1,
-                ],
-              }}
-              className="
-                mt-6
-                max-w-2xl
-                text-sm
-                leading-6
-                text-white/80
-                drop-shadow-[0_4px_15px_rgba(0,0,0,0.5)]
-                sm:mt-7
-                sm:text-base
-                sm:leading-7
-                lg:text-lg
-                lg:leading-8
-              "
-            >
-              {
-                aboutContent.intro
-              }
-            </motion.p>
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.7,
-                duration: 0.6,
-              }}
-              className="
-                mt-6
-                flex
-                flex-wrap
-                items-center
-                gap-2
                 font-mono
+                text-[7px]
+                text-blue-300
+                sm:text-[8px]
+              "
+            >
+              0{index + 1}
+            </span>
+
+            <span
+              className="
                 text-[8px]
-                uppercase
-                tracking-[0.14em]
-                text-white/65
-                sm:mt-7
-                sm:gap-3
+                text-white/70
                 sm:text-[9px]
-                sm:tracking-[0.16em]
               "
             >
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal shadow-[0_0_10px_rgba(46,111,255,0.8)]" />
-
-              Founded{' '}
-              {
-                siteConfig.founded
-              }
-
-              <span className="text-white/30">
-                /
-              </span>
-
-              {
-                siteConfig.location
-              }
-            </motion.div>
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.8,
-                duration: 0.6,
-              }}
-              className="
-                mt-6
-                flex
-                flex-wrap
-                gap-2
-                sm:mt-7
-              "
-            >
-              {[
-                'Digital systems',
-                'Product engineering',
-                'Creative technology',
-              ].map(
-                (
-                  item,
-                  index
-                ) => (
-                  <div
-                    key={item}
-                    className="
-                      flex
-                      items-center
-                      gap-2
-                      rounded-full
-                      border
-                      border-white/15
-                      bg-black/20
-                      px-2.5
-                      py-1.5
-                      backdrop-blur-sm
-                      sm:px-3
-                      sm:py-2
-                    "
-                  >
-                    <span className="font-mono text-[7px] text-blue-300 sm:text-[8px]">
-                      0
-                      {index + 1}
-                    </span>
-
-                    <span className="text-[8px] text-white/70 sm:text-[9px]">
-                      {item}
-                    </span>
-                  </div>
-                )
-              )}
-            </motion.div>
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.9,
-              }}
-              className="
-                mt-8
-                grid
-                max-w-xl
-                grid-cols-3
-                border-y
-                border-white/15
-                py-4
-                sm:mt-9
-                sm:py-5
-              "
-            >
-              <div>
-                <p
-                  className="
-                    font-display
-                    text-xl
-                    font-bold
-                    tabular-nums
-                    text-white
-                    sm:text-2xl
-                    md:text-3xl
-                  "
-                >
-                  <Counter
-                    to={years}
-                    suffix="+"
-                    reduceMotion={
-                      reduceMotion
-                    }
-                  />
-                </p>
-
-                <p className="mt-1 text-[8px] uppercase tracking-wider text-white/50 sm:text-[9px]">
-                  Years active
-                </p>
-              </div>
-
-              <div className="border-l border-white/15 pl-3 sm:pl-4">
-                <p
-                  className="
-                    font-display
-                    text-xl
-                    font-bold
-                    tabular-nums
-                    text-white
-                    sm:text-2xl
-                    md:text-3xl
-                  "
-                >
-                  <Counter
-                    to={40}
-                    suffix="+"
-                    reduceMotion={
-                      reduceMotion
-                    }
-                  />
-                </p>
-
-                <p className="mt-1 text-[8px] uppercase tracking-wider text-white/50 sm:text-[9px]">
-                  Projects
-                </p>
-              </div>
-
-              <div className="border-l border-white/15 pl-3 sm:pl-4">
-                <p
-                  className="
-                    font-display
-                    text-xl
-                    font-bold
-                    tabular-nums
-                    text-white
-                    sm:text-2xl
-                    md:text-3xl
-                  "
-                >
-                  <Counter
-                    to={98}
-                    suffix="%"
-                    reduceMotion={
-                      reduceMotion
-                    }
-                  />
-                </p>
-
-                <p className="mt-1 text-[8px] uppercase tracking-wider text-white/50 sm:text-[9px]">
-                  Retention
-                </p>
-              </div>
-            </motion.div>
+              {item}
+            </span>
           </div>
-        </motion.div>
+        ))}
+      </motion.div>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            delay: 1.2,
-          }}
+      {/* STATS */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.9,
+        }}
+        className="
+          mx-auto
+          mt-8
+          grid
+          max-w-xl
+          grid-cols-3
+          border-y
+          border-white/15
+          py-4
+          text-center
+          sm:mt-9
+          sm:py-5
+          lg:mx-0
+          lg:text-left
+        "
+      >
+
+        {/* YEARS */}
+
+        <div className="text-center lg:text-left">
+          <p
+            className="
+              font-display
+              text-xl
+              font-bold
+              tabular-nums
+              text-white
+              sm:text-2xl
+              md:text-3xl
+            "
+          >
+            <Counter
+              to={years}
+              suffix="+"
+              reduceMotion={reduceMotion}
+            />
+          </p>
+
+          <p
+            className="
+              mt-1
+              text-[8px]
+              uppercase
+              tracking-wider
+              text-white/50
+              sm:text-[9px]
+            "
+          >
+            Years active
+          </p>
+        </div>
+
+        {/* PROJECTS */}
+
+        <div
           className="
-            absolute
-            bottom-5
-            left-1/2
-            hidden
-            -translate-x-1/2
-            items-center
-            gap-3
-            font-mono
-            text-[8px]
-            uppercase
-            tracking-[0.25em]
-            text-white/40
-            sm:flex
+            border-l
+            border-white/15
+            pl-3
+            text-center
+            sm:pl-4
+            lg:text-left
           "
         >
-          <span>
-            Scroll to explore
-          </span>
+          <p
+            className="
+              font-display
+              text-xl
+              font-bold
+              tabular-nums
+              text-white
+              sm:text-2xl
+              md:text-3xl
+            "
+          >
+            <Counter
+              to={40}
+              suffix="+"
+              reduceMotion={reduceMotion}
+            />
+          </p>
 
-          <span className="h-px w-10 bg-gradient-to-r from-signal to-transparent" />
-        </motion.div>
-      </section>
+          <p
+            className="
+              mt-1
+              text-[8px]
+              uppercase
+              tracking-wider
+              text-white/50
+              sm:text-[9px]
+            "
+          >
+            Projects
+          </p>
+        </div>
 
-      {/* ==================================================================
+        {/* RETENTION */}
+
+        <div
+          className="
+            border-l
+            border-white/15
+            pl-3
+            text-center
+            sm:pl-4
+            lg:text-left
+          "
+        >
+          <p
+            className="
+              font-display
+              text-xl
+              font-bold
+              tabular-nums
+              text-white
+              sm:text-2xl
+              md:text-3xl
+            "
+          >
+            <Counter
+              to={98}
+              suffix="%"
+              reduceMotion={reduceMotion}
+            />
+          </p>
+
+          <p
+            className="
+              mt-1
+              text-[8px]
+              uppercase
+              tracking-wider
+              text-white/50
+              sm:text-[9px]
+            "
+          >
+            Retention
+          </p>
+        </div>
+
+      </motion.div>
+
+    </div>
+  </motion.div>
+
+  {/* DESKTOP SCROLL LABEL */}
+
+  <motion.div
+    initial={{
+      opacity: 0,
+    }}
+    animate={{
+      opacity: 1,
+    }}
+    transition={{
+      delay: 1.2,
+    }}
+    className="
+      absolute
+      bottom-5
+      left-1/2
+      hidden
+      -translate-x-1/2
+      items-center
+      gap-3
+      font-mono
+      text-[8px]
+      uppercase
+      tracking-[0.25em]
+      text-white/40
+      sm:flex
+    "
+  >
+    <span>
+      Scroll to explore
+    </span>
+
+    <span className="h-px w-10 bg-gradient-to-r from-signal to-transparent" />
+  </motion.div>
+</section>
+
+      {/* ================================================================
           CORE SYSTEM
-      ================================================================== */}
+      ================================================================= */}
 
       <section
         className="
           relative
           overflow-hidden
           px-4
-          pb-24
-          pt-20
+          pb-12
+          pt-12
           sm:px-6
           sm:pb-28
           sm:pt-24
@@ -1958,36 +2016,31 @@ export default function About() {
           xl:px-12
         "
       >
+        {/* BACKGROUND SYSTEM */}
+
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <motion.div
             className="
               absolute
               left-1/2
               top-[52%]
-              h-[400px]
-              w-[400px]
+              h-[320px]
+              w-[320px]
               -translate-x-1/2
               -translate-y-1/2
               rounded-full
               bg-signal/[0.035]
-              blur-[100px]
+              blur-[90px]
               sm:h-[500px]
               sm:w-[500px]
+              sm:blur-[100px]
               lg:h-[650px]
               lg:w-[650px]
               lg:blur-[120px]
             "
             animate={{
-              scale: [
-                0.9,
-                1.08,
-                0.9,
-              ],
-              opacity: [
-                0.35,
-                0.7,
-                0.35,
-              ],
+              scale: [0.9, 1.08, 0.9],
+              opacity: [0.35, 0.7, 0.35],
             }}
             transition={{
               duration: 8,
@@ -2001,32 +2054,20 @@ export default function About() {
               absolute
               left-[5%]
               top-[35%]
-              h-56
-              w-56
+              h-40
+              w-40
               rounded-full
               bg-signal/[0.025]
-              blur-[80px]
+              blur-[70px]
               sm:left-[18%]
               sm:h-72
               sm:w-72
               sm:blur-[100px]
             "
             animate={{
-              x: [
-                0,
-                70,
-                0,
-              ],
-              y: [
-                0,
-                -35,
-                0,
-              ],
-              scale: [
-                1,
-                1.15,
-                1,
-              ],
+              x: [0, 70, 0],
+              y: [0, -35, 0],
+              scale: [1, 1.15, 1],
             }}
             transition={{
               duration: 11,
@@ -2040,32 +2081,20 @@ export default function About() {
               absolute
               bottom-[15%]
               right-[3%]
-              h-60
-              w-60
+              h-44
+              w-44
               rounded-full
               bg-signal/[0.025]
-              blur-[90px]
+              blur-[75px]
               sm:right-[12%]
               sm:h-80
               sm:w-80
               sm:blur-[110px]
             "
             animate={{
-              x: [
-                0,
-                -60,
-                0,
-              ],
-              y: [
-                0,
-                40,
-                0,
-              ],
-              scale: [
-                1,
-                1.12,
-                1,
-              ],
+              x: [0, -60, 0],
+              y: [0, 40, 0],
+              scale: [1, 1.12, 1],
             }}
             transition={{
               duration: 13,
@@ -2074,6 +2103,8 @@ export default function About() {
             }}
           />
 
+          {/* GRID */}
+
           <motion.div
             className="absolute inset-0 opacity-[0.035]"
             style={{
@@ -2081,8 +2112,7 @@ export default function About() {
                 linear-gradient(to right, var(--fg) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--fg) 1px, transparent 1px)
               `,
-              backgroundSize:
-                '55px 55px',
+              backgroundSize: '55px 55px',
             }}
             animate={{
               backgroundPosition: [
@@ -2097,12 +2127,14 @@ export default function About() {
             }}
           />
 
+          {/* CENTER LINE */}
+
           <motion.div
             className="
               absolute
               left-1/2
               top-0
-              h-[300px]
+              h-[260px]
               w-px
               -translate-x-1/2
               bg-gradient-to-b
@@ -2112,16 +2144,8 @@ export default function About() {
               sm:h-[420px]
             "
             animate={{
-              opacity: [
-                0.15,
-                0.55,
-                0.15,
-              ],
-              scaleY: [
-                0.8,
-                1,
-                0.8,
-              ],
+              opacity: [0.15, 0.55, 0.15],
+              scaleY: [0.8, 1, 0.8],
             }}
             transition={{
               duration: 5,
@@ -2129,6 +2153,8 @@ export default function About() {
               ease: 'easeInOut',
             }}
           />
+
+          {/* HORIZONTAL LINE */}
 
           <motion.div
             className="
@@ -2143,11 +2169,7 @@ export default function About() {
               to-transparent
             "
             animate={{
-              opacity: [
-                0.15,
-                0.5,
-                0.15,
-              ],
+              opacity: [0.15, 0.5, 0.15],
             }}
             transition={{
               duration: 4,
@@ -2156,12 +2178,14 @@ export default function About() {
             }}
           />
 
+          {/* MOVING SIGNAL */}
+
           <motion.div
             className="
               absolute
               top-[calc(52%-1px)]
               h-[2px]
-              w-28
+              w-20
               bg-gradient-to-r
               from-transparent
               via-signal/60
@@ -2170,10 +2194,7 @@ export default function About() {
               sm:w-40
             "
             animate={{
-              left: [
-                '-10%',
-                '110%',
-              ],
+              left: ['-10%', '110%'],
             }}
             transition={{
               duration: 7,
@@ -2182,9 +2203,9 @@ export default function About() {
             }}
           />
 
-          {Array.from({
-            length: 28,
-          }).map(
+          {/* PARTICLES */}
+
+          {Array.from({ length: 28 }).map(
             (_, index) => (
               <motion.span
                 key={`drive-particle-${index}`}
@@ -2198,79 +2219,56 @@ export default function About() {
                 style={{
                   left: `${
                     5 +
-                    ((index *
-                      37) %
-                      90)
+                    ((index * 37) % 90)
                   }%`,
                   top: `${
                     8 +
-                    ((index *
-                      23) %
-                      82)
+                    ((index * 23) % 82)
                   }%`,
                 }}
                 animate={{
-                  y: [
-                    0,
-                    -18,
-                    0,
-                  ],
+                  y: [0, -18, 0],
                   x: [
                     0,
-                    index % 2 ===
-                    0
+                    index % 2 === 0
                       ? 8
                       : -8,
                     0,
                   ],
-                  opacity: [
-                    0.08,
-                    0.45,
-                    0.08,
-                  ],
-                  scale: [
-                    0.7,
-                    1.5,
-                    0.7,
-                  ],
+                  opacity: [0.08, 0.45, 0.08],
+                  scale: [0.7, 1.5, 0.7],
                 }}
                 transition={{
-                  duration:
-                    3.5 +
-                    (index % 5),
-                  delay:
-                    index * 0.15,
-                  repeat:
-                    Infinity,
+                  duration: 3.5 + (index % 5),
+                  delay: index * 0.15,
+                  repeat: Infinity,
                   ease: 'easeInOut',
                 }}
               />
             )
           )}
 
+          {/* OUTER FRAME */}
+
           <motion.div
             className="
               absolute
               left-1/2
               top-1/2
-              h-[580px]
+              h-[520px]
               w-[94%]
               -translate-x-1/2
               -translate-y-1/2
-              rounded-[30px]
+              rounded-[25px]
               border
               border-signal/[0.045]
               sm:h-[680px]
               sm:w-[92%]
               sm:rounded-[40px]
-              sm:max-w-[1250px]
+              lg:max-w-[1250px]
             "
             animate={{
-              opacity: [
-                0.3,
-                0.65,
-                0.3,
-              ],
+              opacity: [0.3, 0.65, 0.3],
             }}
             transition={{
               duration: 6,
@@ -2279,29 +2277,27 @@ export default function About() {
             }}
           />
 
+          {/* INNER FRAME */}
+
           <motion.div
             className="
               absolute
               left-1/2
               top-1/2
-              h-[520px]
+              h-[460px]
               w-[88%]
               -translate-x-1/2
               -translate-y-1/2
-              rounded-[25px]
+              rounded-[22px]
               border
               border-signal/[0.025]
               sm:h-[610px]
               sm:w-[85%]
               sm:rounded-[35px]
-              sm:max-w-[1150px]
+              lg:max-w-[1150px]
             "
             animate={{
-              opacity: [
-                0.2,
-                0.5,
-                0.2,
-              ],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
               duration: 7,
@@ -2313,7 +2309,10 @@ export default function About() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-shell">
-          <div className="mb-10 flex flex-col items-center text-center sm:mb-12">
+
+          {/* SECTION HEADING */}
+
+          <div className="mb-7 flex flex-col items-center text-center sm:mb-12">
             <motion.div
               initial={{
                 opacity: 0,
@@ -2327,7 +2326,7 @@ export default function About() {
                 once: true,
               }}
               className="
-                mb-3
+                mb-2
                 flex
                 items-center
                 gap-2
@@ -2336,27 +2335,19 @@ export default function About() {
                 uppercase
                 tracking-[0.18em]
                 text-[var(--fg)]/35
+                sm:mb-3
                 sm:text-[9px]
                 sm:tracking-[0.22em]
               "
             >
               <motion.span
                 animate={{
-                  scale: [
-                    1,
-                    1.5,
-                    1,
-                  ],
-                  opacity: [
-                    0.5,
-                    1,
-                    0.5,
-                  ],
+                  scale: [1, 1.5, 1],
+                  opacity: [0.5, 1, 0.5],
                 }}
                 transition={{
                   duration: 2,
-                  repeat:
-                    Infinity,
+                  repeat: Infinity,
                   ease: 'easeInOut',
                 }}
               >
@@ -2403,21 +2394,12 @@ export default function About() {
                   blur-2xl
                 "
                 animate={{
-                  opacity: [
-                    0.15,
-                    0.4,
-                    0.15,
-                  ],
-                  scaleX: [
-                    0.8,
-                    1.1,
-                    0.8,
-                  ],
+                  opacity: [0.15, 0.4, 0.15],
+                  scaleX: [0.8, 1.1, 0.8],
                 }}
                 transition={{
                   duration: 5,
-                  repeat:
-                    Infinity,
+                  repeat: Infinity,
                   ease: 'easeInOut',
                 }}
               />
@@ -2429,6 +2411,9 @@ export default function About() {
           </div>
 
           <div className="relative">
+
+            {/* MOBILE GLOW */}
+
             <motion.div
               className="
                 pointer-events-none
@@ -2436,28 +2421,20 @@ export default function About() {
                 left-1/2
                 top-1/2
                 z-0
-                h-[380px]
-                w-[380px]
+                h-[280px]
+                w-[280px]
                 -translate-x-1/2
                 -translate-y-1/2
                 rounded-full
                 bg-signal/[0.025]
-                blur-[80px]
+                blur-[70px]
                 sm:h-[500px]
                 sm:w-[500px]
                 sm:blur-[90px]
               "
               animate={{
-                scale: [
-                  0.9,
-                  1.1,
-                  0.9,
-                ],
-                opacity: [
-                  0.3,
-                  0.65,
-                  0.3,
-                ],
+                scale: [0.9, 1.1, 0.9],
+                opacity: [0.3, 0.65, 0.3],
               }}
               transition={{
                 duration: 7,
@@ -2467,584 +2444,455 @@ export default function About() {
             />
 
             <div
-              className="
-                relative
-                z-10
-                grid
-                items-center
-                gap-10
-                md:gap-12
-                lg:grid-cols-[minmax(0,1fr)_440px_minmax(0,1fr)]
-                lg:gap-6
-                xl:grid-cols-[minmax(0,1fr)_500px_minmax(0,1fr)]
-                xl:gap-8
-              "
-            >
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  x: -35,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                viewport={{
-                  once: true,
-                  margin: '-80px',
-                }}
-                transition={{
-                  duration: 0.7,
-                  ease: [
-                    0.16,
-                    1,
-                    0.3,
-                    1,
-                  ],
-                }}
-                className="
-                  order-2
-                  lg:order-1
-                "
-              >
-                <div
-                  className="
-                    mx-auto
-                    w-full
-                    max-w-sm
-                    space-y-3
-                    lg:mr-auto
-                  "
-                >
-                  {cards.map(
-                    (
-                      card,
-                      index
-                    ) => {
-                      const Icon =
-                        card.icon
+  className="
+    relative
+    z-10
+    grid
+    items-start
+    gap-5
+    sm:gap-7
+    lg:items-center
+    lg:grid-cols-[minmax(0,1fr)_440px_minmax(0,1fr)]
+    lg:gap-6
+    xl:grid-cols-[minmax(0,1fr)_500px_minmax(0,1fr)]
+    xl:gap-8
+  "
+>
+  {/* ==========================================================
+      DESCRIPTION
+      MOBILE: FIRST
+      DESKTOP: CENTER
+  =========================================================== */}
 
-                      const isActive =
-                        active ===
-                        index
+  <div
+    className="
+      order-1
+      lg:order-2
+    "
+  >
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={activeCard.key}
+        initial={{
+          opacity: 0,
+          x: -20,
+          scale: 0.97,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          scale: 1,
+        }}
+        exit={{
+          opacity: 0,
+          x: 20,
+          scale: 0.97,
+        }}
+        transition={{
+          duration: 0.4,
+        }}
+        className="
+          relative
+          mx-auto
+          w-full
+          max-w-sm
+          px-1
+          sm:px-0
+        "
+      >
+        <motion.div
+          className="
+            pointer-events-none
+            absolute
+            -inset-10
+            rounded-[40px]
+            bg-signal/[0.035]
+            blur-[60px]
+          "
+          animate={{
+            opacity: [0.25, 0.55, 0.25],
+            scale: [0.95, 1.05, 0.95],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-                      return (
-                        <motion.button
-                          key={
-                            card.key
-                          }
-                          type="button"
-                          onClick={() => {
-                            orbitSelectRef.current?.(
-                              index
-                            )
-                          }}
-                          whileHover={{
-                            x: 6,
-                          }}
-                          whileTap={{
-                            scale: 0.985,
-                          }}
-                          transition={{
-                            duration:
-                              0.25,
-                          }}
-                          className="
-                            group
-                            relative
-                            flex
-                            w-full
-                            items-center
-                            gap-3
-                            overflow-hidden
-                            rounded-2xl
-                            border
-                            p-3
-                            text-left
-                            transition-all
-                            duration-300
-                            sm:gap-4
-                            sm:p-4
-                          "
-                          style={{
-                            borderColor:
-                              isActive
-                                ? 'rgba(46,111,255,0.35)'
-                                : 'var(--border)',
-                            background:
-                              isActive
-                                ? 'rgba(46,111,255,0.07)'
-                                : 'transparent',
-                          }}
-                        >
-                          {isActive && (
-                            <motion.div
-                              className="
-                                pointer-events-none
-                                absolute
-                                inset-y-0
-                                left-0
-                                w-20
-                                bg-gradient-to-r
-                                from-signal/10
-                                to-transparent
-                              "
-                              animate={{
-                                x: [
-                                  '-100%',
-                                  '500%',
-                                ],
-                              }}
-                              transition={{
-                                duration:
-                                  2.8,
-                                repeat:
-                                  Infinity,
-                                repeatDelay:
-                                  1.5,
-                                ease: 'easeInOut',
-                              }}
-                            />
-                          )}
-
-                          <motion.span
-                            className="
-                              absolute
-                              left-0
-                              top-1/2
-                              h-8
-                              w-[2px]
-                              -translate-y-1/2
-                              rounded-full
-                              bg-signal
-                            "
-                            animate={{
-                              opacity:
-                                isActive
-                                  ? [
-                                      0.4,
-                                      1,
-                                      0.4,
-                                    ]
-                                  : 0,
-                              scaleY:
-                                isActive
-                                  ? [
-                                      0.7,
-                                      1,
-                                      0.7,
-                                    ]
-                                  : 0,
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat:
-                                isActive
-                                  ? Infinity
-                                  : 0,
-                              ease: 'easeInOut',
-                            }}
-                          />
-
-                          <span
-                            className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all sm:h-10 sm:w-10 ${
-                              isActive
-                                ? 'border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]'
-                                : 'border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal'
-                            }`}
-                          >
-                            <Icon
-                              size={15}
-                            />
-                          </span>
-
-                          <span className="relative z-10 min-w-0 flex-1">
-                            <span
-                              className={`block text-sm font-medium ${
-                                isActive
-                                  ? 'text-[var(--fg)]'
-                                  : 'text-[var(--fg)]/45'
-                              }`}
-                            >
-                              {
-                                card.title
-                              }
-                            </span>
-
-                            <span className="mt-1 block font-mono text-[7px] uppercase tracking-[0.14em] text-[var(--fg)]/25 sm:text-[8px] sm:tracking-[0.16em]">
-                              0
-                              {index +
-                                1}{' '}
-                              / Direction
-                            </span>
-                          </span>
-
-                          <motion.span
-                            animate={{
-                              x: isActive
-                                ? 0
-                                : -3,
-                              y: isActive
-                                ? 0
-                                : 3,
-                            }}
-                          >
-                            <FiArrowUpRight
-                              size={15}
-                              className={
-                                isActive
-                                  ? 'text-signal'
-                                  : 'text-[var(--fg)]/15 group-hover:text-signal'
-                              }
-                            />
-                          </motion.span>
-                        </motion.button>
-                      )
-                    }
-                  )}
-                </div>
-              </motion.div>
-
-              <div
-                className="
-                  order-3
-                  lg:order-2
-                "
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={
-                      activeCard.key
-                    }
-                    initial={{
-                      opacity: 0,
-                      x: -20,
-                      scale: 0.97,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      scale: 1,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      x: 20,
-                      scale: 0.97,
-                    }}
-                    transition={{
-                      duration: 0.4,
-                    }}
-                    className="
-                      relative
-                      mx-auto
-                      w-full
-                      max-w-sm
-                      px-2
-                      sm:px-0
-                    "
-                  >
-                    <motion.div
-                      className="
-                        pointer-events-none
-                        absolute
-                        -inset-10
-                        rounded-[40px]
-                        bg-signal/[0.035]
-                        blur-[60px]
-                      "
-                      animate={{
-                        opacity: [
-                          0.25,
-                          0.55,
-                          0.25,
-                        ],
-                        scale: [
-                          0.95,
-                          1.05,
-                          0.95,
-                        ],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat:
-                          Infinity,
-                        ease: 'easeInOut',
-                      }}
-                    />
-
-                    <div className="relative">
-                      <div className="mb-5 flex items-center gap-3">
-                        <motion.span
-                          className="h-px bg-signal"
-                          animate={{
-                            width: [
-                              30,
-                              55,
-                              30,
-                            ],
-                            opacity: [
-                              0.5,
-                              1,
-                              0.5,
-                            ],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat:
-                              Infinity,
-                            ease: 'easeInOut',
-                          }}
-                        />
-
-                        <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-signal sm:text-[9px] sm:tracking-[0.2em]">
-                          0
-                          {active +
-                            1}{' '}
-                          / 03
-                        </span>
-                      </div>
-
-                      <h3
-                        className="
-                          font-display
-                          text-2xl
-                          font-semibold
-                          tracking-tight
-                          text-[var(--fg)]
-                          sm:text-3xl
-                          md:text-4xl
-                        "
-                      >
-                        {
-                          activeCard.title
-                        }
-                      </h3>
-
-                      <p className="mt-4 text-sm leading-6 text-[var(--fg)]/55 sm:mt-5 sm:leading-7">
-                        {
-                          activeCard.body
-                        }
-                      </p>
-
-                      <div className="mt-7 flex items-center gap-3 sm:mt-8">
-                        <div className="flex gap-1">
-                          {[0, 1, 2].map(
-                            (
-                              dot
-                            ) => (
-                              <motion.span
-                                key={
-                                  dot
-                                }
-                                className="h-1 w-1 rounded-full bg-signal"
-                                animate={{
-                                  opacity:
-                                    [
-                                      0.2,
-                                      1,
-                                      0.2,
-                                    ],
-                                  scale:
-                                    [
-                                      0.7,
-                                      1.3,
-                                      0.7,
-                                    ],
-                                }}
-                                transition={{
-                                  duration: 1.5,
-                                  delay:
-                                    dot *
-                                    0.2,
-                                  repeat:
-                                    Infinity,
-                                  ease: 'easeInOut',
-                                }}
-                              />
-                            )
-                          )}
-                        </div>
-
-                        <span className="font-mono text-[7px] uppercase tracking-[0.16em] text-[var(--fg)]/25 sm:text-[8px] sm:tracking-[0.18em]">
-                          Active direction
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  x: 35,
-                  scale: 0.96,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                  scale: 1,
-                }}
-                viewport={{
-                  once: true,
-                  margin: '-80px',
-                }}
-                transition={{
-                  duration: 0.8,
-                  ease: [
-                    0.16,
-                    1,
-                    0.3,
-                    1,
-                  ],
-                }}
-                className="
-                  order-1
-                  flex
-                  justify-center
-                  lg:order-3
-                "
-              >
-                <div className="relative max-w-full">
-                  <motion.div
-                    className="
-                      pointer-events-none
-                      absolute
-                      left-1/2
-                      top-1/2
-                      h-[310px]
-                      w-[310px]
-                      -translate-x-1/2
-                      -translate-y-1/2
-                      rounded-full
-                      bg-signal/[0.035]
-                      blur-[60px]
-                      sm:h-[370px]
-                      sm:w-[370px]
-                      md:h-[420px]
-                      md:w-[420px]
-                      lg:h-[460px]
-                      lg:w-[460px]
-                    "
-                    animate={{
-                      scale: [
-                        0.9,
-                        1.08,
-                        0.9,
-                      ],
-                      opacity: [
-                        0.25,
-                        0.6,
-                        0.25,
-                      ],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat:
-                        Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  />
-
-                  <motion.div
-                    className="
-                      pointer-events-none
-                      absolute
-                      left-1/2
-                      top-1/2
-                      h-[320px]
-                      w-[320px]
-                      -translate-x-1/2
-                      -translate-y-1/2
-                      rounded-full
-                      border
-                      border-transparent
-                      border-t-signal/15
-                      sm:h-[380px]
-                      sm:w-[380px]
-                      md:h-[430px]
-                      md:w-[430px]
-                      lg:h-[470px]
-                      lg:w-[470px]
-                    "
-                    animate={{
-                      rotate: [
-                        0,
-                        360,
-                      ],
-                    }}
-                    transition={{
-                      duration: 18,
-                      repeat:
-                        Infinity,
-                      ease: 'linear',
-                    }}
-                  />
-
-                  <OrbitalCore
-                    active={active}
-                    setActive={
-                      setActive
-                    }
-                    reduceMotion={
-                      reduceMotion
-                    }
-                    onSelect={
-                      orbitSelectRef
-                    }
-                  />
-                </div>
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                scaleX: 0,
-              }}
-              whileInView={{
-                opacity: 1,
-                scaleX: 1,
-              }}
-              viewport={{
-                once: true,
+        <div className="relative">
+          <div className="mb-3 flex items-center gap-3 sm:mb-5">
+            <motion.span
+              className="h-px bg-signal"
+              animate={{
+                width: [30, 55, 30],
+                opacity: [0.5, 1, 0.5],
               }}
               transition={{
-                duration: 1,
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
               }}
+            />
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-signal sm:text-[9px]">
+              0{active + 1} / 03
+            </span>
+          </div>
+
+          <h3
+            className="
+              font-display
+              text-2xl
+              font-semibold
+              tracking-tight
+              text-[var(--fg)]
+              sm:text-3xl
+              md:text-4xl
+            "
+          >
+            {activeCard.title}
+          </h3>
+
+          <p
+            className="
+              mt-3
+              text-sm
+              leading-6
+              text-[var(--fg)]/55
+              sm:mt-5
+              sm:leading-7
+            "
+          >
+            {activeCard.body}
+          </p>
+
+          <div className="mt-5 flex items-center gap-3 sm:mt-8">
+            <div className="flex gap-1">
+              {[0, 1, 2].map((dot) => (
+                <motion.span
+                  key={dot}
+                  className="h-1 w-1 rounded-full bg-signal"
+                  animate={{
+                    opacity: [0.2, 1, 0.2],
+                    scale: [0.7, 1.3, 0.7],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    delay: dot * 0.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            <span className="font-mono text-[7px] uppercase tracking-[0.16em] text-[var(--fg)]/25 sm:text-[8px]">
+              Active direction
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  </div>
+
+  {/* ==========================================================
+      CARDS
+      MOBILE: SECOND
+      DESKTOP: LEFT
+  =========================================================== */}
+
+  <motion.div
+    initial={{
+      opacity: 0,
+      x: -35,
+    }}
+    whileInView={{
+      opacity: 1,
+      x: 0,
+    }}
+    viewport={{
+      once: true,
+      margin: "-80px",
+    }}
+    transition={{
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    className="
+      order-2
+      lg:order-1
+    "
+  >
+    <div
+      className="
+        mx-auto
+        w-full
+        max-w-sm
+        space-y-2
+        sm:space-y-3
+        lg:mr-auto
+      "
+    >
+      {cards.map((card, index) => {
+        const Icon = card.icon
+        const isActive = active === index
+
+        return (
+          <motion.button
+            key={card.key}
+            type="button"
+            onClick={() => {
+              orbitSelectRef.current?.(index)
+            }}
+            whileHover={{
+              x: 6,
+            }}
+            whileTap={{
+              scale: 0.985,
+            }}
+            transition={{
+              duration: 0.25,
+            }}
+            className="
+              group
+              relative
+              flex
+              w-full
+              items-center
+              gap-3
+              overflow-hidden
+              rounded-2xl
+              border
+              p-2.5
+              text-left
+              transition-all
+              duration-300
+              sm:gap-4
+              sm:p-4
+            "
+            style={{
+              borderColor: isActive
+                ? "rgba(46,111,255,0.35)"
+                : "var(--border)",
+              background: isActive
+                ? "rgba(46,111,255,0.07)"
+                : "transparent",
+            }}
+          >
+            {isActive && (
+              <motion.div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-y-0
+                  left-0
+                  w-20
+                  bg-gradient-to-r
+                  from-signal/10
+                  to-transparent
+                "
+                animate={{
+                  x: ["-100%", "500%"],
+                }}
+                transition={{
+                  duration: 2.8,
+                  repeat: Infinity,
+                  repeatDelay: 1.5,
+                  ease: "easeInOut",
+                }}
+              />
+            )}
+
+            <motion.span
               className="
-                relative
-                mx-auto
-                mt-14
-                flex
-                max-w-4xl
-                items-center
-                justify-center
-                gap-3
-                sm:mt-16
-                sm:gap-4
+                absolute
+                left-0
+                top-1/2
+                h-8
+                w-[2px]
+                -translate-y-1/2
+                rounded-full
+                bg-signal
               "
+              animate={{
+                opacity: isActive
+                  ? [0.4, 1, 0.4]
+                  : 0,
+                scaleY: isActive
+                  ? [0.7, 1, 0.7]
+                  : 0,
+              }}
+              transition={{
+                duration: 2,
+                repeat: isActive
+                  ? Infinity
+                  : 0,
+                ease: "easeInOut",
+              }}
+            />
+
+            <span
+              className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all sm:h-10 sm:w-10 ${
+                isActive
+                  ? "border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]"
+                  : "border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal"
+              }`}
             >
-              
+              <Icon size={15} />
+            </span>
 
-              
+            <span className="relative z-10 min-w-0 flex-1">
+              <span
+                className={`block text-sm font-medium ${
+                  isActive
+                    ? "text-[var(--fg)]"
+                    : "text-[var(--fg)]/45"
+                }`}
+              >
+                {card.title}
+              </span>
 
-              
-            </motion.div>
+              <span className="mt-1 block font-mono text-[7px] uppercase tracking-[0.14em] text-[var(--fg)]/25 sm:text-[8px]">
+                0{index + 1} / Direction
+              </span>
+            </span>
+
+            <motion.span
+              animate={{
+                x: isActive ? 0 : -3,
+                y: isActive ? 0 : 3,
+              }}
+            >
+              <FiArrowUpRight
+                size={15}
+                className={
+                  isActive
+                    ? "text-signal"
+                    : "text-[var(--fg)]/15 group-hover:text-signal"
+                }
+              />
+            </motion.span>
+          </motion.button>
+        )
+      })}
+    </div>
+  </motion.div>
+
+  {/* ==========================================================
+      ORBITAL CLOCK
+      MOBILE: HIDDEN
+      DESKTOP: RIGHT
+  =========================================================== */}
+
+  <motion.div
+    initial={{
+      opacity: 0,
+      x: 35,
+      scale: 0.96,
+    }}
+    whileInView={{
+      opacity: 1,
+      x: 0,
+      scale: 1,
+    }}
+    viewport={{
+      once: true,
+      margin: "-80px",
+    }}
+    transition={{
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    className="
+      order-3
+      hidden
+      justify-center
+      lg:order-3
+      lg:flex
+    "
+  >
+    <div className="relative max-w-full">
+
+      {/* OUTER GLOW */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          h-[460px]
+          w-[460px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-signal/[0.035]
+          blur-[60px]
+        "
+        animate={{
+          scale: [0.9, 1.08, 0.9],
+          opacity: [0.25, 0.6, 0.25],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* ORBIT */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          h-[470px]
+          w-[470px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          border
+          border-transparent
+          border-t-signal/15
+        "
+        animate={{
+          rotate: [0, 360],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      <OrbitalCore
+        active={active}
+        setActive={setActive}
+        reduceMotion={reduceMotion}
+        onSelect={orbitSelectRef}
+      />
+    </div>
+  </motion.div>
+</div>
+
+            {/* EMPTY SIGNAL REMOVED */}
           </div>
         </div>
       </section>
 
-      {/* ==================================================================
+      {/* ================================================================
           LEADERSHIP
-      ================================================================== */}
+      ================================================================= */}
 
       <section
         className="
           relative
           overflow-hidden
           px-4
-          py-20
+          py-16
           sm:px-6
           sm:py-24
           md:px-8
@@ -3053,6 +2901,7 @@ export default function About() {
         "
       >
         <div className="pointer-events-none absolute inset-0">
+
           <div
             className="
               absolute
@@ -3078,9 +2927,10 @@ export default function About() {
         </div>
 
         <div className="relative mx-auto max-w-7xl">
-          {/* HEADING */}
 
-          <div className="mb-12 text-center sm:mb-16">
+          {/* LEADERSHIP HEADING */}
+
+          <div className="mb-10 text-center sm:mb-16">
             <motion.div
               initial={{
                 opacity: 0,
@@ -3097,6 +2947,7 @@ export default function About() {
                 duration: 0.5,
               }}
               className="
+              -mt-5
                 mb-4
                 flex
                 items-center
@@ -3207,10 +3058,10 @@ export default function About() {
 
           <div
             className="
-              mt-12
+              mt-8
               grid
               grid-cols-1
-              gap-12
+              gap-10
               sm:mt-14
               sm:grid-cols-2
               sm:gap-14
@@ -3221,14 +3072,9 @@ export default function About() {
             "
           >
             {directReports.map(
-              (
-                person,
-                index
-              ) => (
+              (person, index) => (
                 <motion.div
-                  key={
-                    person.id
-                  }
+                  key={person.id}
                   initial={{
                     opacity: 0,
                     y: 35,
@@ -3243,15 +3089,8 @@ export default function About() {
                   }}
                   transition={{
                     duration: 0.65,
-                    delay:
-                      index *
-                      0.12,
-                    ease: [
-                      0.16,
-                      1,
-                      0.3,
-                      1,
-                    ],
+                    delay: index * 0.12,
+                    ease: [0.16, 1, 0.3, 1],
                   }}
                   className="
                     group
@@ -3262,6 +3101,7 @@ export default function About() {
                   "
                 >
                   <div className="relative">
+
                     <div className="pointer-events-none absolute inset-0 rounded-full bg-signal/15 blur-[50px] opacity-0 transition-all duration-500 group-hover:opacity-100" />
 
                     <motion.div
@@ -3271,12 +3111,7 @@ export default function About() {
                       }}
                       transition={{
                         duration: 0.4,
-                        ease: [
-                          0.16,
-                          1,
-                          0.3,
-                          1,
-                        ],
+                        ease: [0.16, 1, 0.3, 1],
                       }}
                       className="
                         relative
@@ -3295,12 +3130,8 @@ export default function About() {
                       "
                     >
                       <img
-                        src={
-                          person.image
-                        }
-                        alt={
-                          person.name
-                        }
+                        src={person.image}
+                        alt={person.name}
                         className="
                           h-full
                           w-full
@@ -3309,9 +3140,7 @@ export default function About() {
                           duration-700
                           group-hover:scale-110
                         "
-                        onError={(
-                          event
-                        ) => {
+                        onError={(event) => {
                           event.currentTarget.style.display =
                             'none'
                         }}
@@ -3325,40 +3154,26 @@ export default function About() {
                     </span>
                   </div>
 
-                  <h3 className="mt-6 font-display text-xl font-semibold tracking-tight text-signal transition-transform duration-300 group-hover:-translate-y-1 sm:mt-7 sm:text-2xl">
-                    {
-                      person.name
-                    }
+                  <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-signal transition-transform duration-300 group-hover:-translate-y-1 sm:mt-7 sm:text-2xl">
+                    {person.name}
                   </h3>
 
                   <p className="mt-2 text-sm font-medium text-[var(--fg)]">
-                    {
-                      person.title
-                    }
+                    {person.title}
                   </p>
 
                   <p className="mt-3 max-w-xs text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
-                    {
-                      person.bio
-                    }
+                    {person.bio}
                   </p>
 
                   <div className="mt-5 flex items-center justify-center gap-3 sm:gap-4">
                     <div className="text-left">
                       <span className="block font-display text-lg font-bold text-[var(--fg)]">
-                        {
-                          person
-                            .stat
-                            .value
-                        }
+                        {person.stat.value}
                       </span>
 
                       <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/30">
-                        {
-                          person
-                            .stat
-                            .label
-                        }
+                        {person.stat.label}
                       </span>
                     </div>
 
@@ -3385,15 +3200,11 @@ export default function About() {
                           hover:text-signal
                         "
                       >
-                        <FiMail
-                          size={12}
-                        />
+                        <FiMail size={12} />
                       </a>
 
                       <a
-                        href={
-                          person.linkedin
-                        }
+                        href={person.linkedin}
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`LinkedIn ${person.name}`}
@@ -3414,9 +3225,7 @@ export default function About() {
                           hover:text-signal
                         "
                       >
-                        <FiLinkedin
-                          size={12}
-                        />
+                        <FiLinkedin size={12} />
                       </a>
                     </div>
                   </div>
@@ -3425,14 +3234,13 @@ export default function About() {
             )}
           </div>
 
-          {/* ==================================================================
+          {/* ==============================================================
               INTERNS
-          ================================================================== */}
+          =============================================================== */}
 
-          <div className="relative mt-28 sm:mt-32">
-            {/* INTERN SECTION HEADER */}
+          <div className="relative mt-20 sm:mt-32">
 
-            <div className="mb-12 text-center sm:mb-14">
+            <div className="mb-10 text-center sm:mb-14">
               <motion.div
                 initial={{
                   opacity: 0,
@@ -3544,7 +3352,7 @@ export default function About() {
               <span className="absolute left-[75%] top-[21px] h-2 w-2 -translate-x-1/2 rounded-full bg-signal/80 shadow-[0_0_12px_rgba(46,111,255,0.5)]" />
             </div>
 
-            {/* TWO INTERN CARDS */}
+            {/* INTERN CARDS */}
 
             <div
               className="
@@ -3552,21 +3360,16 @@ export default function About() {
                 grid
                 max-w-4xl
                 grid-cols-1
-                gap-12
+                gap-10
                 sm:grid-cols-2
                 sm:gap-10
                 lg:gap-16
               "
             >
               {interns.map(
-                (
-                  person,
-                  index
-                ) => (
+                (person, index) => (
                   <motion.div
-                    key={
-                      person.id
-                    }
+                    key={person.id}
                     initial={{
                       opacity: 0,
                       y: 35,
@@ -3581,15 +3384,8 @@ export default function About() {
                     }}
                     transition={{
                       duration: 0.65,
-                      delay:
-                        index *
-                        0.14,
-                      ease: [
-                        0.16,
-                        1,
-                        0.3,
-                        1,
-                      ],
+                      delay: index * 0.14,
+                      ease: [0.16, 1, 0.3, 1],
                     }}
                     className="
                       group
@@ -3611,12 +3407,7 @@ export default function About() {
                         }}
                         transition={{
                           duration: 0.4,
-                          ease: [
-                            0.16,
-                            1,
-                            0.3,
-                            1,
-                          ],
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                         className="
                           relative
@@ -3635,12 +3426,8 @@ export default function About() {
                         "
                       >
                         <img
-                          src={
-                            person.image
-                          }
-                          alt={
-                            person.name
-                          }
+                          src={person.image}
+                          alt={person.name}
                           className="
                             h-full
                             w-full
@@ -3649,20 +3436,16 @@ export default function About() {
                             duration-700
                             group-hover:scale-110
                           "
-                          onError={(
-                            event
-                          ) => {
+                          onError={(event) => {
                             event.currentTarget.style.display =
                               'none'
                           }}
                         />
 
-                        {/* IMAGE OVERLAY */}
-
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-signal/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                       </motion.div>
 
-                      {/* STATUS DOT */}
+                      {/* STATUS */}
 
                       <span className="absolute bottom-1 right-2 flex h-6 w-6 items-center justify-center rounded-full border-[3px] border-[var(--bg)] bg-signal shadow-[0_0_16px_rgba(46,111,255,0.5)]">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
@@ -3672,52 +3455,37 @@ export default function About() {
                     {/* NUMBER */}
 
                     <span className="mt-5 font-mono text-[7px] uppercase tracking-[0.2em] text-signal/55">
-                      Intern / 0
-                      {index + 1}
+                      Intern / 0{index + 1}
                     </span>
 
                     {/* NAME */}
 
                     <h3 className="mt-2 font-display text-xl font-semibold tracking-tight text-[var(--fg)] transition-colors duration-300 group-hover:text-signal sm:text-2xl">
-                      {
-                        person.name
-                      }
+                      {person.name}
                     </h3>
 
                     {/* ROLE */}
 
                     <p className="mt-1.5 text-sm font-medium text-signal">
-                      {
-                        person.title
-                      }
+                      {person.title}
                     </p>
 
                     {/* BIO */}
 
                     <p className="mt-3 max-w-sm text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
-                      {
-                        person.bio
-                      }
+                      {person.bio}
                     </p>
 
-                    {/* BOTTOM META */}
+                    {/* META */}
 
                     <div className="mt-5 flex items-center gap-3 sm:gap-4">
                       <div className="text-left">
                         <span className="block font-display text-sm font-bold text-[var(--fg)] sm:text-base">
-                          {
-                            person
-                              .stat
-                              .value
-                          }
+                          {person.stat.value}
                         </span>
 
                         <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/25">
-                          {
-                            person
-                              .stat
-                              .label
-                          }
+                          {person.stat.label}
                         </span>
                       </div>
 
@@ -3744,15 +3512,11 @@ export default function About() {
                             hover:text-signal
                           "
                         >
-                          <FiMail
-                            size={12}
-                          />
+                          <FiMail size={12} />
                         </a>
 
                         <a
-                          href={
-                            person.linkedin
-                          }
+                          href={person.linkedin}
                           target="_blank"
                           rel="noreferrer"
                           aria-label={`LinkedIn ${person.name}`}
@@ -3773,9 +3537,7 @@ export default function About() {
                             hover:text-signal
                           "
                         >
-                          <FiLinkedin
-                            size={12}
-                          />
+                          <FiLinkedin size={12} />
                         </a>
                       </div>
                     </div>
@@ -3786,7 +3548,7 @@ export default function About() {
 
             {/* INTERN BOTTOM SIGNAL */}
 
-            <motion.div
+            {/* <motion.div
               initial={{
                 opacity: 0,
                 scaleX: 0,
@@ -3804,7 +3566,7 @@ export default function About() {
               }}
               className="
                 mx-auto
-                mt-14
+                mt-12
                 h-px
                 max-w-3xl
                 origin-center
@@ -3814,12 +3576,12 @@ export default function About() {
                 to-transparent
                 sm:mt-16
               "
-            />
+            /> */}
           </div>
 
           {/* BOTTOM ACCENT */}
 
-          <motion.div
+          {/* <motion.div
             initial={{
               opacity: 0,
               scaleX: 0,
@@ -3837,7 +3599,7 @@ export default function About() {
             }}
             className="
               mx-auto
-              mt-16
+              mt-12
               h-px
               max-w-4xl
               origin-center
@@ -3847,13 +3609,13 @@ export default function About() {
               to-transparent
               sm:mt-20
             "
-          />
+          /> */}
         </div>
       </section>
 
-      {/* ==================================================================
+      {/* ================================================================
           CTA
-      ================================================================== */}
+      ================================================================= */}
 
       <CTABand />
     </>

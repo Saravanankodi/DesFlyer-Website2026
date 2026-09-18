@@ -327,11 +327,7 @@ function ProjectDetailsPopup({ project, onClose }) {
               <img
                 src="/images/portfolio/logo.png"
                 alt="DESFlyer"
-                className="
-                  h-full
-                  w-full
-                  object-contain
-                "
+                className="h-full w-full object-contain"
               />
             </motion.div>
 
@@ -536,6 +532,10 @@ function ProjectDetailsPopup({ project, onClose }) {
    PROJECT CARD
 ========================================================= */
 
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
 function ProjectCard({ project }) {
   return (
     <article
@@ -607,18 +607,480 @@ function ProjectCard({ project }) {
         }}
       />
 
-      {/* CONTENT */}
+      {/* =====================================================
+          MOBILE CARD
+          ONLY VISIBLE BELOW 768px
+      ===================================================== */}
+
+      <div className="relative z-10 flex h-full flex-col p-5 sm:p-6 md:hidden">
+
+        {/* =================================================
+            TOP — IMAGE LOGO + TITLE
+        ================================================= */}
+
+        <div className="flex items-start gap-4">
+
+          {/* PROJECT IMAGE AS LOGO */}
+
+          <div
+            className="
+              relative
+              h-[64px]
+              w-[64px]
+              shrink-0
+              overflow-hidden
+              rounded-2xl
+              border
+              border-blue-400/25
+              bg-[#071326]
+              shadow-[0_0_30px_rgba(46,111,255,0.15)]
+            "
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              draggable="false"
+              className="
+                h-full
+                w-full
+                select-none
+                object-cover
+              "
+            />
+
+            {/* IMAGE OVERLAY */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                bg-gradient-to-br
+                from-blue-500/10
+                via-transparent
+                to-black/35
+              "
+            />
+
+            {/* INDEX */}
+
+            <span
+              className="
+                absolute
+                bottom-1
+                right-1
+                rounded-md
+                border
+                border-white/10
+                bg-black/60
+                px-1.5
+                py-0.5
+                font-mono
+                text-[6px]
+                text-blue-300
+                backdrop-blur-md
+              "
+            >
+              {project.index}
+            </span>
+          </div>
+
+          {/* TITLE AREA */}
+
+          <div className="min-w-0 flex-1 pt-0.5">
+
+            {/* CATEGORY LINE */}
+
+            {/* <div className="mb-2 flex items-center gap-2">
+
+              <span
+                className="
+                  h-1.5
+                  w-1.5
+                  shrink-0
+                  rounded-full
+                  bg-blue-400
+                  shadow-[0_0_10px_rgba(46,111,255,0.9)]
+                "
+              />
+
+              <span
+                className="
+                  font-mono
+                  text-[7px]
+                  uppercase
+                  tracking-[0.22em]
+                  text-blue-400
+                "
+              >
+                {project.category}
+              </span>
+
+            </div> */}
+
+            {/* TITLE */}
+
+            <h2
+              className="
+                text-[21px]
+                leading-[0.98]
+                tracking-tight
+                text-[#F3F7FF]
+              "
+              style={{
+                fontFamily: "'Anton', sans-serif",
+              }}
+            >
+              {project.title}
+            </h2>
+
+          </div>
+        </div>
+
+        {/* =================================================
+            DIVIDER
+        ================================================= */}
+
+        <div className="mt-5 h-px w-full bg-gradient-to-r from-blue-500/40 via-white/10 to-transparent" />
+
+        {/* =================================================
+            DESCRIPTION
+        ================================================= */}
+
+        <div className="mt-4">
+
+          <div
+            className="
+              mb-2
+              font-mono
+              text-[10px]
+              uppercase
+              tracking-[0.22em]
+              text-white/25
+            "
+          >
+            About Project
+          </div>
+
+          <p
+            className="
+          
+              text-[12px]
+              leading-[1.6]
+              text-white/50
+            "
+            style={{
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            {project.description}
+          </p>
+
+        </div>
+
+        {/* =================================================
+            TECHNOLOGIES
+        ================================================= */}
+
+        <div className="mt-4">
+
+          <div
+            className="
+              mb-2
+              flex
+              items-center
+              gap-2
+              font-mono
+              text-[10px]
+              uppercase
+              tracking-[0.2em]
+              text-white/25
+            "
+          >
+            <FiLayers
+              size={12}
+              className="text-blue-400"
+            />
+
+            Technology
+          </div>
+
+          <div className="flex flex-wrap gap-1.5">
+
+            {project.technologies.map((tag) => (
+              <span
+                key={tag}
+                className="
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-blue-500/[0.035]
+                  px-2.5
+                  py-1.5
+                  font-mono
+                  text-[10px]
+                  tracking-[0.08em]
+                  text-white/55
+                "
+              >
+                {tag}
+              </span>
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* =================================================
+            CATEGORY
+        ================================================= */}
+
+        <div className="mt-4">
+
+          <div
+            className="
+              mb-2
+              font-mono
+              text-[10px]
+              uppercase
+              tracking-[0.2em]
+              text-white/25
+            "
+          >
+            Category
+          </div>
+
+          <div
+            className="
+              flex
+              w-fit
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-blue-400/15
+              bg-blue-500/[0.05]
+              px-3
+              py-1.5
+            "
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+
+            <span
+              className="
+                font-mono
+                text-[10px]
+                uppercase
+                tracking-[0.18em]
+                text-blue-300/80
+              "
+            >
+              {project.category}
+            </span>
+          </div>
+
+        </div>
+
+        {/* =================================================
+            CLIENT + DELIVERED
+        ================================================= */}
+
+        <div className="mt-4 grid grid-cols-2 gap-2">
+
+          {/* CLIENT */}
+
+          <div
+            className="
+              rounded-xl
+              border
+              border-white/[0.07]
+              bg-white/[0.025]
+              p-3
+            "
+          >
+
+            <FiUser
+              size={12}
+              className="mb-2 text-blue-400"
+            />
+
+            <p
+              className="
+                mb-1
+                font-mono
+                text-[6px]
+                uppercase
+                tracking-[0.18em]
+                text-white/25
+              "
+            >
+              Client
+            </p>
+
+            <p className="truncate text-[8px] text-white/65">
+              {project.client}
+            </p>
+
+          </div>
+
+          {/* DELIVERED */}
+
+          <div
+            className="
+              rounded-xl
+              border
+              border-white/[0.07]
+              bg-white/[0.025]
+              p-3
+            "
+          >
+
+            <FiCalendar
+              size={12}
+              className="mb-2 text-blue-400"
+            />
+
+            <p
+              className="
+                mb-1
+                font-mono
+                text-[6px]
+                uppercase
+                tracking-[0.18em]
+                text-white/25
+              "
+            >
+              Delivered
+            </p>
+
+            <p className="text-[8px] text-white/65">
+              {project.date}
+            </p>
+
+          </div>
+
+        </div>
+
+        {/* =================================================
+            VIEW PROJECT BUTTON
+        ================================================= */}
+
+        <div className="mt-auto pt-5">
+
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+            className="
+              group
+              flex
+              w-full
+              items-center
+              justify-between
+              rounded-2xl
+              border
+              border-blue-400/25
+              bg-blue-500/[0.07]
+              px-4
+              py-3
+              transition-all
+              duration-300
+              hover:border-blue-400/60
+              hover:bg-blue-500/15
+            "
+          >
+
+            <span className="flex items-center gap-3">
+
+              <span
+                className="
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white
+                  text-[#050912]
+                  transition-transform
+                  duration-300
+                  group-hover:rotate-45
+                "
+              >
+                <FiExternalLink size={12} />
+              </span>
+
+              <span className="flex flex-col items-start">
+
+                <span
+                  className="
+                    font-mono
+                    text-[6px]
+                    uppercase
+                    tracking-[0.22em]
+                    text-blue-400
+                  "
+                >
+                  Explore
+                </span>
+
+                <span
+                  className="
+                    mt-0.5
+                    text-[10px]
+                    font-semibold
+                    tracking-wide
+                    text-white
+                  "
+                  style={{
+                    fontFamily:
+                      '"Chakra Petch", sans-serif',
+                  }}
+                >
+                  VIEW PROJECT
+                </span>
+
+              </span>
+
+            </span>
+
+            <FiArrowUpRight
+              size={16}
+              className="
+                text-blue-400
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
+            />
+
+          </a>
+
+        </div>
+
+      </div>
+
+      {/* =====================================================
+          DESKTOP / TABLET CARD
+          ORIGINAL DESIGN — UNCHANGED
+      ===================================================== */}
 
       <div
         className="
           relative
           z-10
-          grid
+          hidden
           h-full
           grid-cols-1
+          md:grid
           md:grid-cols-[1.15fr_0.85fr]
         "
       >
+
         {/* LEFT */}
 
         <div
@@ -631,9 +1093,11 @@ function ProjectCard({ project }) {
             lg:p-7
           "
         >
+
           {/* CATEGORY */}
 
           <div className="mb-3 flex items-center gap-3 sm:mb-4">
+
             <span
               className="
                 text-[9px]
@@ -671,20 +1135,20 @@ function ProjectCard({ project }) {
             >
               {project.category}
             </span>
+
           </div>
 
           {/* TITLE */}
 
           <h2
             className="
+              mt-5
               max-w-2xl
               text-xl
               leading-[0.98]
               text-[#F3F7FF]
               sm:text-3xl
               lg:text-4xl
-                            mt-5
-
             "
             style={{
               fontFamily:
@@ -717,9 +1181,9 @@ function ProjectCard({ project }) {
           {/* TECHNOLOGY */}
 
           <div className="mt-4 sm:mt-5">
+
             <div
               className="
-              
                 mb-2
                 flex
                 items-center
@@ -735,21 +1199,21 @@ function ProjectCard({ project }) {
               }}
             >
               <FiLayers size={11} />
-
               Technology
             </div>
 
             <div className="flex flex-wrap gap-1.5">
+
               {project.technologies.map(
                 (tag) => (
                   <span
                     key={tag}
                     className="
+                      mt-3
                       rounded-full
                       border
                       px-2
                       py-1
-                      mt-3
                       text-[7px]
                       font-medium
                       tracking-wider
@@ -771,23 +1235,27 @@ function ProjectCard({ project }) {
                   </span>
                 )
               )}
+
             </div>
+
           </div>
 
           {/* CLIENT + DATE */}
 
           <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5">
+
             <div
               className="
+                mt-2
                 rounded-xl
                 border
                 border-white/[0.06]
                 bg-white/[0.02]
                 p-2.5
                 sm:p-3
-                mt-2
               "
             >
+
               <FiUser
                 size={12}
                 className="mb-1.5 text-blue-400 sm:mb-2"
@@ -809,6 +1277,7 @@ function ProjectCard({ project }) {
               <p className="truncate text-[8px] text-white/65 sm:text-[9px]">
                 {project.client}
               </p>
+
             </div>
 
             <div
@@ -821,6 +1290,7 @@ function ProjectCard({ project }) {
                 sm:p-3
               "
             >
+
               <FiCalendar
                 size={12}
                 className="mb-1.5 text-blue-400 sm:mb-2"
@@ -842,12 +1312,15 @@ function ProjectCard({ project }) {
               <p className="text-[8px] text-white/65 sm:text-[9px]">
                 {project.date}
               </p>
+
             </div>
+
           </div>
 
           {/* VIEW */}
 
           <div className="mt-auto pt-4 sm:pt-5">
+
             <a
               href={project.githubUrl}
               target="_blank"
@@ -876,6 +1349,7 @@ function ProjectCard({ project }) {
                   "'JetBrains Mono', monospace",
               }}
             >
+
               <span
                 className="
                   flex
@@ -907,8 +1381,11 @@ function ProjectCard({ project }) {
                   group-hover:translate-x-1
                 "
               />
+
             </a>
+
           </div>
+
         </div>
 
         {/* RIGHT IMAGE */}
@@ -927,6 +1404,7 @@ function ProjectCard({ project }) {
             md:border-t-0
           "
         >
+
           <div
             className="
               pointer-events-none
@@ -957,6 +1435,7 @@ function ProjectCard({ project }) {
               md:inset-6
             "
           >
+
             <img
               src={project.image}
               alt={project.title}
@@ -1037,8 +1516,11 @@ function ProjectCard({ project }) {
             >
               {project.category}
             </div>
+
           </div>
+
         </div>
+
       </div>
 
       {/* BLUE EDGE */}
@@ -1050,6 +1532,7 @@ function ProjectCard({ project }) {
           left-0
           right-0
           top-0
+          z-30
           h-px
         "
         style={{
@@ -1057,9 +1540,11 @@ function ProjectCard({ project }) {
             "linear-gradient(90deg, transparent, rgba(46,111,255,0.8), transparent)",
         }}
       />
+
     </article>
   );
 }
+
 
 /* =========================================================
    SIDE NAVIGATION
@@ -1074,28 +1559,23 @@ function SideControls({
   const [liked, setLiked] = useState(false);
 
   const isFirst = activeCard === 0;
-  const isLast =
-    activeCard === totalProjects - 1;
+  const isLast = activeCard === totalProjects - 1;
 
   return (
     <>
-      {/* =====================================================
-          LEFT — PREVIOUS / NEXT
-      ===================================================== */}
-
       <div
         className="
           absolute
-          left-0
+          right-0
           top-1/2
           z-[50]
           hidden
-          -translate-x-[calc(100%+14px)]
+          translate-x-[calc(100%+14px)]
           -translate-y-1/2
           flex-col
           gap-2
           lg:flex
-          xl:pr-16
+          xl:pl-16
         "
       >
         {/* PREVIOUS */}
@@ -1141,6 +1621,97 @@ function SideControls({
               transition-transform
               duration-300
               group-hover:-translate-y-1
+            "
+          />
+        </button>
+
+        {/* LIKE */}
+
+        <button
+          type="button"
+          aria-label={
+            liked
+              ? "Unlike project"
+              : "Like project"
+          }
+          aria-pressed={liked}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            setLiked((value) => !value);
+          }}
+          className={`
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            bg-[#07111f]/95
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            ${liked
+              ? "border-blue-400/70 bg-blue-500/15 text-blue-300"
+              : "border-white/10 text-white/50 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-blue-300"
+            }
+          `}
+        >
+          <FiHeart
+            size={17}
+            className={`
+              transition-all
+              duration-300
+              ${liked
+                ? "scale-110 fill-blue-400"
+                : "group-hover:scale-110"
+              }
+            `}
+          />
+        </button>
+
+        {/* COMMENT */}
+
+        <button
+          type="button"
+          aria-label="View project details and comment"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            onOpenDetails();
+          }}
+          className="
+            group
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/10
+            bg-[#07111f]/95
+            text-white/50
+            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-blue-400/60
+            hover:bg-blue-500/10
+            hover:text-blue-300
+          "
+        >
+          <FiMessageCircle
+            size={17}
+            className="
+              transition-transform
+              duration-300
+              group-hover:scale-110
             "
           />
         </button>
@@ -1192,119 +1763,6 @@ function SideControls({
           />
         </button>
       </div>
-
-      {/* =====================================================
-          RIGHT — LIKE / COMMENT
-      ===================================================== */}
-
-      <div
-        className="
-          absolute
-          right-0
-          top-1/2
-          z-[50]
-          hidden
-          translate-x-[calc(100%+14px)]
-          -translate-y-1/2
-          flex-col
-          gap-2
-          lg:flex
-          xl:pl-16
-        "
-      >
-        {/* LIKE */}
-
-        <button
-          type="button"
-          aria-label={
-            liked
-              ? "Unlike project"
-              : "Like project"
-          }
-          aria-pressed={liked}
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            setLiked((value) => !value);
-          }}
-          className={`
-            group
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-full
-            border
-            bg-[#07111f]/95
-            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-            backdrop-blur-xl
-            transition-all
-            duration-300
-            ${
-              liked
-                ? "border-blue-400/70 bg-blue-500/15 text-blue-300"
-                : "border-white/10 text-white/50 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-blue-300"
-            }
-          `}
-        >
-          <FiHeart
-            size={17}
-            className={`
-              transition-all
-              duration-300
-              ${
-                liked
-                  ? "scale-110 fill-blue-400"
-                  : "group-hover:scale-110"
-              }
-            `}
-          />
-        </button>
-
-        {/* COMMENT */}
-
-        <button
-          type="button"
-          aria-label="View project details and comment"
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            onOpenDetails();
-          }}
-          className="
-            group
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/10
-            bg-[#07111f]/95
-            text-white/50
-            shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-            backdrop-blur-xl
-            transition-all
-            duration-300
-            hover:border-blue-400/60
-            hover:bg-blue-500/10
-            hover:text-blue-300
-          "
-        >
-          <FiMessageCircle
-            size={17}
-            className="
-              transition-transform
-              duration-300
-              group-hover:scale-110
-            "
-          />
-        </button>
-      </div>
     </>
   );
 }
@@ -1350,7 +1808,7 @@ export default function ProjectStack() {
     const checkDevice = () => {
       setIsMobile(
         window.innerWidth <
-          MOBILE_BREAKPOINT
+        MOBILE_BREAKPOINT
       );
     };
 
@@ -1407,9 +1865,7 @@ export default function ProjectStack() {
       return;
     }
 
-    document.body.style.overflow =
-      "hidden";
-
+    document.body.style.overflow = "hidden";
     document.documentElement.style.overflow =
       "hidden";
 
@@ -1454,9 +1910,7 @@ export default function ProjectStack() {
     const rect =
       section.getBoundingClientRect();
 
-    const tolerance = isMobile
-      ? 45
-      : 80;
+    const tolerance = isMobile ? 45 : 80;
 
     const topVisible =
       rect.top <= tolerance &&
@@ -1519,13 +1973,13 @@ export default function ProjectStack() {
       const next =
         direction > 0
           ? Math.min(
-              current + 1,
-              projects.length - 1
-            )
+            current + 1,
+            projects.length - 1
+          )
           : Math.max(
-              current - 1,
-              0
-            );
+            current - 1,
+            0
+          );
 
       if (next === current) {
         return false;
@@ -1576,7 +2030,7 @@ export default function ProjectStack() {
         if (
           direction > 0 &&
           current <
-            projects.length - 1
+          projects.length - 1
         ) {
           if (event) {
             event.preventDefault();
@@ -1595,7 +2049,7 @@ export default function ProjectStack() {
         if (
           direction > 0 &&
           current ===
-            projects.length - 1
+          projects.length - 1
         ) {
           unlockPage();
 
@@ -1668,9 +2122,7 @@ export default function ProjectStack() {
       }
 
       const direction =
-        event.deltaY > 0
-          ? 1
-          : -1;
+        event.deltaY > 0 ? 1 : -1;
 
       handleNavigation(
         direction,
@@ -1974,7 +2426,7 @@ export default function ProjectStack() {
           if (
             isStackInView() &&
             activeRef.current <
-              projects.length - 1
+            projects.length - 1
           ) {
             lockPage();
           }
@@ -1984,12 +2436,12 @@ export default function ProjectStack() {
           : 800
       );
     },
-    [
-      isStackInView,
-      lockPage,
-      unlockPage,
-      prefersReducedMotion,
-    ]);
+      [
+        isStackInView,
+        lockPage,
+        unlockPage,
+        prefersReducedMotion,
+      ]);
 
   /* =========================================================
      GO TO PROJECT
@@ -2001,7 +2453,7 @@ export default function ProjectStack() {
         if (
           animatingRef.current ||
           index ===
-            activeRef.current ||
+          activeRef.current ||
           index < 0 ||
           index >= projects.length
         ) {
@@ -2101,604 +2553,1243 @@ export default function ProjectStack() {
 
   return (
     <main className="min-h-screen bg-[#07080c] text-white">
+
       {/* =====================================================
-          HERO
+          HERO / PORTFOLIO COMMAND CENTER
       ===================================================== */}
 
-
-<section
-  className="
-    relative
-    flex
-    min-h-[100svh]
-    w-full
-    items-center
-    overflow-hidden
-    bg-[#05070c]
-  "
->
-  {/* BACKGROUND IMAGE */}
-
-  <div className="absolute inset-0 overflow-hidden">
-    <motion.img
-  src="/images/portfolio/portfolios.png"
-  alt="Selected Projects"
-  initial={{
-    scale: prefersReducedMotion ? 1 : 1.06,
-    opacity: 0,
-  }}
-  animate={{
-    scale: 1,
-    opacity: 1,
-  }}
-  transition={{
-    duration: 1.2,
-    ease: "easeOut",
-  }}
-  className="
-    absolute
-    inset-x-0
-    top-0
-    h-[55vh]
-    w-full
-    select-none
-    object-cover
-    object-center
-
-    sm:inset-0
-    sm:h-full
-    sm:object-cover
-
-    lg:object-contain
-    lg:object-center
-
-    xl:pl-96
-  "
-/>
-
-    {/* MOBILE DARK GRADIENT */}
-
-    <div
-      className="
-        absolute
-        inset-0
-        bg-gradient-to-b
-        from-[#05070c]/45
-        via-[#05070c]/35
-        to-[#05070c]/95
-        sm:from-[#05070c]/40
-        sm:via-transparent
-        sm:to-[#05070c]/85
-        lg:hidden
-      "
-    />
-
-    {/* DESKTOP SIDE GRADIENT */}
-
-    <div
-      className="
-        absolute
-        inset-0
-        hidden
-        lg:block
-      "
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(3,7,15,0.92) 0%, rgba(3,7,15,0.65) 28%, rgba(3,7,15,0.15) 65%, rgba(3,7,15,0.35) 100%)",
-      }}
-    />
-
-    {/* TOP GRADIENT */}
-
-    <div
-      className="
-        absolute
-        inset-x-0
-        top-0
-        h-28
-        bg-gradient-to-b
-        from-[#03070f]/80
-        to-transparent
-        sm:h-40
-      "
-    />
-
-    {/* BLUE LIGHT */}
-
-    <motion.div
-      animate={{
-        x: [0, 40, 0],
-        y: [0, -20, 0],
-        opacity: [0.07, 0.16, 0.07],
-      }}
-      transition={{
-        duration: 9,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-      className="
-        pointer-events-none
-        absolute
-        left-[20%]
-        top-[40%]
-        h-[240px]
-        w-[240px]
-        -translate-x-1/2
-        -translate-y-1/2
-        rounded-full
-        bg-blue-500/20
-        blur-[100px]
-        sm:h-[400px]
-        sm:w-[400px]
-        sm:blur-[130px]
-        lg:h-[500px]
-        lg:w-[500px]
-        lg:blur-[150px]
-      "
-    />
-
-    {/* GRID */}
-
-    <div
-      className="
-        pointer-events-none
-        absolute
-        inset-0
-        opacity-[0.025]
-      "
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-        backgroundSize: "55px 55px",
-      }}
-    />
-  </div>
-
-  {/* =====================================================
-      MOBILE HERO CONTENT
-  ===================================================== */}
-
- <div
-  className="
-    relative z-10 flex min-h-[100svh] w-full flex-col
-    justify-start
-    px-4 pt-20 pb-16
-    sm:mt-20
-    md:px-8 md:pt-28 md:pb-24
-    lg:mx-auto lg:min-h-[100svh] lg:max-w-[1500px]
-    lg:flex-row lg:items-start lg:justify-start
-    lg:px-12 lg:pt-24 lg:pb-20
-    xl:px-16 xl:pt-28
-    2xl:px-20 2xl:pt-32
-  "
->
-    {/* LEFT CONTENT */}
-
-   <div
-  className="
-    relative w-full
-    max-w-[92vw]
-    sm:max-w-[680px]
-    md:max-w-[760px]
-    lg:max-w-5xl
-    
-  "
->
-      {/* MOBILE TOP LABEL */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -20,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{
-          duration: 0.6,
-          delay: 0.2,
-        }}
+      <section
         className="
-          mb-4
-          flex
-          items-center
-          gap-2.5
-          sm:mb-5
-          sm:gap-3
-          lg:mb-6
-        "
-      >
-        <span className="h-px w-7 bg-blue-400 sm:w-10 lg:w-12" />
-
-        <span
-          className="
-            text-[7px]
-            font-bold
-            tracking-[0.28em]
-            text-blue-400
-            sm:text-[9px]
-            lg:text-[10px]
-          "
-        >
-          DIGITAL WORKS
-        </span>
-
-        <span
-          className="
-            text-[7px]
-            tracking-[0.18em]
-            text-white/25
-            sm:text-[9px]
-            lg:text-[10px]
-          "
-        >
-          / 2026
-        </span>
-      </motion.div>
-
-      {/* INTRO */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.6,
-          delay: 0.3,
-        }}
-        className="
-          mb-3
-          text-[7px]
-          uppercase
-          tracking-[0.2em]
-          text-white/35
-          sm:mb-4
-          sm:text-[9px]
-          lg:text-[11px]
-        "
-      >
-        WE DESIGN · ENGINEER · BUILD
-      </motion.div>
-
-      {/* MAIN HEADING */}
-
-      <motion.h1
-        initial={{
-          opacity: 0,
-          y: 35,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.8,
-          delay: 0.4,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          max-w-[600px]
-          text-[52px]
-          font-black
-          leading-[0.84]
-          tracking-[-0.065em]
+          relative
+          min-h-[82svh]
+          overflow-hidden
+          bg-[#020712]
+          px-4
+          pb-8
+          pt-20
           text-white
-          xs:text-[58px]
-          sm:text-[72px]
-          md:text-[88px]
-          lg:max-w-4xl
-          lg:text-[105px]
-          xl:text-[75px]
-          2xl:text-[135px]
+          sm:min-h-[100svh]
+          sm:px-6
+          sm:pb-12
+          sm:pt-28
+          lg:px-10
+          lg:pb-16
+          lg:pt-24
         "
       >
-        SELECTED
 
-        <span
-          className="
-            mt-1
-            block
-            text-white/25
-            sm:mt-2
-          "
-        >
-          PROJECTS
-        </span>
-      </motion.h1>
+        {/* ===================================================
+            PORTFOLIO BACKGROUND
+        =================================================== */}
 
-      {/* DESCRIPTION */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.6,
-        }}
-        className="
-          mt-5
-          flex
-          max-w-[520px]
-          items-start
-          gap-3
-          sm:mt-7
-          sm:gap-4
-          lg:mt-9
-        "
-      >
-        <span
-          className="
-            mt-1
-            h-7
-            w-[2px]
-            shrink-0
-            bg-blue-400
-            sm:mt-2
-            sm:h-8
-          "
-        />
+          {/* IMAGE — UNCHANGED */}
 
-        <p
-          className="
-            max-w-xl
-            text-[10px]
-            leading-5
-            text-white/55
-            sm:text-xs
-            sm:leading-6
-            lg:text-sm
-            lg:leading-7
-            xl:text-base
-          "
-        >
-          A collection of digital products,
-          platforms and engineering experiences
-          built across web, application development,
-          business systems and modern digital
-          experiences.
-        </p>
-      </motion.div>
-
-      {/* CTA + META */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.75,
-        }}
-        className="
-          mt-6
-          flex
-          flex-wrap
-          items-center
-          gap-4
-          sm:mt-8
-          sm:gap-5
-          lg:mt-9
-        "
-      >
-        <button
-          type="button"
-          onClick={scrollToProjects}
-          className="
-            group
-            relative
-            flex
-            items-center
-            gap-3
-            overflow-hidden
-            rounded-xl
-            border
-            border-blue-400/40
-            bg-blue-500/10
-            px-4
-            py-2.5
-            text-[8px]
-            font-bold
-            tracking-[0.18em]
-            text-white
-            backdrop-blur-xl
-            transition-all
-            duration-300
-            hover:border-blue-400/80
-            hover:bg-blue-500/20
-            active:scale-[0.98]
-            sm:gap-4
-            sm:px-5
-            sm:py-3
-            sm:text-[9px]
-          "
-        >
-          <span
+          <motion.img
+            src="/images/portfolio/port.png"
+            alt="DesFlyer Selected Projects"
+            initial={{
+              scale: 1.08,
+              opacity: 0,
+            }}
+            animate={{
+              scale: 1,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1.4,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               absolute
               inset-0
-              -translate-x-full
-              bg-gradient-to-r
-              from-transparent
-              via-blue-400/10
-              to-transparent
-              transition-transform
-              duration-700
-              group-hover:translate-x-full
+              h-full
+              w-full
+              object-cover
+              object-center
             "
           />
 
-          <span className="relative z-10">
-            EXPLORE PROJECTS
-          </span>
+          {/* DESKTOP IMAGE SHADE */}
 
-          <span
+          <div
             className="
-              relative
-              z-10
-              flex
-              h-7
-              w-7
-              items-center
-              justify-center
-              rounded-full
-              bg-blue-400
-              text-black
-              transition-transform
-              duration-300
-              group-hover:rotate-45
-              sm:h-8
-              sm:w-8
+              absolute
+              inset-0
+              hidden
+              lg:block
             "
-          >
-            <FiArrowUpRight size={13} />
-          </span>
-        </button>
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(2,7,18,0.94) 0%, rgba(2,7,18,0.80) 25%, rgba(2,7,18,0.48) 48%, rgba(2,7,18,0.12) 72%, rgba(2,7,18,0.30) 100%)",
+            }}
+          />
+
+          {/* MOBILE IMAGE SHADE */}
+
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-b
+              from-[#020712]/90
+              via-[#020712]/65
+              to-[#020712]/95
+              lg:hidden
+            "
+          />
+
+          {/* TOP FADE */}
+
+          <div
+            className="
+              absolute
+              inset-x-0
+              top-0
+              h-40
+              bg-gradient-to-b
+              from-[#020712]
+              to-transparent
+            "
+          />
+
+          {/* BOTTOM FADE */}
+
+          <div
+            className="
+              absolute
+              inset-x-0
+              bottom-0
+              h-48
+              bg-gradient-to-t
+              from-[#020712]
+              to-transparent
+            "
+          />
+
+          {/* TECH GRID */}
+
+          <div
+            className="
+              absolute
+              inset-0
+              opacity-[0.035]
+            "
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+              backgroundSize: "55px 55px",
+              maskImage:
+                "linear-gradient(to right, black 0%, black 52%, transparent 88%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, black 0%, black 52%, transparent 88%)",
+            }}
+          />
+
+          {/* AMBIENT LIGHT */}
+
+          <motion.div
+            animate={{
+              x: [0, 45, 0],
+              y: [0, -25, 0],
+              opacity: [0.08, 0.2, 0.08],
+              scale: [0.95, 1.08, 0.95],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              left-[14%]
+              top-[40%]
+              h-[400px]
+              w-[400px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-blue-500/[0.12]
+              blur-[140px]
+            "
+          />
+
+          {/* MOVING SIGNAL LINE */}
+
+          <motion.div
+            animate={{
+              x: ["-20%", "120%"],
+              opacity: [0, 0.75, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              left-0
+              top-[25%]
+              h-px
+              w-[45%]
+              bg-gradient-to-r
+              from-transparent
+              via-blue-400/70
+              to-transparent
+            "
+          />
+
+          {/* DIAGONAL SIGNAL */}
+
+          <motion.div
+            className="
+              absolute
+              left-[-10%]
+              top-[15%]
+              h-px
+              w-[55%]
+              rotate-[-12deg]
+              bg-gradient-to-r
+              from-transparent
+              via-blue-400/50
+              to-transparent
+            "
+            animate={{
+              x: [
+                "-10%",
+                "100%",
+                "-10%",
+              ],
+              opacity: [
+                0.1,
+                0.8,
+                0.1,
+              ],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* SCANNING LINE */}
+
+          <motion.div
+            animate={{
+              y: ["0vh", "100vh"],
+              opacity: [0, 0.45, 0],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="
+              absolute
+              left-0
+              right-0
+              top-0
+              h-px
+              bg-gradient-to-r
+              from-transparent
+              via-blue-400/45
+              to-transparent
+            "
+          />
+
+        </div>
+
+        {/* ===================================================
+            MAIN CONTENT
+        =================================================== */}
 
         <div
           className="
+            relative
+            z-10
+            mx-auto
             flex
+            min-h-[calc(100svh-9rem)]
+            max-w-[1400px]
             items-center
-            gap-2.5
-            text-[7px]
-            tracking-[0.18em]
-            text-white/30
-            sm:text-[8px]
           "
         >
+
+          {/* =================================================
+              LEFT PORTFOLIO CONTENT
+
+              MOBILE:
+              centered
+
+              DESKTOP:
+              left aligned
+          ================================================= */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -35,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.9,
+              ease: [
+                0.22,
+                1,
+                0.36,
+                1,
+              ],
+            }}
+            className="
+              relative
+              mx-auto
+              w-full
+              max-w-[760px]
+              text-center
+              lg:mx-0
+              lg:ml-8
+              lg:text-left
+              xl:ml-14
+            "
+          >
+
+            {/* LEFT VERTICAL SIGNAL */}
+
+            <div
+              className="
+                absolute
+                -left-8
+                top-0
+                hidden
+                h-full
+                w-px
+                bg-gradient-to-b
+                from-transparent
+                via-blue-500/60
+                to-transparent
+                lg:block
+              "
+            />
+
+            {/* =================================================
+                PORTFOLIO EYEBROW
+            ================================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.1,
+              }}
+              className="
+                flex
+                items-center
+                justify-center
+                gap-3
+                lg:justify-start
+              "
+            >
+
+              <span
+                className="
+                  h-1.5
+                  w-1.5
+                  rounded-full
+                  bg-blue-400
+                  shadow-[0_0_12px_rgba(59,130,246,0.9)]
+                "
+              />
+
+              <span
+                className="
+                  font-mono
+                  text-[8px]
+                  uppercase
+                  tracking-[0.28em]
+                  text-blue-400
+                "
+              >
+                Selected Works
+              </span>
+
+              <span className="h-px w-8 bg-blue-400/30" />
+
+              <span
+                className="
+                  font-mono
+                  text-[8px]
+                  tracking-[0.2em]
+                  text-white/25
+                "
+              >
+                2026
+              </span>
+
+            </motion.div>
+
+            {/* =================================================
+                PORTFOLIO HEADING
+            ================================================= */}
+
+            <div className="relative mt-5">
+
+              {/* GLOW */}
+
+              <motion.div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-1/2
+                  top-1/2
+                  h-[200px]
+                  w-[430px]
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  rounded-full
+                  bg-blue-500/[0.09]
+                  blur-[90px]
+                  sm:h-[280px]
+                  sm:w-[620px]
+                  sm:blur-[120px]
+                "
+                animate={{
+                  scale: [
+                    0.9,
+                    1.08,
+                    0.9,
+                  ],
+                  opacity: [
+                    0.15,
+                    0.35,
+                    0.15,
+                  ],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              <motion.h1
+                initial={{
+                  opacity: 0,
+                  y: 35,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.25,
+                  ease: [
+                    0.16,
+                    1,
+                    0.3,
+                    1,
+                  ],
+                }}
+                className="
+                  relative
+                  mx-auto
+                  max-w-[760px]
+                  text-4xl
+                  font-semibold
+                  leading-[0.88]
+                  tracking-[-0.055em]
+                  sm:text-5xl
+                  md:text-6xl
+                  lg:mx-0
+                  lg:text-[4.8rem]
+                  xl:text-[5.2rem]
+                "
+                style={{
+                  fontFamily:
+                    '"Chakra Petch", sans-serif',
+                }}
+              >
+
+                <span className="block">
+                  Ideas
+                </span>
+
+                <span className="block">
+                  Become
+                </span>
+
+                <motion.span
+                  className="
+                    inline-block
+                    bg-gradient-to-r
+                    from-blue-400
+                    via-cyan-300
+                    to-white
+                    bg-clip-text
+                    text-transparent
+                  "
+                  animate={{
+                    backgroundPosition: [
+                      "0% 50%",
+                      "100% 50%",
+                      "0% 50%",
+                    ],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  style={{
+                    backgroundSize:
+                      "200% 200%",
+                  }}
+                >
+                  Experiences.
+                </motion.span>
+
+              </motion.h1>
+
+              {/* TITLE LINE */}
+
+              <motion.div
+                initial={{
+                  width: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  width: 160,
+                  opacity: 1,
+                }}
+                transition={{
+                  delay: 0.7,
+                  duration: 0.8,
+                }}
+                className="
+                  mx-auto
+                  mt-5
+                  h-px
+                  bg-gradient-to-r
+                  from-blue-500
+                  via-cyan-300
+                  to-transparent
+                  lg:mx-0
+                "
+              />
+
+            </div>
+
+            {/* =================================================
+                DESCRIPTION
+            ================================================= */}
+
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.7,
+              }}
+              className="
+                mx-auto
+                mt-6
+                max-w-xl
+                text-xs
+                leading-6
+                text-slate-400
+                sm:text-sm
+                sm:leading-7
+                md:text-base
+                lg:mx-0
+              "
+            >
+              A showcase of digital experiences crafted through
+              thoughtful design, purposeful technology, and ideas
+              built to make an impact.
+            </motion.p>
+
+            {/* =================================================
+                PORTFOLIO CATEGORIES
+            ================================================= */}
+
+            <div
+              className="
+                mt-5
+                flex
+                flex-wrap
+                justify-center
+                gap-2
+                lg:justify-start
+              "
+            >
+
+              {[
+                "Web",
+                "Applications",
+                "UI / UX",
+                "Branding",
+                "Digital",
+              ].map(
+                (
+                  item,
+                  index
+                ) => (
+                  <motion.div
+                    key={item}
+                    initial={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      delay:
+                        0.45 +
+                        index * 0.08,
+                    }}
+                    whileHover={{
+                      y: -3,
+                      borderColor:
+                        "rgba(96,165,250,0.45)",
+                    }}
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      border
+                      border-blue-400/15
+                      bg-[#06152a]/75
+                      px-3
+                      py-1.5
+                      backdrop-blur-md
+                      transition-colors
+                    "
+                  >
+
+                    <span
+                      className="
+                        h-1
+                        w-1
+                        rounded-full
+                        bg-blue-400
+                        shadow-[0_0_8px_#3b82f6]
+                      "
+                    />
+
+                    <span
+                      className="
+                        font-mono
+                        text-[7px]
+                        uppercase
+                        tracking-[0.2em]
+                        text-white/45
+                      "
+                    >
+                      {item}
+                    </span>
+
+                  </motion.div>
+                )
+              )}
+
+            </div>
+
+            {/* =================================================
+                PROJECT META
+            ================================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.95,
+              }}
+              className="
+                mt-5
+                flex
+                flex-wrap
+                items-center
+                justify-center
+                gap-4
+                lg:justify-start
+              "
+            >
+
+              <span
+                className="
+                  font-mono
+                  text-[8px]
+                  uppercase
+                  tracking-[0.2em]
+                  text-slate-500
+                  sm:text-[9px]
+                "
+              >
+                <span className="text-blue-400">
+                  05
+                </span>{" "}
+                selected projects
+              </span>
+
+              <span className="h-3 w-px bg-white/10" />
+
+              <span
+                className="
+                  font-mono
+                  text-[8px]
+                  uppercase
+                  tracking-[0.2em]
+                  text-white/25
+                  sm:text-[9px]
+                "
+              >
+                Web / App / Experience
+              </span>
+
+            </motion.div>
+
+            {/* =================================================
+                SINGLE CTA
+            ================================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 1.15,
+                ease: [
+                  0.16,
+                  1,
+                  0.3,
+                  1,
+                ],
+              }}
+              className="
+                mt-6
+                flex
+                justify-center
+                lg:justify-start
+              "
+            >
+
+              <motion.button
+                type="button"
+                onClick={() => {
+                  const target =
+                    document.getElementById(
+                      "portfolio-projects"
+                    );
+
+                  if (target) {
+                    target.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                }}
+                whileHover={{
+                  scale: 1.03,
+                  x: 4,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+                className="
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-xl
+                  border
+                  border-blue-500/30
+                  bg-blue-500/[0.07]
+                  px-4
+                  py-3
+                  backdrop-blur-md
+                  transition-all
+                  duration-500
+                  hover:border-blue-400/70
+                  hover:bg-blue-500/20
+                  hover:shadow-[0_0_40px_rgba(37,99,235,0.18)]
+                  sm:px-6
+                  sm:py-3.5
+                "
+              >
+
+                {/* BUTTON SHINE */}
+
+                <motion.span
+                  className="
+                    absolute
+                    inset-y-0
+                    left-[-100%]
+                    w-[60%]
+                    skew-x-[-20deg]
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/[0.14]
+                    to-transparent
+                  "
+                  animate={{
+                    left: [
+                      "-100%",
+                      "140%",
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                  }}
+                />
+
+                <span
+                  className="
+                    relative
+                    z-10
+                    flex
+                    items-center
+                    gap-4
+                    sm:gap-6
+                  "
+                >
+
+                  <span className="flex flex-col items-start">
+
+                    <span
+                      className="
+                        font-mono
+                        text-[8px]
+                        uppercase
+                        tracking-[0.28em]
+                        text-blue-400
+                      "
+                    >
+                      Explore
+                    </span>
+
+                    <span
+                      className="
+                        mt-0.5
+                        text-sm
+                        font-semibold
+                        tracking-wide
+                        text-white
+                      "
+                      style={{
+                        fontFamily:
+                          '"Chakra Petch", sans-serif',
+                      }}
+                    >
+                      Selected Projects
+                    </span>
+
+                  </span>
+
+                  <span
+                    className="
+                      flex
+                      h-9
+                      w-9
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-blue-400/30
+                      bg-blue-500/10
+                      text-blue-400
+                    "
+                  >
+                    <FiArrowUpRight
+                      size={15}
+                    />
+                  </span>
+
+                </span>
+
+              </motion.button>
+
+            </motion.div>
+
+            {/* =================================================
+                BOTTOM TECHNICAL LABEL
+            ================================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: [
+                  0.25,
+                  0.65,
+                  0.25,
+                ],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: 1.4,
+              }}
+              className="
+                mt-6
+                text-center
+                font-mono
+                text-[7px]
+                uppercase
+                tracking-[0.2em]
+                text-white/20
+                sm:text-[8px]
+                lg:text-left
+              "
+            >
+              DIGITAL EXPERIENCES / SELECTED WORK / DESFLYER
+            </motion.div>
+
+          </motion.div>
+
+          {/* ===================================================
+              RIGHT SIDE IMAGE INFORMATION
+          =================================================== */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              right-[4%]
+              top-[18%]
+              hidden
+              flex-col
+              items-end
+              gap-4
+              lg:flex
+              xl:right-[6%]
+            "
+          >
+
+            {/* PROJECT NUMBER */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: 25,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 1,
+              }}
+              className="
+                flex
+                items-center
+                gap-3
+              "
+            >
+
+              <div
+                className="
+                  h-px
+                  w-20
+                  bg-gradient-to-r
+                  from-transparent
+                  to-blue-400/60
+                "
+              />
+
+              <div
+                className="
+                  rounded-md
+                  border
+                  border-white/10
+                  bg-black/30
+                  px-3
+                  py-2
+                  backdrop-blur-md
+                "
+              >
+
+                <div
+                  className="
+                    font-mono
+                    text-[8px]
+                    tracking-[0.16em]
+                    text-blue-300
+                  "
+                >
+                  PROJECT_01
+                </div>
+
+                <div
+                  className="
+                    mt-1
+                    font-mono
+                    text-[7px]
+                    text-white/25
+                  "
+                >
+                  SELECTED WORK
+                </div>
+
+              </div>
+
+            </motion.div>
+
+            {/* SECOND LABEL */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: 30,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 1.2,
+              }}
+              className="
+                mr-8
+                flex
+                items-center
+                gap-3
+              "
+            >
+
+              <div
+                className="
+                  h-px
+                  w-28
+                  bg-gradient-to-r
+                  from-transparent
+                  to-blue-400/35
+                "
+              />
+
+              <div
+                className="
+                  rounded-md
+                  border
+                  border-blue-400/15
+                  bg-blue-400/[0.04]
+                  px-3
+                  py-2
+                  backdrop-blur-md
+                "
+              >
+
+                <div
+                  className="
+                    font-mono
+                    text-[8px]
+                    tracking-[0.16em]
+                    text-white/55
+                  "
+                >
+                  DIGITAL EXPERIENCE
+                </div>
+
+              </div>
+
+            </motion.div>
+
+            {/* ARCHIVE */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: 25,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 1.4,
+              }}
+              className="
+                mt-16
+                flex
+                items-center
+                gap-3
+              "
+            >
+
+              <div
+                className="
+                  h-px
+                  w-16
+                  bg-gradient-to-r
+                  from-transparent
+                  to-white/20
+                "
+              />
+
+              <span
+                className="
+                  font-mono
+                  text-[7px]
+                  tracking-[0.2em]
+                  text-white/20
+                "
+              >
+                DIGITAL_ARCHIVE / 2026
+              </span>
+
+            </motion.div>
+
+          </div>
+
+        </div>
+
+        {/* =====================================================
+            BOTTOM LEFT PAGE MARK
+        ===================================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            bottom-7
+            left-4
+            hidden
+            items-center
+            gap-3
+            sm:flex
+            lg:left-12
+            xl:left-16
+          "
+        >
+
           <span
             className="
-              h-1.5
-              w-1.5
+              h-1
+              w-1
               rounded-full
               bg-blue-400
-              shadow-[0_0_12px_rgba(46,111,255,0.8)]
             "
           />
 
-          05 SELECTED WORKS
-        </div>
-      </motion.div>
-
-      {/* CATEGORIES */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.9,
-        }}
-        className="
-          mt-6
-          flex
-          flex-wrap
-          items-center
-          gap-x-4
-          gap-y-2
-          border-t
-          border-white/[0.08]
-          pt-4
-          sm:mt-10
-          sm:gap-x-6
-          sm:pt-5
-          lg:mt-12
-        "
-      >
-        {[
-          "WEB",
-          "APP",
-          "BUSINESS SYSTEMS",
-          "UI / UX",
-        ].map((item, index) => (
-          <div
-            key={item}
+          <span
             className="
-              flex
-              items-center
-              gap-1.5
-              sm:gap-2
+              font-mono
+              text-[7px]
+              tracking-[0.2em]
+              text-white/20
             "
           >
-            <span
-              className="
-                text-[6px]
-                text-blue-400
-                sm:text-[7px]
-              "
-            >
-              0{index + 1}
-            </span>
+            DSFLYER / PORTFOLIO / SELECTED WORKS
+          </span>
 
-            <span
-              className="
-                text-[6px]
-                font-medium
-                tracking-[0.16em]
-                text-white/35
-                sm:text-[8px]
-                sm:tracking-[0.18em]
-              "
-            >
-              {item}
-            </span>
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  </div>
-</section>
+        </div>
+
+        {/* =====================================================
+            SCROLL INDICATOR
+        ===================================================== */}
+
+        <motion.div
+          animate={{
+            y: [
+              0,
+              6,
+              0,
+            ],
+            opacity: [
+              0.25,
+              0.65,
+              0.25,
+            ],
+          }}
+          transition={{
+            duration: 1.7,
+            repeat: Infinity,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            bottom-7
+            right-6
+            hidden
+            items-center
+            gap-2
+            font-mono
+            text-[7px]
+            tracking-[0.22em]
+            text-white/25
+            sm:flex
+            lg:right-12
+            xl:right-16
+          "
+        >
+          EXPLORE ↓
+        </motion.div>
+
+      </section>
 
       {/* =====================================================
           PROJECT STACK
       ===================================================== */}
 
       <section
-        ref={sectionRef}
-        onTouchStart={
-          handleTouchStart
-        }
-        onTouchMove={
-          handleTouchMove
-        }
-        onTouchEnd={
-          handleTouchEnd
-        }
-        className="
-          relative
-          h-screen
-          min-h-[620px]
-          w-full
-          overflow-hidden
-          bg-[#07080c]
-          touch-pan-y
-        "
-      >
+  ref={sectionRef}
+  onTouchStart={handleTouchStart}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+  className="
+    relative
+    h-screen
+    min-h-0
+    w-full
+    overflow-hidden
+    bg-[#07080c]
+    touch-pan-y
+  "
+>
+
         {/* BACKGROUND */}
 
         <div className="pointer-events-none absolute inset-0">
+
           <motion.div
             animate={{
               scale: [
@@ -2764,6 +3855,7 @@ export default function ProjectStack() {
               sm:blur-[120px]
             "
           />
+
         </div>
 
         {/* HEADER */}
@@ -2775,11 +3867,12 @@ export default function ProjectStack() {
             mx-auto
             max-w-7xl
             px-5
-            pt-7
+            pt-5
             text-center
             sm:pt-12
           "
         >
+
           <motion.div
             initial={{
               opacity: 0,
@@ -2824,16 +3917,20 @@ export default function ProjectStack() {
               ARCHIVE
             </span>
           </motion.h2>
+
         </div>
 
-        {/* CARD DECK */}
 
-       <div
-  className="
+        {/* =====================================================
+    CARD DECK
+===================================================== */}
+
+        <div
+          className="
     absolute
     left-0
     right-0
-    top-[60%]
+    top-[53%]
     z-10
     mx-auto
     flex
@@ -2841,77 +3938,74 @@ export default function ProjectStack() {
     items-center
     justify-center
     px-3
+    sm:top-[60%]
     sm:px-6
     lg:px-10
   "
->
+        >
           <div
-  className="
-    relative
-    h-[min(450px,calc(100vh-220px))]
-    w-full
-    max-w-6xl
-    sm:h-[min(450px,calc(100vh-210px))]
-  "
->
-            {/* STACK CARDS */}
+            className="
+      relative
+      h-[min(520px,calc(100vh-170px))]
+      w-full
+      max-w-6xl
+      sm:h-[min(450px,calc(100vh-210px))]
+    "
+          >
+
+            {/* =================================================
+        STACK CARDS
+        SAME CARD CONTENT — NO CHANGES
+    ================================================= */}
 
             {projects.map(
               (project, index) => {
-                if (
-                  index >
-                  activeCard
-                ) {
+                if (index > activeCard) {
                   return null;
                 }
 
                 const depth =
-                  activeCard -
-                  index;
+                  activeCard - index;
 
                 const isActive =
                   depth === 0;
 
                 const widthReduction =
                   depth *
-                  (LAYER_LEFT +
-                    LAYER_RIGHT);
+                  (LAYER_LEFT + LAYER_RIGHT);
 
                 const leftOffset =
-                  depth *
-                  LAYER_LEFT;
+                  depth * LAYER_LEFT;
 
                 const targetY =
-                  -(depth *
-                    LAYER_TOP);
+                  -(depth * LAYER_TOP);
 
                 const isEntering =
-                  index ===
-                  activeCard;
+                  index === activeCard;
 
                 return (
                   <motion.div
                     key={project.id}
                     className="
-                      absolute
-                      left-0
-                      top-0
-                      h-full
-                    "
+              absolute
+              left-0
+              top-0
+              h-full
+            "
                     initial={
                       isEntering
                         ? {
-                            y: "100%",
-                            width: "100%",
-                            left: 0,
-                            opacity: 0,
-                          }
+                          y: "100%",
+                          width: "100%",
+                          left: 0,
+                          opacity: 0,
+                        }
                         : {
-                            y: targetY,
-                            width: `calc(100% - ${widthReduction}px)`,
-                            left: `${leftOffset}px`,
-                            opacity: 1,
-                          }
+                          y: targetY,
+                          width: `calc(100% - ${widthReduction}px)`,
+                          left: `${leftOffset}px`,
+                          opacity: 1,
+                        }
                     }
                     animate={{
                       y: isActive
@@ -2945,17 +4039,15 @@ export default function ProjectStack() {
                       zIndex:
                         isActive
                           ? 20
-                          : 20 -
-                            depth,
+                          : 20 - depth,
                     }}
                   >
+
                     {/* ACTIVE CARD CONTROLS */}
 
                     {isActive && (
                       <SideControls
-                        activeCard={
-                          activeCard
-                        }
+                        activeCard={activeCard}
                         totalProjects={
                           projects.length
                         }
@@ -2963,16 +4055,20 @@ export default function ProjectStack() {
                           goToProject
                         }
                         onOpenDetails={() =>
-                          openDetails(
-                            project
-                          )
+                          openDetails(project)
                         }
                       />
                     )}
 
+                    {/* IMPORTANT:
+                KEEP THE SAME ProjectCard.
+                DO NOT REMOVE CONTENT.
+            */}
+
                     <ProjectCard
                       project={project}
                     />
+
                   </motion.div>
                 );
               }
@@ -2982,23 +4078,23 @@ export default function ProjectStack() {
 
             <div
               className="
-                pointer-events-none
-                absolute
-                -bottom-7
-                left-0
-                z-[2000]
-              "
+        pointer-events-none
+        absolute
+        -bottom-7
+        left-0
+        z-[2000]
+      "
             >
               <span
                 className="
-                  text-[7px]
-                  tracking-[0.25em]
-                  text-white/25
-                  sm:text-[8px]
-                "
+          text-[7px]
+          tracking-[0.25em]
+          text-white/25
+          sm:text-[8px]
+        "
                 style={{
                   fontFamily:
-                    "'JetBrains Mono', monospace",
+                    '"Chakra Petch", sans-serif',
                 }}
               >
                 PROJECT STACK
@@ -3009,20 +4105,20 @@ export default function ProjectStack() {
 
             <div
               className="
-                pointer-events-none
-                absolute
-                -bottom-7
-                right-0
-                z-[2000]
-              "
+        pointer-events-none
+        absolute
+        -bottom-7
+        right-0
+        z-[2000]
+      "
             >
               <span
                 className="
-                  text-[7px]
-                  tracking-[0.2em]
-                  text-white/25
-                  sm:text-[8px]
-                "
+          text-[7px]
+          tracking-[0.2em]
+          text-white/25
+          sm:text-[8px]
+        "
                 style={{
                   fontFamily:
                     "'JetBrains Mono', monospace",
@@ -3037,12 +4133,13 @@ export default function ProjectStack() {
                 ).padStart(2, "0")}
               </span>
             </div>
+
           </div>
         </div>
 
         {/* PROGRESS */}
 
-        <div
+        {/* <div
           className="
             absolute
             bottom-6
@@ -3061,9 +4158,8 @@ export default function ProjectStack() {
               <button
                 key={item.id}
                 type="button"
-                aria-label={`Go to project ${
-                  index + 1
-                }`}
+                aria-label={`Go to project ${index + 1
+                  }`}
                 aria-current={
                   index === activeCard
                     ? "true"
@@ -3086,13 +4182,13 @@ export default function ProjectStack() {
                   animate={{
                     width:
                       index ===
-                      activeCard
+                        activeCard
                         ? 30
                         : 5,
 
                     opacity:
                       index ===
-                      activeCard
+                        activeCard
                         ? 1
                         : 0.25,
                   }}
@@ -3108,30 +4204,30 @@ export default function ProjectStack() {
               </button>
             )
           )}
-        </div>
+        </div> */}
 
         {/* MOBILE SWIPE HINT */}
 
-        <motion.div
+        {/* <motion.div
           initial={{
             opacity: 0,
           }}
           animate={{
             opacity:
               isMobile &&
-              activeCard === 0
+                activeCard === 0
                 ? [
-                    0.2,
-                    0.6,
-                    0.2,
-                  ]
+                  0.2,
+                  0.6,
+                  0.2,
+                ]
                 : 0,
           }}
           transition={{
             duration: 2,
             repeat:
               isMobile &&
-              activeCard === 0
+                activeCard === 0
                 ? Infinity
                 : 0,
           }}
@@ -3150,11 +4246,11 @@ export default function ProjectStack() {
           "
         >
           SWIPE TO EXPLORE
-        </motion.div>
+        </motion.div> */}
 
         {/* DESKTOP SCROLL INDICATOR */}
 
-        <motion.div
+        {/* <motion.div
           animate={{
             y: [0, 7, 0],
             opacity: [
@@ -3180,11 +4276,11 @@ export default function ProjectStack() {
           "
         >
           SCROLL ↓
-        </motion.div>
+        </motion.div> */}
 
         {/* PROJECT COUNTER */}
 
-        <div
+        {/* <div
           className="
             absolute
             bottom-8
@@ -3204,11 +4300,11 @@ export default function ProjectStack() {
           {String(
             projects.length
           ).padStart(2, "0")}
-        </div>
+        </div> */}
 
         {/* KEYBOARD HINT */}
 
-        <div
+        {/* <div
           className="
             pointer-events-none
             absolute
@@ -3223,7 +4319,8 @@ export default function ProjectStack() {
           "
         >
           ↑ ↓ &nbsp; NAVIGATE
-        </div>
+        </div> */}
+
       </section>
 
       {/* =====================================================
@@ -3236,6 +4333,7 @@ export default function ProjectStack() {
           onClose={closeDetails}
         />
       )}
+
     </main>
   );
 }

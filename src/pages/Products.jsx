@@ -20,9 +20,9 @@ import {
 ========================================================= */
 
 const comingSoonImages = [
-  "/images/portfolio/bg.png",
   "/images/portfolio/logo.png",
-  "/images/portfolio/job.png",
+  "/images/portfolio/logo.png",
+  "/images/portfolio/logo.png",
 ];
 
 /* =========================================================
@@ -854,65 +854,92 @@ export default function Products() {
     <>
       <Seo />
 
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
 
-      {/* =====================================================
-    HERO / HEADER
-===================================================== */}
 
       {/* ========================= PRODUCT COMMAND CENTER HERO ========================= */}
-<section
+      <section
   className="
     relative
-    min-h-[620px]
+    min-h-[100svh]
     overflow-hidden
-    bg-[#02050A]
+    bg-[#020712]
     px-4
-    py-20
-    sm:min-h-[680px]
+    pb-12
+    pt-24
+    text-white
     sm:px-6
-    sm:py-24
-    md:min-h-[720px]
-    md:px-8
-    md:py-28
-    lg:min-h-[760px]
+    sm:pt-28
     lg:px-10
-    lg:py-32
-    xl:min-h-[800px]
-    xl:px-12
+    lg:pb-16
+    lg:pt-24
   "
 >
   {/* ================= HERO IMAGE ================= */}
-  <motion.img
-    src="/images/portfolio/product.png"
-    alt="DesFlyer Products"
-    initial={{
-      opacity: 0,
-      scale: 1.08,
-    }}
-    animate={{
-      opacity: 1,
-      scale: 1,
-    }}
-    transition={{
-      duration: 1.5,
-      ease: "easeOut",
-    }}
-    className="
-      absolute
-      inset-0
-      h-full
-      w-full
-      object-cover
-      object-center
-      object-[68%_center]
-      sm:object-[70%_center]
-      md:object-[72%_center]
-      lg:object-center
-    "
-  />
+  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <img
+      src="/images/portfolio/pro.png"
+      alt="DesFlyer Products"
+      className="
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        object-center
+
+        sm:object-contain
+        sm:object-center
+      "
+    />
+
+    {/* Mobile image darkening */}
+    <div
+      className="
+        absolute
+        inset-0
+        bg-[#020712]/35
+        sm:bg-transparent
+      "
+    />
+
+    {/* Bottom fade */}
+    <div
+      className="
+        absolute
+        inset-x-0
+        bottom-0
+        h-44
+        bg-gradient-to-t
+        from-[#05070c]
+        to-transparent
+      "
+    />
+
+    {/* Moving diagonal light */}
+    <motion.div
+      className="
+        absolute
+        left-[-10%]
+        top-[15%]
+        h-px
+        w-[55%]
+        rotate-[-12deg]
+        bg-gradient-to-r
+        from-transparent
+        via-blue-400/50
+        to-transparent
+      "
+      animate={{
+        x: ["-10%", "100%", "-10%"],
+        opacity: [0.1, 0.8, 0.1],
+      }}
+      transition={{
+        duration: 9,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  </div>
 
   {/* ================= MAIN DARK GRADIENT ================= */}
   <div
@@ -921,30 +948,13 @@ export default function Products() {
       absolute
       inset-0
       bg-gradient-to-r
-      from-[#02050A]
-      via-[#02050A]/95
-   
+      from-[#131313]/50
+      via-[#111111]/30
       sm:via-[#02050A]/88
       md:via-[#02050A]/72
       lg:via-[#02050A]/58
     "
   />
-
-  {/* ================= BOTTOM GRADIENT ================= */}
-  {/* <div
-    className="
-      pointer-events-none
-      absolute
-      inset-x-0
-      bottom-0
-      h-40
-      bg-gradient-to-t
-      from-[#02050A]
-      to-transparent
-      sm:h-48
-      md:h-56
-    "
-  /> */}
 
   {/* ================= TECH GRID ================= */}
   <div
@@ -1005,38 +1015,47 @@ export default function Products() {
       w-full
       max-w-shell
       items-center
+      justify-center
+      text-center
+
       sm:min-h-[530px]
+      sm:justify-start
+      sm:text-left
+
       md:min-h-[560px]
+
       lg:min-h-[600px]
+
       xl:min-h-[640px]
     "
   >
     <div
       className="
         relative
+        mx-auto
         w-full
-        max-w-[650px]
+        max-w-[760px]
+
+        sm:mx-0
+
+        lg:ml-8
+        xl:ml-14
       "
     >
       {/* =====================================================
-          LEFT VERTICAL INDEX
+          LEFT VERTICAL PRODUCT INDEX
       ====================================================== */}
+
       <motion.div
-        initial={{
-          opacity: 0,
-          x: -20,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{
           duration: 0.8,
           delay: 0.2,
         }}
         className="
           absolute
-          -left-2
+          -left-5
           top-0
           hidden
           -translate-x-full
@@ -1044,7 +1063,7 @@ export default function Products() {
           items-center
           gap-3
           sm:flex
-          lg:-left-5
+          lg:-left-8
         "
       >
         <span
@@ -1056,15 +1075,25 @@ export default function Products() {
             [writing-mode:vertical-rl]
           "
         >
-          PRODUCTS
+          DESFLYER LAB
         </span>
 
-        <span className="h-16 w-px bg-gradient-to-b from-cyan-400/60 to-transparent" />
+        <span
+          className="
+            h-20
+            w-px
+            bg-gradient-to-b
+            from-cyan-400/70
+            via-blue-400/40
+            to-transparent
+          "
+        />
 
         <span
           className="
             font-mono
             text-[9px]
+            tracking-wider
             text-white/25
           "
         >
@@ -1073,16 +1102,17 @@ export default function Products() {
       </motion.div>
 
       {/* =====================================================
-          TOP SYSTEM LABEL
+          SMALL TOP LINE
       ====================================================== */}
-      {/* <motion.div
+
+      <motion.div
         initial={{
           opacity: 0,
-          y: -15,
+          x: -20,
         }}
         animate={{
           opacity: 1,
-          y: 0,
+          x: 0,
         }}
         transition={{
           duration: 0.7,
@@ -1092,15 +1122,18 @@ export default function Products() {
           mb-4
           flex
           items-center
+          justify-center
           gap-3
+
           sm:mb-5
+          sm:justify-start
         "
       >
         <span
           className="
             h-px
             w-8
-            bg-cyan-400
+            bg-cyan-400/70
             sm:w-12
           "
         />
@@ -1111,16 +1144,17 @@ export default function Products() {
             text-[9px]
             uppercase
             tracking-[0.25em]
-            text-cyan-300/80
+            text-cyan-300/70
             sm:text-[10px]
           "
         >
-          Digital Product Division
+          Digital Products
         </span>
 
         <motion.span
           animate={{
-            opacity: [0.3, 1, 0.3],
+            opacity: [0.25, 1, 0.25],
+            scale: [0.8, 1, 0.8],
           }}
           transition={{
             duration: 1.8,
@@ -1134,11 +1168,12 @@ export default function Products() {
             shadow-[0_0_12px_rgba(34,211,238,0.9)]
           "
         />
-      </motion.div> */}
+      </motion.div>
 
       {/* =====================================================
           EYEBROW
       ====================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -1152,13 +1187,51 @@ export default function Products() {
           duration: 0.7,
           delay: 0.4,
         }}
+        className="
+          flex
+          justify-center
+          sm:justify-start
+        "
       >
         <Eyebrow>Our Products</Eyebrow>
       </motion.div>
 
       {/* =====================================================
-          HEADING
+          HEADING GLOW
       ====================================================== */}
+
+      <motion.div
+        animate={{
+          scale: [0.9, 1.08, 0.9],
+          opacity: [0.12, 0.3, 0.12],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="
+          pointer-events-none
+          absolute
+          left-[8%]
+          top-[42%]
+          h-[190px]
+          w-[420px]
+          -translate-y-1/2
+          rounded-full
+          bg-cyan-400/[0.08]
+          blur-[90px]
+
+          sm:h-[250px]
+          sm:w-[600px]
+          sm:blur-[120px]
+        "
+      />
+
+      {/* =====================================================
+          MAIN HEADING
+      ====================================================== */}
+
       <motion.h1
         initial={{
           opacity: 0,
@@ -1175,66 +1248,93 @@ export default function Products() {
         }}
         className="
           relative
+          mx-auto
           mt-4
-          max-w-[620px]
+          max-w-[760px]
           text-[2.35rem]
           font-semibold
-          leading-[0.94]
+          leading-[0.91]
           tracking-[-0.055em]
           text-white
+
+          sm:mx-0
           sm:mt-5
           sm:text-5xl
+
           md:text-6xl
+
           lg:text-[4.6rem]
-          xl:text-[5rem]
+
+          xl:text-75px
         "
+        style={{
+          fontFamily: '"Chakra Petch", sans-serif',
+        }}
       >
-        Software we've built
-        <br />
+        <span className="block">
+          Products built
+        </span>
 
-        <span className="relative inline-block text-cyan-400">
-          and shipped.
-
-          {/* animated underline */}
-          <motion.span
-            initial={{
-              width: 0,
-            }}
-            animate={{
-              width: "75%",
-            }}
-            transition={{
-              duration: 1,
-              delay: 1.1,
-              ease: "easeOut",
-            }}
+        <span className="relative inline-block">
+          <span
             className="
-              absolute
-              -bottom-2
-              left-0
-              h-[2px]
               bg-gradient-to-r
-              from-cyan-400
-              to-transparent
-              sm:-bottom-3
+              from-cyan-300
+              via-blue-400
+              to-white
+              bg-clip-text
+              text-transparent
             "
-          />
+          >
+            for real-world impact.
+          </span>
 
-          {/* glow */}
+          {/* UNDERLINE */}
+
+<motion.span
+  initial={{
+    width: 0,
+  }}
+  animate={{
+    width: "42%",
+  }}
+  transition={{
+    duration: 1,
+    delay: 1.1,
+    ease: "easeOut",
+  }}
+  className="
+    absolute
+    -bottom-2
+    left-0
+    h-[1.5px]
+    bg-gradient-to-r
+    from-cyan-400
+    via-blue-400
+    to-transparent
+
+    sm:-bottom-3
+    sm:h-[2px]
+  "
+/>
+
+          {/* TEXT GLOW */}
+
           <motion.span
             animate={{
-              opacity: [0.1, 0.35, 0.1],
+              opacity: [0.08, 0.28, 0.08],
             }}
             transition={{
               duration: 3,
               repeat: Infinity,
+              ease: "easeInOut",
             }}
             className="
               pointer-events-none
               absolute
               inset-0
               -z-10
-              bg-cyan-400/30
+              bg-cyan-400/25
               blur-2xl
             "
           />
@@ -1244,6 +1344,7 @@ export default function Products() {
       {/* =====================================================
           DESCRIPTION
       ====================================================== */}
+
       <motion.p
         initial={{
           opacity: 0,
@@ -1258,24 +1359,111 @@ export default function Products() {
           delay: 0.75,
         }}
         className="
+          mx-auto
           mt-5
-          max-w-[470px]
+          max-w-[540px]
           text-sm
           leading-6
           text-white/60
+
+          sm:mx-0
           sm:mt-6
           sm:text-base
           sm:leading-7
+
           md:text-lg
         "
       >
-        A look at real products developed by DesFlyer,
-        across different industries and use cases.
+        Real digital products designed and developed by DesFlyer —
+        turning everyday problems into useful, scalable experiences.
       </motion.p>
 
       {/* =====================================================
-          BUTTONS
+          PRODUCT CATEGORIES
       ====================================================== */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 18,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.8,
+          delay: 0.85,
+        }}
+        className="
+          mt-6
+          flex
+          flex-wrap
+          justify-center
+          gap-2
+
+          sm:mt-7
+          sm:justify-start
+        "
+      >
+        {[
+          "Web",
+          "Mobile",
+          "AI",
+          "Healthcare",
+          "Business",
+          "Tools",
+        ].map((item, index) => (
+          <motion.span
+            key={item}
+            initial={{
+              opacity: 0,
+              y: 10,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              delay: 0.9 + index * 0.06,
+            }}
+            whileHover={{
+              y: -2,
+            }}
+            className="
+              rounded-full
+              border
+              border-white/10
+              bg-white/[0.035]
+              px-3
+              py-1.5
+              font-mono
+              text-[9px]
+              uppercase
+              tracking-[0.14em]
+              text-white/45
+              backdrop-blur-md
+              transition-all
+              duration-300
+
+              hover:border-cyan-400/30
+              hover:bg-cyan-400/[0.06]
+              hover:text-cyan-300
+
+              sm:px-3.5
+              sm:text-[10px]
+            "
+          >
+            {item}
+          </motion.span>
+        ))}
+      </motion.div>
+
+      {/* =====================================================
+          SINGLE CTA
+      ====================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -1287,20 +1475,21 @@ export default function Products() {
         }}
         transition={{
           duration: 0.8,
-          delay: 0.9,
+          delay: 1,
         }}
         className="
-          mt-6
+          mt-7
           flex
-          flex-wrap
-          gap-2.5
-          sm:mt-7
+          justify-center
+
+          sm:mt-8
+          sm:justify-start
         "
       >
         <motion.a
           href="#pro"
           whileHover={{
-            x: 4,
+            x: 5,
           }}
           whileTap={{
             scale: 0.97,
@@ -1309,28 +1498,30 @@ export default function Products() {
             group
             inline-flex
             items-center
-            gap-2
+            gap-3
             rounded-lg
             border
             border-cyan-400/30
             bg-cyan-400/[0.08]
-            px-4
-            py-2.5
+            px-5
+            py-3
             text-xs
             font-medium
             text-cyan-300
             backdrop-blur-md
             transition-all
             duration-300
+
             hover:border-cyan-400/60
             hover:bg-cyan-400/[0.14]
-            hover:shadow-[0_0_25px_rgba(34,211,238,0.12)]
-            sm:px-5
-            sm:py-3
+            hover:shadow-[0_0_30px_rgba(34,211,238,0.12)]
+
+            sm:px-6
+            sm:py-3.5
             sm:text-sm
           "
         >
-          Built by DesFlyer
+          Explore Our Products
 
           <FiArrowRight
             className="
@@ -1340,45 +1531,12 @@ export default function Products() {
             "
           />
         </motion.a>
-
-        <motion.a
-          href="#com"
-          whileHover={{
-            x: 4,
-          }}
-          whileTap={{
-            scale: 0.97,
-          }}
-          className="
-            inline-flex
-            items-center
-            rounded-lg
-            border
-            border-white/10
-            bg-black/30
-            px-4
-            py-2.5
-            text-xs
-            font-medium
-            text-white/65
-            backdrop-blur-md
-            transition-all
-            duration-300
-            hover:border-white/20
-            hover:bg-white/[0.05]
-            hover:text-white
-            sm:px-5
-            sm:py-3
-            sm:text-sm
-          "
-        >
-          Coming Products
-        </motion.a>
       </motion.div>
 
       {/* =====================================================
           PRODUCT DATA STRIP
       ====================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -1390,23 +1548,22 @@ export default function Products() {
         }}
         transition={{
           duration: 0.9,
-          delay: 1.1,
+          delay: 1.15,
         }}
         className="
           mt-8
           flex
           items-center
+          justify-center
           gap-0
+
           sm:mt-10
+          sm:justify-start
         "
       >
-        {/* STAT 1 */}
-        <div
-          className="
-            pr-5
-            sm:pr-7
-          "
-        >
+        {/* PROJECT COUNT */}
+
+        <div className="pr-5 sm:pr-7">
           <div
             className="
               font-mono
@@ -1434,21 +1591,12 @@ export default function Products() {
         </div>
 
         {/* DIVIDER */}
-        <div
-          className="
-            h-9
-            w-px
-            bg-white/10
-          "
-        />
 
-        {/* STAT 2 */}
-        <div
-          className="
-            px-5
-            sm:px-7
-          "
-        >
+        <div className="h-9 w-px bg-white/10" />
+
+        {/* STATUS */}
+
+        <div className="px-5 sm:px-7">
           <div
             className="
               flex
@@ -1462,7 +1610,7 @@ export default function Products() {
           >
             <motion.span
               animate={{
-                opacity: [0.4, 1, 0.4],
+                opacity: [0.35, 1, 0.35],
               }}
               transition={{
                 duration: 1.5,
@@ -1477,7 +1625,7 @@ export default function Products() {
               "
             />
 
-            LIVE
+            ACTIVE
           </div>
 
           <div
@@ -1490,11 +1638,12 @@ export default function Products() {
               sm:text-[9px]
             "
           >
-            Production
+            Product Lab
           </div>
         </div>
 
         {/* DIVIDER */}
+
         <div
           className="
             hidden
@@ -1505,7 +1654,8 @@ export default function Products() {
           "
         />
 
-        {/* STAT 3 */}
+        {/* TECHNOLOGY */}
+
         <div
           className="
             hidden
@@ -1534,7 +1684,7 @@ export default function Products() {
               text-white/30
             "
           >
-            Platforms
+            Built In-House
           </div>
         </div>
       </motion.div>
@@ -1546,6 +1696,7 @@ export default function Products() {
   ====================================================== */}
 
   {/* TOP LABEL */}
+
   <motion.div
     initial={{
       opacity: 0,
@@ -1615,6 +1766,7 @@ export default function Products() {
   </motion.div>
 
   {/* MIDDLE LABEL */}
+
   <motion.div
     initial={{
       opacity: 0,
@@ -1674,6 +1826,7 @@ export default function Products() {
   </motion.div>
 
   {/* BOTTOM LABEL */}
+
   <motion.div
     initial={{
       opacity: 0,
@@ -1723,6 +1876,7 @@ export default function Products() {
   {/* =====================================================
       ANIMATED SCANNING LINE
   ====================================================== */}
+
   <motion.div
     animate={{
       y: ["0%", "100%"],
@@ -1750,8 +1904,8 @@ export default function Products() {
   {/* =====================================================
       FLOATING PARTICLES
   ====================================================== */}
+
   <motion.span
-  
     animate={{
       y: [0, -25, 0],
       opacity: [0.1, 0.8, 0.1],
@@ -1826,6 +1980,7 @@ export default function Products() {
   {/* =====================================================
       CORNER SYSTEM MARK
   ====================================================== */}
+
   <div
     className="
       pointer-events-none
@@ -1874,7 +2029,7 @@ export default function Products() {
           sm:pb-24
           lg:px-10
           lg:pb-28
-          mt-20
+          mt-10
         "
       >
         <div className="mx-auto w-full min-w-0 max-w-shell">
@@ -1924,66 +2079,94 @@ export default function Products() {
 
           {/* FILTER */}
 
-          <div className="mb-8 flex w-full flex-wrap gap-2.5 sm:mb-10 sm:gap-3">
-            {productCategories.map((cat) => {
-              const active =
-                category === cat;
+<div
+  className="
+    mb-8
+    flex
+    w-full
+    gap-2
+    overflow-x-auto
+    overflow-y-hidden
+    pb-2
+    sm:mb-10
+    sm:flex-wrap
+    sm:gap-3
+    sm:overflow-visible
+    sm:pb-0
+    [scrollbar-width:none]
+    [&::-webkit-scrollbar]:hidden
+  "
+>
+  {productCategories.map((cat) => {
+    const active = category === cat;
 
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() =>
-                    setCategory(cat)
-                  }
-                  className={`
-                    relative
-                    min-w-0
-                    flex-1
-                    overflow-hidden
-                    rounded-xl
-                    border
-                    px-3
-                    py-2.5
-                    font-mono
-                    text-[11px]
-                    transition-all
-                    duration-300
-                    sm:flex-none
-                    sm:px-5
-                    sm:text-sm
-                    ${active
-                      ? "border-cyan-400 bg-black/40 text-white shadow-[0_0_25px_rgba(0,255,255,0.5)]"
-                      : "border-[var(--border)] hover:border-cyan-400/50"
-                    }
-                  `}
-                  style={
-                    !active
-                      ? {
-                        color:
-                          "var(--fg)",
-                        opacity: 0.65,
-                      }
-                      : undefined
-                  }
-                >
-                  {active && (
-                    <>
-                      <span className="absolute left-0 top-0 h-2 w-2 animate-pulse bg-cyan-400" />
+    return (
+      <button
+        key={cat}
+        type="button"
+        onClick={() => setCategory(cat)}
+        className={`
+          relative
+          flex
+          shrink-0
+          items-center
+          justify-center
+          overflow-hidden
+          rounded-lg
+          border
+          px-3
+          py-2
+          font-mono
+          text-[9px]
+          whitespace-nowrap
+          transition-all
+          duration-300
 
-                      <span className="absolute bottom-0 right-0 h-2 w-2 animate-pulse bg-cyan-400" />
+          sm:rounded-xl
+          sm:px-5
+          sm:py-2.5
+          sm:text-sm
 
-                      <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-transparent" />
-                    </>
-                  )}
+          ${
+            active
+              ? `
+                border-cyan-400
+                bg-black/40
+                text-white
+                shadow-[0_0_18px_rgba(0,255,255,0.35)]
+              `
+              : `
+                border-[var(--border)]
+                hover:border-cyan-400/50
+              `
+          }
+        `}
+        style={
+          !active
+            ? {
+                color: "var(--fg)",
+                opacity: 0.65,
+              }
+            : undefined
+        }
+      >
+        {active && (
+          <>
+            <span className="absolute left-0 top-0 h-1.5 w-1.5 animate-pulse bg-cyan-400 sm:h-2 sm:w-2" />
 
-                  <span className="relative z-10 truncate">
-                    {cat}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+            <span className="absolute bottom-0 right-0 h-1.5 w-1.5 animate-pulse bg-cyan-400 sm:h-2 sm:w-2" />
+
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-transparent" />
+          </>
+        )}
+
+        <span className="relative z-10">
+          {cat}
+        </span>
+      </button>
+    );
+  })}
+</div>
 
           {/* GRAND PRODUCT GRID */}
 
@@ -2042,7 +2225,7 @@ export default function Products() {
             relative
             overflow-hidden
             px-4
-            pb-20
+            pb-10
             sm:px-6
             sm:pb-24
             lg:px-10

@@ -504,9 +504,7 @@ function ServiceRail() {
       className="relative hidden lg:flex items-center justify-end min-h-[180px]"
     >
 
-      {/* =================================================
-          AMBIENT GLOW
-      ================================================= */}
+      {/* AMBIENT GLOW */}
 
       <motion.div
         animate={{
@@ -521,10 +519,7 @@ function ServiceRail() {
         className="pointer-events-none absolute right-4 h-40 w-80 rounded-full bg-blue-500/20 blur-[80px]"
       />
 
-
-      {/* =================================================
-          MAIN BUTTON
-      ================================================= */}
+      {/* MAIN BUTTON */}
 
       <motion.a
         href="/services"
@@ -536,9 +531,7 @@ function ServiceRail() {
         className="group relative flex min-w-[285px] items-center justify-between gap-8 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.035] px-5 py-4 backdrop-blur-2xl transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-400/[0.055] hover:shadow-[0_20px_70px_rgba(47,123,255,0.16)]"
       >
 
-        {/* =================================================
-            SCANNING LIGHT
-        ================================================= */}
+        {/* SCANNING LIGHT */}
 
         <motion.div
           variants={{
@@ -558,20 +551,13 @@ function ServiceRail() {
           className="pointer-events-none absolute inset-y-0 -left-20 w-20 skew-x-[-20deg] bg-gradient-to-r from-transparent via-blue-300/20 to-transparent"
         />
 
-
-        {/* =================================================
-            LEFT CONTENT
-        ================================================= */}
+        {/* LEFT CONTENT */}
 
         <div className="relative z-10 flex items-center gap-4">
-
-          {/* STATUS ICON */}
 
           <div
             className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/[0.06]"
           >
-
-            {/* ROTATING RING */}
 
             <motion.div
               variants={{
@@ -589,8 +575,6 @@ function ServiceRail() {
               className="absolute inset-1 rounded-lg border border-dashed border-blue-400/25"
             />
 
-            {/* CENTER DOT */}
-
             <motion.span
               animate={{
                 scale: [1, 1.35, 1],
@@ -606,11 +590,7 @@ function ServiceRail() {
 
           </div>
 
-
-          {/* TEXT */}
-
           <div>
-
             <span
               className="block font-mono text-[8px] uppercase tracking-[0.35em] text-blue-300/50"
             >
@@ -622,15 +602,11 @@ function ServiceRail() {
             >
               All Services
             </span>
-
           </div>
 
         </div>
 
-
-        {/* =================================================
-            ARROW
-        ================================================= */}
+        {/* ARROW */}
 
         <motion.div
           variants={{
@@ -654,10 +630,7 @@ function ServiceRail() {
           </span>
         </motion.div>
 
-
-        {/* =================================================
-            TOP TECHNICAL LINE
-        ================================================= */}
+        {/* TOP TECHNICAL LINE */}
 
         <motion.div
           variants={{
@@ -677,10 +650,7 @@ function ServiceRail() {
           className="absolute left-6 top-0 h-px bg-gradient-to-r from-blue-400 via-blue-300 to-transparent"
         />
 
-
-        {/* =================================================
-            BOTTOM TECHNICAL LINE
-        ================================================= */}
+        {/* BOTTOM TECHNICAL LINE */}
 
         <motion.div
           variants={{
@@ -702,10 +672,7 @@ function ServiceRail() {
 
       </motion.a>
 
-
-      {/* =================================================
-          FLOATING LABEL
-      ================================================= */}
+      {/* FLOATING LABEL */}
 
       <motion.div
         animate={{
@@ -718,13 +685,11 @@ function ServiceRail() {
         }}
         className="pointer-events-none absolute -top-1 right-8 rounded-full border border-blue-400/10 bg-blue-400/[0.04] px-3 py-1 backdrop-blur-md"
       >
-
         <span
           className="font-mono text-[7px] uppercase tracking-[0.25em] text-blue-300/50"
         >
           Digital Solutions
         </span>
-
       </motion.div>
 
     </motion.div>
@@ -781,34 +746,24 @@ export default function ServicesTeaser() {
      MOBILE SLIDER
   ========================================================= */
 
-  const [
-    mobileIndex,
-    setMobileIndex,
-  ] = useState(0)
+  const [mobileIndex, setMobileIndex] = useState(0)
+const [isMobileCardHovered, setIsMobileCardHovered] = useState(false)
 
+useEffect(() => {
+  if (featured.length <= 1 || isMobileCardHovered) {
+    return
+  }
 
-  useEffect(() => {
+  const timer = setInterval(() => {
+    setMobileIndex((previous) => {
+      return (previous + 1) % featured.length
+    })
+  }, 4000)
 
-    if (featured.length <= 1) {
-      return
-    }
-
-    const timer = setInterval(() => {
-
-      setMobileIndex(
-        previous =>
-          (previous + 1) %
-          featured.length
-      )
-
-    }, 4000)
-
-    return () => {
-      clearInterval(timer)
-    }
-
-  }, [featured.length])
-
+  return () => {
+    clearInterval(timer)
+  }
+}, [featured.length, isMobileCardHovered])
 
   /* =========================================================
      EMPTY STATE
@@ -821,7 +776,15 @@ export default function ServicesTeaser() {
 
   return (
     <section
-      className="relative overflow-hidden px-6 py-24 lg:px-10 lg:py-32"
+      className="
+        relative
+        overflow-hidden
+        px-6
+        pt-24
+        pb-10
+        lg:px-10
+        lg:py-32
+      "
       style={{
         background: INK,
       }}
@@ -896,12 +859,11 @@ export default function ServicesTeaser() {
               LEFT HEADING
           ================================================= */}
 
-          <div className='-mt-32'>
+          <div className="-mt-32">
 
             <Eyebrow>
               What We Do
             </Eyebrow>
-
 
             <motion.h2
               initial={{
@@ -927,9 +889,6 @@ export default function ServicesTeaser() {
               Engineering built around your goals
             </motion.h2>
 
-
-            {/* DESCRIPTION */}
-
             <motion.p
               initial={{
                 opacity: 0,
@@ -947,7 +906,7 @@ export default function ServicesTeaser() {
                 duration: 0.7,
                 delay: 0.15,
               }}
-              className="mt-4 mb-5  text-sm leading-6 text-white/40"
+              className="mt-4 mb-5 text-sm leading-6 text-white/40"
             >
               We combine technology, design, and
               strategy to create digital products
@@ -971,7 +930,7 @@ export default function ServicesTeaser() {
             MOBILE SERVICE RAIL
         ================================================= */}
 
-        <div className="mt-8 lg:hidden">
+        <div className="lg:hidden">
 
           <motion.div
             initial={{
@@ -1011,7 +970,6 @@ export default function ServicesTeaser() {
               </span>
 
             </div>
-
 
             <a
               href="/services"
@@ -1078,20 +1036,22 @@ export default function ServicesTeaser() {
                     className="w-full"
                   >
 
-                    <ServiceCard
-                      s={s}
-                      i={i}
-                      isHovered={
-                        hoveredCard === i
-                      }
-                      setHoveredCard={
-                        setHoveredCard
-                      }
-                    />
+                  <div
+  onMouseEnter={() => setIsMobileCardHovered(true)}
+  onMouseLeave={() => setIsMobileCardHovered(false)}
+  onTouchStart={() => setIsMobileCardHovered(true)}
+  onTouchEnd={() => setIsMobileCardHovered(false)}
+>
+  <ServiceCard 
+    s={s} 
+    i={i} 
+    isHovered={hoveredCard === i} 
+    setHoveredCard={setHoveredCard} 
+  />
+</div>
 
                   </motion.div>
                 )
-
               })}
 
             </AnimatePresence>
@@ -1111,7 +1071,17 @@ export default function ServicesTeaser() {
                   onClick={() =>
                     setMobileIndex(index)
                   }
-                  className={`h-1.5 rounded-full transition-all duration-300 ${ mobileIndex === index ? 'w-7 bg-blue-400' : 'w-1.5 bg-blue-400/25' }`}
+                  className={`
+                    h-1.5
+                    rounded-full
+                    transition-all
+                    duration-300
+                    ${
+                      mobileIndex === index
+                        ? 'w-7 bg-blue-400'
+                        : 'w-1.5 bg-blue-400/25'
+                    }
+                  `}
                   aria-label={`Show service ${
                     index + 1
                   }`}
@@ -1131,7 +1101,14 @@ export default function ServicesTeaser() {
         ================================================= */}
 
         <div
-          className="mt-8 hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="
+            mt-8
+            hidden
+            gap-5
+            sm:grid
+            sm:grid-cols-2
+            lg:grid-cols-4
+          "
         >
 
           {featured.map((s, i) => (

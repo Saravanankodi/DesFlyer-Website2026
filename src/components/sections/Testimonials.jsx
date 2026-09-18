@@ -594,42 +594,39 @@ export default function Testimonials() {
 
           {/* DECORATIVE UNDERLINE */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.5,
-            }}
-            className="mt-6 flex items-center gap-2"
-          >
+          {/* DECORATIVE UNDERLINE — HIDDEN ON MOBILE */}
+<motion.div
+  initial={{
+    opacity: 0,
+    x: -30,
+  }}
+  whileInView={{
+    opacity: 1,
+    x: 0,
+  }}
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.7,
+    delay: 0.5,
+  }}
+  className="mt-6 hidden items-center gap-2 sm:flex"
+>
+  <motion.div
+    animate={{
+      width: ["20px", "80px", "20px"],
+    }}
+    transition={{
+      duration: 4,
+    }}
+    className="h-px bg-gradient-to-r from-blue-400 to-cyan-400"
+  />
 
-            <motion.div
-              animate={{
-                width: ["20px", "80px", "20px"],
-              }}
-              transition={{
-                duration: 4,
-                // repeat: Infinity,
-                // ease: "easeInOut",
-              }}
-              className="h-px bg-gradient-to-r from-blue-400 to-cyan-400"
-            />
-
-            <span className="font-mono text-[7px] uppercase tracking-[0.25em] text-[var(--fg)]/20">
-              Human experience / digital systems
-            </span>
-
-          </motion.div>
+  <span className="font-mono text-[7px] uppercase tracking-[0.25em] text-[var(--fg)]/20">
+    Human experience / digital systems
+  </span>
+</motion.div>
 
           {/* DESCRIPTION */}
 
@@ -815,7 +812,7 @@ export default function Testimonials() {
 
         <motion.div
           variants={rightVariants}
-className="relative flex min-h-[500px] w-full items-center justify-center lg:min-h-[520px]"        >
+className="relative flex min-h-0 w-full items-center justify-center lg:min-h-[520px]"      >
 
           {/* RIGHT PANEL */}
 
@@ -839,8 +836,7 @@ className="relative flex min-h-[500px] w-full items-center justify-center lg:min
               delay: 0.15,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="pointer-events-none absolute inset-[2%] overflow-hidden rounded-[42px] border border-blue-400/[0.06] bg-blue-950/[0.018]"
-          >
+className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounded-[42px] border border-blue-400/[0.06] bg-blue-950/[0.018] lg:block"          >
 
             {/* TOP LINE */}
 
@@ -872,28 +868,7 @@ className="relative flex min-h-[500px] w-full items-center justify-center lg:min
 
             {/* BOTTOM LINE */}
 
-            <div className="absolute bottom-7 left-8 right-8 flex items-center justify-between">
-
-              <span className="font-mono text-[7px] tracking-[0.2em] text-[var(--fg)]/15">
-                DES / HUMAN-CENTERED SYSTEMS
-              </span>
-
-              <motion.span
-                key={activeIndex}
-                initial={{
-                  opacity: 0,
-                  y: 5,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                className="font-mono text-[7px] tracking-[0.2em] text-blue-400/30"
-              >
-                00{activeIndex + 1}
-              </motion.span>
-
-            </div>
+            
 
           </motion.div>
 
