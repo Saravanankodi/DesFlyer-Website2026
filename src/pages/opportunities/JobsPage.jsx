@@ -23,7 +23,7 @@ import DynamicForm from '../../components/form/DynamicForm'
 import FAQ from '../../components/FAQ'
 
 import { jobFormSections } from '../../data/jobForm'
-import { api } from '../../lib/api'
+import { submitJobApplication } from '../../lib/jobApplication'
 import { useJobOpenings } from '../../store/openingsStore'
 
 /* ============================================================
@@ -1172,15 +1172,34 @@ export default function JobsPage() {
      SUBMIT
   ========================================================== */
 
-  const handleSubmit = async (values) => {
-    await api.submitApplication({
-      type: 'job',
-      jobId: selectedJob?.id,
-      jobTitle: selectedJob?.title,
-      ...values,
-      resumeFileName: values.resume?.name,
-    })
-  }
+    const handleSubmit = async (values) => {
+    try {
+      const applicationData = {
+        ...values,
+        jobId: selectedJob?.id || '',
+        jobTitle: selectedJob?.title || '',
+      }
+
+      console.log('Submitting job application:', applicationData)
+
+      const docId = await submitJobApplication(applicationData)
+
+      console.log('Job application saved successfully:', docId)
+
+      setShowApplication(false)
+      setSelectedJob(null)
+      setStep(1)
+
+      alert('Your application has been submitted successfully!')
+    } catch (error) {
+      console.error('Firestore job application error:', error)
+
+      alert(
+        error?.message ||
+          'Something went wrong while submitting your application.'
+      )
+    }
+  } 
 
   /* ==========================================================
      SCROLL TO JOBS

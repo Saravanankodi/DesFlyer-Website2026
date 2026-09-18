@@ -26,7 +26,7 @@ import {
 import Eyebrow from '../../components/ui/Eyebrow'
 import FAQ from '../../components/FAQ'
 import { internshipFaqs } from '../../data/opportunitiesContent'
-import { api } from '../../lib/api'
+import { submitInternshipApplication } from '../../lib/internshipApplication'
 import { useInternshipOpenings } from '../../store/openingsStore'
 import CTABand from '../../components/sections/CTABand'
 
@@ -383,7 +383,8 @@ export default function InternshipPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [resumeFile, setResumeFile] = useState(null)
+  const [resumeLink, setResumeLink] = useState('')
+
 
   /* ============================================================
      INTERNSHIP HIRING NOTIFICATION
@@ -396,7 +397,6 @@ export default function InternshipPage() {
   const [notifyError, setNotifyError] = useState('')
 
   const applicationRef = useRef(null)
-  const fileInputRef = useRef(null)
 
   const [form, setForm] = useState({
     fullName: '',
@@ -412,6 +412,7 @@ export default function InternshipPage() {
     skills: '',
     portfolio: '',
     linkedin: '',
+    resumeLink:'',
     coverLetter: '',
   })
 
@@ -549,17 +550,24 @@ export default function InternshipPage() {
     }
 
     if (currentStep === 3) {
-      if (!resumeFile) {
-        setErrorMessage('Please upload your resume.')
-        return false
-      }
+  if (!form.resumeLink.trim()) {
+    setErrorMessage('Please provide your Google Drive resume link.')
+    return false
+  }
 
-      if (!form.skills.trim()) {
-        setErrorMessage('Please enter your skills.')
-        return false
-      }
-    }
+  if (
+    !form.resumeLink.includes('drive.google.com') &&
+    !form.resumeLink.includes('docs.google.com')
+  ) {
+    setErrorMessage('Please provide a valid Google Drive resume link.')
+    return false
+  }
 
+  if (!form.skills.trim()) {
+    setErrorMessage('Please enter your skills.')
+    return false
+  }
+}
     return true
   }
 
@@ -586,65 +594,29 @@ export default function InternshipPage() {
     }
   }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0]
+  
 
-    if (!file) return
+ const handleSubmit = async () => {
+  if (!validateStep()) return
 
-    const allowedTypes = [
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    ]
-
-    if (!allowedTypes.includes(file.type)) {
-      setErrorMessage('Please upload a PDF, DOC, or DOCX file.')
-      return
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setErrorMessage('Resume must be smaller than 5MB.')
-      return
-    }
-
-    setResumeFile(file)
+  try {
+    setIsSubmitting(true)
     setErrorMessage('')
+
+    await submitInternshipApplication(form)
+
+    setSubmitted(true)
+  } catch (error) {
+    console.error('Firestore submission error:', error)
+
+    setErrorMessage(
+      error?.message ||
+        'Something went wrong while submitting your application. Please try again.'
+    )
+  } finally {
+    setIsSubmitting(false)
   }
-
-  const removeResume = () => {
-    setResumeFile(null)
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
-  }
-
-  const handleSubmit = async () => {
-    if (!validateStep()) return
-
-    try {
-      setIsSubmitting(true)
-      setErrorMessage('')
-
-      await api.submitApplication({
-        type: 'internship',
-        ...form,
-        resume: resumeFile,
-        resumeFileName: resumeFile?.name || '',
-      })
-
-      setSubmitted(true)
-    } catch (error) {
-      console.error(error)
-
-      setErrorMessage(
-        error?.message ||
-          'Something went wrong while submitting your application. Please try again.'
-      )
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+}
 
   const progress = Math.round(
     (currentStep / steps.length) * 100
@@ -920,64 +892,39 @@ export default function InternshipPage() {
             </span>
           </div>
 
-          <label className="mb-3 block text-[9px] font-mono font-semibold uppercase tracking-[0.18em] text-[var(--fg)]/55">
-            Resume
-            <span className="ml-1 text-signal">*</span>
-          </label>
+        <label
+          htmlFor="resumeLink"
+          className="mb-3 block text-[9px] font-mono font-semibold uppercase tracking-[0.18em] text-[var(--fg)]/55"
+        >
+          Resume Google Drive Link
+          <span className="ml-1 text-signal">*</span>
+        </label>
 
-          {!resumeFile ? (
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              className="flex min-h-[125px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-signal/40 px-4 text-center transition-all hover:border-signal/70 sm:min-h-[130px] sm:px-6"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-signal/10 text-signal sm:h-12 sm:w-12">
-                <FiUpload size={19} />
-              </span>
-
-              <span className="mt-3 text-[13px] font-medium text-[var(--fg)]/70 sm:text-sm">
-                Upload your resume
-              </span>
-
-              <span className="mt-1 text-[9px] text-[var(--fg)]/35 sm:text-[10px]">
-                PDF, DOC or DOCX · Maximum 5MB
-              </span>
-            </button>
-          ) : (
-            <div className="flex min-w-0 items-center justify-between gap-3 rounded-2xl border border-signal/40 p-3 sm:gap-4 sm:p-4">
-              <div className="flex min-w-0 items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal/10 text-signal sm:h-11 sm:w-11">
-                  <FiFileText size={18} />
-                </span>
-
-                <div className="min-w-0">
-                  <p className="truncate text-[13px] font-medium text-[var(--fg)] sm:text-sm">
-                    {resumeFile.name}
-                  </p>
-
-                  <p className="mt-1 text-[9px] text-[var(--fg)]/35 sm:text-[10px]">
-                    {(resumeFile.size / 1024 / 1024).toFixed(2)} MB
-                  </p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={removeResume}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-signal/30 text-[var(--fg)]/45 hover:text-red-400"
-              >
-                <FiX size={15} />
-              </button>
-            </div>
-          )}
+        <div className="relative">
+          <FiFileText
+            size={15}
+            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-signal/50 sm:left-4"
+          />
 
           <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pdf,.doc,.docx"
-            onChange={handleFileChange}
-            className="hidden"
+            id="resumeLink"
+            name="resumeLink"
+            type="url"
+            value={form.resumeLink}
+            onChange={handleChange}
+            placeholder="https://drive.google.com/..."
+            required
+            className="h-11 w-full rounded-xl border border-signal/40 bg-transparent pl-10 pr-3.5 text-[13px] text-[var(--fg)] outline-none placeholder:text-[var(--fg)]/25 transition-all duration-300 hover:border-signal/60 focus:border-signal focus:ring-2 focus:ring-signal/10 sm:pl-11 sm:pr-4 sm:text-sm"
           />
+        </div>
+
+        <p className="mt-2 text-[9px] leading-5 text-[var(--fg)]/35 sm:text-[10px]">
+          Upload your resume to Google Drive and paste the shareable link here.
+        </p>
+
+        <p className="mt-1 text-[9px] leading-5 text-signal/70 sm:text-[10px]">
+          Make sure the Google Drive permission is set to "Anyone with the link can view".
+        </p>
 
           <div className="mt-5 grid gap-5 sm:grid-cols-2 sm:gap-6">
             <Field

@@ -3,7 +3,7 @@ import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, CartesianGrid, Legend,
 } from 'recharts'
-import { api } from '../../lib/api'
+// import { api } from '../../lib/api'
 
 const COLORS = ['#2E6FFF', '#5C8CFF', '#0F2557', '#8FB2FF']
 

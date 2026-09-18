@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import AdminDataTable from '../../components/admin/AdminDataTable'
-import { api } from '../../lib/api'
+// import { api } from '../../lib/api'
 
 const columns = [
   { key: 'name', label: 'Name' },

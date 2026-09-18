@@ -1,30 +1,102 @@
-import { createContext, useContext, useState, useCallback } from 'react'
-import { api } from '../lib/api'
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react'
+
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth'
+import { auth } from '../firebase'
+
+
 
 const AdminAuthContext = createContext(null)
 
 export function AdminAuthProvider({ children }) {
-  const [token, setToken] = useState(null)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+      setLoading(false)
+    })
+
+    return unsubscribe
+  }, [])
 
   const login = useCallback(async (email, password) => {
     setLoading(true)
     setError(null)
-    const result = await api.adminLogin({ email, password })
-    setLoading(false)
-    if (result.success) {
-      setToken(result.token)
-    } else {
-      setError(result.error)
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      return true
+    } catch (err) {
+      console.error('Firebase login error:', err)
+
+      let message = 'Unable to sign in.'
+
+      switch (err.code) {
+        case 'auth/invalid-credential':
+          message = 'Invalid email or password.'
+          break
+
+        case 'auth/user-not-found':
+          message = 'No account found with this email.'
+          break
+
+        case 'auth/wrong-password':
+          message = 'Incorrect password.'
+          break
+
+        case 'auth/invalid-email':
+          message = 'Please enter a valid email address.'
+          break
+
+        case 'auth/too-many-requests':
+          message = 'Too many login attempts. Please try again later.'
+          break
+
+        default:
+          message = err.message || message
+      }
+
+      setError(message)
+      return false
+    } finally {
+      setLoading(false)
     }
-    return result.success
   }, [])
 
-  const logout = useCallback(() => setToken(null), [])
+  const logout = useCallback(async () => {
+    setError(null)
+
+    try {
+      await signOut(auth)
+    } catch (err) {
+      console.error('Firebase logout error:', err)
+      setError('Unable to sign out.')
+    }
+  }, [])
 
   return (
-    <AdminAuthContext.Provider value={{ isAuthed: !!token, login, logout, error, loading }}>
+    <AdminAuthContext.Provider
+      value={{
+        user,
+        isAuthed: !!user,
+        login,
+        logout,
+        error,
+        loading,
+      }}
+    >
       {children}
     </AdminAuthContext.Provider>
   )
@@ -32,6 +104,12 @@ export function AdminAuthProvider({ children }) {
 
 export function useAdminAuth() {
   const ctx = useContext(AdminAuthContext)
-  if (!ctx) throw new Error('useAdminAuth must be used within AdminAuthProvider')
+
+  if (!ctx) {
+    throw new Error(
+      'useAdminAuth must be used within AdminAuthProvider'
+    )
+  }
+
   return ctx
 }
