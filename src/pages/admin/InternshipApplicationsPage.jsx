@@ -1,169 +1,155 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 import {
   collection,
   onSnapshot,
   doc,
   updateDoc,
-} from 'firebase/firestore'
+} from "firebase/firestore";
 
-import AdminDataTable from '../../components/admin/AdminDataTable'
-import ViewApplicationModal from '../../components/admin/ViewApplicationModal'
-import { db } from '../../firebase'
+import AdminDataTable from "../../components/admin/AdminDataTable";
+import ViewApplicationModal from "../../components/admin/ViewApplicationModal";
+import { db } from "../../firebase";
 
 const columns = [
-  { key: 'name', label: 'Applicant Name' },
-  { key: 'email', label: 'Email' },
-  { key: 'phone', label: 'Phone' },
-  { key: 'college', label: 'College' },
-  { key: 'internshipApplied', label: 'Internship Applied' },
-  { key: 'date', label: 'Applied Date' },
-  { key: 'status', label: 'Status' },
-]
+  { key: "name", label: "Applicant Name" },
+  { key: "email", label: "Email" },
+  { key: "phone", label: "Phone" },
+  { key: "college", label: "College" },
+  { key: "internshipApplied", label: "Internship Applied" },
+  { key: "date", label: "Applied Date" },
+  { key: "status", label: "Status" },
+];
 
 const viewFields = [
-  { key: 'name', label: 'Applicant Name' },
-  { key: 'email', label: 'Email' },
-  { key: 'phone', label: 'Phone' },
-  { key: 'college', label: 'College' },
-  { key: 'internshipApplied', label: 'Internship Applied' },
-  { key: 'date', label: 'Applied Date' },
-  { key: 'status', label: 'Status' },
-  { key: 'resumeLink', label: 'Resume' },
-]
+  { key: "name", label: "Applicant Name" },
+  { key: "email", label: "Email" },
+  { key: "phone", label: "Phone" },
+  { key: "college", label: "College" },
+  { key: "internshipApplied", label: "Internship Applied" },
+  { key: "date", label: "Applied Date" },
+  { key: "status", label: "Status" },
+  { key: "resumeLink", label: "Resume" },
+];
 
 const statusOptions = [
-  'Pending',
-  'Reviewed',
-  'Shortlisted',
-  'Interview Scheduled',
-  'Selected',
-  'Rejected',
-]
+  "Pending",
+  "Reviewed",
+  "Shortlisted",
+  "Interview Scheduled",
+  "Selected",
+  "Rejected",
+];
 
 export default function InternshipApplicationsPage() {
-  const [rows, setRows] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [viewing, setViewing] = useState(null)
-  const [error, setError] = useState(null)
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [viewing, setViewing] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log('Fetching internship applications...')
+    console.log("Fetching internship applications...");
 
     const applicationsRef = collection(
       db,
-      'internshipApplications'
-    )
+      "internshipApplications"
+    );
 
     const unsubscribe = onSnapshot(
       applicationsRef,
       (snapshot) => {
         console.log(
-          'Number of applications:',
+          "Number of applications:",
           snapshot.size
-        )
+        );
 
         const data = snapshot.docs.map((document) => {
-          const item = document.data()
+          const item = document.data();
 
           console.log(
-            'Application:',
+            "Application:",
             document.id,
             item
-          )
+          );
 
-          // Convert Firestore timestamp if available
-          let appliedDate = ''
+          // Convert Firestore timestamp
+          let appliedDate = "";
 
           if (item.submittedAt) {
             if (
               typeof item.submittedAt.toDate ===
-              'function'
+              "function"
             ) {
-              appliedDate =
-                item.submittedAt
-                  .toDate()
-                  .toLocaleDateString('en-IN', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                  })
+              appliedDate = item.submittedAt
+                .toDate()
+                .toLocaleDateString("en-IN", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                });
             } else {
               appliedDate = String(
                 item.submittedAt
-              )
+              );
             }
           }
 
           return {
+            // Firestore document ID
             id: document.id,
-
-            // Firestore -> Table field mapping
-            name: item.fullName || '',
-            email: item.email || '',
-            phone: item.mobile || '',
-            college: item.college || '',
-
-            internshipApplied:
-              item.internshipApplied ||
-              item.internship ||
-              'Internship',
-
-            date: appliedDate,
-
-            status: item.status || 'Pending',
-
-            // Resume Google Drive URL
-            resumeLink:
-              item.resumeLink || '',
 
             // Keep all original Firestore fields
             ...item,
 
-            // Re-apply table fields because ...item
-            // may contain different field names
-            name: item.fullName || '',
-            phone: item.mobile || '',
+            // Table fields
+            name: item.fullName || "",
+            email: item.email || "",
+            phone: item.mobile || "",
+            college: item.college || "",
+
             internshipApplied:
               item.internshipApplied ||
               item.internship ||
-              'Internship',
-            date: appliedDate,
-            status: item.status || 'Pending',
-            resumeLink:
-              item.resumeLink || '',
-          }
-        })
+              "Internship",
 
-        setRows(data)
-        setLoading(false)
-        setError(null)
+            date: appliedDate,
+
+            status: item.status || "Pending",
+
+            resumeLink:
+              item.resumeLink || "",
+          };
+        });
+
+        setRows(data);
+        setLoading(false);
+        setError(null);
       },
       (error) => {
         console.error(
-          'Firestore fetch error:',
+          "Firestore fetch error:",
           error
-        )
+        );
 
         setError(
           `Failed to load internship applications: ${
-            error.message || 'Unknown error'
+            error.message || "Unknown error"
           }`
-        )
+        );
 
-        setLoading(false)
+        setLoading(false);
       }
-    )
+    );
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   async function handleStatusChange(id, status) {
     console.log(
-      'Updating status:',
+      "Updating status:",
       id,
       status
-    )
+    );
 
     // Optimistic update
     setRows((prev) =>
@@ -172,42 +158,41 @@ export default function InternshipApplicationsPage() {
           ? { ...row, status }
           : row
       )
-    )
+    );
 
     try {
       const applicationRef = doc(
         db,
-        'internshipApplications',
+        "internshipApplications",
         id
-      )
+      );
 
       await updateDoc(applicationRef, {
         status,
-      })
+      });
 
       console.log(
-        'Status updated successfully'
-      )
+        "Status updated successfully"
+      );
     } catch (error) {
       console.error(
-        'Failed to update application status:',
+        "Failed to update application status:",
         error
-      )
+      );
 
       alert(
-        'Failed to update application status. Please try again.'
-      )
+        "Failed to update application status. Please try again."
+      );
     }
   }
 
   return (
     <div className="p-6 lg:p-10">
-
-      <h1 className="font-display font-bold text-2xl lg:text-3xl text-[var(--fg)] mb-2">
+      <h1 className="mb-2 font-display text-2xl font-bold text-[var(--fg)] lg:text-3xl">
         Internship Applications
       </h1>
 
-      <p className="text-sm text-[var(--fg)]/50 mb-8">
+      <p className="mb-8 text-sm text-[var(--fg)]/50">
         Internship applications submitted by applicants.
       </p>
 
@@ -218,17 +203,17 @@ export default function InternshipApplicationsPage() {
       )}
 
       {loading ? (
-        <div className="h-64 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]" />
+        <div className="h-64 animate-pulse rounded-2xl border border-[var(--border)] bg-[var(--surface-2)]" />
       ) : (
         <AdminDataTable
           rows={rows}
           columns={columns}
           searchKeys={[
-            'name',
-            'email',
-            'phone',
-            'college',
-            'internshipApplied',
+            "name",
+            "email",
+            "phone",
+            "college",
+            "internshipApplied",
           ]}
           statusOptions={statusOptions}
           onStatusChange={handleStatusChange}
@@ -242,12 +227,9 @@ export default function InternshipApplicationsPage() {
         <ViewApplicationModal
           data={viewing}
           fields={viewFields}
-          onClose={() =>
-            setViewing(null)
-          }
+          onClose={() => setViewing(null)}
         />
       )}
-
     </div>
-  )
+  );
 }

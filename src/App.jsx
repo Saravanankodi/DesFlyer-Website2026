@@ -15,6 +15,8 @@ import JobsPage from './pages/opportunities/JobsPage'
 import Admin from './pages/Admin'
 import NotFound from './pages/NotFound'
 import DigitalMuseum from "./components/DigitalMuseum";
+import AnalyticsTracker from './analytics/AnalyticsTracker'
+
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -51,6 +53,7 @@ export default function App() {
   return (
     <>
       {/* {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />} */}
+      <AnalyticsTracker/>
       <ScrollToTop />
       <Routes>
         <Route path="/admin/*" element={<Admin />} />

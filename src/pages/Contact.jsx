@@ -12,7 +12,9 @@ import {
   FiCpu,
   FiArrowRight,
 } from 'react-icons/fi'
-
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { logEvent } from "firebase/analytics";
+import { db } from "../firebase";
 import Seo from '../lib/Seo'
 import Eyebrow from '../components/ui/Eyebrow'
 import CFAQ from '../components/CFAQ'
@@ -34,17 +36,37 @@ export default function Contact() {
       [e.target.name]: e.target.value,
     }))
   }
+async function handleSubmit(e) {
+  e.preventDefault();
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  setStatus("sending");
 
-    setStatus('sending')
+  try {
+    // Store contact form data in Firestore
+    await addDoc(collection(db, "contactMessage"), {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+      createdAt: serverTimestamp(),
+    });
 
-    setTimeout(() => {
-      setStatus('sent')
-    }, 900)
+    // Send Firebase Analytics event
+   
+
+    setStatus("sent");
+
+    // Clear the form after successful submission
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    setStatus("error");
   }
-
+}
   return (
     <>
       <Seo
@@ -577,7 +599,7 @@ export default function Contact() {
                             <p className="mt-0.5 text-[10px] text-blue-100/40">
                               We&rsquo;ll get back to you within one business
                               day.
-                            </p>
+                            </p>                        
 
                           </div>
 

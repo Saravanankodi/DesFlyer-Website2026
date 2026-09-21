@@ -3,7 +3,11 @@ import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, CartesianGrid, Legend,
 } from 'recharts'
-// import { api } from '../../lib/api'
+
+import { getWebsiteAnalytics } from '../../analytics/GetAnalytics' 
+
+
+
 
 const COLORS = ['#2E6FFF', '#5C8CFF', '#0F2557', '#8FB2FF']
 
@@ -19,10 +23,14 @@ function ChartCard({ title, children }) {
 export default function AnalyticsPage() {
   const [data, setData] = useState(null)
 
-  useEffect(() => {
-    api.getAnalytics().then(setData)
-  }, [])
+useEffect(() => {
+  getWebsiteAnalytics()
+    .then(setData)
 
+    .catch((error) => {
+      console.error('Error loading analytics:', error)
+    })
+}, [])
   if (!data) {
     return (
       <div className="p-6 lg:p-10">
@@ -34,9 +42,9 @@ export default function AnalyticsPage() {
   return (
     <div className="p-6 lg:p-10">
       <h1 className="font-display font-bold text-2xl lg:text-3xl text-[var(--fg)] mb-2">Website Analytics</h1>
-      <p className="text-sm text-[var(--fg)]/50 mb-8">
-        Sample data — connect a real analytics provider (e.g. GA4 or a custom tracking endpoint) to replace these charts with live numbers.
-      </p>
+     <p className="text-sm text-[var(--fg)]/50 mb-8">
+  Live website analytics collected from visitor activity.
+</p>
 
       <div className="grid lg:grid-cols-2 gap-5 mb-5">
         <ChartCard title="Daily Visitors">
