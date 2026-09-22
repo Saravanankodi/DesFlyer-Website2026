@@ -7,6 +7,9 @@ import {
 } from 'framer-motion'
 import { FiArrowUpRight, FiSend } from 'react-icons/fi'
 
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../../firebase'
+
 const CAPABILITIES = [
   'Web Development',
   'Mobile Apps',
@@ -651,41 +654,54 @@ function ContactForm() {
     }))
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+ const handleSubmit = async (event) => {
+  event.preventDefault()
+  setSending(true)
+  setSent(false)
 
-    setSending(true)
-    setSent(false)
-
-    const submittedDetails = {
-      name: form.name.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim(),
-      company: form.company.trim(),
-      details: form.details.trim(),
-    }
-
-    console.log('PROJECT INQUIRY:', submittedDetails)
-
-    try {
-      await new Promise((resolve) =>
-        setTimeout(resolve, 800)
-      )
-
-      setForm(initialForm)
-
-      setSent(true)
-
-      setTimeout(() => {
-        setSent(false)
-      }, 3000)
-    } catch (error) {
-      console.error('Failed to send inquiry:', error)
-    } finally {
-      setSending(false)
-    }
+  const submittedDetails = {
+    name: form.name.trim(),
+    email: form.email.trim(),
+    phone: form.phone.trim(),
+    company: form.company.trim(),
+    details: form.details.trim(),
   }
 
+  console.log('PROJECT INQUIRY:', submittedDetails)
+
+  try {
+    const docRef = await addDoc(
+      collection(db, 'contactMessage'),
+      {
+        name: submittedDetails.name,
+        email: submittedDetails.email,
+        phone: submittedDetails.phone,
+        company: submittedDetails.company,
+        details: submittedDetails.details,
+        createdAt: serverTimestamp(),
+      }
+    )
+
+    console.log(
+      'SUCCESS: Project inquiry stored in Firestore',
+      docRef.id
+    )
+
+    setForm(initialForm)
+    setSent(true)
+
+    setTimeout(() => {
+      setSent(false)
+    }, 3000)
+  } catch (error) {
+    console.error('FAILED TO STORE PROJECT INQUIRY')
+    console.error('Firebase error code:', error.code)
+    console.error('Firebase error message:', error.message)
+    console.error('Full Firebase error:', error)
+  } finally {
+    setSending(false)
+  }
+}
   return (
     <motion.div
       initial={{

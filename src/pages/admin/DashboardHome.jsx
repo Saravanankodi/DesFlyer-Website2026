@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+ import { useEffect, useState } from 'react'
+
 import {
   FiEye,
   FiMail,
@@ -19,8 +20,6 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   Tooltip,
@@ -28,7 +27,12 @@ import {
 } from 'recharts'
 
 import { db } from '../../firebase'
+
 import StatCard from '../../components/admin/StatCard'
+
+import {
+  getWebsiteAnalytics,
+} from '../../analytics/GetAnalytics'
 
 export default function DashboardHome() {
   const [summary, setSummary] = useState(null)
@@ -42,27 +46,38 @@ export default function DashboardHome() {
         setLoading(true)
         setError(null)
 
-        // Fetch the three collections separately.
-        // This makes it easier to identify which
-        // collection has a permission problem.
+        // --------------------------------
+        // APPLICATION COLLECTIONS
+        // --------------------------------
 
-        const applicationSnapshot = await getDocs(
-          collection(db, 'Application')
-        )
+        const applicationSnapshot =
+          await getDocs(
+            collection(db, 'Application')
+          )
 
-        const internshipApplicationSnapshot = await getDocs(
-          collection(db, 'internshipApplications')
-        )
+        const internshipApplicationSnapshot =
+          await getDocs(
+            collection(
+              db,
+              'internshipApplications'
+            )
+          )
 
-        const jobApplicationSnapshot = await getDocs(
-          collection(db, 'jobApplications')
-        )
+        const jobApplicationSnapshot =
+          await getDocs(
+            collection(
+              db,
+              'jobApplications'
+            )
+          )
 
         const applications =
-          applicationSnapshot.docs.map((document) => ({
-            id: document.id,
-            ...document.data(),
-          }))
+          applicationSnapshot.docs.map(
+            (document) => ({
+              id: document.id,
+              ...document.data(),
+            })
+          )
 
         const internshipApplications =
           internshipApplicationSnapshot.docs
@@ -70,26 +85,27 @@ export default function DashboardHome() {
         const jobApplications =
           jobApplicationSnapshot.docs
 
-
         // --------------------------------
         // INTERNSHIP OPENINGS
         // --------------------------------
 
         const internshipOpenings =
           applications.filter(
-            (item) => item.type === 'internship'
+            (item) =>
+              item.type === 'internship'
           )
 
         const activeInternshipOpenings =
           internshipOpenings.filter(
-            (item) => item.status === 'Open'
+            (item) =>
+              item.status === 'Open'
           )
 
         const closedInternshipOpenings =
           internshipOpenings.filter(
-            (item) => item.status !== 'Open'
+            (item) =>
+              item.status !== 'Open'
           )
-
 
         // --------------------------------
         // JOB OPENINGS
@@ -97,19 +113,34 @@ export default function DashboardHome() {
 
         const jobOpenings =
           applications.filter(
-            (item) => item.type === 'job'
+            (item) =>
+              item.type === 'job'
           )
 
         const activeJobOpenings =
           jobOpenings.filter(
-            (item) => item.status === 'Open'
+            (item) =>
+              item.status === 'Open'
           )
 
         const closedJobOpenings =
           jobOpenings.filter(
-            (item) => item.status !== 'Open'
+            (item) =>
+              item.status !== 'Open'
           )
 
+        // --------------------------------
+        // WEBSITE ANALYTICS
+        // --------------------------------
+        //
+        // Get already-calculated analytics.
+        // Dashboard does NOT calculate
+        // visitor counts itself.
+        //
+        // --------------------------------
+
+        const websiteAnalytics =
+          await getWebsiteAnalytics()
 
         // --------------------------------
         // SUMMARY
@@ -140,20 +171,26 @@ export default function DashboardHome() {
           jobApplications:
             jobApplications.length,
 
-          // Contact messages are not queried because
-          // that collection is currently blocked by
-          // your Firestore rules.
-          contactEnquiries: 0,
+          // Already calculated by
+          // GetAnalytics.js
+          totalVisitors:
+            websiteAnalytics.summary
+              ?.totalVisitors || 0,
 
-          // Analytics will be connected separately.
-          totalVisitors: 0,
+          // Already calculated by
+          // GetAnalytics.js
+          contactEnquiries:
+            websiteAnalytics
+              .contactMessageCount || 0,
         })
 
+        // --------------------------------
+        // ANALYTICS
+        // --------------------------------
 
-        setAnalytics({
-          dailyVisitors: [],
-          monthlyVisitors: [],
-        })
+        setAnalytics(
+          websiteAnalytics
+        )
 
       } catch (err) {
         console.error(
@@ -172,94 +209,129 @@ export default function DashboardHome() {
     loadDashboard()
   }, [])
 
+  // --------------------------------
+  // STAT CARDS
+  // --------------------------------
 
   const stats = summary && [
     {
       icon: FiUsers,
       label: 'Total Internship Openings',
-      value: summary.totalInternshipOpenings,
+      value:
+        summary.totalInternshipOpenings,
       demo: false,
     },
 
     {
       icon: FiCheckCircle,
       label: 'Active Internship Openings',
-      value: summary.activeInternshipOpenings,
+      value:
+        summary.activeInternshipOpenings,
       demo: false,
     },
 
     {
       icon: FiXCircle,
       label: 'Closed Internship Openings',
-      value: summary.closedInternshipOpenings,
+      value:
+        summary.closedInternshipOpenings,
       demo: false,
     },
 
     {
       icon: FiUserCheck,
       label: 'Internship Applications',
-      value: summary.internshipApplications,
+      value:
+        summary.internshipApplications,
       demo: false,
     },
 
     {
       icon: FiBriefcase,
       label: 'Total Job Openings',
-      value: summary.totalJobOpenings,
+      value:
+        summary.totalJobOpenings,
       demo: false,
     },
 
     {
       icon: FiCheckCircle,
       label: 'Active Job Openings',
-      value: summary.activeJobOpenings,
+      value:
+        summary.activeJobOpenings,
       demo: false,
     },
 
     {
       icon: FiXCircle,
       label: 'Closed Job Openings',
-      value: summary.closedJobOpenings,
+      value:
+        summary.closedJobOpenings,
       demo: false,
     },
 
     {
       icon: FiUserX,
       label: 'Job Applications',
-      value: summary.jobApplications,
+      value:
+        summary.jobApplications,
       demo: false,
     },
 
     {
       icon: FiEye,
       label: 'Website Visitors',
-      value: summary.totalVisitors,
-      demo: true,
+      value:
+        summary.totalVisitors,
+      demo: false,
     },
 
     {
       icon: FiMail,
       label: 'Contact Enquiries',
-      value: summary.contactEnquiries,
+      value:
+        summary.contactEnquiries,
       demo: false,
     },
   ]
 
+  // --------------------------------
+  // LAST 7 DAYS
+  // --------------------------------
+
+  const weeklyData =
+    analytics?.weeklyVisitors || []
+
+  // --------------------------------
+  // MONTHLY DATA
+  // --------------------------------
+
+  const monthlyData =
+    analytics?.monthlyVisitors || []
 
   return (
     <div className="p-6 lg:p-10">
 
+      {/* --------------------------------
+          HEADER
+      -------------------------------- */}
+
       <div className="flex items-center justify-between mb-2">
+
         <h1 className="font-display font-bold text-2xl lg:text-3xl text-[var(--fg)]">
           Dashboard
         </h1>
+
       </div>
 
       <p className="text-sm text-[var(--fg)]/50 mb-8">
-        Openings and applications counts are loaded
-        from Firebase Firestore.
+        Openings, applications and website
+        analytics are loaded from Firebase.
       </p>
 
+      {/* --------------------------------
+          ERROR
+      -------------------------------- */}
 
       {error && (
         <div className="mb-6 p-4 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm">
@@ -267,11 +339,16 @@ export default function DashboardHome() {
         </div>
       )}
 
+      {/* --------------------------------
+          STAT CARDS
+      -------------------------------- */}
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
 
         {loading &&
-          Array.from({ length: 10 }).map((_, i) => (
+          Array.from({
+            length: 10,
+          }).map((_, i) => (
             <div
               key={i}
               className="h-32 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]"
@@ -287,22 +364,99 @@ export default function DashboardHome() {
 
       </div>
 
+      {/* --------------------------------
+          ANALYTICS GRAPHS
+      -------------------------------- */}
 
       {analytics && (
         <div className="grid lg:grid-cols-2 gap-5">
 
+          {/* =================================
+              DAILY / WEEKLY VISITORS
+          ================================= */}
+
           <div className="border border-[var(--border)] rounded-2xl p-6">
 
             <h2 className="font-display font-semibold text-base text-[var(--fg)] mb-5">
-              Daily Visitors (This Week)
+              Daily Visitors
             </h2>
 
-            <div className="h-[240px] flex items-center justify-center text-sm text-[var(--fg)]/40">
-              No visitor analytics available yet.
-            </div>
+            {weeklyData.length > 0 ? (
+
+              <div className="h-[240px]">
+
+                <ResponsiveContainer
+                  width="100%"
+                  height="100%"
+                >
+
+                  <LineChart
+                    data={weeklyData}
+                    margin={{
+                      top: 5,
+                      right: 10,
+                      left: -20,
+                      bottom: 5,
+                    }}
+                  >
+
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="currentColor"
+                      opacity={0.1}
+                    />
+
+                    <XAxis
+                      dataKey="day"
+                      tick={{
+                        fill: 'currentColor',
+                        fontSize: 12,
+                      }}
+                      axisLine={false}
+                      tickLine={false}
+                    />
+
+                    <YAxis
+                      allowDecimals={false}
+                      tick={{
+                        fill: 'currentColor',
+                        fontSize: 12,
+                      }}
+                      axisLine={false}
+                      tickLine={false}
+                    />
+
+                    <Tooltip />
+
+                    <Line
+                      type="monotone"
+                      dataKey="visitors"
+                      name="Visitors"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                    />
+
+                  </LineChart>
+
+                </ResponsiveContainer>
+
+              </div>
+
+            ) : (
+
+              <div className="h-[240px] flex items-center justify-center text-sm text-[var(--fg)]/40">
+                No visitor analytics available yet.
+              </div>
+
+            )}
 
           </div>
 
+          {/* =================================
+              MONTHLY VISITORS
+          ================================= */}
 
           <div className="border border-[var(--border)] rounded-2xl p-6">
 
@@ -310,9 +464,76 @@ export default function DashboardHome() {
               Monthly Visitors
             </h2>
 
-            <div className="h-[240px] flex items-center justify-center text-sm text-[var(--fg)]/40">
-              No visitor analytics available yet.
-            </div>
+            {monthlyData.length > 0 ? (
+
+              <div className="h-[240px]">
+
+                <ResponsiveContainer
+                  width="100%"
+                  height="100%"
+                >
+
+                  <LineChart
+                    data={monthlyData}
+                    margin={{
+                      top: 5,
+                      right: 10,
+                      left: -20,
+                      bottom: 5,
+                    }}
+                  >
+
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="currentColor"
+                      opacity={0.1}
+                    />
+
+                    <XAxis
+                      dataKey="month"
+                      tick={{
+                        fill: 'currentColor',
+                        fontSize: 12,
+                      }}
+                      axisLine={false}
+                      tickLine={false}
+                    />
+
+                    <YAxis
+                      allowDecimals={false}
+                      tick={{
+                        fill: 'currentColor',
+                        fontSize: 12,
+                      }}
+                      axisLine={false}
+                      tickLine={false}
+                    />
+
+                    <Tooltip />
+
+                    <Line
+                      type="monotone"
+                      dataKey="visitors"
+                      name="Visitors"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                    />
+
+                  </LineChart>
+
+                </ResponsiveContainer>
+
+              </div>
+
+            ) : (
+
+              <div className="h-[240px] flex items-center justify-center text-sm text-[var(--fg)]/40">
+                No monthly visitor analytics available yet.
+              </div>
+
+            )}
 
           </div>
 

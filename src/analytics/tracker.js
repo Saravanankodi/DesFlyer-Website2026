@@ -9,11 +9,12 @@ import { db } from "../firebase";
 const ANALYTICS_COLLECTION = "WebsiteAnalytics";
 
 function getSessionId() {
-  let sessionId = sessionStorage.getItem("analytics_session_id");
+  let sessionId = sessionStorage.getItem(
+    "analytics_session_id"
+  );
 
   if (!sessionId) {
-    sessionId =
-      crypto.randomUUID();
+    sessionId = crypto.randomUUID();
 
     sessionStorage.setItem(
       "analytics_session_id",
@@ -84,31 +85,36 @@ export async function trackEvent(
   additionalData = {}
 ) {
   try {
+    const path = window.location.pathname;
+
+    // NEVER track admin pages
+    if (
+      path === "/admin" ||
+      path.startsWith("/admin/")
+    ) {
+      return;
+    }
+
+    const sessionId = getSessionId();
+
     await addDoc(
       collection(db, ANALYTICS_COLLECTION),
       {
         event,
 
-        page:
-          window.location.pathname,
+        page: path,
 
-        pageTitle:
-          document.title,
+        pageTitle: document.title,
 
-        device:
-          getDeviceType(),
+        device: getDeviceType(),
 
-        source:
-          getTrafficSource(),
+        source: getTrafficSource(),
 
-        sessionId:
-          getSessionId(),
+        sessionId,
 
-        userAgent:
-          navigator.userAgent,
+        userAgent: navigator.userAgent,
 
-        timestamp:
-          serverTimestamp(),
+        timestamp: serverTimestamp(),
 
         ...additionalData,
       }
@@ -126,19 +132,13 @@ export function trackPageView() {
 }
 
 export function trackContactFormSubmit() {
-  return trackEvent(
-    "contact_form_submit"
-  );
+  return trackEvent("contact_form_submit");
 }
 
 export function trackResumeDownload() {
-  return trackEvent(
-    "resume_download"
-  );
+  return trackEvent("resume_download");
 }
 
 export function trackLinkedInClick() {
-  return trackEvent(
-    "linkedin_click"
-  );
+  return trackEvent("linkedin_click");
 }
