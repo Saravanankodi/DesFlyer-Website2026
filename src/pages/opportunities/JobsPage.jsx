@@ -2631,14 +2631,16 @@ export default function JobsPage() {
             src="/images/portfolio/job.png"
             alt="DesFlyer careers"
             className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              scale-[1.02]
-              object-cover
-              object-center
-            "
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        object-[80%_center]
+        sm:object-center
+           blur-[3px]
+    sm:blur-0
+      "
           />
 
           <div
@@ -2646,9 +2648,9 @@ export default function JobsPage() {
               absolute
               inset-0
               bg-gradient-to-r
-              from-[#020712]/90
+              from-[#020712]/50
               via-[#020712]/58
-              to-[#020712]/20
+              to-[#020712]/90
 
               lg:from-[#020712]/86
               lg:via-[#020712]/42
@@ -3297,7 +3299,7 @@ export default function JobsPage() {
         className="
           px-4
           pb-12
-          pt-8
+          pt-40
 
           sm:px-6
           sm:pb-16

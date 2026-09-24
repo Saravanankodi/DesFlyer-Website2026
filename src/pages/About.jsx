@@ -121,6 +121,40 @@ const leadership = [
     email: 'md@example.com',
     linkedin: '#',
   },
+
+  // CURRENT INTERN 01 → TEAM
+  {
+    id: 'intern-01',
+    reportsTo: 'founder',
+    name: 'TamilNangai',
+    title: 'Software Development Intern',
+    clearance: 'L2',
+    bio: 'Working with the development team to build practical digital products and gain hands-on experience in modern software development.',
+    stat: {
+      label: 'Focus',
+      value: 'Development',
+    },
+    image: '/images/portfolio/tamil.jpeg',
+    email: 'intern1@example.com',
+    linkedin: '#',
+  },
+
+  // CURRENT INTERN 02 → TEAM
+  {
+    id: 'intern-02',
+    reportsTo: 'founder',
+    name: 'Atchayasri',
+    title: 'UI/UX Design Intern',
+    clearance: 'L2',
+    bio: 'Exploring user experience, interface design and creative problem-solving while contributing to real-world projects.',
+    stat: {
+      label: 'Focus',
+      value: 'Design',
+    },
+    image: '/images/portfolio/atchu.jpeg',
+    email: 'intern2@example.com',
+    linkedin: '#',
+  },
 ]
 
 const founderLead = leadership.find(
@@ -138,28 +172,43 @@ const directReports = leadership.filter(
 const interns = [
   {
     id: 'intern-01',
-    name: 'Intern Name 01',
-    title: 'Software Development Intern',
-    bio: 'Working with the team to build practical digital products and gain hands-on experience in modern product development.',
-    image: '/images/portfolio/tamil.jpeg',
+    name: 'Shalini',
+    title: 'Frontend Development Intern',
+    bio: 'Building responsive interfaces and interactive web experiences while learning modern frontend development practices.',
+    image: '/images/portfolio/shalini.jpeg',
     stat: {
       label: 'Focus',
-      value: 'Dev',
+      value: 'Frontend',
     },
-    email: 'intern1@example.com',
+    email: 'intern3@example.com',
     linkedin: '#',
   },
+
   {
     id: 'intern-02',
-    name: 'Intern Name 02',
-    title: 'UI/UX Design Intern',
-    bio: 'Exploring user experience, interface design and creative problem-solving while contributing to real-world projects.',
-    image: '/images/portfolio/atchu.jpeg',
+    name: 'Gayathri',
+    title: 'Full Stack Development Intern',
+    bio: 'Working across frontend and backend systems while gaining practical experience with APIs, databases and application architecture.',
+    image: '/images/portfolio/gayathri.png',
     stat: {
       label: 'Focus',
-      value: 'Design',
+      value: 'Full Stack',
     },
-    email: 'intern2@example.com',
+    email: 'intern4@example.com',
+    linkedin: '#',
+  },
+
+  {
+    id: 'intern-03',
+    name: 'Subash',
+    title: 'QA & Automation Intern',
+    bio: 'Learning software quality practices, testing workflows and automation while helping the team deliver reliable digital products.',
+    image: '/images/portfolio/subash.png',
+    stat: {
+      label: 'Focus',
+      value: 'QA',
+    },
+    email: 'intern5@example.com',
     linkedin: '#',
   },
 ]
@@ -346,12 +395,12 @@ function CursorLight({
 
       x.set(
         event.clientX -
-          rect.left
+        rect.left
       )
 
       y.set(
         event.clientY -
-          rect.top
+        rect.top
       )
     }
 
@@ -707,7 +756,7 @@ function OrbitalCore({
             let difference =
               Math.abs(
                 current -
-                  targetNormalized
+                targetNormalized
               )
 
             if (
@@ -721,7 +770,7 @@ function OrbitalCore({
             if (
               difference < 3 &&
               difference <
-                closestDistance
+              closestDistance
             ) {
               closestDistance =
                 difference
@@ -735,7 +784,7 @@ function OrbitalCore({
         if (
           closestIndex !== -1 &&
           activeRef.current !==
-            closestIndex
+          closestIndex
         ) {
           activeRef.current =
             closestIndex
@@ -832,18 +881,18 @@ function OrbitalCore({
           scale: hovered
             ? 1.12
             : [
-                0.92,
-                1.06,
-                0.92,
-              ],
+              0.92,
+              1.06,
+              0.92,
+            ],
 
           opacity: hovered
             ? 0.3
             : [
-                0.1,
-                0.22,
-                0.1,
-              ],
+              0.1,
+              0.22,
+              0.1,
+            ],
         }}
         transition={{
           duration: 5,
@@ -955,14 +1004,14 @@ function OrbitalCore({
             Math.cos(
               radians
             ) *
-              43
+            43
 
           const top =
             50 +
             Math.sin(
               radians
             ) *
-              43
+            43
 
           const major =
             index % 3 === 0
@@ -970,11 +1019,10 @@ function OrbitalCore({
           return (
             <motion.span
               key={index}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal ${
-                major
+              className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal ${major
                   ? 'h-1.5 w-1.5'
                   : 'h-1 w-1'
-              }`}
+                }`}
               style={{
                 left: `${left}%`,
                 top: `${top}%`,
@@ -982,33 +1030,33 @@ function OrbitalCore({
               animate={{
                 opacity: major
                   ? [
-                      0.2,
-                      0.85,
-                      0.2,
-                    ]
+                    0.2,
+                    0.85,
+                    0.2,
+                  ]
                   : [
-                      0.06,
-                      0.35,
-                      0.06,
-                    ],
+                    0.06,
+                    0.35,
+                    0.06,
+                  ],
 
                 scale: major
                   ? [
-                      0.8,
-                      1.3,
-                      0.8,
-                    ]
+                    0.8,
+                    1.3,
+                    0.8,
+                  ]
                   : [
-                      0.7,
-                      1,
-                      0.7,
-                    ],
+                    0.7,
+                    1,
+                    0.7,
+                  ],
               }}
               transition={{
                 duration:
                   2 +
                   (index % 4) *
-                    0.35,
+                  0.35,
 
                 delay:
                   index * 0.08,
@@ -1175,11 +1223,10 @@ function OrbitalCore({
                 "
               >
                 <div
-                  className={`relative flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 sm:h-12 sm:w-12 sm:rounded-2xl ${
-                    isActive
+                  className={`relative flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 sm:h-12 sm:w-12 sm:rounded-2xl ${isActive
                       ? 'border-signal bg-signal text-white shadow-[0_0_30px_rgba(46,111,255,0.45)]'
                       : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)]/40'
-                  }`}
+                    }`}
                 >
                   <Icon
                     size={16}
@@ -1189,21 +1236,19 @@ function OrbitalCore({
 
                 <div className="text-center">
                   <p
-                    className={`font-mono text-[8px] uppercase tracking-[0.16em] sm:text-[9px] sm:tracking-[0.2em] ${
-                      isActive
+                    className={`font-mono text-[8px] uppercase tracking-[0.16em] sm:text-[9px] sm:tracking-[0.2em] ${isActive
                         ? 'text-signal'
                         : 'text-[var(--fg)]/30'
-                    }`}
+                      }`}
                   >
                     {point.short}
                   </p>
 
                   <p
-                    className={`mt-0.5 text-[9px] font-medium sm:text-[10px] ${
-                      isActive
+                    className={`mt-0.5 text-[9px] font-medium sm:text-[10px] ${isActive
                         ? 'text-[var(--fg)]'
                         : 'text-[var(--fg)]/30'
-                    }`}
+                      }`}
                   >
                     {point.label}
                   </p>
@@ -1466,8 +1511,8 @@ export default function About() {
       ================================================================= */}
 
       <section
-  ref={heroRef}
-  className="
+        ref={heroRef}
+        className="
     relative
     min-h-[680px]
     overflow-hidden
@@ -1484,62 +1529,64 @@ export default function About() {
     lg:pt-[112px]
     xl:px-12
   "
->
-  <CursorLight
-    containerRef={heroRef}
-    reduceMotion={reduceMotion}
-  />
+      >
+        <CursorLight
+          containerRef={heroRef}
+          reduceMotion={reduceMotion}
+        />
 
-  {/* HERO IMAGE */}
+        {/* HERO IMAGE */}
 
-  <motion.div
-    initial={{
-      scale: 1.18,
-      opacity: 0.9,
-    }}
-    animate={{
-      scale: 1,
-      opacity: 1,
-    }}
-    transition={{
-      duration: 1.8,
-      ease: [0.16, 1, 0.3, 1],
-    }}
-    style={{
-      y: imageY,
-    }}
-    className="
+        <motion.div
+          initial={{
+            scale: 1.18,
+            opacity: 0.9,
+          }}
+          animate={{
+            scale: 1,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 1.8,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{
+            y: imageY,
+          }}
+          className="
       pointer-events-none
       absolute
       inset-0
     "
-  >
-    <img
-      src="/images/portfolio/about.png"
-      alt=""
-      className="
+        >
+          <img
+            src="/images/portfolio/about.png"
+            alt=""
+            className="
         absolute
         inset-0
         h-full
         w-full
         object-cover
-        object-[50%_50%]
+        object-[70%_center]
         sm:object-center
+           blur-[3px]
+    sm:blur-0
       "
-    />
+          />
 
-    <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-black/20" />
 
-    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
-  </motion.div>
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+        </motion.div>
 
-  {/* HERO CONTENT */}
+        {/* HERO CONTENT */}
 
-  <motion.div
-    style={{
-      opacity: heroOpacity,
-    }}
-    className="
+        <motion.div
+          style={{
+            opacity: heroOpacity,
+          }}
+          className="
       relative
       z-10
       mx-auto
@@ -1552,50 +1599,50 @@ export default function About() {
       sm:min-h-[610px]
       lg:justify-start
     "
-  >
-    <div
-      className="
+        >
+          <div
+            className="
         w-full
         max-w-3xl
         text-center
         lg:text-left
       "
-    >
+          >
 
-      {/* EYEBROW */}
+            {/* EYEBROW */}
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.15,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="
           mb-5
           flex
           justify-center
           sm:mb-6
           lg:justify-start
         "
-      >
-        <Eyebrow>
-          {aboutContent.eyebrow}
-        </Eyebrow>
-      </motion.div>
+            >
+              <Eyebrow>
+                {aboutContent.eyebrow}
+              </Eyebrow>
+            </motion.div>
 
-      {/* HEADING */}
+            {/* HEADING */}
 
-      <RevealHeading
-        text={aboutContent.heading}
-        className="
+            <RevealHeading
+              text={aboutContent.heading}
+              className="
           mx-auto
           max-w-4xl
           font-display
@@ -1610,25 +1657,25 @@ export default function About() {
           lg:text-[64px]
           xl:text-[70px]
         "
-      />
+            />
 
-      {/* SIGNAL LINE */}
+            {/* SIGNAL LINE */}
 
-      <motion.div
-        initial={{
-          width: 0,
-          opacity: 0,
-        }}
-        animate={{
-          width: 140,
-          opacity: 1,
-        }}
-        transition={{
-          delay: 0.7,
-          duration: 0.8,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="
+            <motion.div
+              initial={{
+                width: 0,
+                opacity: 0,
+              }}
+              animate={{
+                width: 140,
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.7,
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="
           mx-auto
           mt-6
           h-[2px]
@@ -1638,25 +1685,25 @@ export default function About() {
           sm:mt-8
           lg:mx-0
         "
-      />
+            />
 
-      {/* INTRO */}
+            {/* INTRO */}
 
-      <motion.p
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.5,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.5,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="
           mx-auto
           mt-6
           max-w-2xl
@@ -1671,26 +1718,26 @@ export default function About() {
           lg:text-lg
           lg:leading-8
         "
-      >
-        {aboutContent.intro}
-      </motion.p>
+            >
+              {aboutContent.intro}
+            </motion.p>
 
-      {/* FOUNDED / LOCATION */}
+            {/* FOUNDED / LOCATION */}
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          delay: 0.7,
-          duration: 0.6,
-        }}
-        className="
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.7,
+                duration: 0.6,
+              }}
+              className="
           mt-6
           flex
           flex-wrap
@@ -1708,9 +1755,9 @@ export default function About() {
           sm:tracking-[0.16em]
           lg:justify-start
         "
-      >
-        <span
-          className="
+            >
+              <span
+                className="
             h-1.5
             w-1.5
             animate-pulse
@@ -1718,33 +1765,33 @@ export default function About() {
             bg-signal
             shadow-[0_0_10px_rgba(46,111,255,0.8)]
           "
-        />
+              />
 
-        Founded {siteConfig.founded}
+              Founded {siteConfig.founded}
 
-        <span className="text-white/30">
-          /
-        </span>
+              <span className="text-white/30">
+                /
+              </span>
 
-        {siteConfig.location}
-      </motion.div>
+              {siteConfig.location}
+            </motion.div>
 
-      {/* TAGS */}
+            {/* TAGS */}
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          delay: 0.8,
-          duration: 0.6,
-        }}
-        className="
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.8,
+                duration: 0.6,
+              }}
+              className="
           mt-6
           flex
           flex-wrap
@@ -1753,15 +1800,15 @@ export default function About() {
           sm:mt-7
           lg:justify-start
         "
-      >
-        {[
-          'Digital systems',
-          'Product engineering',
-          'Creative technology',
-        ].map((item, index) => (
-          <div
-            key={item}
-            className="
+            >
+              {[
+                'Digital systems',
+                'Product engineering',
+                'Creative technology',
+              ].map((item, index) => (
+                <div
+                  key={item}
+                  className="
               flex
               items-center
               gap-2
@@ -1775,47 +1822,47 @@ export default function About() {
               sm:px-3
               sm:py-2
             "
-          >
-            <span
-              className="
+                >
+                  <span
+                    className="
                 font-mono
                 text-[7px]
                 text-blue-300
                 sm:text-[8px]
               "
-            >
-              0{index + 1}
-            </span>
+                  >
+                    0{index + 1}
+                  </span>
 
-            <span
-              className="
+                  <span
+                    className="
                 text-[8px]
                 text-white/70
                 sm:text-[9px]
               "
-            >
-              {item}
-            </span>
-          </div>
-        ))}
-      </motion.div>
+                  >
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
 
-      {/* STATS */}
+            {/* STATS */}
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          delay: 0.9,
-        }}
-        className="
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.9,
+              }}
+              className="
           mx-auto
           mt-8
           grid
@@ -1830,13 +1877,13 @@ export default function About() {
           lg:mx-0
           lg:text-left
         "
-      >
+            >
 
-        {/* YEARS */}
+              {/* YEARS */}
 
-        <div className="text-center lg:text-left">
-          <p
-            className="
+              <div className="text-center lg:text-left">
+                <p
+                  className="
               font-display
               text-xl
               font-bold
@@ -1845,16 +1892,16 @@ export default function About() {
               sm:text-2xl
               md:text-3xl
             "
-          >
-            <Counter
-              to={years}
-              suffix="+"
-              reduceMotion={reduceMotion}
-            />
-          </p>
+                >
+                  <Counter
+                    to={years}
+                    suffix="+"
+                    reduceMotion={reduceMotion}
+                  />
+                </p>
 
-          <p
-            className="
+                <p
+                  className="
               mt-1
               text-[8px]
               uppercase
@@ -1862,15 +1909,15 @@ export default function About() {
               text-white/50
               sm:text-[9px]
             "
-          >
-            Years active
-          </p>
-        </div>
+                >
+                  Years active
+                </p>
+              </div>
 
-        {/* PROJECTS */}
+              {/* PROJECTS */}
 
-        <div
-          className="
+              <div
+                className="
             border-l
             border-white/15
             pl-3
@@ -1878,9 +1925,9 @@ export default function About() {
             sm:pl-4
             lg:text-left
           "
-        >
-          <p
-            className="
+              >
+                <p
+                  className="
               font-display
               text-xl
               font-bold
@@ -1889,16 +1936,16 @@ export default function About() {
               sm:text-2xl
               md:text-3xl
             "
-          >
-            <Counter
-              to={40}
-              suffix="+"
-              reduceMotion={reduceMotion}
-            />
-          </p>
+                >
+                  <Counter
+                    to={40}
+                    suffix="+"
+                    reduceMotion={reduceMotion}
+                  />
+                </p>
 
-          <p
-            className="
+                <p
+                  className="
               mt-1
               text-[8px]
               uppercase
@@ -1906,15 +1953,15 @@ export default function About() {
               text-white/50
               sm:text-[9px]
             "
-          >
-            Projects
-          </p>
-        </div>
+                >
+                  Projects
+                </p>
+              </div>
 
-        {/* RETENTION */}
+              {/* RETENTION */}
 
-        <div
-          className="
+              <div
+                className="
             border-l
             border-white/15
             pl-3
@@ -1922,9 +1969,9 @@ export default function About() {
             sm:pl-4
             lg:text-left
           "
-        >
-          <p
-            className="
+              >
+                <p
+                  className="
               font-display
               text-xl
               font-bold
@@ -1933,16 +1980,16 @@ export default function About() {
               sm:text-2xl
               md:text-3xl
             "
-          >
-            <Counter
-              to={98}
-              suffix="%"
-              reduceMotion={reduceMotion}
-            />
-          </p>
+                >
+                  <Counter
+                    to={98}
+                    suffix="%"
+                    reduceMotion={reduceMotion}
+                  />
+                </p>
 
-          <p
-            className="
+                <p
+                  className="
               mt-1
               text-[8px]
               uppercase
@@ -1950,29 +1997,29 @@ export default function About() {
               text-white/50
               sm:text-[9px]
             "
-          >
-            Retention
-          </p>
-        </div>
+                >
+                  Retention
+                </p>
+              </div>
 
-      </motion.div>
+            </motion.div>
 
-    </div>
-  </motion.div>
+          </div>
+        </motion.div>
 
-  {/* DESKTOP SCROLL LABEL */}
+        {/* DESKTOP SCROLL LABEL */}
 
-  <motion.div
-    initial={{
-      opacity: 0,
-    }}
-    animate={{
-      opacity: 1,
-    }}
-    transition={{
-      delay: 1.2,
-    }}
-    className="
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1.2,
+          }}
+          className="
       absolute
       bottom-5
       left-1/2
@@ -1987,14 +2034,14 @@ export default function About() {
       text-white/40
       sm:flex
     "
-  >
-    <span>
-      Scroll to explore
-    </span>
+        >
+          <span>
+            Scroll to explore
+          </span>
 
-    <span className="h-px w-10 bg-gradient-to-r from-signal to-transparent" />
-  </motion.div>
-</section>
+          <span className="h-px w-10 bg-gradient-to-r from-signal to-transparent" />
+        </motion.div>
+      </section>
 
       {/* ================================================================
           CORE SYSTEM
@@ -2217,14 +2264,12 @@ export default function About() {
                   bg-signal
                 "
                 style={{
-                  left: `${
-                    5 +
+                  left: `${5 +
                     ((index * 37) % 90)
-                  }%`,
-                  top: `${
-                    8 +
+                    }%`,
+                  top: `${8 +
                     ((index * 23) % 82)
-                  }%`,
+                    }%`,
                 }}
                 animate={{
                   y: [0, -18, 0],
@@ -2444,7 +2489,7 @@ export default function About() {
             />
 
             <div
-  className="
+              className="
     relative
     z-10
     grid
@@ -2457,41 +2502,41 @@ export default function About() {
     xl:grid-cols-[minmax(0,1fr)_500px_minmax(0,1fr)]
     xl:gap-8
   "
->
-  {/* ==========================================================
+            >
+              {/* ==========================================================
       DESCRIPTION
       MOBILE: FIRST
       DESKTOP: CENTER
   =========================================================== */}
 
-  <div
-    className="
+              <div
+                className="
       order-1
       lg:order-2
     "
-  >
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={activeCard.key}
-        initial={{
-          opacity: 0,
-          x: -20,
-          scale: 0.97,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          x: 20,
-          scale: 0.97,
-        }}
-        transition={{
-          duration: 0.4,
-        }}
-        className="
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeCard.key}
+                    initial={{
+                      opacity: 0,
+                      x: -20,
+                      scale: 0.97,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: 20,
+                      scale: 0.97,
+                    }}
+                    transition={{
+                      duration: 0.4,
+                    }}
+                    className="
           relative
           mx-auto
           w-full
@@ -2499,9 +2544,9 @@ export default function About() {
           px-1
           sm:px-0
         "
-      >
-        <motion.div
-          className="
+                  >
+                    <motion.div
+                      className="
             pointer-events-none
             absolute
             -inset-10
@@ -2509,39 +2554,39 @@ export default function About() {
             bg-signal/[0.035]
             blur-[60px]
           "
-          animate={{
-            opacity: [0.25, 0.55, 0.25],
-            scale: [0.95, 1.05, 0.95],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+                      animate={{
+                        opacity: [0.25, 0.55, 0.25],
+                        scale: [0.95, 1.05, 0.95],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
 
-        <div className="relative">
-          <div className="mb-3 flex items-center gap-3 sm:mb-5">
-            <motion.span
-              className="h-px bg-signal"
-              animate={{
-                width: [30, 55, 30],
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
+                    <div className="relative">
+                      <div className="mb-3 flex items-center gap-3 sm:mb-5">
+                        <motion.span
+                          className="h-px bg-signal"
+                          animate={{
+                            width: [30, 55, 30],
+                            opacity: [0.5, 1, 0.5],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-signal sm:text-[9px]">
-              0{active + 1} / 03
-            </span>
-          </div>
+                        <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-signal sm:text-[9px]">
+                          0{active + 1} / 03
+                        </span>
+                      </div>
 
-          <h3
-            className="
+                      <h3
+                        className="
               font-display
               text-2xl
               font-semibold
@@ -2550,12 +2595,12 @@ export default function About() {
               sm:text-3xl
               md:text-4xl
             "
-          >
-            {activeCard.title}
-          </h3>
+                      >
+                        {activeCard.title}
+                      </h3>
 
-          <p
-            className="
+                      <p
+                        className="
               mt-3
               text-sm
               leading-6
@@ -2563,69 +2608,69 @@ export default function About() {
               sm:mt-5
               sm:leading-7
             "
-          >
-            {activeCard.body}
-          </p>
+                      >
+                        {activeCard.body}
+                      </p>
 
-          <div className="mt-5 flex items-center gap-3 sm:mt-8">
-            <div className="flex gap-1">
-              {[0, 1, 2].map((dot) => (
-                <motion.span
-                  key={dot}
-                  className="h-1 w-1 rounded-full bg-signal"
-                  animate={{
-                    opacity: [0.2, 1, 0.2],
-                    scale: [0.7, 1.3, 0.7],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    delay: dot * 0.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              ))}
-            </div>
+                      <div className="mt-5 flex items-center gap-3 sm:mt-8">
+                        <div className="flex gap-1">
+                          {[0, 1, 2].map((dot) => (
+                            <motion.span
+                              key={dot}
+                              className="h-1 w-1 rounded-full bg-signal"
+                              animate={{
+                                opacity: [0.2, 1, 0.2],
+                                scale: [0.7, 1.3, 0.7],
+                              }}
+                              transition={{
+                                duration: 1.5,
+                                delay: dot * 0.2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                          ))}
+                        </div>
 
-            <span className="font-mono text-[7px] uppercase tracking-[0.16em] text-[var(--fg)]/25 sm:text-[8px]">
-              Active direction
-            </span>
-          </div>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  </div>
+                        <span className="font-mono text-[7px] uppercase tracking-[0.16em] text-[var(--fg)]/25 sm:text-[8px]">
+                          Active direction
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-  {/* ==========================================================
+              {/* ==========================================================
       CARDS
       MOBILE: SECOND
       DESKTOP: LEFT
   =========================================================== */}
 
-  <motion.div
-    initial={{
-      opacity: 0,
-      x: -35,
-    }}
-    whileInView={{
-      opacity: 1,
-      x: 0,
-    }}
-    viewport={{
-      once: true,
-      margin: "-80px",
-    }}
-    transition={{
-      duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
-    }}
-    className="
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: -35,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                viewport={{
+                  once: true,
+                  margin: "-80px",
+                }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="
       order-2
       lg:order-1
     "
-  >
-    <div
-      className="
+              >
+                <div
+                  className="
         mx-auto
         w-full
         max-w-sm
@@ -2633,28 +2678,28 @@ export default function About() {
         sm:space-y-3
         lg:mr-auto
       "
-    >
-      {cards.map((card, index) => {
-        const Icon = card.icon
-        const isActive = active === index
+                >
+                  {cards.map((card, index) => {
+                    const Icon = card.icon
+                    const isActive = active === index
 
-        return (
-          <motion.button
-            key={card.key}
-            type="button"
-            onClick={() => {
-              orbitSelectRef.current?.(index)
-            }}
-            whileHover={{
-              x: 6,
-            }}
-            whileTap={{
-              scale: 0.985,
-            }}
-            transition={{
-              duration: 0.25,
-            }}
-            className="
+                    return (
+                      <motion.button
+                        key={card.key}
+                        type="button"
+                        onClick={() => {
+                          orbitSelectRef.current?.(index)
+                        }}
+                        whileHover={{
+                          x: 6,
+                        }}
+                        whileTap={{
+                          scale: 0.985,
+                        }}
+                        transition={{
+                          duration: 0.25,
+                        }}
+                        className="
               group
               relative
               flex
@@ -2671,18 +2716,18 @@ export default function About() {
               sm:gap-4
               sm:p-4
             "
-            style={{
-              borderColor: isActive
-                ? "rgba(46,111,255,0.35)"
-                : "var(--border)",
-              background: isActive
-                ? "rgba(46,111,255,0.07)"
-                : "transparent",
-            }}
-          >
-            {isActive && (
-              <motion.div
-                className="
+                        style={{
+                          borderColor: isActive
+                            ? "rgba(46,111,255,0.35)"
+                            : "var(--border)",
+                          background: isActive
+                            ? "rgba(46,111,255,0.07)"
+                            : "transparent",
+                        }}
+                      >
+                        {isActive && (
+                          <motion.div
+                            className="
                   pointer-events-none
                   absolute
                   inset-y-0
@@ -2692,20 +2737,20 @@ export default function About() {
                   from-signal/10
                   to-transparent
                 "
-                animate={{
-                  x: ["-100%", "500%"],
-                }}
-                transition={{
-                  duration: 2.8,
-                  repeat: Infinity,
-                  repeatDelay: 1.5,
-                  ease: "easeInOut",
-                }}
-              />
-            )}
+                            animate={{
+                              x: ["-100%", "500%"],
+                            }}
+                            transition={{
+                              duration: 2.8,
+                              repeat: Infinity,
+                              repeatDelay: 1.5,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        )}
 
-            <motion.span
-              className="
+                        <motion.span
+                          className="
                 absolute
                 left-0
                 top-1/2
@@ -2715,109 +2760,107 @@ export default function About() {
                 rounded-full
                 bg-signal
               "
-              animate={{
-                opacity: isActive
-                  ? [0.4, 1, 0.4]
-                  : 0,
-                scaleY: isActive
-                  ? [0.7, 1, 0.7]
-                  : 0,
-              }}
-              transition={{
-                duration: 2,
-                repeat: isActive
-                  ? Infinity
-                  : 0,
-                ease: "easeInOut",
-              }}
-            />
+                          animate={{
+                            opacity: isActive
+                              ? [0.4, 1, 0.4]
+                              : 0,
+                            scaleY: isActive
+                              ? [0.7, 1, 0.7]
+                              : 0,
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: isActive
+                              ? Infinity
+                              : 0,
+                            ease: "easeInOut",
+                          }}
+                        />
 
-            <span
-              className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all sm:h-10 sm:w-10 ${
-                isActive
-                  ? "border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]"
-                  : "border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal"
-              }`}
-            >
-              <Icon size={15} />
-            </span>
+                        <span
+                          className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all sm:h-10 sm:w-10 ${isActive
+                              ? "border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]"
+                              : "border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal"
+                            }`}
+                        >
+                          <Icon size={15} />
+                        </span>
 
-            <span className="relative z-10 min-w-0 flex-1">
-              <span
-                className={`block text-sm font-medium ${
-                  isActive
-                    ? "text-[var(--fg)]"
-                    : "text-[var(--fg)]/45"
-                }`}
-              >
-                {card.title}
-              </span>
+                        <span className="relative z-10 min-w-0 flex-1">
+                          <span
+                            className={`block text-sm font-medium ${isActive
+                                ? "text-[var(--fg)]"
+                                : "text-[var(--fg)]/45"
+                              }`}
+                          >
+                            {card.title}
+                          </span>
 
-              <span className="mt-1 block font-mono text-[7px] uppercase tracking-[0.14em] text-[var(--fg)]/25 sm:text-[8px]">
-                0{index + 1} / Direction
-              </span>
-            </span>
+                          <span className="mt-1 block font-mono text-[7px] uppercase tracking-[0.14em] text-[var(--fg)]/25 sm:text-[8px]">
+                            0{index + 1} / Direction
+                          </span>
+                        </span>
 
-            <motion.span
-              animate={{
-                x: isActive ? 0 : -3,
-                y: isActive ? 0 : 3,
-              }}
-            >
-              <FiArrowUpRight
-                size={15}
-                className={
-                  isActive
-                    ? "text-signal"
-                    : "text-[var(--fg)]/15 group-hover:text-signal"
-                }
-              />
-            </motion.span>
-          </motion.button>
-        )
-      })}
-    </div>
-  </motion.div>
+                        <motion.span
+                          animate={{
+                            x: isActive ? 0 : -3,
+                            y: isActive ? 0 : 3,
+                          }}
+                        >
+                          <FiArrowUpRight
+                            size={15}
+                            className={
+                              isActive
+                                ? "text-signal"
+                                : "text-[var(--fg)]/15 group-hover:text-signal"
+                            }
+                          />
+                        </motion.span>
+                      </motion.button>
+                    )
+                  })}
+                </div>
+              </motion.div>
 
-  {/* ==========================================================
+              {/* ==========================================================
       ORBITAL CLOCK
       MOBILE: HIDDEN
       DESKTOP: RIGHT
   =========================================================== */}
 
-  <motion.div
-    initial={{
-      opacity: 0,
-      x: 35,
-      scale: 0.96,
-    }}
-    whileInView={{
-      opacity: 1,
-      x: 0,
-      scale: 1,
-    }}
-    viewport={{
-      once: true,
-      margin: "-80px",
-    }}
-    transition={{
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1],
-    }}
-    className="
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: 35,
+                  scale: 0.96,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                  margin: "-80px",
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="
       order-3
       hidden
       justify-center
       lg:order-3
       lg:flex
     "
-  >
-    <div className="relative max-w-full">
+              >
+                <div className="relative max-w-full">
 
-      {/* OUTER GLOW */}
+                  {/* OUTER GLOW */}
 
-      <motion.div
-        className="
+                  <motion.div
+                    className="
           pointer-events-none
           absolute
           left-1/2
@@ -2830,21 +2873,21 @@ export default function About() {
           bg-signal/[0.035]
           blur-[60px]
         "
-        animate={{
-          scale: [0.9, 1.08, 0.9],
-          opacity: [0.25, 0.6, 0.25],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+                    animate={{
+                      scale: [0.9, 1.08, 0.9],
+                      opacity: [0.25, 0.6, 0.25],
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
 
-      {/* ORBIT */}
+                  {/* ORBIT */}
 
-      <motion.div
-        className="
+                  <motion.div
+                    className="
           pointer-events-none
           absolute
           left-1/2
@@ -2858,25 +2901,25 @@ export default function About() {
           border-transparent
           border-t-signal/15
         "
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+                    animate={{
+                      rotate: [0, 360],
+                    }}
+                    transition={{
+                      duration: 18,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
 
-      <OrbitalCore
-        active={active}
-        setActive={setActive}
-        reduceMotion={reduceMotion}
-        onSelect={orbitSelectRef}
-      />
-    </div>
-  </motion.div>
-</div>
+                  <OrbitalCore
+                    active={active}
+                    setActive={setActive}
+                    reduceMotion={reduceMotion}
+                    onSelect={orbitSelectRef}
+                  />
+                </div>
+              </motion.div>
+            </div>
 
             {/* EMPTY SIGNAL REMOVED */}
           </div>
@@ -2994,7 +3037,7 @@ export default function About() {
             >
               Meet Our{' '}
               <span className="text-signal">
-                Leaders
+                Team
               </span>
             </motion.h2>
 
@@ -3054,193 +3097,206 @@ export default function About() {
             <span className="absolute left-[83.33%] top-[37px] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-signal shadow-[0_0_18px_rgba(46,111,255,0.7)]" />
           </div>
 
-          {/* THREE LEADERS */}
+          {/* Five LEADERS */}
 
-          <div
+          <div className="mx-auto max-w-6xl">
+
+  <div
+    className="
+      mt-8
+      grid
+      grid-cols-1
+      gap-10
+      sm:mt-14
+      sm:grid-cols-2
+      sm:gap-14
+      lg:mt-0
+      lg:grid-cols-6
+      lg:gap-x-6
+      lg:gap-y-14
+      xl:gap-x-8
+    "
+  >
+    {directReports.map((person, index) => (
+      <motion.div
+        key={person.id}
+        initial={{
+          opacity: 0,
+          y: 35,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        viewport={{
+          once: true,
+          margin: '-70px',
+        }}
+        transition={{
+          duration: 0.65,
+          delay: index * 0.12,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className={`
+          group
+          flex
+          flex-col
+          items-center
+          text-center
+
+          ${
+            index < 3
+              ? 'lg:col-span-2'
+              : index === 3
+                ? 'lg:col-span-2 lg:col-start-2'
+                : 'lg:col-span-2 lg:col-start-4'
+          }
+        `}
+      >
+        <div className="relative">
+
+          <div className="pointer-events-none absolute inset-0 rounded-full bg-signal/15 blur-[50px] opacity-0 transition-all duration-500 group-hover:opacity-100" />
+
+          <motion.div
+            whileHover={{
+              y: -8,
+              scale: 1.045,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
-              mt-8
-              grid
-              grid-cols-1
-              gap-10
-              sm:mt-14
-              sm:grid-cols-2
-              sm:gap-14
-              lg:mt-0
-              lg:grid-cols-3
-              lg:gap-10
-              xl:gap-12
+              relative
+              h-40
+              w-40
+              overflow-hidden
+              rounded-full
+              border
+              border-[var(--border)]
+              bg-[var(--bg)]
+              shadow-[0_15px_45px_rgba(0,0,0,0.08)]
+              sm:h-48
+              sm:w-48
+              md:h-52
+              md:w-52
             "
           >
-            {directReports.map(
-              (person, index) => (
-                <motion.div
-                  key={person.id}
-                  initial={{
-                    opacity: 0,
-                    y: 35,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    margin: '-70px',
-                  }}
-                  transition={{
-                    duration: 0.65,
-                    delay: index * 0.12,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="
-                    group
-                    flex
-                    flex-col
-                    items-center
-                    text-center
-                  "
-                >
-                  <div className="relative">
+            <img
+              src={person.image}
+              alt={person.name}
+              className="
+                h-full
+                w-full
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-110
+              "
+              onError={(event) => {
+                event.currentTarget.style.display = 'none'
+              }}
+            />
 
-                    <div className="pointer-events-none absolute inset-0 rounded-full bg-signal/15 blur-[50px] opacity-0 transition-all duration-500 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-signal/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </motion.div>
 
-                    <motion.div
-                      whileHover={{
-                        y: -8,
-                        scale: 1.045,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      className="
-                        relative
-                        h-40
-                        w-40
-                        overflow-hidden
-                        rounded-full
-                        border
-                        border-[var(--border)]
-                        bg-[var(--bg)]
-                        shadow-[0_15px_45px_rgba(0,0,0,0.08)]
-                        sm:h-48
-                        sm:w-48
-                        md:h-52
-                        md:w-52
-                      "
-                    >
-                      <img
-                        src={person.image}
-                        alt={person.name}
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          transition-transform
-                          duration-700
-                          group-hover:scale-110
-                        "
-                        onError={(event) => {
-                          event.currentTarget.style.display =
-                            'none'
-                        }}
-                      />
+          <span className="absolute bottom-2 right-3 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-[var(--bg)] bg-signal opacity-0 shadow-[0_0_18px_rgba(46,111,255,0.55)] transition-all duration-300 group-hover:opacity-100">
+            <span className="h-1.5 w-1.5 rounded-full bg-white" />
+          </span>
+        </div>
 
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-signal/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    </motion.div>
+        <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-signal transition-transform duration-300 group-hover:-translate-y-1 sm:mt-7 sm:text-2xl">
+          {person.name}
+        </h3>
 
-                    <span className="absolute bottom-2 right-3 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-[var(--bg)] bg-signal opacity-0 shadow-[0_0_18px_rgba(46,111,255,0.55)] transition-all duration-300 group-hover:opacity-100">
-                      <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                    </span>
-                  </div>
+        <p className="mt-2 text-sm font-medium text-[var(--fg)]">
+          {person.title}
+        </p>
 
-                  <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-signal transition-transform duration-300 group-hover:-translate-y-1 sm:mt-7 sm:text-2xl">
-                    {person.name}
-                  </h3>
+        <p className="mt-3 max-w-xs text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
+          {person.bio}
+        </p>
 
-                  <p className="mt-2 text-sm font-medium text-[var(--fg)]">
-                    {person.title}
-                  </p>
+        <div className="mt-5 flex items-center justify-center gap-3 sm:gap-4">
+          <div className="text-left">
+            <span className="block font-display text-lg font-bold text-[var(--fg)]">
+              {person.stat.value}
+            </span>
 
-                  <p className="mt-3 max-w-xs text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
-                    {person.bio}
-                  </p>
-
-                  <div className="mt-5 flex items-center justify-center gap-3 sm:gap-4">
-                    <div className="text-left">
-                      <span className="block font-display text-lg font-bold text-[var(--fg)]">
-                        {person.stat.value}
-                      </span>
-
-                      <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/30">
-                        {person.stat.label}
-                      </span>
-                    </div>
-
-                    <div className="h-8 w-px bg-[var(--border)]" />
-
-                    <div className="flex gap-2">
-                      <a
-                        href={`mailto:${person.email}`}
-                        aria-label={`Email ${person.name}`}
-                        className="
-                          flex
-                          h-8
-                          w-8
-                          items-center
-                          justify-center
-                          rounded-full
-                          border
-                          border-[var(--border)]
-                          text-[var(--fg)]/35
-                          transition-all
-                          duration-300
-                          hover:border-signal/40
-                          hover:bg-signal/10
-                          hover:text-signal
-                        "
-                      >
-                        <FiMail size={12} />
-                      </a>
-
-                      <a
-                        href={person.linkedin}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`LinkedIn ${person.name}`}
-                        className="
-                          flex
-                          h-8
-                          w-8
-                          items-center
-                          justify-center
-                          rounded-full
-                          border
-                          border-[var(--border)]
-                          text-[var(--fg)]/35
-                          transition-all
-                          duration-300
-                          hover:border-signal/40
-                          hover:bg-signal/10
-                          hover:text-signal
-                        "
-                      >
-                        <FiLinkedin size={12} />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            )}
+            <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/30">
+              {person.stat.label}
+            </span>
           </div>
+
+          <div className="h-8 w-px bg-[var(--border)]" />
+
+          <div className="flex gap-2">
+            <a
+              href={`mailto:${person.email}`}
+              aria-label={`Email ${person.name}`}
+              className="
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[var(--border)]
+                text-[var(--fg)]/35
+                transition-all
+                duration-300
+                hover:border-signal/40
+                hover:bg-signal/10
+                hover:text-signal
+              "
+            >
+              <FiMail size={12} />
+            </a>
+
+            <a
+              href={person.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`LinkedIn ${person.name}`}
+              className="
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[var(--border)]
+                text-[var(--fg)]/35
+                transition-all
+                duration-300
+                hover:border-signal/40
+                hover:bg-signal/10
+                hover:text-signal
+              "
+            >
+              <FiLinkedin size={12} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+
+</div>
 
           {/* ==============================================================
               INTERNS
           =============================================================== */}
 
-          <div className="relative mt-20 sm:mt-32">
+          <div className="relative mt-32">
 
-            <div className="mb-10 text-center sm:mb-14">
+
+
+            {/* INTERN CONNECTOR */}
+                        <div className=" text-center sm:mb-14">
               <motion.div
                 initial={{
                   opacity: 0,
@@ -3340,8 +3396,6 @@ export default function About() {
               </motion.p>
             </div>
 
-            {/* INTERN CONNECTOR */}
-
             <div className="relative mx-auto mb-10 hidden h-12 max-w-2xl sm:block">
               <div className="absolute left-1/2 top-0 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-signal/35 to-signal/10" />
 
@@ -3356,15 +3410,16 @@ export default function About() {
 
             <div
               className="
-                mx-auto
-                grid
-                max-w-4xl
-                grid-cols-1
-                gap-10
-                sm:grid-cols-2
-                sm:gap-10
-                lg:gap-16
-              "
+    mx-auto
+    grid
+    max-w-5xl
+    grid-cols-1
+    gap-10
+    sm:grid-cols-2
+    lg:grid-cols-3
+    sm:gap-10
+    lg:gap-12
+  "
             >
               {interns.map(
                 (person, index) => (

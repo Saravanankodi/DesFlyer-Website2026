@@ -2608,6 +2608,8 @@ export default function ProjectStack() {
               w-full
               object-cover
               object-center
+                 blur-[3px]
+    sm:blur-0
             "
           />
 

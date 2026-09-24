@@ -2040,15 +2040,17 @@ export default function InternshipPage() {
           <img
             src="/images/portfolio/intern.png"
             alt=""
-            className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              scale-[1.02]
-              object-cover
-              object-center
-            "
+           className="
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        object-[40%_center]
+        sm:object-center
+           blur-[3px]
+    sm:blur-0
+      "
           />
         </div>
 
@@ -2332,7 +2334,7 @@ export default function InternshipPage() {
                     rounded-lg
                     border
                     border-blue-500/30
-                    bg-transparent
+                    bg-blue-700/20
                     px-4
                     py-3
                     text-[10px]
@@ -2455,7 +2457,8 @@ export default function InternshipPage() {
                         rounded-xl
                         border
                         border-blue-400/70
-                        bg-blue-900/70
+                        bg-blue-900/90
+                        shadow-[0_0_40px_rgba(37,99,235,0.18)]
                         px-4
                         py-3
                         transition-all

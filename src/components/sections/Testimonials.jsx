@@ -595,38 +595,38 @@ export default function Testimonials() {
           {/* DECORATIVE UNDERLINE */}
 
           {/* DECORATIVE UNDERLINE — HIDDEN ON MOBILE */}
-<motion.div
-  initial={{
-    opacity: 0,
-    x: -30,
-  }}
-  whileInView={{
-    opacity: 1,
-    x: 0,
-  }}
-  viewport={{
-    once: true,
-  }}
-  transition={{
-    duration: 0.7,
-    delay: 0.5,
-  }}
-  className="mt-6 hidden items-center gap-2 sm:flex"
->
-  <motion.div
-    animate={{
-      width: ["20px", "80px", "20px"],
-    }}
-    transition={{
-      duration: 4,
-    }}
-    className="h-px bg-gradient-to-r from-blue-400 to-cyan-400"
-  />
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.5,
+            }}
+            className="mt-6 hidden items-center gap-2 sm:flex"
+          >
+            <motion.div
+              animate={{
+                width: ["20px", "80px", "20px"],
+              }}
+              transition={{
+                duration: 4,
+              }}
+              className="h-px bg-gradient-to-r from-blue-400 to-cyan-400"
+            />
 
-  <span className="font-mono text-[7px] uppercase tracking-[0.25em] text-[var(--fg)]/20">
-    Human experience / digital systems
-  </span>
-</motion.div>
+            <span className="font-mono text-[7px] uppercase tracking-[0.25em] text-[var(--fg)]/20">
+              Human experience / digital systems
+            </span>
+          </motion.div>
 
           {/* DESCRIPTION */}
 
@@ -812,7 +812,7 @@ export default function Testimonials() {
 
         <motion.div
           variants={rightVariants}
-className="relative flex min-h-0 w-full items-center justify-center lg:min-h-[520px]"      >
+          className="relative flex min-h-0 w-full items-center justify-center lg:min-h-[520px]"      >
 
           {/* RIGHT PANEL */}
 
@@ -836,7 +836,7 @@ className="relative flex min-h-0 w-full items-center justify-center lg:min-h-[52
               delay: 0.15,
               ease: [0.16, 1, 0.3, 1],
             }}
-className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounded-[42px] border border-blue-400/[0.06] bg-blue-950/[0.018] lg:block"          >
+            className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounded-[42px] border border-blue-400/[0.06] bg-blue-950/[0.018] lg:block"          >
 
             {/* TOP LINE */}
 
@@ -868,7 +868,7 @@ className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounde
 
             {/* BOTTOM LINE */}
 
-            
+
 
           </motion.div>
 
@@ -1190,8 +1190,8 @@ className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounde
                       (index === 1
                         ? -160
                         : index === 2
-                        ? 160
-                        : 100),
+                          ? 160
+                          : 100),
                     y:
                       position.y +
                       60,
@@ -1201,8 +1201,8 @@ className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounde
                       (index === 1
                         ? -8
                         : index === 2
-                        ? 8
-                        : 0),
+                          ? 8
+                          : 0),
                   }}
                   whileInView={{
                     opacity: 1,
@@ -1339,11 +1339,10 @@ className="pointer-events-none absolute inset-[2%] hidden overflow-hidden rounde
                     onClick={() =>
                       setActiveIndex(index)
                     }
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeIndex === index
+                    className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === index
                         ? "w-7 bg-blue-400"
                         : "w-1.5 bg-[var(--fg)]/15"
-                    }`}
+                      }`}
                   />
                 ))}
 
@@ -1384,21 +1383,19 @@ function TestimonialCard({
 
   return (
     <div
-      className={`relative min-h-[350px] overflow-hidden rounded-[30px] border border-blue-400/20 bg-[#0D192B] p-5 shadow-[0_25px_70px_rgba(0,0,0,.35)] transition-all duration-500 ${
-        isActive
+      className={`relative min-h-[350px] overflow-hidden rounded-[30px] border border-blue-400/20 bg-[#0D192B] p-5 shadow-[0_25px_70px_rgba(0,0,0,.35)] transition-all duration-500 ${isActive
           ? "border-blue-400/40 shadow-[0_30px_90px_rgba(37,99,235,.22)]"
           : ""
-      }`}
+        }`}
     >
 
       {/* GLOW */}
 
       <div
-        className={`pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/[0.08] blur-3xl transition-opacity duration-500 ${
-          isActive
+        className={`pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/[0.08] blur-3xl transition-opacity duration-500 ${isActive
             ? "opacity-100"
             : "opacity-0"
-        }`}
+          }`}
       />
 
       {/* TOP */}
@@ -1410,11 +1407,10 @@ function TestimonialCard({
           {/* CARD NUMBER */}
 
           <div
-            className={`flex h-11 w-11 items-center justify-center rounded-xl border text-[10px] font-semibold transition-colors ${
-              isActive
+            className={`flex h-11 w-11 items-center justify-center rounded-xl border text-[10px] font-semibold transition-colors ${isActive
                 ? "border-blue-400/20 bg-blue-500/10 text-blue-400"
                 : "border-[var(--border)] bg-[var(--bg)] text-[var(--fg)]/30"
-            }`}
+              }`}
           >
             {cardNumber}
           </div>
@@ -1443,11 +1439,10 @@ function TestimonialCard({
           animate={{
             rotate: isActive ? 45 : 0,
           }}
-          className={`flex h-10 w-10 items-center justify-center rounded-full border ${
-            isActive
+          className={`flex h-10 w-10 items-center justify-center rounded-full border ${isActive
               ? "border-blue-400/20 text-blue-400"
               : "border-[var(--border)] text-[var(--fg)]/25"
-          }`}
+            }`}
         >
           <FiArrowUpRight size={15} />
         </motion.span>
@@ -1462,12 +1457,11 @@ function TestimonialCard({
           “
         </span>
 
- <p
-  className={`relative mt-16 pl-4 leading-7 transition-all duration-300 ${
-            isActive
+        <p
+          className={`relative mt-16 pl-4 leading-7 transition-all duration-300 ${isActive
               ? "text-[16px] text-[var(--fg)]/75"
               : "line-clamp-3 text-sm text-[var(--fg)]/45"
-          }`}
+            }`}
         >
           {item.quote}
         </p>

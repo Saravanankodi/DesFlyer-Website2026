@@ -228,7 +228,7 @@ function OrbitalSystem() {
       />
 
       {/* CENTER CORE */}
-      <motion.div
+      {/* <motion.div
         className="
           absolute left-1/2 top-1/2
           h-3 w-3
@@ -249,7 +249,7 @@ function OrbitalSystem() {
           boxShadow:
             '0 0 15px #65D9FF, 0 0 45px rgba(101,217,255,.7)',
         }}
-      />
+      /> */}
     </div>
   )
 }

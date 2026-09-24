@@ -1102,7 +1102,8 @@ useEffect(() => {
 
         <div
           className="
-            mt-8
+            -mt-5
+            -mb-10
             hidden
             gap-5
             sm:grid

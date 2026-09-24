@@ -877,18 +877,18 @@ export default function Products() {
   {/* ================= HERO IMAGE ================= */}
   <div className="pointer-events-none absolute inset-0 overflow-hidden">
     <img
-      src="/images/portfolio/pro.png"
+      src="/images/portfolio/products.png"
       alt="DesFlyer Products"
-      className="
+   className="
         absolute
         inset-0
         h-full
         w-full
         object-cover
-        object-center
-
-        sm:object-contain
+        object-[100%_center]
         sm:object-center
+           blur-[3px]
+    sm:blur-0
       "
     />
 
