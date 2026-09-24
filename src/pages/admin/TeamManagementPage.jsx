@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FiUserPlus } from 'react-icons/fi'
-import { api } from '../../lib/api'
+// import { api } from '../../lib/api'
 import Button from '../../components/ui/Button'
 
 export default function TeamManagementPage() {

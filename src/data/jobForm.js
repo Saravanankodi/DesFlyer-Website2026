@@ -56,7 +56,7 @@ export const jobFormSections = [
         required: false,
         options: ['Immediate', '15 days', '30 days', '60 days', '90 days'],
       },
-      { name: 'resume', label: 'Resume Upload', type: 'file', required: true, fullWidth: true },
+      {name: 'resumeLink',label: 'Resume Google Drive Link',type: 'url',placeholder: 'https://drive.google.com/...',required: true,},
       {
         name: 'coverLetter',
         label: 'Cover Letter',

@@ -28,7 +28,8 @@ import Seo from '../../lib/Seo'
 import Eyebrow from '../../components/ui/Eyebrow'
 import FAQ from '../../components/FAQ'
 
-import { api } from '../../lib/api'
+import { jobFormSections } from '../../data/jobForm'
+import { submitJobApplication } from '../../lib/jobApplication'
 import { useJobOpenings } from '../../store/openingsStore'
 
 /* ============================================================
@@ -2518,43 +2519,34 @@ export default function JobsPage() {
      SUBMIT APPLICATION
   ========================================================== */
 
-  const handleSubmit = async (values) => {
+    const handleSubmit = async (values) => {
     try {
-      const application = {
-        type: 'job',
-
-        jobId: selectedJob?.id,
-
-        jobTitle: selectedJob?.title,
-
+      const applicationData = {
         ...values,
-
-        resumeFileName:
-          values.resume?.name,
+        jobId: selectedJob?.id || '',
+        jobTitle: selectedJob?.title || '',
       }
 
-      console.log(
-        'Submitting job application:',
-        application
-      )
+      console.log('Submitting job application:', applicationData)
 
-      await api.submitApplication(
-        application
-      )
+      const docId = await submitJobApplication(applicationData)
 
-      setFormData({})
-      setStep(1)
+      console.log('Job application saved successfully:', docId)
+
       setShowApplication(false)
       setSelectedJob(null)
-    } catch (error) {
-      console.error(
-        'Application submission failed:',
-        error
-      )
+      setStep(1)
 
-      throw error
+      alert('Your application has been submitted successfully!')
+    } catch (error) {
+      console.error('Firestore job application error:', error)
+
+      alert(
+        error?.message ||
+          'Something went wrong while submitting your application.'
+      )
     }
-  }
+  } 
 
   /* ==========================================================
      SCROLL TO JOBS

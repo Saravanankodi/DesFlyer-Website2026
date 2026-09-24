@@ -1,16 +1,37 @@
 import { useEffect, useState } from 'react'
-import {
-  ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, Tooltip, CartesianGrid, Legend,
-} from 'recharts'
-import { api } from '../../lib/api'
 
-const COLORS = ['#2E6FFF', '#5C8CFF', '#0F2557', '#8FB2FF']
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  Legend,
+} from 'recharts'
+
+import { getWebsiteAnalytics } from '../../analytics/GetAnalytics'
+
+const COLORS = [
+  '#2E6FFF',
+  '#5C8CFF',
+  '#0F2557',
+  '#8FB2FF',
+]
 
 function ChartCard({ title, children }) {
   return (
     <div className="border border-[var(--border)] rounded-2xl p-6">
-      <h2 className="font-display font-semibold text-base text-[var(--fg)] mb-5">{title}</h2>
+      <h2 className="font-display font-semibold text-base text-[var(--fg)] mb-5">
+        {title}
+      </h2>
+
       {children}
     </div>
   )
@@ -18,97 +39,285 @@ function ChartCard({ title, children }) {
 
 export default function AnalyticsPage() {
   const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    api.getAnalytics().then(setData)
+    async function loadAnalytics() {
+      try {
+        setError(null)
+
+        const analytics = await getWebsiteAnalytics()
+
+        setData(analytics)
+      } catch (error) {
+        console.error('Error loading analytics:', error)
+
+        setError(
+          'Unable to load website analytics. Check Firestore permissions.'
+        )
+      }
+    }
+
+    loadAnalytics()
   }, [])
 
   if (!data) {
     return (
       <div className="p-6 lg:p-10">
-        <div className="h-64 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]" />
+        {error ? (
+          <div className="p-4 rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 text-sm">
+            {error}
+          </div>
+        ) : (
+          <div className="h-64 rounded-2xl border border-[var(--border)] animate-pulse bg-[var(--surface-2)]" />
+        )}
       </div>
     )
   }
 
   return (
     <div className="p-6 lg:p-10">
-      <h1 className="font-display font-bold text-2xl lg:text-3xl text-[var(--fg)] mb-2">Website Analytics</h1>
+      <h1 className="font-display font-bold text-2xl lg:text-3xl text-[var(--fg)] mb-2">
+        Website Analytics
+      </h1>
+
       <p className="text-sm text-[var(--fg)]/50 mb-8">
-        Sample data — connect a real analytics provider (e.g. GA4 or a custom tracking endpoint) to replace these charts with live numbers.
+        Live website analytics collected from visitor activity.
       </p>
 
       <div className="grid lg:grid-cols-2 gap-5 mb-5">
+
+        {/* DAILY VISITORS */}
         <ChartCard title="Daily Visitors">
           <ResponsiveContainer width="100%" height={260}>
             <LineChart data={data.dailyVisitors}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="day" stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} />
-              <YAxis stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} width={32} />
-              <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
-              <Line type="monotone" dataKey="visitors" stroke="#2E6FFF" strokeWidth={2.5} dot={{ r: 3 }} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+              />
+
+              <XAxis
+                dataKey="day"
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+              />
+
+              <YAxis
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                width={32}
+              />
+
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              <Line
+                type="monotone"
+                dataKey="visitors"
+                stroke="#2E6FFF"
+                strokeWidth={2.5}
+                dot={{ r: 3 }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
 
+
+        {/* MONTHLY VISITORS */}
         <ChartCard title="Monthly Visitors">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={data.monthlyVisitors}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="month" stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} />
-              <YAxis stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} width={40} />
-              <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
-              <Bar dataKey="visitors" fill="#2E6FFF" radius={[6, 6, 0, 0]} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+              />
+
+              <XAxis
+                dataKey="month"
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+              />
+
+              <YAxis
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                width={40}
+              />
+
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              <Bar
+                dataKey="visitors"
+                fill="#2E6FFF"
+                radius={[6, 6, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>
 
+
+        {/* TRAFFIC SOURCES */}
         <ChartCard title="Traffic Sources">
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
-              <Pie data={data.trafficSources} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90} paddingAngle={3}>
+              <Pie
+                data={data.trafficSources}
+                dataKey="value"
+                nameKey="name"
+                innerRadius={55}
+                outerRadius={90}
+                paddingAngle={3}
+              >
                 {data.trafficSources.map((_, i) => (
-                  <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                  <Cell
+                    key={i}
+                    fill={COLORS[i % COLORS.length]}
+                  />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
-              <Legend wrapperStyle={{ fontSize: 12 }} />
+
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              <Legend
+                wrapperStyle={{
+                  fontSize: 12,
+                }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </ChartCard>
 
+
+        {/* DEVICE TYPES */}
         <ChartCard title="Device Types">
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
-              <Pie data={data.deviceTypes} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90} paddingAngle={3}>
+              <Pie
+                data={data.deviceTypes}
+                dataKey="value"
+                nameKey="name"
+                innerRadius={55}
+                outerRadius={90}
+                paddingAngle={3}
+              >
                 {data.deviceTypes.map((_, i) => (
-                  <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                  <Cell
+                    key={i}
+                    fill={COLORS[i % COLORS.length]}
+                  />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
-              <Legend wrapperStyle={{ fontSize: 12 }} />
+
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              <Legend
+                wrapperStyle={{
+                  fontSize: 12,
+                }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </ChartCard>
 
+
+        {/* MOST VIEWED PAGES */}
         <ChartCard title="Most Viewed Pages">
           <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={data.mostViewedPages} layout="vertical" margin={{ left: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis type="number" stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} />
-              <YAxis type="category" dataKey="page" stroke="var(--fg)" fontSize={12} tickLine={false} axisLine={false} width={80} />
-              <Tooltip contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
-              <Bar dataKey="views" fill="#2E6FFF" radius={[0, 6, 6, 0]} />
+            <BarChart
+              data={data.mostViewedPages}
+              layout="vertical"
+              margin={{ left: 20 }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+              />
+
+              <XAxis
+                type="number"
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+              />
+
+              <YAxis
+                type="category"
+                dataKey="page"
+                stroke="var(--fg)"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                width={80}
+              />
+
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              <Bar
+                dataKey="views"
+                fill="#2E6FFF"
+                radius={[0, 6, 6, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>
 
+
+        {/* CONTACT CONVERSION */}
         <ChartCard title="Contact Conversion Rate">
           <div className="h-[260px] flex flex-col items-center justify-center">
-            <p className="font-display font-bold text-5xl text-signal">{data.summary.contactConversionRate}</p>
-            <p className="text-sm text-[var(--fg)]/50 mt-3">Visitors who submitted a contact form</p>
+            <p className="font-display font-bold text-5xl text-signal">
+              {data.summary?.contactConversionRate || '0.0%'}
+            </p>
+
+            <p className="text-sm text-[var(--fg)]/50 mt-3">
+              Visitors who submitted a contact form
+            </p>
           </div>
         </ChartCard>
+
       </div>
     </div>
   )
