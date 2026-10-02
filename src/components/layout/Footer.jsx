@@ -712,14 +712,14 @@ export default function Footer() {
                   <motion.img
                     whileHover={{
                       scale: 1.04,
-                      rotateY: 8,
+                      rotateY: 8, 
                     }}
                     transition={{
                       type: 'spring',
                       stiffness: 250,
                       damping: 15,
                     }}
-                    src="/images/portfolio/desflyer nlogo.png"
+                    src="/images/portfolio/llogo.png"
                     alt="DesFlyer"
                     className="
                       w-32

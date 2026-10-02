@@ -2427,6 +2427,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 import {
   useEffect,
   useLayoutEffect,
@@ -2937,6 +2947,7 @@ function ServiceTile({
   });
 
   const [ripples, setRipples] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
 
   const shouldReduceMotion = useReducedMotion();
 
@@ -3078,7 +3089,11 @@ function ServiceTile({
       type="button"
       onClick={handleClick}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        handleMouseLeave();
+      }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       initial={{
@@ -3165,7 +3180,7 @@ function ServiceTile({
             : `
               col-span-1
               row-span-1
-              min-h-[135px]
+              min-h-[150px]
               border-white/[0.08]
               bg-[#050f20]
               shadow-[0_12px_35px_-18px_rgba(0,40,120,0.7)]
@@ -3525,12 +3540,20 @@ function ServiceTile({
             exit={{ opacity: 0 }}
             className="
               relative z-10
-              flex h-full min-h-[135px]
+              flex h-full min-h-[150px]
               flex-col justify-end
               p-3 sm:p-5 lg:p-6
             "
           >
-            <div className="relative z-10">
+            {/* Default card title */}
+            <motion.div
+              animate={{
+                y: isHovered ? -34 : 0,
+                opacity: isHovered ? 0.22 : 1,
+              }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative z-10"
+            >
               <span
                 className="
                   block max-w-[88%]
@@ -3539,8 +3562,7 @@ function ServiceTile({
                   font-semibold
                   leading-[1.15]
                   text-white
-                  transition-colors
-                  duration-300
+                  transition-colors duration-300
                   group-hover:text-blue-200
                   sm:text-xs
                   md:text-sm
@@ -3563,7 +3585,50 @@ function ServiceTile({
                   group-hover:w-14
                 "
               />
-            </div>
+            </motion.div>
+
+            {/* Hover content — does not change the grid layout */}
+            <AnimatePresence>
+              {isHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="
+                    absolute inset-0 z-20
+                    flex flex-col justify-end
+                    bg-gradient-to-t from-[#020712]/95 via-[#020712]/55 to-transparent
+                    p-3 pt-10
+                    sm:p-4 sm:pt-12
+                  "
+                >
+                  <div className="mb-1.5 flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400 shadow-[0_0_10px_#3b82f6]" />
+                    <span className="font-mono text-[7px] uppercase tracking-[0.22em] text-blue-300/80 sm:text-[8px]">
+                      Service / {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  <p className="line-clamp-3 text-[9px] leading-4 text-slate-200/85 sm:text-[10px] sm:leading-5">
+                    {service.body || service.description || service.content || "Digital solutions designed around your business goals."}
+                  </p>
+
+                  {Array.isArray(service.benefits) && service.benefits.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {service.benefits.slice(0, 2).map((benefit) => (
+                        <span
+                          key={String(benefit)}
+                          className="max-w-full truncate rounded-full border border-blue-300/15 bg-blue-500/[0.08] px-2 py-1 font-mono text-[6px] uppercase tracking-[0.12em] text-blue-100/75 sm:text-[7px]"
+                        >
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
@@ -3638,11 +3703,11 @@ function CategoryHeader({
         ease: [0.22, 1, 0.36, 1],
       }}
       className="
-        mb-7
+        mb-5
         flex
         flex-col
         gap-5
-        sm:mb-9
+        sm:mb-7
         md:flex-row
         md:items-end
         md:justify-between
@@ -4118,7 +4183,7 @@ export default function Services() {
       <section
         className="
           relative
-          min-h-[100svh]
+          min-h-[82svh]
           overflow-hidden
           bg-[#020712]
           px-4
@@ -4208,7 +4273,7 @@ export default function Services() {
             relative z-10
             mx-auto
             flex
-            min-h-[calc(100svh-9rem)]
+            min-h-[calc(82svh-7rem)]
             max-w-[1400px]
             items-center
             max-sm:justify-center
@@ -4657,15 +4722,15 @@ export default function Services() {
           overflow-hidden
           bg-[#030914]
           px-3
-          pb-20
-          pt-14
+          pb-14
+          pt-10
           text-white
           sm:px-6
-          sm:pb-24
-          sm:pt-16
+          sm:pb-18
+          sm:pt-12
           lg:px-8
-          lg:pb-28
-          lg:pt-24
+          lg:pb-20
+          lg:pt-16
         "
       >
         <div
@@ -4747,7 +4812,7 @@ export default function Services() {
               MAIN HEADER
           ====================================================== */}
 
-          <div
+          {/* <div
             className="
               flex
               flex-col
@@ -4869,7 +4934,7 @@ export default function Services() {
                 Click to explore
               </span>
             </div>
-          </div>
+          </div> */}
 
           {/* ======================================================
               THREE SERVICE GROUPS
@@ -4885,12 +4950,12 @@ export default function Services() {
                 handleGridTouchEnd
               }
               className="
-                mt-12
-                space-y-16
-                sm:mt-16
-                sm:space-y-20
-                lg:mt-20
-                lg:space-y-24
+                mt-8
+                space-y-10
+                sm:mt-10
+                sm:space-y-12
+                lg:mt-12
+                lg:space-y-14
               "
             >
               {groupedServices.map(
@@ -4919,14 +4984,14 @@ export default function Services() {
                         <div
                           className="
                             pointer-events-none
-                            mb-16
+                            mb-8
                             h-px
                             w-full
                             bg-gradient-to-r
                             from-transparent
                             via-blue-400/15
                             to-transparent
-                            sm:mb-20
+                            sm:mb-10
                           "
                         />
                       )}
@@ -4949,7 +5014,7 @@ export default function Services() {
                       <div
                         className="
                           grid
-                          auto-rows-[135px]
+                          auto-rows-[150px]
                           grid-cols-2
                           gap-2
                           sm:auto-rows-[155px]
@@ -5018,14 +5083,14 @@ export default function Services() {
 
           <div
             className="
-              mt-10
+              mt-7
               flex
               items-center
               justify-between
               border-t
               border-white/[0.06]
               pt-5
-              sm:mt-12
+              sm:mt-9
             "
           >
             <div
@@ -5154,30 +5219,7 @@ export default function Services() {
           }
 
           img {
-            user-select: none;404
-            
-            Page not found
-            The page you’re looking for doesn’t exist or moved.
-            
-            Back to Home
-            DesFlyer
-            Digital Studio
-            Contact
-            Email
-            desflyer.tech@gmail.com
-            Phone
-            +91 8525913433
-            Location
-            Thanjavur, Tamil Nadu, India
-            
-            02
-            DesFlyer
-            Building thoughtful digital experiences, interfaces and products that move brands forward.
-            
-            Available for projects
-            Follow Us
-            01 / STUDIO
-            Explore
+            user-select: none;
           }
 
           @media (max-width: 640px) {

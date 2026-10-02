@@ -1573,7 +1573,7 @@ export default function Products() {
               sm:text-xl
             "
           >
-            18<span className="text-cyan-400">+</span>
+            18<span className="text-cyan-400"></span>
           </div>
 
           <div

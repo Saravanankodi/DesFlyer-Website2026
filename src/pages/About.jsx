@@ -122,9 +122,9 @@ const leadership = [
     linkedin: '#',
   },
 
-  // CURRENT INTERN 01 → TEAM
+  // CURRENT EMPLOYEE 01 → TEAM
   {
-    id: 'intern-01',
+    id: 'emp-01',
     reportsTo: 'founder',
     name: 'TamilNangai',
     title: 'Software Development Intern',
@@ -141,7 +141,7 @@ const leadership = [
 
   // CURRENT INTERN 02 → TEAM
   {
-    id: 'intern-02',
+    id: 'emp-02',
     reportsTo: 'founder',
     name: 'Atchayasri',
     title: 'UI/UX Design Intern',
@@ -209,6 +209,20 @@ const interns = [
       value: 'QA',
     },
     email: 'intern5@example.com',
+    linkedin: '#',
+  },
+
+  {
+    id: 'intern-04',
+    name: 'Divya',
+    title: 'Software Engineering Intern',
+    bio: 'Contributing to real-world software projects while developing practical skills in application development, problem-solving and modern engineering workflows.',
+    image: '/images/portfolio/divya.png',
+    stat: {
+      label: 'Focus',
+      value: 'Engineering',
+    },
+    email: 'intern6@example.com',
     linkedin: '#',
   },
 ]
@@ -3412,13 +3426,13 @@ export default function About() {
               className="
     mx-auto
     grid
-    max-w-5xl
+    max-w-7xl
     grid-cols-1
-    gap-10
+    gap-6
     sm:grid-cols-2
-    lg:grid-cols-3
-    sm:gap-10
-    lg:gap-12
+    lg:grid-cols-4
+    sm:gap-8
+    lg:gap-6
   "
             >
               {interns.map(
