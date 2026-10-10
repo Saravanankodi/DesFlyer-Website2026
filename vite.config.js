@@ -6,5 +6,6 @@ export default defineConfig({
   build: {
     target: 'esnext',
     sourcemap: false,
+    cssMinify: true,
   },
 })
