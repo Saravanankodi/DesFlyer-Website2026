@@ -1034,8 +1034,8 @@ function OrbitalCore({
             <motion.span
               key={index}
               className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal ${major
-                  ? 'h-1.5 w-1.5'
-                  : 'h-1 w-1'
+                ? 'h-1.5 w-1.5'
+                : 'h-1 w-1'
                 }`}
               style={{
                 left: `${left}%`,
@@ -1238,8 +1238,8 @@ function OrbitalCore({
               >
                 <div
                   className={`relative flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 sm:h-12 sm:w-12 sm:rounded-2xl ${isActive
-                      ? 'border-signal bg-signal text-white shadow-[0_0_30px_rgba(46,111,255,0.45)]'
-                      : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)]/40'
+                    ? 'border-signal bg-signal text-white shadow-[0_0_30px_rgba(46,111,255,0.45)]'
+                    : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)]/40'
                     }`}
                 >
                   <Icon
@@ -1251,8 +1251,8 @@ function OrbitalCore({
                 <div className="text-center">
                   <p
                     className={`font-mono text-[8px] uppercase tracking-[0.16em] sm:text-[9px] sm:tracking-[0.2em] ${isActive
-                        ? 'text-signal'
-                        : 'text-[var(--fg)]/30'
+                      ? 'text-signal'
+                      : 'text-[var(--fg)]/30'
                       }`}
                   >
                     {point.short}
@@ -1260,8 +1260,8 @@ function OrbitalCore({
 
                   <p
                     className={`mt-0.5 text-[9px] font-medium sm:text-[10px] ${isActive
-                        ? 'text-[var(--fg)]'
-                        : 'text-[var(--fg)]/30'
+                      ? 'text-[var(--fg)]'
+                      : 'text-[var(--fg)]/30'
                       }`}
                   >
                     {point.label}
@@ -1369,7 +1369,7 @@ function OrbitalCore({
           />
 
           <img
-            src="/images/portfolio/logo.png"
+            src="/images/portfolio/logo.webp"
             alt="DESFLYER"
             className="
               relative
@@ -1574,7 +1574,7 @@ export default function About() {
     "
         >
           <img
-            src="/images/portfolio/about.png"
+            src="/images/portfolio/about.webp"
             alt=""
             className="
         absolute
@@ -2371,7 +2371,7 @@ export default function About() {
 
           {/* SECTION HEADING */}
 
-          <div className="mb-7 flex flex-col items-center text-center sm:mb-12">
+          {/* <div className="mb-7 flex flex-col items-center text-center sm:mb-12">
             <motion.div
               initial={{
                 opacity: 0,
@@ -2467,7 +2467,7 @@ export default function About() {
                 What drives us
               </span>
             </motion.h2>
-          </div>
+          </div> */}
 
           <div className="relative">
 
@@ -2793,8 +2793,8 @@ export default function About() {
 
                         <span
                           className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all sm:h-10 sm:w-10 ${isActive
-                              ? "border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]"
-                              : "border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal"
+                            ? "border-signal bg-signal text-white shadow-[0_0_25px_rgba(46,111,255,0.35)]"
+                            : "border-[var(--border)] text-[var(--fg)]/35 group-hover:border-signal/30 group-hover:text-signal"
                             }`}
                         >
                           <Icon size={15} />
@@ -2803,8 +2803,8 @@ export default function About() {
                         <span className="relative z-10 min-w-0 flex-1">
                           <span
                             className={`block text-sm font-medium ${isActive
-                                ? "text-[var(--fg)]"
-                                : "text-[var(--fg)]/45"
+                              ? "text-[var(--fg)]"
+                              : "text-[var(--fg)]/45"
                               }`}
                           >
                             {card.title}
@@ -2944,743 +2944,7 @@ export default function About() {
           LEADERSHIP
       ================================================================= */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          px-4
-          py-16
-          sm:px-6
-          sm:py-24
-          md:px-8
-          lg:px-10
-          xl:px-12
-        "
-      >
-        <div className="pointer-events-none absolute inset-0">
-
-          <div
-            className="
-              absolute
-              left-1/2
-              top-24
-              h-[300px]
-              w-[300px]
-              -translate-x-1/2
-              rounded-full
-              bg-signal/[0.055]
-              blur-[110px]
-              sm:h-[420px]
-              sm:w-[420px]
-              sm:blur-[130px]
-            "
-          />
-
-          <div className="absolute left-[5%] top-[55%] h-48 w-48 rounded-full bg-signal/[0.025] blur-[90px] sm:left-[10%] sm:h-56 sm:w-56 sm:blur-[100px]" />
-
-          <div className="absolute right-[5%] top-[55%] h-48 w-48 rounded-full bg-signal/[0.025] blur-[90px] sm:right-[10%] sm:h-56 sm:w-56 sm:blur-[100px]" />
-
-          <div className="absolute left-1/2 top-[48%] h-px w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-signal/10 to-transparent sm:w-[75%]" />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl">
-
-          {/* LEADERSHIP HEADING */}
-
-          <div className="mb-10 text-center sm:mb-16">
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 12,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.5,
-              }}
-              className="
-              -mt-5
-                mb-4
-                flex
-                items-center
-                justify-center
-                gap-2
-                sm:gap-3
-              "
-            >
-              <span className="h-px w-7 bg-signal sm:w-10" />
-
-              <span className="font-mono text-[8px] font-medium uppercase tracking-[0.22em] text-signal sm:text-[9px] sm:tracking-[0.28em]">
-                Our Leadership
-              </span>
-
-              <span className="h-px w-7 bg-signal sm:w-10" />
-            </motion.div>
-
-            <motion.h2
-              initial={{
-                opacity: 0,
-                y: 18,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.65,
-                delay: 0.05,
-              }}
-              className="
-                font-display
-                text-3xl
-                font-semibold
-                tracking-tight
-                text-[var(--fg)]
-                sm:text-4xl
-                md:text-5xl
-                lg:text-6xl
-              "
-            >
-              Meet Our{' '}
-              <span className="text-signal">
-                Team
-              </span>
-            </motion.h2>
-
-            <motion.p
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.12,
-              }}
-              className="
-                mx-auto
-                mt-4
-                max-w-xl
-                text-sm
-                leading-6
-                text-[var(--fg)]/50
-                sm:leading-7
-              "
-            >
-              Together, they shape
-              the future — one
-              decision at a time.
-            </motion.p>
-          </div>
-
-          {/* DESKTOP CONNECTOR */}
-
-          <div
-            className="
-              relative
-              mx-auto
-              mt-10
-              hidden
-              h-20
-              max-w-5xl
-              lg:block
-            "
-          >
-            <div className="absolute left-1/2 top-0 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-signal/50 to-signal/15" />
-
-            <div className="absolute left-[16.66%] right-[16.66%] top-10 h-px bg-gradient-to-r from-transparent via-signal/20 to-transparent" />
-
-            <span className="absolute left-[16.66%] top-[37px] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-signal shadow-[0_0_18px_rgba(46,111,255,0.7)]" />
-
-            <span className="absolute left-1/2 top-[37px] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-signal shadow-[0_0_18px_rgba(46,111,255,0.7)]" />
-
-            <span className="absolute left-[83.33%] top-[37px] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-signal shadow-[0_0_18px_rgba(46,111,255,0.7)]" />
-          </div>
-
-          {/* Five LEADERS */}
-
-          <div className="mx-auto max-w-6xl">
-
-  <div
-    className="
-      mt-8
-      grid
-      grid-cols-1
-      gap-10
-      sm:mt-14
-      sm:grid-cols-2
-      sm:gap-14
-      lg:mt-0
-      lg:grid-cols-6
-      lg:gap-x-6
-      lg:gap-y-14
-      xl:gap-x-8
-    "
-  >
-    {directReports.map((person, index) => (
-      <motion.div
-        key={person.id}
-        initial={{
-          opacity: 0,
-          y: 35,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          margin: '-70px',
-        }}
-        transition={{
-          duration: 0.65,
-          delay: index * 0.12,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className={`
-          group
-          flex
-          flex-col
-          items-center
-          text-center
-
-          ${
-            index < 3
-              ? 'lg:col-span-2'
-              : index === 3
-                ? 'lg:col-span-2 lg:col-start-2'
-                : 'lg:col-span-2 lg:col-start-4'
-          }
-        `}
-      >
-        <div className="relative">
-
-          <div className="pointer-events-none absolute inset-0 rounded-full bg-signal/15 blur-[50px] opacity-0 transition-all duration-500 group-hover:opacity-100" />
-
-          <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.045,
-            }}
-            transition={{
-              duration: 0.4,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="
-              relative
-              h-40
-              w-40
-              overflow-hidden
-              rounded-full
-              border
-              border-[var(--border)]
-              bg-[var(--bg)]
-              shadow-[0_15px_45px_rgba(0,0,0,0.08)]
-              sm:h-48
-              sm:w-48
-              md:h-52
-              md:w-52
-            "
-          >
-            <img
-              src={person.image}
-              alt={person.name}
-              className="
-                h-full
-                w-full
-                object-cover
-                transition-transform
-                duration-700
-                group-hover:scale-110
-              "
-              onError={(event) => {
-                event.currentTarget.style.display = 'none'
-              }}
-            />
-
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-signal/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          </motion.div>
-
-          <span className="absolute bottom-2 right-3 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-[var(--bg)] bg-signal opacity-0 shadow-[0_0_18px_rgba(46,111,255,0.55)] transition-all duration-300 group-hover:opacity-100">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
-          </span>
-        </div>
-
-        <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-signal transition-transform duration-300 group-hover:-translate-y-1 sm:mt-7 sm:text-2xl">
-          {person.name}
-        </h3>
-
-        <p className="mt-2 text-sm font-medium text-[var(--fg)]">
-          {person.title}
-        </p>
-
-        <p className="mt-3 max-w-xs text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
-          {person.bio}
-        </p>
-
-        <div className="mt-5 flex items-center justify-center gap-3 sm:gap-4">
-          <div className="text-left">
-            <span className="block font-display text-lg font-bold text-[var(--fg)]">
-              {person.stat.value}
-            </span>
-
-            <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/30">
-              {person.stat.label}
-            </span>
-          </div>
-
-          <div className="h-8 w-px bg-[var(--border)]" />
-
-          <div className="flex gap-2">
-            <a
-              href={`mailto:${person.email}`}
-              aria-label={`Email ${person.name}`}
-              className="
-                flex
-                h-8
-                w-8
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-[var(--border)]
-                text-[var(--fg)]/35
-                transition-all
-                duration-300
-                hover:border-signal/40
-                hover:bg-signal/10
-                hover:text-signal
-              "
-            >
-              <FiMail size={12} />
-            </a>
-
-            <a
-              href={person.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`LinkedIn ${person.name}`}
-              className="
-                flex
-                h-8
-                w-8
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-[var(--border)]
-                text-[var(--fg)]/35
-                transition-all
-                duration-300
-                hover:border-signal/40
-                hover:bg-signal/10
-                hover:text-signal
-              "
-            >
-              <FiLinkedin size={12} />
-            </a>
-          </div>
-        </div>
-      </motion.div>
-    ))}
-  </div>
-
-</div>
-
-          {/* ==============================================================
-              INTERNS
-          =============================================================== */}
-
-          <div className="relative mt-32">
-
-
-
-            {/* INTERN CONNECTOR */}
-                        <div className=" text-center sm:mb-14">
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 12,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.5,
-                }}
-                className="
-                  mb-4
-                  flex
-                  items-center
-                  justify-center
-                  gap-2
-                  sm:gap-3
-                "
-              >
-                <span className="h-px w-7 bg-signal/60 sm:w-10" />
-
-                <span className="font-mono text-[8px] font-medium uppercase tracking-[0.22em] text-signal sm:text-[9px] sm:tracking-[0.28em]">
-                  Early Talent
-                </span>
-
-                <span className="h-px w-7 bg-signal/60 sm:w-10" />
-              </motion.div>
-
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                  y: 18,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.65,
-                  delay: 0.05,
-                }}
-                className="
-                  font-display
-                  text-3xl
-                  font-semibold
-                  tracking-tight
-                  text-[var(--fg)]
-                  sm:text-4xl
-                  md:text-5xl
-                "
-              >
-                Meet Our{' '}
-                <span className="text-signal">
-                  Interns
-                </span>
-              </motion.h2>
-
-              <motion.p
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.12,
-                }}
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-xl
-                  text-sm
-                  leading-6
-                  text-[var(--fg)]/45
-                  sm:leading-7
-                "
-              >
-                The next generation
-                of builders,
-                designers and
-                problem-solvers
-                growing with us.
-              </motion.p>
-            </div>
-
-            <div className="relative mx-auto mb-10 hidden h-12 max-w-2xl sm:block">
-              <div className="absolute left-1/2 top-0 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-signal/35 to-signal/10" />
-
-              <div className="absolute left-[25%] right-[25%] top-6 h-px bg-gradient-to-r from-transparent via-signal/15 to-transparent" />
-
-              <span className="absolute left-[25%] top-[21px] h-2 w-2 -translate-x-1/2 rounded-full bg-signal/80 shadow-[0_0_12px_rgba(46,111,255,0.5)]" />
-
-              <span className="absolute left-[75%] top-[21px] h-2 w-2 -translate-x-1/2 rounded-full bg-signal/80 shadow-[0_0_12px_rgba(46,111,255,0.5)]" />
-            </div>
-
-            {/* INTERN CARDS */}
-
-            <div
-              className="
-    mx-auto
-    grid
-    max-w-7xl
-    grid-cols-1
-    gap-6
-    sm:grid-cols-2
-    lg:grid-cols-4
-    sm:gap-8
-    lg:gap-6
-  "
-            >
-              {interns.map(
-                (person, index) => (
-                  <motion.div
-                    key={person.id}
-                    initial={{
-                      opacity: 0,
-                      y: 35,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                      margin: '-70px',
-                    }}
-                    transition={{
-                      duration: 0.65,
-                      delay: index * 0.14,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="
-                      group
-                      flex
-                      flex-col
-                      items-center
-                      text-center
-                    "
-                  >
-                    {/* IMAGE */}
-
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-[-12px] rounded-full bg-signal/10 blur-[35px] opacity-0 transition-all duration-500 group-hover:opacity-100" />
-
-                      <motion.div
-                        whileHover={{
-                          y: -7,
-                          scale: 1.04,
-                        }}
-                        transition={{
-                          duration: 0.4,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                        className="
-                          relative
-                          h-32
-                          w-32
-                          overflow-hidden
-                          rounded-full
-                          border
-                          border-signal/20
-                          bg-[var(--bg)]
-                          shadow-[0_15px_45px_rgba(0,0,0,0.08)]
-                          sm:h-40
-                          sm:w-40
-                          md:h-44
-                          md:w-44
-                        "
-                      >
-                        <img
-                          src={person.image}
-                          alt={person.name}
-                          className="
-                            h-full
-                            w-full
-                            object-cover
-                            transition-transform
-                            duration-700
-                            group-hover:scale-110
-                          "
-                          onError={(event) => {
-                            event.currentTarget.style.display =
-                              'none'
-                          }}
-                        />
-
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-signal/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                      </motion.div>
-
-                      {/* STATUS */}
-
-                      <span className="absolute bottom-1 right-2 flex h-6 w-6 items-center justify-center rounded-full border-[3px] border-[var(--bg)] bg-signal shadow-[0_0_16px_rgba(46,111,255,0.5)]">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
-                      </span>
-                    </div>
-
-                    {/* NUMBER */}
-
-                    <span className="mt-5 font-mono text-[7px] uppercase tracking-[0.2em] text-signal/55">
-                      Intern / 0{index + 1}
-                    </span>
-
-                    {/* NAME */}
-
-                    <h3 className="mt-2 font-display text-xl font-semibold tracking-tight text-[var(--fg)] transition-colors duration-300 group-hover:text-signal sm:text-2xl">
-                      {person.name}
-                    </h3>
-
-                    {/* ROLE */}
-
-                    <p className="mt-1.5 text-sm font-medium text-signal">
-                      {person.title}
-                    </p>
-
-                    {/* BIO */}
-
-                    <p className="mt-3 max-w-sm text-[11px] leading-6 text-[var(--fg)]/40 sm:text-[12px]">
-                      {person.bio}
-                    </p>
-
-                    {/* META */}
-
-                    <div className="mt-5 flex items-center gap-3 sm:gap-4">
-                      <div className="text-left">
-                        <span className="block font-display text-sm font-bold text-[var(--fg)] sm:text-base">
-                          {person.stat.value}
-                        </span>
-
-                        <span className="mt-0.5 block font-mono text-[7px] uppercase tracking-[0.15em] text-[var(--fg)]/25">
-                          {person.stat.label}
-                        </span>
-                      </div>
-
-                      <div className="h-7 w-px bg-[var(--border)]" />
-
-                      <div className="flex gap-2">
-                        <a
-                          href={`mailto:${person.email}`}
-                          aria-label={`Email ${person.name}`}
-                          className="
-                            flex
-                            h-8
-                            w-8
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-[var(--border)]
-                            text-[var(--fg)]/30
-                            transition-all
-                            duration-300
-                            hover:border-signal/40
-                            hover:bg-signal/10
-                            hover:text-signal
-                          "
-                        >
-                          <FiMail size={12} />
-                        </a>
-
-                        <a
-                          href={person.linkedin}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={`LinkedIn ${person.name}`}
-                          className="
-                            flex
-                            h-8
-                            w-8
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            border-[var(--border)]
-                            text-[var(--fg)]/30
-                            transition-all
-                            duration-300
-                            hover:border-signal/40
-                            hover:bg-signal/10
-                            hover:text-signal
-                          "
-                        >
-                          <FiLinkedin size={12} />
-                        </a>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              )}
-            </div>
-
-            {/* INTERN BOTTOM SIGNAL */}
-
-            {/* <motion.div
-              initial={{
-                opacity: 0,
-                scaleX: 0,
-              }}
-              whileInView={{
-                opacity: 1,
-                scaleX: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.9,
-                delay: 0.2,
-              }}
-              className="
-                mx-auto
-                mt-12
-                h-px
-                max-w-3xl
-                origin-center
-                bg-gradient-to-r
-                from-transparent
-                via-signal/15
-                to-transparent
-                sm:mt-16
-              "
-            /> */}
-          </div>
-
-          {/* BOTTOM ACCENT */}
-
-          {/* <motion.div
-            initial={{
-              opacity: 0,
-              scaleX: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-              scaleX: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 1,
-              delay: 0.3,
-            }}
-            className="
-              mx-auto
-              mt-12
-              h-px
-              max-w-4xl
-              origin-center
-              bg-gradient-to-r
-              from-transparent
-              via-signal/20
-              to-transparent
-              sm:mt-20
-            "
-          /> */}
-        </div>
-      </section>
+      
 
       {/* ================================================================
           CTA
@@ -3690,3 +2954,6 @@ export default function About() {
     </>
   )
 }
+
+
+

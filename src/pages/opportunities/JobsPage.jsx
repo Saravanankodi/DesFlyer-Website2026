@@ -2620,7 +2620,7 @@ export default function JobsPage() {
           "
         >
           <img
-            src="/images/portfolio/job.png"
+            src="/images/portfolio/job.webp"
             alt="DesFlyer careers"
             className="
         absolute

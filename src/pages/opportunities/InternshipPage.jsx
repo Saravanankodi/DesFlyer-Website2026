@@ -1912,7 +1912,7 @@ export default function InternshipPage() {
 
         <div className="absolute inset-0">
           <img
-            src="/images/portfolio/intern.png"
+            src="/images/portfolio/intern.webp"
             alt=""
            className="
         absolute

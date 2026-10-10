@@ -47,7 +47,7 @@ const projects = [
     technologies: ["React", "Electron JS", "MySQL"],
     client: "Tamilarasi K",
     date: "Feb 2026",
-    image: "/images/portfolio/tamil-printer.png",
+    image: "/images/portfolio/tamil-printer.webp",
     githubUrl: "#",
   },
 
@@ -61,7 +61,7 @@ const projects = [
     technologies: ["React", "Node.js", "MongoDB"],
     client: "Mech Dept - Kings",
     date: "Apr 2025",
-    image: "/images/portfolio/mechancientz.png",
+    image: "/images/portfolio/mechancientz.webp",
     githubUrl: "#",
   },
 
@@ -75,7 +75,7 @@ const projects = [
     technologies: ["React", "MongoDB", "Firebase"],
     client: "Abi Shek",
     date: "Apr 2026",
-    image: "/images/portfolio/sm-manpower.png",
+    image: "/images/portfolio/sm-manpower.webp",
     githubUrl: "#",
   },
 
@@ -89,7 +89,7 @@ const projects = [
     technologies: ["React", "Node.js", "MongoDB"],
     client: "Kings College",
     date: "Dec 2024",
-    image: "/images/portfolio/kings-hall.png",
+    image: "/images/portfolio/kings-hall.webp",
     githubUrl: "#",
   },
 
@@ -103,7 +103,7 @@ const projects = [
     technologies: ["React", "Tailwind CSS", "Firebase"],
     client: "DES",
     date: "2026",
-    image: "/images/portfolio/product.png",
+    image: "/images/portfolio/product.webp",
     githubUrl: "#",
   },
 ];
@@ -325,7 +325,7 @@ function ProjectDetailsPopup({ project, onClose }) {
               "
             >
               <img
-                src="/images/portfolio/logo.png"
+                src="/images/portfolio/logo.webp"
                 alt="DESFlyer"
                 className="h-full w-full object-contain"
               />
@@ -2587,7 +2587,7 @@ export default function ProjectStack() {
           {/* IMAGE — UNCHANGED */}
 
           <motion.img
-            src="/images/portfolio/port.png"
+            src="/images/portfolio/port.webp"
             alt="DesFlyer Selected Projects"
             initial={{
               scale: 1.08,

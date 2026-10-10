@@ -2101,7 +2101,7 @@ export default function Hero() {
               ================================================= */}
 
               <motion.div
-                className="relative mt-7 flex items-center justify-center gap-3 sm:justify-start" initial={{
+                className="relative mt-14 flex items-center justify-center gap-3 sm:justify-start" initial={{
                   opacity: 0,
                   y: 20,
                   filter: "blur(8px)",
@@ -2790,7 +2790,7 @@ export default function Hero() {
                   <div className="absolute h-[420px] w-[520px] rounded-full bg-blue-500/10 blur-3xl" />
 
                   <img
-                    src="/images/portfolio/wpng.png"
+                    src="/images/portfolio/wpng.webp"
                     alt="DesFlyer"
                     className="
                       relative

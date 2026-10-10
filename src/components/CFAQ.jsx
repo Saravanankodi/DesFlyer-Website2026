@@ -78,7 +78,7 @@ export default function FAQ({
           MAIN CONTAINER
       ===================================================== */}
 
-      <div className="relative mx-auto max-w-[1400px] -mt-10">
+      <div className="relative mx-auto max-w-[1200px] -mt-10">
         {/* =================================================
             HEADER
         ================================================= */}
@@ -272,7 +272,7 @@ export default function FAQ({
                 RIGHT QUESTIONS
             ================================================= */}
 
-            <div className="relative border-t border-blue-400/[0.08] bg-blue-500/[0.025] lg:border-l lg:border-t-0">
+            <div className="relative border-t border-blue-400/[0.08] bg-blue-500/[0.025] lg:border-l lg:border-t-0 ">
               {/* RIGHT HEADER */}
 
               <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3">

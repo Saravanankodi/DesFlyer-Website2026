@@ -1156,7 +1156,8 @@ export default function Navbar() {
               <div className="pointer-events-none absolute -inset-5 rounded-full bg-blue-400/25 blur-2xl opacity-100 transition-opacity duration-500 group-hover:opacity-100" />
 
               <img
-                src="/images/portfolio/llogo.png"
+                src="/images/portfolio/logo.webp
+                "
                 alt="DesFlyer"
                 className="relative z-10 h-10 w-auto max-w-[150px] object-contain drop-shadow-[0_0_18px_rgba(100,220,246,0.95)]"
               />

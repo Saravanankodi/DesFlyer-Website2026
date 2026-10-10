@@ -563,7 +563,7 @@ export default function Footer() {
 
               </div>
 
-              <span
+              {/* <span
                 className="
                   absolute
                   bottom-3
@@ -577,7 +577,7 @@ export default function Footer() {
                 "
               >
                 02
-              </span>
+              </span> */}
 
             </TiltCard>
 
@@ -588,358 +588,417 @@ export default function Footer() {
               MOBILE SECOND
           ================================================== */}
 
+<motion.div
+  className="order-2 lg:order-1"
+  initial={{
+    opacity: 0,
+    y: 25,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.7,
+  }}
+>
+  <TiltCard
+    className="
+      group
+      relative
+      h-full
+      overflow-hidden
+      rounded-2xl
+      border
+      border-blue-500/25
+      bg-gradient-to-br
+      from-blue-600/[0.16]
+      via-blue-500/[0.09]
+      to-cyan-500/[0.14]
+      p-4
+      shadow-[0_25px_80px_rgba(20,80,255,0.15)]
+      transition-all
+      duration-500
+      hover:border-blue-400/50
+      hover:shadow-[0_25px_90px_rgba(30,100,255,0.28)]
+      sm:rounded-3xl
+      sm:p-7
+    "
+  >
+    {/* Overall blue gradient background */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        inset-0
+        rounded-[inherit]
+        bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.25),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(6,182,212,0.20),transparent_55%),linear-gradient(135deg,rgba(30,64,175,0.12),rgba(37,99,235,0.08),rgba(8,145,178,0.12))]
+      "
+    />
+
+    {/* Animated blue ambient glow */}
+    <motion.div
+      className="
+        pointer-events-none
+        absolute
+        inset-0
+        rounded-[inherit]
+        bg-blue-500/[0.06]
+      "
+      animate={{
+        opacity: [0.35, 0.9, 0.35],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+
+    {/* Top blue glow */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        -right-16
+        -top-16
+        h-36
+        w-36
+        rounded-full
+        bg-blue-500/[0.16]
+        blur-3xl
+        transition-all
+        duration-700
+        group-hover:bg-blue-400/[0.25]
+        sm:-right-20
+        sm:-top-20
+        sm:h-48
+        sm:w-48
+      "
+    />
+
+    {/* Decorative rotating ring */}
+    <motion.div
+      animate={{
+        rotate: 360,
+      }}
+      transition={{
+        duration: 25,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="
+        pointer-events-none
+        absolute
+        -right-10
+        -top-10
+        h-32
+        w-32
+        rounded-full
+        border
+        border-blue-400/20
+        sm:h-40
+        sm:w-40
+      "
+    />
+
+    {/* Decorative dashed ring */}
+    <motion.div
+      animate={{
+        rotate: -360,
+      }}
+      transition={{
+        duration: 35,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="
+        pointer-events-none
+        absolute
+        -right-5
+        top-0
+        h-24
+        w-24
+        rounded-full
+        border
+        border-dashed
+        border-cyan-400/20
+        sm:h-28
+        sm:w-28
+      "
+    />
+
+    {/* Card content */}
+    <div className="relative z-10">
+      {/* Logo */}
+      <Link
+        to="/"
+        className="group/logo inline-block"
+      >
+        <div className="relative inline-flex items-center justify-center">
+          {/* Strong outer blue glow */}
           <motion.div
-            className="order-2 lg:order-1"
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
+            className="
+              pointer-events-none
+              absolute
+              inset-[-35px]
+              rounded-full
+              bg-blue-600/60
+              blur-3xl
+            "
+            animate={{
+              opacity: [0.65, 1, 0.65],
+              scale: [0.9, 1.2, 0.9],
             }}
             transition={{
-              duration: 0.7,
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
             }}
+          />
+
+          {/* Bright inner cyan glow */}
+          <motion.div
+            className="
+              pointer-events-none
+              absolute
+              inset-[-15px]
+              rounded-full
+              bg-cyan-400/50
+              blur-2xl
+            "
+            animate={{
+              opacity: [0.5, 0.95, 0.5],
+              scale: [0.95, 1.15, 0.95],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* DesFlyer logo */}
+          <motion.img
+            whileHover={{
+              scale: 1.08,
+              rotateY: 8,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 250,
+              damping: 15,
+            }}
+            src="/images/portfolio/logo.webp"
+            alt="DesFlyer"
+            className="
+              relative
+              z-10
+              w-32
+              object-contain
+              drop-shadow-[0_0_20px_rgba(46,111,255,0.9)]
+              sm:w-36
+            "
+          />
+        </div>
+      </Link>
+
+      {/* Description */}
+      <p
+        className="
+          mt-3
+          max-w-sm
+          text-xs
+          leading-5
+          text-[var(--fg)]/60
+          sm:mt-5
+          sm:text-sm
+          sm:leading-7
+        "
+      >
+        Building thoughtful digital experiences,
+        interfaces and products that move brands
+        forward.
+      </p>
+
+      {/* Availability */}
+      <motion.div
+        whileHover={{
+          y: -3,
+          scale: 1.02,
+        }}
+        className="
+          mt-4
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-blue-400/25
+          bg-blue-500/[0.08]
+          px-2.5
+          py-1.5
+          shadow-[0_10px_30px_rgba(37,99,235,0.12)]
+          sm:mt-6
+          sm:gap-3
+          sm:px-3
+          sm:py-2
+        "
+      >
+        <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
+          <span
+            className="
+              absolute
+              inset-0
+              animate-ping
+              rounded-full
+              bg-cyan-400
+              opacity-60
+            "
+          />
+
+          <span
+            className="
+              relative
+              h-1.5
+              w-1.5
+              rounded-full
+              bg-cyan-400
+              shadow-[0_0_12px_rgba(34,211,238,0.9)]
+              sm:h-2
+              sm:w-2
+            "
+          />
+        </span>
+
+        <span
+          className="
+            font-mono
+            text-[7px]
+            uppercase
+            tracking-[0.12em]
+            text-[var(--fg)]/60
+            sm:text-[8px]
+            sm:tracking-[0.16em]
+          "
+        >
+          Available for projects
+        </span>
+      </motion.div>
+
+      {/* Follow Us */}
+      <div className="mt-4 sm:mt-7">
+        <div className="mb-2 flex items-center gap-2 sm:mb-3">
+          <span className="h-px w-5 bg-blue-400" />
+
+          <span
+            className="
+              font-mono
+              text-[8px]
+              font-semibold
+              uppercase
+              tracking-[0.16em]
+              text-blue-400
+              sm:text-[9px]
+              sm:tracking-[0.2em]
+            "
           >
+            Follow Us
+          </span>
+        </div>
 
-            <TiltCard
-              className="
-                group
-                relative
-                h-full
-                overflow-hidden
-                rounded-2xl
-                border
-                border-[var(--border)]/70
-                bg-[var(--fg)]/[0.018]
-                p-4
-                shadow-[0_25px_80px_rgba(0,0,0,0.08)]
-                transition-colors
-                duration-500
-                hover:border-signal/30
-                sm:rounded-3xl
-                sm:p-7
-              "
-            >
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {siteConfig.socials.map((social) => {
+            const Icon = socialIcons[social.name];
 
-              {/* Glow */}
+            if (!Icon || !social.href) return null;
 
-              <div
+            return (
+              <motion.a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit DesFlyer on ${social.name}`}
+                whileHover={{
+                  y: -5,
+                  rotateX: 12,
+                  rotateY: -12,
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.94,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15,
+                }}
                 className="
-                  pointer-events-none
-                  absolute
-                  -right-16
-                  -top-16
-                  h-36
-                  w-36
-                  rounded-full
-                  bg-signal/[0.07]
-                  blur-3xl
+                  group
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-lg
+                  border
+                  border-blue-400/20
+                  bg-blue-500/[0.06]
+                  text-[var(--fg)]/60
+                  shadow-[0_8px_25px_rgba(37,99,235,0.08)]
                   transition-all
-                  duration-700
-                  group-hover:bg-signal/[0.13]
-                  sm:-right-20
-                  sm:-top-20
-                  sm:h-48
-                  sm:w-48
-                "
-              />
-
-              {/* Decorative rings */}
-
-              <motion.div
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 25,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-10
-                  -top-10
-                  h-32
-                  w-32
-                  rounded-full
-                  border
-                  border-signal/10
-                  sm:h-40
-                  sm:w-40
-                "
-              />
-
-              <motion.div
-                animate={{
-                  rotate: -360,
-                }}
-                transition={{
-                  duration: 35,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-5
-                  top-0
-                  h-24
-                  w-24
-                  rounded-full
-                  border
-                  border-dashed
-                  border-signal/10
-                  sm:h-28
-                  sm:w-28
-                "
-              />
-
-              <div className="relative z-10">
-
-                {/* Logo */}
-
-                <Link
-                  to="/"
-                  className="group/logo inline-block"
-                >
-
-                  <motion.img
-                    whileHover={{
-                      scale: 1.04,
-                      rotateY: 8, 
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 250,
-                      damping: 15,
-                    }}
-                    src="/images/portfolio/llogo.png"
-                    alt="DesFlyer"
-                    className="
-                      w-32
-                      object-contain
-                      drop-shadow-[0_12px_25px_rgba(0,0,0,0.15)]
-                      sm:w-36
-                    "
-                  />
-
-                </Link>
-
-                {/* Description */}
-
-                <p
-                  className="
-                    mt-3
-                    max-w-sm
-                    text-xs
-                    leading-5
-                    text-[var(--fg)]/45
-                    sm:mt-5
-                    sm:text-sm
-                    sm:leading-7
-                  "
-                >
-                  Building thoughtful digital experiences,
-                  interfaces and products that move brands
-                  forward.
-                </p>
-
-                {/* Availability */}
-
-                <motion.div
-                  whileHover={{
-                    y: -3,
-                    scale: 1.02,
-                  }}
-                  className="
-                    mt-4
-                    inline-flex
-                    items-center
-                    gap-2
-                    rounded-full
-                    border
-                    border-signal/15
-                    bg-signal/[0.025]
-                    px-2.5
-                    py-1.5
-                    shadow-[0_10px_30px_rgba(0,0,0,0.06)]
-                    sm:mt-6
-                    sm:gap-3
-                    sm:px-3
-                    sm:py-2
-                  "
-                >
-
-                  <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-
-                    <span
-                      className="
-                        absolute
-                        inset-0
-                        animate-ping
-                        rounded-full
-                        bg-signal
-                        opacity-50
-                      "
-                    />
-
-                    <span
-                      className="
-                        relative
-                        h-1.5
-                        w-1.5
-                        rounded-full
-                        bg-signal
-                        shadow-[0_0_12px_var(--signal)]
-                        sm:h-2
-                        sm:w-2
-                      "
-                    />
-
-                  </span>
-
-                  <span
-                    className="
-                      font-mono
-                      text-[7px]
-                      uppercase
-                      tracking-[0.12em]
-                      text-[var(--fg)]/40
-                      sm:text-[8px]
-                      sm:tracking-[0.16em]
-                    "
-                  >
-                    Available for projects
-                  </span>
-
-                </motion.div>
-
-                {/* Follow Us */}
-
-                <div className="mt-4 sm:mt-7">
-
-                  <div className="mb-2 flex items-center gap-2 sm:mb-3">
-
-                    <span className="h-px w-5 bg-signal" />
-
-                    <span
-                      className="
-                        font-mono
-                        text-[8px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.16em]
-                        text-signal
-                        sm:text-[9px]
-                        sm:tracking-[0.2em]
-                      "
-                    >
-                      Follow Us
-                    </span>
-
-                  </div>
-
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-
-                    {siteConfig.socials.map((social) => {
-
-                      const Icon = socialIcons[social.name]
-
-                      if (!Icon || !social.href) return null
-
-                      return (
-                        <motion.a
-                          key={social.name}
-                          href={social.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Visit DesFlyer on ${social.name}`}
-                          whileHover={{
-                            y: -5,
-                            rotateX: 12,
-                            rotateY: -12,
-                            scale: 1.08,
-                          }}
-                          whileTap={{
-                            scale: 0.94,
-                          }}
-                          transition={{
-                            type: 'spring',
-                            stiffness: 300,
-                            damping: 15,
-                          }}
-                          className="
-                            group
-                            flex
-                            h-8
-                            w-8
-                            items-center
-                            justify-center
-                            rounded-lg
-                            border
-                            border-[var(--border)]
-                            bg-[var(--fg)]/[0.015]
-                            text-[var(--fg)]/40
-                            shadow-[0_8px_25px_rgba(0,0,0,0.05)]
-                            transition-colors
-                            duration-300
-                            hover:border-signal/50
-                            hover:bg-signal/[0.06]
-                            hover:text-signal
-                            sm:h-9
-                            sm:w-9
-                            sm:rounded-xl
-                          "
-                        >
-
-                          <Icon
-                            size={11}
-                            className="
-                              transition-transform
-                              duration-300
-                              group-hover:scale-110
-                              sm:h-3.5
-                              sm:w-3.5
-                            "
-                          />
-
-                        </motion.a>
-                      )
-                    })}
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div
-                className="
-                  absolute
-                  bottom-3
-                  right-4
-                  font-mono
-                  text-[7px]
-                  tracking-[0.16em]
-                  text-[var(--fg)]/10
-                  sm:bottom-5
-                  sm:right-6
-                  sm:text-[8px]
-                  sm:tracking-[0.2em]
+                  duration-300
+                  hover:border-blue-400/60
+                  hover:bg-blue-500/20
+                  hover:text-blue-400
+                  hover:shadow-[0_0_20px_rgba(46,111,255,0.2)]
+                  sm:h-9
+                  sm:w-9
+                  sm:rounded-xl
                 "
               >
-                01 / STUDIO
-              </div>
+                <Icon
+                  size={11}
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                    sm:h-3.5
+                    sm:w-3.5
+                  "
+                />
+              </motion.a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
 
-            </TiltCard>
-
-          </motion.div>
+    {/* Studio label */}
+    {/* <div
+      className="
+        pointer-events-none
+        absolute
+        bottom-3
+        right-4
+        font-mono
+        text-[7px]
+        tracking-[0.16em]
+        text-blue-300/30
+        sm:bottom-5
+        sm:right-6
+        sm:text-[8px]
+        sm:tracking-[0.2em]
+      "
+    >
+      01 / STUDIO
+    </div> */}
+  </TiltCard>
+</motion.div>
 
           {/* =================================================
               EXPLORE
@@ -1080,7 +1139,7 @@ export default function Footer() {
 
               </div>
 
-              <span
+              {/* <span
                 className="
                   absolute
                   bottom-3
@@ -1094,7 +1153,7 @@ export default function Footer() {
                 "
               >
                 03
-              </span>
+              </span> */}
 
             </TiltCard>
 
@@ -1242,7 +1301,7 @@ export default function Footer() {
 
               </div>
 
-              <span
+              {/* <span
                 className="
                   absolute
                   bottom-3
@@ -1256,7 +1315,7 @@ export default function Footer() {
                 "
               >
                 04
-              </span>
+              </span> */}
 
             </TiltCard>
 

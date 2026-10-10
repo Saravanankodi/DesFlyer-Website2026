@@ -20,9 +20,9 @@ import {
 ========================================================= */
 
 const comingSoonImages = [
-  "/images/portfolio/logo.png",
-  "/images/portfolio/logo.png",
-  "/images/portfolio/logo.png",
+  "/images/portfolio/job.webp",
+  "/images/portfolio/job.webp",
+  "/images/portfolio/job.webp",
 ];
 
 /* =========================================================
@@ -877,7 +877,7 @@ export default function Products() {
   {/* ================= HERO IMAGE ================= */}
   <div className="pointer-events-none absolute inset-0 overflow-hidden">
     <img
-      src="/images/portfolio/products.png"
+      src="/images/portfolio/products.webp"
       alt="DesFlyer Products"
    className="
         absolute

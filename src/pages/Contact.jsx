@@ -67,8 +67,8 @@ export default function Contact() {
       // STORE PROJECT INQUIRY IN FIRESTORE
       // Collection: contactMessage
       // =====================================================
-  console.log("FORM SUBMIT STARTED");
-  console.log("FORM DATA:", form);
+      console.log("FORM SUBMIT STARTED");
+      console.log("FORM DATA:", form);
       await addDoc(collection(db, 'contactMessage'), {
         name: form.name.trim(),
         email: form.email.trim(),
@@ -324,12 +324,16 @@ export default function Contact() {
                   <p className="mt-2 max-w-sm text-[11px] leading-5 text-[var(--fg)]/45 lg:text-xs">
                     Give us the context. We&rsquo;ll bring the strategy,
                     design, engineering, and execution.
+                    <br />
+                    <br />
+                    design, engineering, and execution.
+
                   </p>
 
                 </div>
 
 
-                <div className="mt-6 space-y-3">
+                <div className="mt-6 space-y-4">
 
                   <ContactItem
                     icon={<FiMail size={15} />}
@@ -1061,7 +1065,7 @@ function HumanCommunicationCard() {
       </div>
 
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-blue-400/[0.08] bg-blue-500/[0.06] px-2.5 py-1 backdrop-blur-md">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-blue-400/[0.08] bg-blue-500/[0.06] px-2.5 py-1 backdrop-blur-md">
 
         <span className="font-mono text-[6px] uppercase tracking-[0.15em] text-blue-300/60">
           You speak • We listen • We create
